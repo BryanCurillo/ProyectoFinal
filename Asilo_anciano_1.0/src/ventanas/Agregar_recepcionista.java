@@ -29,6 +29,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     public Agregar_recepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cargarcod();
     }
 
     /**
