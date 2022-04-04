@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 //import javax.swing.table.DefaultTableModel;
 
 public class Agregar_paciente extends javax.swing.JFrame {
-
+    Conexion mi_cone=new Conexion();
     validaciones misvalidaciones = new validaciones();
     int id = 0;
     String Cedula = "";
@@ -47,6 +47,35 @@ public class Agregar_paciente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarcod();
+    }
+
+    public Agregar_paciente(String cedula) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+
+        Guardar_paciente.setVisible(false);
+
+        String SQL_SELECT = "SELECT * FROM pacientes WHERE cedula = " + cedula + ";";
+        llenar_paciente();
+
+    }
+    public void llenar_paciente() {
+
+            List<paciente> com = inser.ListaPaciente();
+            com.stream().forEach(p -> {
+                text_codigo_paciente.setText(p.getCodigo().toString());
+                text_cedula_paciente.setText(p.getCedula().toString());
+                text_PrimerNombre_paciente.setText(p.getPri_nomb().toString());
+                text_SegundoNombre_paciente.setText(p.getSeg_nombre().toString());
+                text_PrimerApellido_paciente.setText(p.getPri_nomb().toString());
+                text_SegundoApellido_paciente.setText(p.getSeg_apelli().toString());
+                text_email_paciente.setText(p.getCorreo().toString());
+                text_direccion_paciente.setText(p.getDireccion());
+                text_celular_paciente.setText(p.getTelefono());
+
+            });
+        
+
     }
 
     /**
@@ -875,9 +904,42 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_text_codigo_pacienteActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-
+modificar_paciente();
     }//GEN-LAST:event_modificarActionPerformed
+public void modificar_paciente(){
+         if (Masculino_paciente.isSelected()) {
+            genero = "hombre";
+        }
+        if (Femenino_paciente.isSelected()) {
+            genero = "mujer";
+        }
+        String tipoo_sangre=combo_sangre_paciente.getSelectedItem().toString();
+        if (check_iess.isSelected()) {
+            afiliacion = "si";
+        } else {
+            afiliacion = "no";
+        }
+        String dia = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.YEAR));
+        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+        
 
+
+        String diaI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
+        String añoI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.YEAR));
+        String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
+
+        
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + text_PrimerNombre_paciente.getText() + "', per_segundo_nombre='" + text_SegundoNombre_paciente.getText() + "'"
+                + ", per_primer_apellido='" + text_PrimerApellido_paciente.getText() + "', per_segundo_apellido='" + text_SegundoApellido_paciente.getText() + "'"
+                + ", per_correo='" + text_email_paciente.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_paciente.getText() + "', per_telefono='" + text_celular_paciente.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_paciente.getText() + "'");
+        
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE paciente SET paci_seguro='" + afiliacion + "',paci_fecha_de_ingreso='" + FechaDeIngreso + "' WHERE paci_cedula='" + text_cedula_paciente.getText() + "'");
+        limpiar();
+        
+    }
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
 
     }//GEN-LAST:event_buscarActionPerformed
