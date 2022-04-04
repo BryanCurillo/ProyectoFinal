@@ -5,6 +5,7 @@
  */
 package ventanas;
 //Prueba
+
 import java.awt.Color;
 import clases.administrador;
 import clases.usuario;
@@ -31,7 +32,7 @@ import java.util.logging.Logger;
  * @author User
  */
 public class Agregar_administrador extends javax.swing.JFrame {
-
+    Conexion mi_cone = new Conexion();
     DateFormat df = DateFormat.getDateInstance();
 //    ArrayList<administrador> lista_administrador = new ArrayList();
     validaciones misvalidaciones = new validaciones();
@@ -42,6 +43,33 @@ public class Agregar_administrador extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarcod();
+    }
+
+    public Agregar_administrador(String cedula) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+
+        cargarcod();
+        llenar_administrador();
+        Guardar_administrador.setVisible(false);
+    }
+
+    public void llenar_administrador() {
+
+        List<administrador> com = inserCargarCodigo.ListaAdministrador();
+        com.stream().forEach(p -> {
+            txt_codigo_administrador.setText(p.getCodigo().toString());
+            txt_cedula_administrador.setText(p.getCedula().toString());
+            txt_PrimerNombre_administrador.setText(p.getPri_nomb().toString());
+            txt_SegundoNombre_administrador.setText(p.getSeg_nombre().toString());
+            txt_PrimerApellido_administrador.setText(p.getPrim_apell().toString());
+            txt_SegundoApellido_administrador.setText(p.getSeg_apelli().toString());
+            txt_email_administrador.setText(p.getCorreo().toString());
+            txt_direccion_administrador.setText(p.getDireccion());
+            txt_celular_administrador.setText(p.getTelefono());
+
+        });
+
     }
 
     /**
@@ -93,6 +121,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         txt_usuario = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txt_contrasena = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -310,6 +339,13 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         txt_contrasena.setToolTipText("Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
 
+        jButton1.setText("MODIFICAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -400,6 +436,8 @@ public class Agregar_administrador extends javax.swing.JFrame {
                 .addComponent(Guardar_administrador)
                 .addGap(116, 116, 116)
                 .addComponent(Regresar_administrador)
+                .addGap(61, 61, 61)
+                .addComponent(jButton1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -504,9 +542,11 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         .addComponent(jLabel18))
                     .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Guardar_administrador)
-                    .addComponent(Regresar_administrador))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Guardar_administrador)
+                        .addComponent(Regresar_administrador))
+                    .addComponent(jButton1))
                 .addContainerGap(754, Short.MAX_VALUE))
         );
 
@@ -615,6 +655,34 @@ public class Agregar_administrador extends javax.swing.JFrame {
         txt_nivelDeeducacion_administrador.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_nivelDeeducacion_administradorMousePressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        modificar_administrador();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+public void modificar_administrador() {
+        String genero="";
+        if (Masculino_administrador.isSelected()) {
+            genero = "hombre";
+        }
+        if (Femenino_administrador.isSelected()) {
+            genero = "mujer";
+        }
+        String tipoo_sangre = combo_sangre_administrador.getSelectedItem().toString();
+        
+        String dia = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.YEAR));
+        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+
+        
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + txt_PrimerNombre_administrador.getText() + "', per_segundo_nombre='" + txt_SegundoNombre_administrador.getText() + "'"
+                + ", per_primer_apellido='" + txt_PrimerApellido_administrador.getText() + "', per_segundo_apellido='" + txt_SegundoApellido_administrador.getText() + "'"
+                + ", per_correo='" + txt_email_administrador.getText() + "', per_genero='" + genero + "', per_direccion='" + txt_direccion_administrador.getText() + "', per_telefono='" + txt_celular_administrador.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + txt_cedula_administrador.getText() + "'");
+
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE administrador SET admin_nivel_educacion='" + txt_nivelDeeducacion_administrador.getText() + "' WHERE admin_cedula='" + txt_cedula_administrador.getText() + "'");
+        limpiar();
+
+    }
     public void cargarcod() {
         txt_codigo_administrador.setEnabled(false);
         txt_codigo_administrador.setText(String.valueOf(inserCargarCodigo.cargarcodigo()));
@@ -876,6 +944,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
     private javax.swing.JRadioButton Masculino_administrador;
     private javax.swing.JButton Regresar_administrador;
     private javax.swing.JComboBox<String> combo_sangre_administrador;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
