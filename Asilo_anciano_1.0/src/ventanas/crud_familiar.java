@@ -174,9 +174,21 @@ public class crud_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_BtBuscarFamiliarActionPerformed
 
     private void BtEditarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarFamiliarActionPerformed
-        // TODO add your handling code here:
+        modificar_familiar();
     }//GEN-LAST:event_BtEditarFamiliarActionPerformed
+    public void modificar_familiar() {
 
+        int seleccion = TablaFamiliar.getSelectedRow();
+        String cedula = TablaFamiliar.getValueAt(seleccion, 1).toString();
+        inser.ListaFamiliar().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                new agregar_familiar(cedula).setVisible(true);
+                text_buscar.setText("");
+
+            }
+        });
+
+    }
     private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
         // TODO add your handling code here:
         text_buscar.setText("");
