@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
 import clases.doctor;
@@ -12,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -79,6 +75,11 @@ public class crud_familiar extends javax.swing.JFrame {
                 text_buscarMousePressed(evt);
             }
         });
+        text_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_buscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 250, 40));
 
         BtBuscarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
@@ -124,7 +125,7 @@ public class crud_familiar extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Cédula", "Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "correo", "Sexo", "Dirección", "Tipo de sangre", "Código de paciente", "Hora inicio de visita", "Hora fin de visita", "Celular", "Fecha de nacimiento", "Fecha de visita"
+                "Codigo", "Cédula", "Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Correo", "Sexo", "Dirección", "Tipo de sangre", "Celular", "Fecha de nacimiento", "Parentesco"
             }
         ));
         jScrollPane1.setViewportView(TablaFamiliar);
@@ -164,53 +165,14 @@ public class crud_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_BtEliminarFamiliarActionPerformed
 
     private void BtBuscarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarFamiliarActionPerformed
-        buscar_familiar();
-    }//GEN-LAST:event_BtBuscarFamiliarActionPerformed
-    public void cargarTabla() {
-        DefaultTableModel tb = (DefaultTableModel) TablaFamiliar.getModel();
-        tb.setNumRows(0);
-        List<familiar> com = inser.ListaFamiliar();
-        com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(),p.getTipo_sangre(),p.getCodigo_de_paciente(),p.getTelefono(),p.getFecha_Nacimiento()};
-            tb.addRow(cami);
-        });
-    }
-    public void buscar_familiar() {
-        String cedula = text_buscar.getText();
-        var pacientefiltro = new ArrayList<familiar>();
-
-        inser.ListaFamiliar().forEach((e) -> {
-            if (e.getCedula().equals(cedula)) {
-                pacientefiltro.add(e);
-            }
-        });
-        String matriz[][] = new String[pacientefiltro.size()][15];
-        for (int j = 0; j < pacientefiltro.size(); j++) {
-            matriz[j][0] = pacientefiltro.get(j).getCodigo();
-            matriz[j][1] = pacientefiltro.get(j).getCedula();
-            matriz[j][2] = pacientefiltro.get(j).getPri_nomb();
-            matriz[j][3] = pacientefiltro.get(j).getSeg_nombre();
-            matriz[j][4] = pacientefiltro.get(j).getPrim_apell();
-            matriz[j][5] = pacientefiltro.get(j).getSeg_apelli();
-            matriz[j][6] = pacientefiltro.get(j).getCorreo();
-            matriz[j][7] = pacientefiltro.get(j).getGenero();
-            matriz[j][8] = pacientefiltro.get(j).getDireccion();
-            matriz[j][9] = pacientefiltro.get(j).getTipo_sangre();
-            matriz[j][10] = pacientefiltro.get(j).getCodigo_de_paciente();
-
-
-            matriz[j][13] = pacientefiltro.get(j).getTelefono();
-            matriz[j][14] = pacientefiltro.get(j).getFecha_Nacimiento();
-
-
+        if (!text_buscar.getText().isEmpty()) {
+            buscar_familiar();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del familiar");
         }
-        TablaFamiliar.setModel(new javax.swing.table.DefaultTableModel(
-                matriz,
-                new String[]{
-                    "codigo", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento", "fecha ingreso","hora_inicio","hora_fin","fecha_visita"
-                }
-        ));
-    }
+
+    }//GEN-LAST:event_BtBuscarFamiliarActionPerformed
+
     private void BtEditarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarFamiliarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtEditarFamiliarActionPerformed
@@ -224,8 +186,63 @@ public class crud_familiar extends javax.swing.JFrame {
     private void btrefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btrefrescarActionPerformed
         // TODO add your handling code here:
         cargarTabla();
-        
+
     }//GEN-LAST:event_btrefrescarActionPerformed
+
+    private void text_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_buscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_buscarActionPerformed
+
+    public void cargarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) TablaFamiliar.getModel();
+        tb.setNumRows(0);
+        List<familiar> com = inser.ListaFamiliar();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTipo_sangre(), p.getTelefono(), p.getFecha_Nacimiento(), p.getParectesco()};
+            tb.addRow(cami);
+        });
+    }
+
+    public void buscar_familiar() {
+        String cedula = text_buscar.getText();
+        var familiarfiltro = new ArrayList<familiar>();
+
+        inser.ListaFamiliar().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                familiarfiltro.add(e);
+            }
+        });
+
+        if (familiarfiltro.size() != 0) {
+            String matriz[][] = new String[familiarfiltro.size()][13];
+            for (int j = 0; j < familiarfiltro.size(); j++) {
+                matriz[j][0] = familiarfiltro.get(j).getCodigo();
+                matriz[j][1] = familiarfiltro.get(j).getCedula();
+                matriz[j][2] = familiarfiltro.get(j).getPri_nomb();
+                matriz[j][3] = familiarfiltro.get(j).getSeg_nombre();
+                matriz[j][4] = familiarfiltro.get(j).getPrim_apell();
+                matriz[j][5] = familiarfiltro.get(j).getSeg_apelli();
+                matriz[j][6] = familiarfiltro.get(j).getCorreo();
+                matriz[j][7] = familiarfiltro.get(j).getGenero();
+                matriz[j][8] = familiarfiltro.get(j).getDireccion();
+                matriz[j][9] = familiarfiltro.get(j).getTipo_sangre();
+                matriz[j][10] = familiarfiltro.get(j).getTelefono();
+                matriz[j][11] = familiarfiltro.get(j).getFecha_Nacimiento();
+                matriz[j][12] = familiarfiltro.get(j).getParectesco();
+                
+
+            }
+            TablaFamiliar.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "codigo", "Cedula","Nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Correo", "Sexo", "Direccion","Tipo sangre", "Celular", "Fecha nacimiento","Parentesco"
+                    }
+            ));
+        } else {
+            JOptionPane.showMessageDialog(this, "La persona no existe en la base de datos");
+        }
+
+    }
 
     /**
      * @param args the command line arguments
