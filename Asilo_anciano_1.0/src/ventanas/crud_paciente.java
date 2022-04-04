@@ -185,21 +185,22 @@ public class crud_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_BtBuscarPacienteActionPerformed
 
     private void BtEditarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarPacienteActionPerformed
-        int seleccion = TablaPaciente.getSelectedRow();
-        if (seleccion >= 0) {
-            int mensaje = JOptionPane.showConfirmDialog(this, "¿Esta seguro de editar esta información?", "Mensaje", JOptionPane.YES_NO_OPTION);
-            if (mensaje == JOptionPane.YES_OPTION) {
-                modificar_paciente();
-
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(this, "FILA NO SELECCIONADA");
-        }
-
+        modificar_paciente();
 
     }//GEN-LAST:event_BtEditarPacienteActionPerformed
+ public void modificar_paciente() {
 
+        int seleccion = TablaPaciente.getSelectedRow();
+        String cedula = TablaPaciente.getValueAt(seleccion, 1).toString();
+        inser.ListaPaciente().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                new Agregar_paciente(cedula).setVisible(true);
+                text_buscar.setText("");
+
+            }
+        });
+
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cargarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -220,18 +221,7 @@ public class crud_paciente extends javax.swing.JFrame {
         });
     }
 
-    public void modificar_paciente() {
-
-        int seleccion = TablaPaciente.getSelectedRow();
-        String cedulaa = TablaPaciente.getValueAt(seleccion, 0).toString();
-
-        int filas = TablaPaciente.getSelectedRow();
-        if (filas >= 0) {
-            new Agregar_paciente().setVisible(true);
-
-        }
-
-    }
+ 
 
     public void buscar_paciente() {
         String cedula = text_buscar.getText();
