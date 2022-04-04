@@ -27,7 +27,7 @@ public class agregar_doctor extends javax.swing.JFrame {
     ArrayList<doctor> lista_doctor = new ArrayList();
 
     validaciones misvalidaciones = new validaciones();
-    Insert inser = new Insert();
+    Insert_doctor inserDoctor = new Insert_doctor();
     Conexion cone = new Conexion();
 
     public agregar_doctor() {
@@ -599,7 +599,7 @@ public class agregar_doctor extends javax.swing.JFrame {
 
     public void cargarcod() {
         txtcodigo_doctor.setEnabled(false);
-        txtcodigo_doctor.setText(String.valueOf(inser.cargarcodigo()));
+        txtcodigo_doctor.setText(String.valueOf(inserDoctor.cargarcodigo()));
     }
 
     public void RegistrarDoctor() throws SQLException {
