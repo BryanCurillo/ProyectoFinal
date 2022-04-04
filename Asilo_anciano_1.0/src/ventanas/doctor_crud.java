@@ -93,6 +93,11 @@ public class doctor_crud extends javax.swing.JFrame {
         BtEditarDoctor.setToolTipText("EDITAR DOCTOR");
         BtEditarDoctor.setBorder(null);
         BtEditarDoctor.setOpaque(false);
+        BtEditarDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtEditarDoctorActionPerformed(evt);
+            }
+        });
         jPanel1.add(BtEditarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 40, 40));
 
         BtEliminarDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
@@ -185,6 +190,22 @@ public class doctor_crud extends javax.swing.JFrame {
         text_buscar.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_buscarMousePressed
 
+    private void BtEditarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarDoctorActionPerformed
+       modificar_doctor();
+    }//GEN-LAST:event_BtEditarDoctorActionPerformed
+ public void modificar_doctor() {
+
+        int seleccion = TablaDoctor.getSelectedRow();
+        String cedula = TablaDoctor.getValueAt(seleccion, 1).toString();
+        inser.ListaDoctor().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                new agregar_doctor(cedula).setVisible(true);
+                text_buscar.setText("");
+
+            }
+        });
+
+    }
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaDoctor.getModel();
         tb.setNumRows(0);
