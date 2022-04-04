@@ -24,17 +24,44 @@ public class agregar_familiar extends javax.swing.JFrame {
 
     DateFormat df = DateFormat.getDateInstance();
     ArrayList<familiar> lista_familiar = new ArrayList();
-
+    Conexion mi_cone = new Conexion();
     validaciones misvalidaciones = new validaciones();
     Insert inser = new Insert();
     Insert_familiar insertFamiliar = new Insert_familiar();
-    
+
     Conexion cone = new Conexion();
 
     public agregar_familiar() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarcod();
+    }
+
+    public agregar_familiar(String cedula) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        GuardarFamiliar.setVisible(false);
+        String SQL_SELECT = "SELECT * FROM familiar WHERE fam_cedula = " + cedula + ";";
+        llenar_familiar();
+    }
+
+    public void llenar_familiar() {
+
+        List<familiar> com = insertFamiliar.ListaFamiliar();
+        com.stream().forEach(p -> {
+            txtCodigo.setText(p.getCodigo().toString());
+            text_cedula_familiar.setText(p.getCedula().toString());
+            text_PrimerNombre_familiar.setText(p.getPri_nomb().toString());
+            text_SegundoNombre_familiar.setText(p.getSeg_nombre().toString());
+            text_PrimerApellido_familiar.setText(p.getPrim_apell().toString());
+            text_SegundoApellido_familiar.setText(p.getSeg_apelli().toString());
+            text_email_familiar.setText(p.getCorreo().toString());
+            text_direccion_familiar.setText(p.getDireccion());
+            text_celular_familiar.setText(p.getTelefono());
+            txtParentesco.setText(p.getParectesco());
+
+        });
+
     }
 
     @SuppressWarnings("unchecked")
@@ -267,6 +294,11 @@ public class agregar_familiar extends javax.swing.JFrame {
         jButton1.setToolTipText("MODIFICAR");
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
@@ -581,6 +613,34 @@ public class agregar_familiar extends javax.swing.JFrame {
             Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_GuardarFamiliarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        modificar_familiar();
+        limpiar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public void modificar_familiar() {
+        String genero = "";
+        if (Masculino_familiar.isSelected()) {
+            genero = "hombre";
+        }
+        if (Femenino_familiar.isSelected()) {
+            genero = "mujer";
+        }
+        String tipoo_sangre = combo_sangre_familiar.getSelectedItem().toString();
+
+        String dia = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.YEAR));
+        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + text_PrimerNombre_familiar.getText() + "', per_segundo_nombre='" + text_SegundoNombre_familiar.getText() + "'"
+                + ", per_primer_apellido='" + text_PrimerApellido_familiar.getText() + "', per_segundo_apellido='" + text_SegundoApellido_familiar.getText() + "'"
+                + ", per_correo='" + text_email_familiar.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_familiar.getText() + "', per_telefono='" + text_celular_familiar.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_familiar.getText() + "'");
+
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE familiar SET fam_parentesco='" + txtParentesco.getText() + "' WHERE fam_cedula='" + text_cedula_familiar.getText() + "'");
+
+        limpiar();
+    }
 
     public void cargarcod() {
         txtCodigo.setEnabled(false);
