@@ -35,7 +35,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
     DateFormat df = DateFormat.getDateInstance();
 //    ArrayList<administrador> lista_administrador = new ArrayList();
     validaciones misvalidaciones = new validaciones();
-    Insert inser = new Insert();
+    Insert_administrador inserAdministrador = new Insert_administrador();
     Conexion cone = new Conexion();
 
     public Agregar_administrador() {
@@ -617,7 +617,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
     public void cargarcod() {
         txt_codigo_administrador.setEnabled(false);
-        txt_codigo_administrador.setText(String.valueOf(inser.cargarcodigo()));
+        txt_codigo_administrador.setText(String.valueOf(inserAdministrador.cargarcodigo()));
     }
 
     public void RegistrarAdministrador() throws SQLException {
