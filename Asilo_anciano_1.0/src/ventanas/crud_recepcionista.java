@@ -79,6 +79,11 @@ public class crud_recepcionista extends javax.swing.JFrame {
         BtEditarRecepcionista.setToolTipText("EDITAR RECEPCIONISTA");
         BtEditarRecepcionista.setBorder(null);
         BtEditarRecepcionista.setOpaque(false);
+        BtEditarRecepcionista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtEditarRecepcionistaActionPerformed(evt);
+            }
+        });
         getContentPane().add(BtEditarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 50, 40));
 
         BtBuscarRecepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
@@ -221,6 +226,22 @@ public class crud_recepcionista extends javax.swing.JFrame {
         cargarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void BtEditarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarRecepcionistaActionPerformed
+       modificar_recepcionista();
+    }//GEN-LAST:event_BtEditarRecepcionistaActionPerformed
+public void modificar_recepcionista() {
+
+        int seleccion = TablaRecepcionista.getSelectedRow();
+        String cedula = TablaRecepcionista.getValueAt(seleccion, 1).toString();
+        inser.ListaRecepcionista().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                new Agregar_recepcionista(cedula).setVisible(true);
+                text_buscar.setText("");
+
+            }
+        });
+
+    }
     /**
      * @param args the command line arguments
      */
