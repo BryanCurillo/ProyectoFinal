@@ -583,7 +583,7 @@ public class agregar_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarFamiliarActionPerformed
 
     public void cargarcod() {
-        txtCodigo.setEnabled(false);
+        t*xtCodigo.setEnabled(false);
         txtCodigo.setText(String.valueOf(inser.cargarcodigo()));
     }
 
