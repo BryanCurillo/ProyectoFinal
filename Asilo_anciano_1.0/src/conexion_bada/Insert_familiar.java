@@ -38,7 +38,7 @@ public class Insert_familiar extends familiar {
                 //mi_famili.setCodigo(rs.getString("fam_codigo_visit"));
                 mi_famili.setCodigo(rs.getString("fam_codigo"));
                 mi_famili.setCedula(rs.getString("fam_cedula"));
-                mi_famili.setParectesco(rs.getString("fam_parentesco,"));
+                mi_famili.setParectesco(rs.getString("fam_parentesco"));
                 mi_famili.setCod_usuario(rs.getInt("fam_codigo_usuario"));
 
                 mi_famili.setPri_nomb(rs.getString("per_primer_nombre"));
