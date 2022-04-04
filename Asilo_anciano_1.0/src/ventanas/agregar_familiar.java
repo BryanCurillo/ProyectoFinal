@@ -1,7 +1,6 @@
 package ventanas;
 
 import clases.usuario;
-import conexion_bada.Insert_doctor;
 import conexion_bada.Insert_usuario;
 import clases.especialidad;
 import javax.swing.JOptionPane;
@@ -13,7 +12,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import conexion_bada.Insert_especialidad;
 import clases.familiar;
 import conexion_bada.Insert_familiar;
 //import conexion_bada.Insert;
@@ -29,6 +27,8 @@ public class agregar_familiar extends javax.swing.JFrame {
 
     validaciones misvalidaciones = new validaciones();
     Insert inser = new Insert();
+    Insert_familiar insertFamiliar = new Insert_familiar();
+    
     Conexion cone = new Conexion();
 
     public agregar_familiar() {
@@ -583,8 +583,8 @@ public class agregar_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarFamiliarActionPerformed
 
     public void cargarcod() {
-        t*xtCodigo.setEnabled(false);
-        txtCodigo.setText(String.valueOf(inser.cargarcodigo()));
+        txtCodigo.setEnabled(false);
+        txtCodigo.setText(String.valueOf(insertFamiliar.cargarcodigo()));
     }
 
     public void RegistrarFamiliar() throws SQLException {
