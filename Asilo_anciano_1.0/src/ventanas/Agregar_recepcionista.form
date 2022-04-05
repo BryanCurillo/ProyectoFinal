@@ -124,8 +124,8 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                          <Component id="text_codigo_recepcionista" min="-2" pref="218" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="text_codigo_recepcionista" min="-2" pref="41" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
@@ -321,6 +321,7 @@
             <Property name="text" type="java.lang.String" value="Ingrese la cedula"/>
           </Properties>
           <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="text_cedula_recepcionistaFocusLost"/>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="text_cedula_recepcionistaMousePressed"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="text_cedula_recepcionistaActionPerformed"/>
           </Events>

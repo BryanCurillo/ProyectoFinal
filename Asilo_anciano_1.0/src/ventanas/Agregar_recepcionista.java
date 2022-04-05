@@ -15,6 +15,9 @@ import clases.validaciones;
 import conexion_bada.Conexion;
 import conexion_bada.Insert_Persona;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +49,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     }
 
     public void llenar_recepcionista() {
-
+        text_codigo_recepcionista.setEnabled(false);
         List<recepcionista> com = recep.ListaRecepcionista();
         com.stream().forEach(p -> {
             text_codigo_recepcionista.setText(p.getCodigo().toString());
@@ -70,6 +73,15 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
             Spinner_HoraSalida_recepcionista.setValue(Integer.parseInt(p.getHora_salida().substring(0, 2)));
             Spinner_MinutosSalida_recepcionista.setValue(Integer.parseInt(p.getHora_salida().substring(3, 5)));
+
+            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = null;
+            try {
+                fecha = formatofecha.parse(p.getFecha_Nacimiento());
+            } catch (ParseException ex) {
+                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Fecha_Nacimiento_recepcionista.setDate(fecha);
 
             for (int j = 0; j < combo_sangre_recepcionista.getItemCount(); j++) {
                 if (combo_sangre_recepcionista.getItemAt(j).equalsIgnoreCase(p.getTipo_sangre())) {
@@ -151,6 +163,11 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         text_cedula_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_cedula_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         text_cedula_recepcionista.setText("Ingrese la cedula");
+        text_cedula_recepcionista.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                text_cedula_recepcionistaFocusLost(evt);
+            }
+        });
         text_cedula_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_cedula_recepcionistaMousePressed(evt);
@@ -439,8 +456,8 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                                         .addComponent(text_celular_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
-                                        .addGap(58, 58, 58)
-                                        .addComponent(text_codigo_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(text_codigo_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addGap(51, 51, 51)
@@ -597,8 +614,9 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_Regresar_recepcionistaActionPerformed
 
     private void text_cedula_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_cedula_recepcionistaMousePressed
-
-        text_cedula_recepcionista.setText("");
+        if (text_cedula_recepcionista.getText().equalsIgnoreCase("Ingrese la cedula")) {
+            text_cedula_recepcionista.setText("");
+        }
         text_cedula_recepcionista.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -609,8 +627,8 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_text_cedula_recepcionistaActionPerformed
 
     private void text_codigo_recepcionistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_codigo_recepcionistaMousePressed
-        text_codigo_recepcionista.setText("");
-        text_codigo_recepcionista.setForeground(Color.BLACK);
+//        text_codigo_recepcionista.setText("");
+//        text_codigo_recepcionista.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_codigo_recepcionistaMousePressed
 
     private void text_codigo_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_codigo_recepcionistaActionPerformed
@@ -674,6 +692,10 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         modificar_recepcionista();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void text_cedula_recepcionistaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_text_cedula_recepcionistaFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_cedula_recepcionistaFocusLost
     public void modificar_recepcionista() {
         String genero = "";
         if (Masculino_recepcionista.isSelected()) {
@@ -983,6 +1005,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Agregar_recepcionista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
