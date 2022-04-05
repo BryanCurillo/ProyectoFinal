@@ -7,6 +7,7 @@ package ventanas;
 
 import clases.enfermera;
 import clases.paciente;
+import conexion_bada.Conexion;
 import conexion_bada.Insert_enfermera;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Carlos
  */
 public class crud_enfermera extends javax.swing.JFrame {
-
+    Conexion mi_cone=new Conexion();
     Insert_enfermera inser = new Insert_enfermera();
 
     public crud_enfermera() {
@@ -108,6 +109,11 @@ public class crud_enfermera extends javax.swing.JFrame {
         BtEliminarEnfermera.setToolTipText("ELIMINAR ENFERMERA");
         BtEliminarEnfermera.setBorder(null);
         BtEliminarEnfermera.setOpaque(false);
+        BtEliminarEnfermera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtEliminarEnfermeraActionPerformed(evt);
+            }
+        });
         jPanel1.add(BtEliminarEnfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, 50, 40));
 
         BtRegresarEnfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
@@ -199,6 +205,23 @@ public class crud_enfermera extends javax.swing.JFrame {
     private void BtModificarEnfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtModificarEnfermeraActionPerformed
         modificar_ENFERMERA();
     }//GEN-LAST:event_BtModificarEnfermeraActionPerformed
+
+    private void BtEliminarEnfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarEnfermeraActionPerformed
+        eliminar_recepcionista();
+    }//GEN-LAST:event_BtEliminarEnfermeraActionPerformed
+    public void eliminar_recepcionista(){
+        int fila=TablaEnfermera.getSelectedRow();
+        String cod;
+        cod=TablaEnfermera.getValueAt(fila, 0).toString();
+        try{
+            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM enfermera where enfer_codigo='"+cod+"'");
+            cargarTabla(); 
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+        
+    }
     public void modificar_ENFERMERA() {
 
         int seleccion = TablaEnfermera.getSelectedRow();
