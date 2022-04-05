@@ -2,6 +2,7 @@ package ventanas;
 
 import java.awt.Color;
 import clases.recepcionista;
+import clases.usuario;
 //import conexion_bada.Insert_doctor;
 //import conexion_bada.Insert;
 import conexion_bada.Insert_recepcionista;
@@ -19,7 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Agregar_recepcionista extends javax.swing.JFrame {
+
     Conexion mi_cone = new Conexion();
+    Insert_usuario usu = new Insert_usuario();
     Insert_recepcionista recep = new Insert_recepcionista();
     validaciones misvalidaciones = new validaciones();
     String hora_ingresoAux;
@@ -33,7 +36,8 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cargarcod();
     }
- public Agregar_recepcionista(String cedula) {
+
+    public Agregar_recepcionista(String cedula) {
         initComponents();
         this.setLocationRelativeTo(null);
         Guardar_recepcionista.setVisible(false);
@@ -54,10 +58,35 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
             text_email_recepcionista.setText(p.getCorreo().toString());
             text_direccion_recepcionista.setText(p.getDireccion());
             text_celular_recepcionista.setText(p.getTelefono());
+            if (p.getGenero().equalsIgnoreCase("hombre")) {
+                Masculino_recepcionista.setSelected(true);
+            }
+            if (p.getGenero().equalsIgnoreCase("mujer")) {
+                Femenino_recepcionista.setSelected(true);
+            }
+
+            Spinner_HoraEntrada_recepcionista.setValue(Integer.parseInt(p.getHora_ingreso().substring(0, 2)));
+            Spinner_MinutosEntrada_recepcionista.setValue(Integer.parseInt(p.getHora_ingreso().substring(3, 5)));
+
+            Spinner_HoraSalida_recepcionista.setValue(Integer.parseInt(p.getHora_salida().substring(0, 2)));
+            Spinner_MinutosSalida_recepcionista.setValue(Integer.parseInt(p.getHora_salida().substring(3, 5)));
+
+            for (int j = 0; j < combo_sangre_recepcionista.getItemCount(); j++) {
+                if (combo_sangre_recepcionista.getItemAt(j).equalsIgnoreCase(p.getTipo_sangre())) {
+                    combo_sangre_recepcionista.setSelectedIndex(j);
+                    j = combo_sangre_recepcionista.getItemCount();
+                }
+            }
+            List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "recepcionista", "recep");
+            usua.stream().forEach(u -> {
+                txt_usuario.setText(u.getUsuario());
+                txt_contrasena.setText(u.getContraseña());
+            });
 
         });
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -250,6 +279,12 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setText("Hora de Salida");
 
+        Spinner_HoraSalida_recepcionista.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+
+        Spinner_MinutosEntrada_recepcionista.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
+
+        Spinner_HoraEntrada_recepcionista.setModel(new javax.swing.SpinnerNumberModel(0, 0, 23, 1));
+
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setText("Fecha de nacimiento:");
 
@@ -310,6 +345,8 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setText("Direccion:");
+
+        Spinner_MinutosSalida_recepcionista.setModel(new javax.swing.SpinnerNumberModel(0, 0, 59, 1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -409,19 +446,18 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                                         .addGap(51, 51, 51)
                                         .addComponent(Fecha_Nacimiento_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(13, 13, 13)
-                                                .addComponent(Spinner_HoraEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(Spinner_MinutosEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(Spinner_HoraEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Spinner_MinutosEntrada_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel15))
                                         .addGap(72, 72, 72)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(Spinner_HoraSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(28, 28, 28)
-                                                .addComponent(Spinner_MinutosSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(Spinner_HoraSalida_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(Spinner_MinutosSalida_recepcionista))
                                             .addComponent(jLabel16)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(13, 13, 13)
@@ -437,7 +473,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                                                 .addComponent(jLabel12)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                        .addGap(0, 23, Short.MAX_VALUE)))
+                        .addGap(0, 21, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -535,7 +571,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                             .addComponent(txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(Regresar_recepcionista)
                         .addComponent(jButton1)))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 890));
@@ -638,7 +674,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         modificar_recepcionista();
     }//GEN-LAST:event_jButton1ActionPerformed
-public void modificar_recepcionista() {
+    public void modificar_recepcionista() {
         String genero = "";
         if (Masculino_recepcionista.isSelected()) {
             genero = "hombre";
@@ -674,23 +710,22 @@ public void modificar_recepcionista() {
 
         hora_ingresoAux = Hingreso + ":" + Mingreso;
         hora_salidaAux = Hsalida + ":" + Msalida;
-        
-        
+
         mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + text_PrimerNombre_recepcionista.getText() + "', per_segundo_nombre='" + text_SegundoNombre_recepcionista.getText() + "'"
                 + ", per_primer_apellido='" + text_PrimerApellido_recepcionista.getText() + "', per_segundo_apellido='" + text_segundoApellido_recepcionista.getText() + "'"
                 + ", per_correo='" + text_email_recepcionista.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_recepcionista.getText() + "', per_telefono='" + text_celular_recepcionista.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_recepcionista.getText() + "'");
-        
+
         mi_cone.InsertUpdateDeleteAcciones("UPDATE recepcionista SET recep_hora_ingreso='" + hora_ingresoAux + "',recep_hora_salida='" + hora_salidaAux + "' WHERE recep_cedula='" + text_cedula_recepcionista.getText() + "'");
-       
+
         limpiar();
     }
+
     public void cargarcod() {
         text_codigo_recepcionista.setEnabled(false);
         text_codigo_recepcionista.setText(String.valueOf(recep.cargarcodigo()));
     }
 
     public void RegistrarRecepcionista() throws SQLException {
-        Insert_usuario usu = new Insert_usuario();
 
         Insert_Persona per = new Insert_Persona();
         try {
