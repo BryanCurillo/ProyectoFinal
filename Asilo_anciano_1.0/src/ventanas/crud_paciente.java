@@ -7,6 +7,7 @@ package ventanas;
 
 import ventanas.Agregar_paciente;
 import clases.paciente;
+import conexion_bada.Conexion;
 import conexion_bada.Insert;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class crud_paciente extends javax.swing.JFrame {
 
     Insert inser = new Insert();
-
+    Conexion mi_cone=new Conexion();
     public crud_paciente() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -172,9 +173,21 @@ public class crud_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_BtRegresarPacienteActionPerformed
 
     private void BtEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarPacienteActionPerformed
-        // TODO add your handling code here:
+        eliminar_paciente();
     }//GEN-LAST:event_BtEliminarPacienteActionPerformed
-
+public void eliminar_paciente(){
+        int fila=TablaPaciente.getSelectedRow();
+        String cod;
+        cod=TablaPaciente.getValueAt(fila, 0).toString();
+        try{
+            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM paciente where paci_codigo='"+cod+"'");
+            cargarTabla();
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+        
+    }
     private void BtBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarPacienteActionPerformed
         if (!text_buscar.getText().isEmpty()) {
             buscar_paciente();
