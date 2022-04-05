@@ -3,6 +3,7 @@ package ventanas;
 import clases.doctor;
 import conexion_bada.Insert_familiar;
 import clases.familiar;
+import conexion_bada.Conexion;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
 public class crud_familiar extends javax.swing.JFrame {
 
     Insert_familiar inser = new Insert_familiar();
-
+    Conexion mi_cone=new Conexion();
     public crud_familiar() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -161,9 +162,21 @@ public class crud_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_BtIngresarFamiliarActionPerformed
 
     private void BtEliminarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarFamiliarActionPerformed
-        // TODO add your handling code here:
+        eliminar_familiar();
     }//GEN-LAST:event_BtEliminarFamiliarActionPerformed
-
+    public void eliminar_familiar(){
+        int fila=TablaFamiliar.getSelectedRow();
+        String cod;
+        cod=TablaFamiliar.getValueAt(fila, 0).toString();
+        try{
+            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM familiar where fam_codigo='"+cod+"'");
+            cargarTabla(); 
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+        
+    }
     private void BtBuscarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarFamiliarActionPerformed
         if (!text_buscar.getText().isEmpty()) {
             buscar_familiar();
