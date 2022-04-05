@@ -7,6 +7,7 @@ package ventanas;
 
 import clases.paciente;
 import clases.recepcionista;
+import conexion_bada.Conexion;
 import java.util.ArrayList;
 import conexion_bada.Insert_recepcionista;
 import java.awt.Color;
@@ -17,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class crud_recepcionista extends javax.swing.JFrame {
 
     Insert_recepcionista inser = new Insert_recepcionista();
-
+    Conexion mi_cone=new Conexion();
     public crud_recepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -152,9 +153,21 @@ public class crud_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_BtRegresarRecepcionistaActionPerformed
 
     private void BtEliminarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarRecepcionistaActionPerformed
-        // TODO add your handling code here:
+        eliminar_recepcionista();
     }//GEN-LAST:event_BtEliminarRecepcionistaActionPerformed
-
+    public void eliminar_recepcionista(){
+        int fila=TablaRecepcionista.getSelectedRow();
+        String cod;
+        cod=TablaRecepcionista.getValueAt(fila, 0).toString();
+        try{
+            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM paciente where recep_codigo='"+cod+"'");
+            cargarTabla();
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+        
+    }
     private void BtBuscarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarRecepcionistaActionPerformed
         if (!text_buscar.getText().isEmpty()) {
             buscar_recepcionista();
