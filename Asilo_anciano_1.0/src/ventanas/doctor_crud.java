@@ -8,6 +8,7 @@ package ventanas;
 import clases.doctor;
 import conexion_bada.Insert_doctor;
 import clases.paciente;
+import conexion_bada.Conexion;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Carlos
  */
 public class doctor_crud extends javax.swing.JFrame {
-
+    Conexion mi_cone=new Conexion();
     Insert_doctor inser = new Insert_doctor();
 
     public doctor_crud() {
@@ -170,9 +171,21 @@ public class doctor_crud extends javax.swing.JFrame {
     }//GEN-LAST:event_BtRegresarDoctorActionPerformed
 
     private void BtEliminarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarDoctorActionPerformed
-        // TODO add your handling code here:
+        eliminar_doctor();
     }//GEN-LAST:event_BtEliminarDoctorActionPerformed
-
+    public void eliminar_doctor(){
+        int fila=TablaDoctor.getSelectedRow();
+        String cod;
+        cod=TablaDoctor.getValueAt(fila, 0).toString();
+        try{
+            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM doctor where doc_codigo='"+cod+"'");
+            cargarTabla(); 
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+        
+    }
     private void BtBuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarDoctorActionPerformed
         if (!text_buscar.getText().isEmpty()) {
             buscar_doctor();
