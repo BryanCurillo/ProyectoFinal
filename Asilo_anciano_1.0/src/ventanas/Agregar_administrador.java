@@ -6,6 +6,9 @@
 package ventanas;
 //Prueba
 
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.time.LocalDate;
 import java.awt.Color;
 import clases.administrador;
 import clases.usuario;
@@ -23,6 +26,8 @@ import conexion_bada.Conexion;
 import conexion_bada.Insert;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,11 +37,13 @@ import java.util.logging.Logger;
  * @author User
  */
 public class Agregar_administrador extends javax.swing.JFrame {
+
     Conexion mi_cone = new Conexion();
     DateFormat df = DateFormat.getDateInstance();
 //    ArrayList<administrador> lista_administrador = new ArrayList();
     validaciones misvalidaciones = new validaciones();
     Insert_administrador inserCargarCodigo = new Insert_administrador();
+    Insert_usuario usu = new Insert_usuario();
     Conexion cone = new Conexion();
 
     public Agregar_administrador() {
@@ -55,7 +62,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
     }
 
     public void llenar_administrador() {
-
+        txt_cedula_administrador.setEnabled(false);
         List<administrador> com = inserCargarCodigo.ListaAdministrador();
         com.stream().forEach(p -> {
             txt_codigo_administrador.setText(p.getCodigo().toString());
@@ -67,6 +74,33 @@ public class Agregar_administrador extends javax.swing.JFrame {
             txt_email_administrador.setText(p.getCorreo().toString());
             txt_direccion_administrador.setText(p.getDireccion());
             txt_celular_administrador.setText(p.getTelefono());
+            txt_fechaaux.setText(p.getFecha_Nacimiento());
+//            System.out.println(p.getGenero());
+            if (p.getGenero().equalsIgnoreCase("hombre")) {
+                Masculino_administrador.setSelected(true);
+            }
+            if (p.getGenero().equalsIgnoreCase("mujer")) {
+                Femenino_administrador.setSelected(true);
+            }
+            txt_nivelDeeducacion_administrador.setText(p.getNivel_educacion());
+
+            for (int j = 0; j < combo_sangre_administrador.getItemCount(); j++) {
+                if (combo_sangre_administrador.getItemAt(j).equalsIgnoreCase(p.getTipo_sangre())) {
+                    combo_sangre_administrador.setSelectedIndex(j);
+                    j = combo_sangre_administrador.getItemCount();
+                }
+            }
+//            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+//            Date fecha = Date.parse(p.getFecha_Nacimiento().trim(), fmt);
+//            Fecha_Nacimiento_administrador.setDate(fecha);
+//            Fecha_Nacimiento_administrador.set
+//            System.out.println(p.getFecha_Nacimiento());
+
+            List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "administrador", "admin");
+            usua.stream().forEach(u -> {
+                txt_usuario.setText(u.getUsuario());
+                txt_contrasena.setText(u.getContraseña());
+            });
 
         });
 
@@ -122,6 +156,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         txt_contrasena = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txt_fechaaux = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -428,7 +463,9 @@ public class Agregar_administrador extends javax.swing.JFrame {
                                             .addGap(39, 39, 39)
                                             .addComponent(Masculino_administrador)
                                             .addGap(36, 36, 36)
-                                            .addComponent(Femenino_administrador)))
+                                            .addComponent(Femenino_administrador)
+                                            .addGap(36, 36, 36)
+                                            .addComponent(txt_fechaaux, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(64, 64, 64))))
                         .addGap(33, 33, 33))))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -482,7 +519,8 @@ public class Agregar_administrador extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8)
                                     .addComponent(Masculino_administrador)
-                                    .addComponent(Femenino_administrador)))
+                                    .addComponent(Femenino_administrador)
+                                    .addComponent(txt_fechaaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -659,30 +697,32 @@ public class Agregar_administrador extends javax.swing.JFrame {
         modificar_administrador();
 
     }//GEN-LAST:event_jButton1ActionPerformed
-public void modificar_administrador() {
-        String genero="";
+    public void modificar_administrador() {
+        String genero = "";
         if (Masculino_administrador.isSelected()) {
             genero = "hombre";
         }
         if (Femenino_administrador.isSelected()) {
             genero = "mujer";
         }
-        String tipoo_sangre = combo_sangre_administrador.getSelectedItem().toString();
-        
-        String dia = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.DAY_OF_MONTH));
-        String mes = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.MONTH) + 1);
-        String año = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.YEAR));
-        String FechaNacimiento = (dia + "-" + mes + "-" + año);
+        if (validaciones()) {
+            String tipoo_sangre = combo_sangre_administrador.getSelectedItem().toString();
 
-        
-        mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + txt_PrimerNombre_administrador.getText() + "', per_segundo_nombre='" + txt_SegundoNombre_administrador.getText() + "'"
-                + ", per_primer_apellido='" + txt_PrimerApellido_administrador.getText() + "', per_segundo_apellido='" + txt_SegundoApellido_administrador.getText() + "'"
-                + ", per_correo='" + txt_email_administrador.getText() + "', per_genero='" + genero + "', per_direccion='" + txt_direccion_administrador.getText() + "', per_telefono='" + txt_celular_administrador.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + txt_cedula_administrador.getText() + "'");
+            String dia = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.YEAR));
+            String FechaNacimiento = (dia + "-" + mes + "-" + año);
 
-        mi_cone.InsertUpdateDeleteAcciones("UPDATE administrador SET admin_nivel_educacion='" + txt_nivelDeeducacion_administrador.getText() + "' WHERE admin_cedula='" + txt_cedula_administrador.getText() + "'");
-        limpiar();
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + txt_PrimerNombre_administrador.getText() + "', per_segundo_nombre='" + txt_SegundoNombre_administrador.getText() + "'"
+                    + ", per_primer_apellido='" + txt_PrimerApellido_administrador.getText() + "', per_segundo_apellido='" + txt_SegundoApellido_administrador.getText() + "'"
+                    + ", per_correo='" + txt_email_administrador.getText() + "', per_genero='" + genero + "', per_direccion='" + txt_direccion_administrador.getText() + "', per_telefono='" + txt_celular_administrador.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + txt_cedula_administrador.getText() + "'");
+
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE administrador SET admin_nivel_educacion='" + txt_nivelDeeducacion_administrador.getText() + "' WHERE admin_cedula='" + txt_cedula_administrador.getText() + "'");
+            limpiar();
+        }
 
     }
+
     public void cargarcod() {
         txt_codigo_administrador.setEnabled(false);
         txt_codigo_administrador.setText(String.valueOf(inserCargarCodigo.cargarcodigo()));
@@ -690,7 +730,7 @@ public void modificar_administrador() {
 
     public void RegistrarAdministrador() throws SQLException {
         Insert_administrador admin = new Insert_administrador();
-        Insert_usuario usu = new Insert_usuario();
+
         Insert_Persona per = new Insert_Persona();
         try {
             if (validaciones()) {
@@ -976,6 +1016,7 @@ public void modificar_administrador() {
     private javax.swing.JTextField txt_contrasena;
     private javax.swing.JTextField txt_direccion_administrador;
     private javax.swing.JTextField txt_email_administrador;
+    private javax.swing.JTextField txt_fechaaux;
     private javax.swing.JTextField txt_nivelDeeducacion_administrador;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
