@@ -22,22 +22,22 @@ public class Insert_medicamento extends medicamentos {
 
     Conexion cone = new Conexion();
 
-    public boolean InsertarAlergias() {
-        String sql = "INSERT INTO enfermedad(\n"
-                + "	enfermedad_nombre_)\n"
+    public boolean InsertarMediacamentos() {
+        String sql = "INSERT INTO medicamentos(\n"
+                + "	medi_nombre_)\n"
                 + "	VALUES ('" + getNombre_medicamento() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
     public List<medicamentos> ListaMedicamentos() {
-        String sqls = "select * from enfermedad;";
+        String sqls = "select * from medicamentos;";
         ResultSet rs = cone.selectConsulta(sqls);
         List<medicamentos> medicamento = new ArrayList<>();
         try {
             while (rs.next()) {
                 medicamentos mi_medica = new medicamentos();
-                mi_medica.setCodigo_medicamento(rs.getString("enfermedad_codigo"));
-                mi_medica.setNombre_medicamento(rs.getString("enfermedad_nombre_"));
+                mi_medica.setCodigo_medicamento(rs.getString("medi_codigo"));
+                mi_medica.setNombre_medicamento(rs.getString("medi_nombre_"));
                 medicamento.add(mi_medica);
             }
             rs.close();
