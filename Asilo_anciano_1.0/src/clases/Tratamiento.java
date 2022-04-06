@@ -7,6 +7,7 @@ package clases;
 
 import java.util.Date;
 
+
 /**
  *
  * @author Usuario
@@ -16,15 +17,19 @@ public class Tratamiento {
     private String descripcion_tratamiento;
     private Date fecha_inicio;
     private Date fecha_fin;
+    private String codigo_receta;
+    private String codigo_paciente;
 
     public Tratamiento() {
     }
 
-    public Tratamiento(String codigo_tratamiento, String descripcion_tratamiento, Date fecha_inicio, Date fecha_fin) {
+    public Tratamiento(String codigo_tratamiento, String descripcion_tratamiento, Date fecha_inicio, Date fecha_fin, String codigo_receta, String codigo_paciente) {
         this.codigo_tratamiento = codigo_tratamiento;
         this.descripcion_tratamiento = descripcion_tratamiento;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
+        this.codigo_receta = codigo_receta;
+        this.codigo_paciente = codigo_paciente;
     }
 
     public String getCodigo_tratamiento() {
@@ -58,7 +63,26 @@ public class Tratamiento {
     public void setFecha_fin(Date fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
+
+    public String getCodigo_receta() {
+        return codigo_receta;
+    }
+
+    public void setCodigo_receta(String codigo_receta) {
+        this.codigo_receta = codigo_receta;
+    }
+
+    public String getCodigo_paciente() {
+        return codigo_paciente;
+    }
+
+    public void setCodigo_paciente(String codigo_paciente) {
+        this.codigo_paciente = codigo_paciente;
+    }
+   
     
+
+ 
     
     
 }
