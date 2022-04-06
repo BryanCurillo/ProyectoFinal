@@ -5,7 +5,6 @@
  */
 package ventanas;
 
-import clases.alergias;
 import clases.medicamentos;
 import conexion_bada.Insert_medicamento;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class Medicamentos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         btmedmodificar = new javax.swing.JButton();
-        txt_nombre = new javax.swing.JTextField();
+        txt_nombre_medicamento = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
@@ -154,7 +153,7 @@ public class Medicamentos extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel1)
                                     .addGap(18, 18, 18)
-                                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_nombre_medicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(36, 36, 36)
                                     .addComponent(jButton1))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,7 +196,7 @@ public class Medicamentos extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_nombre_medicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(jButton1))
                         .addGap(34, 34, 34)
@@ -250,7 +249,7 @@ public class Medicamentos extends javax.swing.JFrame {
         for (int i = 0; i < inser.ListaMedicamentos().size(); i++) {
             List<medicamentos> com = inser.ListaMedicamentos();
             com.stream().forEach(p -> {
-                txt_nombre.setText(p.getNombre_medicamento());
+                txt_nombre_medicamento.setText(p.getNombre_medicamento());
             });
         }
     }
@@ -260,9 +259,9 @@ public class Medicamentos extends javax.swing.JFrame {
 //        Insert_alergias inser = new Insert_alergias();
         try {
             if (validarInformacion() == true && ValidarDuplicados() == true) {
-                inser.setNombre_medicamento(txt_nombre.getText());
+                inser.setNombre_medicamento(txt_nombre_medicamento.getText());
 
-                if (inser.InsertarAlergias()) {
+                if (inser.InsertarMediacamentos()) {
                     System.out.println("Conexion Exitosa");
                     Limpiar();
                     cargarcod();
@@ -277,11 +276,11 @@ public class Medicamentos extends javax.swing.JFrame {
     public boolean validarInformacion() {
         boolean validado = true;
 
-        if (txt_nombre.getText().isEmpty()) {
+        if (txt_nombre_medicamento.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el nombre del medicamento");
         } else {
-            if (!misvalidaciones.validar_nombre_apellido(txt_nombre.getText())) {
+            if (!misvalidaciones.validar_nombre_apellido(txt_nombre_medicamento.getText())) {
                 JOptionPane.showMessageDialog(this, "Nombre del medicamento incorrecto");
                 validado = false;
             }
@@ -301,7 +300,7 @@ public class Medicamentos extends javax.swing.JFrame {
     }
 
     public void Limpiar() {
-        txt_nombre.setText("");
+        txt_nombre_medicamento.setText("");
         txtBuscar.setText("");
     }
 
@@ -334,7 +333,7 @@ public class Medicamentos extends javax.swing.JFrame {
         List<medicamentos> com = inser.ListaMedicamentos();
 
         for (int i = 0; i < com.size(); i++) {
-            if (com.get(i).getNombre_medicamento().equalsIgnoreCase(txt_nombre.getText())) {
+            if (com.get(i).getNombre_medicamento().equalsIgnoreCase(txt_nombre_medicamento.getText())) {
                 validado = false;
                 JOptionPane.showMessageDialog(null, "El medicamento ya existe");
             }
@@ -390,6 +389,6 @@ public class Medicamentos extends javax.swing.JFrame {
     private javax.swing.JTable tabla_medicamentos;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txt_codigo_medicamento;
-    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_nombre_medicamento;
     // End of variables declaration//GEN-END:variables
 }
