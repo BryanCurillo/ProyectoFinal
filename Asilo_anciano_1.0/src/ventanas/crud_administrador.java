@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//
 package ventanas;
 
 import clases.administrador;
@@ -216,29 +212,29 @@ public class crud_administrador extends javax.swing.JFrame {
             }
         });
         if (adminfiltro.size() != 0) {
-            String matriz[][] = new String[adminfiltro.size()][14];
-            for (int j = 0; j < adminfiltro.size(); j++) {
-                matriz[j][0] = adminfiltro.get(j).getCodigo();
-                matriz[j][1] = adminfiltro.get(j).getCedula();
-                matriz[j][2] = adminfiltro.get(j).getPri_nomb();
-                matriz[j][3] = adminfiltro.get(j).getSeg_nombre();
-                matriz[j][4] = adminfiltro.get(j).getPrim_apell();
-                matriz[j][5] = adminfiltro.get(j).getSeg_apelli();
-                matriz[j][6] = adminfiltro.get(j).getGenero();
-                matriz[j][7] = adminfiltro.get(j).getTipo_sangre();
-                matriz[j][8] = adminfiltro.get(j).getDireccion();
-                matriz[j][9] = adminfiltro.get(j).getFecha_Nacimiento();
-                matriz[j][10] = adminfiltro.get(j).getNivel_educacion();
-                matriz[j][11] = adminfiltro.get(j).getCorreo();
-                matriz[j][12] = adminfiltro.get(j).getTelefono();
+        String matriz[][] = new String[adminfiltro.size()][14];
+        for (int j = 0; j < adminfiltro.size(); j++) {
+            matriz[j][0] = adminfiltro.get(j).getCodigo();
+            matriz[j][1] = adminfiltro.get(j).getCedula();
+            matriz[j][2] = adminfiltro.get(j).getPri_nomb();
+            matriz[j][3] = adminfiltro.get(j).getSeg_nombre();
+            matriz[j][4] = adminfiltro.get(j).getPrim_apell();
+            matriz[j][5] = adminfiltro.get(j).getSeg_apelli();
+            matriz[j][6] = adminfiltro.get(j).getGenero();
+            matriz[j][7] = adminfiltro.get(j).getTipo_sangre();
+            matriz[j][8] = adminfiltro.get(j).getDireccion();
+            matriz[j][9] = adminfiltro.get(j).getFecha_Nacimiento();
+            matriz[j][10] = adminfiltro.get(j).getNivel_educacion();
+            matriz[j][11] = adminfiltro.get(j).getCorreo();
+            matriz[j][12] = adminfiltro.get(j).getTelefono();
 
-            }
-            TablaAdministrador.setModel(new javax.swing.table.DefaultTableModel(
-                    matriz,
-                    new String[]{
-                        "Codigo", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "Genero", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "Nivel de educacion", "E-mail", "Celular"
-                    }
-            ));
+        }
+        TablaAdministrador.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "Codigo", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "Genero", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "Nivel de educacion", "E-mail", "Celular"
+                }
+        ));
         } else {
             JOptionPane.showMessageDialog(this, "El administrador no existe en la base de datos");
         }
