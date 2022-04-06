@@ -259,7 +259,7 @@ public class doctor_crud extends javax.swing.JFrame {
         TablaDoctor.setModel(new javax.swing.table.DefaultTableModel(
                 matriz,
                 new String[]{
-                    "codigo", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento", "fecha ingreso"
+                    "codigo","cedula", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento"
                 }
         ));
         } else {
