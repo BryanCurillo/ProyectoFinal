@@ -1,5 +1,5 @@
 package ventanas;
-
+//
 import clases.alergias;
 import conexion_bada.Insert_alergias;
 import clases.enfermedades;
@@ -73,6 +73,8 @@ public class FichaMedica extends javax.swing.JFrame {
         txtTipoSangre = new javax.swing.JTextField();
         txtFechaNacimiento = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -209,10 +211,10 @@ public class FichaMedica extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel19.setText("ALERGIAS:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 90, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, 90, -1));
 
         comboalergiaficha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion" }));
-        jPanel1.add(comboalergiaficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 420, 160, 30));
+        jPanel1.add(comboalergiaficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 160, 30));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 720, 20));
 
         jLabel20.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
@@ -257,6 +259,15 @@ public class FichaMedica extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setOpaque(false);
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 160, 80));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 760));
 
@@ -365,8 +376,10 @@ public class FichaMedica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
