@@ -239,13 +239,14 @@ public void eliminar_paciente(){
     public void buscar_paciente() {
         String cedula = text_buscar.getText();
         var pacientefiltro = new ArrayList<paciente>();
-        if (pacientefiltro.size() != 0) {
-
-            inser.ListaPaciente().forEach((e) -> {
+         inser.ListaPaciente().forEach((e) -> {
                 if (e.getCedula().equals(cedula)) {
                     pacientefiltro.add(e);
                 }
             });
+        if (pacientefiltro.size() != 0) {
+
+           
             String matriz[][] = new String[pacientefiltro.size()][14];
             for (int j = 0; j < pacientefiltro.size(); j++) {
                 matriz[j][0] = pacientefiltro.get(j).getCodigo();
