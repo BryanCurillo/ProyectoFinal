@@ -234,6 +234,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
             }
         });
 
+        Genero_administrador.add(Masculino_administrador);
         Masculino_administrador.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Masculino_administrador.setText("M");
         Masculino_administrador.setOpaque(false);
@@ -290,6 +291,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Primer Apellido:");
 
+        Genero_administrador.add(Femenino_administrador);
         Femenino_administrador.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Femenino_administrador.setText("F");
         Femenino_administrador.setOpaque(false);
@@ -953,6 +955,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         Fecha_Nacimiento_administrador.setCalendar(null);
         txt_usuario.setText("");
         txt_contrasena.setText("");
+        
 
     }
 
