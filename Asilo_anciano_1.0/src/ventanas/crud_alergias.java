@@ -272,7 +272,7 @@ public class crud_alergias extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el nombre de la alergia");
         } else {
-            if (!misvalidaciones.validar_nombre_apellido(txtalergia.getText())) {
+            if (!misvalidaciones.validarNombresEspacios(txtalergia.getText())) {
                 JOptionPane.showMessageDialog(this, "Nombre de la alergia incorrecto");
                 validado = false;
             }
