@@ -26,6 +26,8 @@ import conexion_bada.Conexion;
 import conexion_bada.Insert;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -82,20 +84,31 @@ public class Agregar_administrador extends javax.swing.JFrame {
             if (p.getGenero().equalsIgnoreCase("mujer")) {
                 Femenino_administrador.setSelected(true);
             }
-            txt_nivelDeeducacion_administrador.setText(p.getNivel_educacion());
 
-            for (int j = 0; j < combo_sangre_administrador.getItemCount(); j++) {
-                if (combo_sangre_administrador.getItemAt(j).equalsIgnoreCase(p.getTipo_sangre())) {
-                    combo_sangre_administrador.setSelectedIndex(j);
-                    j = combo_sangre_administrador.getItemCount();
+            for (int i = 0; i < combo_sangre_administrador.getItemCount(); i++) {
+                if (combo_sangre_administrador.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
+                    combo_sangre_administrador.setSelectedIndex(i);
+                    i = combo_sangre_administrador.getItemCount();
                 }
             }
-//            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-//            Date fecha = Date.parse(p.getFecha_Nacimiento().trim(), fmt);
-//            Fecha_Nacimiento_administrador.setDate(fecha);
-//            Fecha_Nacimiento_administrador.set
-//            System.out.println(p.getFecha_Nacimiento());
 
+            for (int j = 0; j < jCB_nivelDeeducacion_administrador.getItemCount(); j++) {
+                if (jCB_nivelDeeducacion_administrador.getItemAt(j).equalsIgnoreCase(p.getNivel_educacion())) {
+                    jCB_nivelDeeducacion_administrador.setSelectedIndex(j);
+                    j = jCB_nivelDeeducacion_administrador.getItemCount();
+                }
+            }
+
+            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = null;
+            try {
+                fecha = formatofecha.parse(p.getFecha_Nacimiento());
+            } catch (ParseException ex) {
+                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Fecha_Nacimiento_administrador.setDate(fecha);
+
+//            System.out.println(p.getFecha_Nacimiento());
             List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "administrador", "admin");
             usua.stream().forEach(u -> {
                 txt_usuario.setText(u.getUsuario());
@@ -146,7 +159,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
         txt_email_administrador = new javax.swing.JTextField();
         Regresar_administrador = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        txt_nivelDeeducacion_administrador = new javax.swing.JTextField();
         Fecha_Nacimiento_administrador = new com.toedter.calendar.JDateChooser();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
@@ -157,6 +169,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         txt_contrasena = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         txt_fechaaux = new javax.swing.JTextField();
+        jCB_nivelDeeducacion_administrador = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -351,15 +364,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setText("Nivel de Educacion:");
 
-        txt_nivelDeeducacion_administrador.setForeground(new java.awt.Color(102, 102, 102));
-        txt_nivelDeeducacion_administrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_nivelDeeducacion_administrador.setText("Ingrese el nivel de educacion");
-        txt_nivelDeeducacion_administrador.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txt_nivelDeeducacion_administradorMousePressed(evt);
-            }
-        });
-
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setText("CREAR USUARIO");
         jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -367,12 +371,24 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setText("NUEVO USUARIO:");
 
+        txt_usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_usuario.setToolTipText("El usuario debe contener minimo 3 letras y 1 numero");
+        txt_usuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txt_usuarioMousePressed(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setText("NUEVA CONTRASEÑA:");
 
+        txt_contrasena.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_contrasena.setToolTipText("Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
+        txt_contrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_contrasenaKeyReleased(evt);
+            }
+        });
 
         jButton1.setText("MODIFICAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -380,6 +396,8 @@ public class Agregar_administrador extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jCB_nivelDeeducacion_administrador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingrese el nivel de educacion", "Basica", "Bachillerato", "Superior", "Superior Universitario", "Posgrado" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -441,32 +459,29 @@ public class Agregar_administrador extends javax.swing.JFrame {
                                 .addComponent(jSeparator1))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(combo_sangre_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(134, 134, 134))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel14)
-                                                    .addGap(29, 29, 29))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel15)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(Fecha_Nacimiento_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txt_nivelDeeducacion_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addGap(39, 39, 39)
-                                            .addComponent(Masculino_administrador)
-                                            .addGap(36, 36, 36)
-                                            .addComponent(Femenino_administrador)
-                                            .addGap(36, 36, 36)
-                                            .addComponent(txt_fechaaux, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(64, 64, 64))))
+                                    .addComponent(jLabel14)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(Fecha_Nacimiento_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(9, 9, 9))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(Masculino_administrador)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(Femenino_administrador)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(txt_fechaaux, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel15))
+                                        .addGap(22, 22, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(combo_sangre_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jCB_nivelDeeducacion_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(111, 111, 111)))))
                         .addGap(33, 33, 33))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(200, 200, 200)
@@ -534,7 +549,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                                     .addComponent(Fecha_Nacimiento_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(36, 36, 36)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(combo_sangre_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(combo_sangre_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel11)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -550,8 +565,8 @@ public class Agregar_administrador extends javax.swing.JFrame {
                                 .addGap(45, 45, 45)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel15)
-                                    .addComponent(txt_nivelDeeducacion_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(56, 56, 56)
+                                    .addComponent(jCB_nivelDeeducacion_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(55, 55, 55)
                                 .addComponent(jLabel16))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
@@ -594,8 +609,9 @@ public class Agregar_administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_cedula_administradorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_cedula_administradorMousePressed
-
-        txt_cedula_administrador.setText("");
+        if (txt_cedula_administrador.getText().equalsIgnoreCase("Ingrese la cedula")) {
+            txt_cedula_administrador.setText("");
+        }
         txt_cedula_administrador.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -654,8 +670,8 @@ public class Agregar_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_Masculino_administradorActionPerformed
 
     private void txt_codigo_administradorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_codigo_administradorMousePressed
-        txt_codigo_administrador.setText("");
-        txt_codigo_administrador.setForeground(Color.BLACK);
+//        txt_codigo_administrador.setText("");
+//        txt_codigo_administrador.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_codigo_administradorMousePressed
 
     private void txt_codigo_administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codigo_administradorActionPerformed
@@ -687,16 +703,20 @@ public class Agregar_administrador extends javax.swing.JFrame {
         new crud_administrador().setVisible(true);
     }//GEN-LAST:event_Regresar_administradorActionPerformed
 
-    private void txt_nivelDeeducacion_administradorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_nivelDeeducacion_administradorMousePressed
-
-        txt_nivelDeeducacion_administrador.setText("");
-        txt_nivelDeeducacion_administrador.setForeground(Color.BLACK);
-    }//GEN-LAST:event_txt_nivelDeeducacion_administradorMousePressed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         modificar_administrador();
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_usuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_usuarioMousePressed
+        txt_usuario.setText("");
+        txt_usuario.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txt_usuarioMousePressed
+
+    private void txt_contrasenaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contrasenaKeyReleased
+//        txt_contrasena.setText("");
+        txt_contrasena.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txt_contrasenaKeyReleased
     public void modificar_administrador() {
         String genero = "";
         if (Masculino_administrador.isSelected()) {
@@ -717,7 +737,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                     + ", per_primer_apellido='" + txt_PrimerApellido_administrador.getText() + "', per_segundo_apellido='" + txt_SegundoApellido_administrador.getText() + "'"
                     + ", per_correo='" + txt_email_administrador.getText() + "', per_genero='" + genero + "', per_direccion='" + txt_direccion_administrador.getText() + "', per_telefono='" + txt_celular_administrador.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + txt_cedula_administrador.getText() + "'");
 
-            mi_cone.InsertUpdateDeleteAcciones("UPDATE administrador SET admin_nivel_educacion='" + txt_nivelDeeducacion_administrador.getText() + "' WHERE admin_cedula='" + txt_cedula_administrador.getText() + "'");
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE administrador SET admin_nivel_educacion='" + jCB_nivelDeeducacion_administrador.getSelectedItem().toString() + "' WHERE admin_cedula='" + txt_cedula_administrador.getText() + "'");
             limpiar();
         }
 
@@ -771,7 +791,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         usu.setUsuario(txt_usuario.getText());
                         usu.InsertarUsuario();
                         ////////////////
-                        admin.setNivel_educacion(txt_nivelDeeducacion_administrador.getText());
+                        admin.setNivel_educacion(jCB_nivelDeeducacion_administrador.getSelectedItem().toString());
                         admin.setCedula(txt_cedula_administrador.getText());
                         admin.setCod_usuario(usu.obtenerUsuario());
                         if (admin.InsertarAdministrador()) {
@@ -894,14 +914,9 @@ public class Agregar_administrador extends javax.swing.JFrame {
             }
         }
 
-        if (txt_nivelDeeducacion_administrador.getText().isEmpty()) {
+        if (jCB_nivelDeeducacion_administrador.getSelectedIndex() == 0) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese el nivel de educacion");
-        } else {
-            if (!misvalidaciones.validarNombresEspacios(txt_nivelDeeducacion_administrador.getText())) {
-                JOptionPane.showMessageDialog(this, "Nivel de educacion invalido");
-                validado = false;
-            }
+            JOptionPane.showMessageDialog(this, "Seleccione el nivel de educacion");
         }
 
         if (combo_sangre_administrador.getSelectedIndex() == 0) {
@@ -934,7 +949,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         txt_celular_administrador.setText("");
         Genero_administrador.clearSelection();
         combo_sangre_administrador.setSelectedIndex(0);
-        txt_nivelDeeducacion_administrador.setText("");
+        jCB_nivelDeeducacion_administrador.setSelectedIndex(0);
         Fecha_Nacimiento_administrador.setCalendar(null);
         txt_usuario.setText("");
         txt_contrasena.setText("");
@@ -967,6 +982,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Agregar_administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -985,6 +1001,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
     private javax.swing.JButton Regresar_administrador;
     private javax.swing.JComboBox<String> combo_sangre_administrador;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jCB_nivelDeeducacion_administrador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1017,7 +1034,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
     private javax.swing.JTextField txt_direccion_administrador;
     private javax.swing.JTextField txt_email_administrador;
     private javax.swing.JTextField txt_fechaaux;
-    private javax.swing.JTextField txt_nivelDeeducacion_administrador;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }

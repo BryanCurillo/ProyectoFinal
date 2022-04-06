@@ -16,16 +16,20 @@ import conexion_bada.Conexion;
 import conexion_bada.Insert;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class agregar_enfermera extends javax.swing.JFrame {
+
     Conexion mi_cone = new Conexion();
     DateFormat df = DateFormat.getDateInstance();
-    //ArrayList<enfermera> lista_enfermera = new ArrayList();
     validaciones misvalidaciones = new validaciones();
     Insert_enfermera inser = new Insert_enfermera();
+    Insert_usuario usu = new Insert_usuario();
     Conexion cone = new Conexion();
 
     public agregar_enfermera() {
@@ -33,19 +37,22 @@ public class agregar_enfermera extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cargarcod();
     }
+
     public agregar_enfermera(String cedula) {
         initComponents();
         this.setLocationRelativeTo(null);
         Guardar_enfermera.setVisible(false);
+        txtcodigo_enfermera.setEnabled(false);
         String SQL_SELECT = "SELECT * FROM enfermera WHERE cedula = " + cedula + ";";
         llenar_enfermera();
     }
 
     public void llenar_enfermera() {
-
+        text_cedula_enfermera.setEnabled(false);
+        txtcodigo_enfermera.setEnabled(false);
         List<enfermera> com = inser.ListaEnfermera();
         com.stream().forEach(p -> {
-           txtcodigo_enfermera.setText(p.getCodigo().toString());
+            txtcodigo_enfermera.setText(p.getCodigo().toString());
             text_cedula_enfermera.setText(p.getCedula().toString());
             text_PrimerNombre_enfermera.setText(p.getPri_nomb().toString());
             text_SegundoNombre_enfermera.setText(p.getSeg_nombre().toString());
@@ -54,10 +61,40 @@ public class agregar_enfermera extends javax.swing.JFrame {
             text_email_enfermera.setText(p.getCorreo().toString());
             text_direccion_enfermera.setText(p.getDireccion());
             text_celular_enfermera.setText(p.getTelefono());
+            if (p.getGenero().equalsIgnoreCase("hombre")) {
+                Masculino_enfermera.setSelected(true);
+            }
+            if (p.getGenero().equalsIgnoreCase("mujer")) {
+                Femenino_enfermera.setSelected(true);
+            }
+            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = null;
+            try {
+                fecha = formatofecha.parse(p.getFecha_Nacimiento());
+            } catch (ParseException ex) {
+                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Fecha_Nacimiento_enfermera.setDate(fecha);
+            for (int i = 0; i < combo_sangre_enfermera.getItemCount(); i++) {
+                if (combo_sangre_enfermera.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
+                    combo_sangre_enfermera.setSelectedIndex(i);
+                    i = combo_sangre_enfermera.getItemCount();
+                }
+            }
+            System.out.println();
+
+            spiner_experiencia_enfermera.setValue(Integer.parseInt(p.getAnio_experiencia()));
+
+            List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "enfermera", "enfer");
+            usua.stream().forEach(u -> {
+                txtusurio_enfermera.setText(u.getUsuario());
+                txtcontrasena_enfermera.setText(u.getContraseña());
+            });
 
         });
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -329,7 +366,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -358,40 +395,46 @@ public class agregar_enfermera extends javax.swing.JFrame {
                             .addComponent(text_SegundoNombre_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(text_PrimerNombre_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(text_cedula_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 95, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(29, 29, 29)
-                                .addComponent(txtcodigo_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(34, 34, 34)
-                                .addComponent(text_celular_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(28, 28, 28)
-                                .addComponent(spiner_experiencia_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(18, 18, 18)
-                                .addComponent(combo_sangre_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(35, 35, 35)
-                                .addComponent(Masculino_enfermera)
-                                .addGap(35, 35, 35)
-                                .addComponent(Femenino_enfermera)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 110, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtcodigo_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(text_celular_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(spiner_experiencia_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(combo_sangre_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(Masculino_enfermera)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(Femenino_enfermera)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(26, 26, 26)
+                                .addComponent(Fecha_Nacimiento_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel17)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel18))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -402,12 +445,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtcontrasena_enfermera, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                                     .addComponent(txtusurio_enfermera))
-                                .addGap(21, 21, 21))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addGap(26, 26, 26)
-                        .addComponent(Fecha_Nacimiento_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                                .addGap(21, 21, 21))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,8 +565,9 @@ public class agregar_enfermera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void text_cedula_enfermeraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_cedula_enfermeraMousePressed
-
-        text_cedula_enfermera.setText("");
+        if (text_cedula_enfermera.getText().equalsIgnoreCase("Ingrese la cedula")) {
+            text_cedula_enfermera.setText("");
+        }
         text_cedula_enfermera.setForeground(Color.BLACK);
 
         // TODO add your handling code here:
@@ -615,7 +654,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
         modificar_enfermera();
         limpiar();
     }//GEN-LAST:event_jButton1ActionPerformed
-public void modificar_enfermera() {
+    public void modificar_enfermera() {
         String genero = "";
         if (Masculino_enfermera.isSelected()) {
             genero = "hombre";
@@ -637,6 +676,7 @@ public void modificar_enfermera() {
         mi_cone.InsertUpdateDeleteAcciones("UPDATE enfermera SET enfer_anio_experiencia='" + anio + "' WHERE enfer_cedula='" + text_cedula_enfermera.getText() + "'");
         limpiar();
     }
+
     public void cargarcod() {
         txtcodigo_enfermera.setEnabled(false);
         txtcodigo_enfermera.setText(String.valueOf(inser.cargarcodigo()));
@@ -644,7 +684,7 @@ public void modificar_enfermera() {
 
     public void RegistrarEnfermera() throws SQLException {
         Insert_enfermera enfermera = new Insert_enfermera();
-        Insert_usuario usu = new Insert_usuario();
+        
 
         try {
 
@@ -869,6 +909,7 @@ public void modificar_enfermera() {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(agregar_enfermera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
