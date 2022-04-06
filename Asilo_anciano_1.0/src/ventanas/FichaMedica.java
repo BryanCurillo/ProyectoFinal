@@ -72,6 +72,7 @@ public class FichaMedica extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         txtTipoSangre = new javax.swing.JTextField();
         txtFechaNacimiento = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -203,7 +204,7 @@ public class FichaMedica extends javax.swing.JFrame {
         femeninoficha.setText("F");
         jPanel1.add(femeninoficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, -1, -1));
 
-        comboenfermedadficha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion", "Alzheimer", "Ictus. ", "Infarto", "Artrosis y artritis", "Hipertensión", "Parkinson" }));
+        comboenfermedadficha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion" }));
         jPanel1.add(comboenfermedadficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 160, 30));
 
         jLabel19.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
@@ -250,6 +251,12 @@ public class FichaMedica extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 660, -1, -1));
         jPanel1.add(txtTipoSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 310, 70, 30));
         jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 140, 30));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        jButton2.setToolTipText("buscar paciente");
+        jButton2.setBorder(null);
+        jButton2.setOpaque(false);
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 760));
 
@@ -333,6 +340,7 @@ public class FichaMedica extends javax.swing.JFrame {
     private javax.swing.JRadioButton femeninoficha;
     private javax.swing.ButtonGroup gruposexoficha;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
