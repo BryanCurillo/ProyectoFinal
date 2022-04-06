@@ -12,12 +12,16 @@ import java.text.DateFormat;
 import clases.validaciones;
 import clases.persona;
 import clases.usuario;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.io.FileInputStream;
 import java.sql.ResultSet;
 //import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,25 +29,32 @@ import java.util.logging.Logger;
 //import java.util.Locale;
 //import javax.swing.table.DefaultTableModel;
 
+//Import para imagen
+import javax.swing.JFileChooser;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.awt.image.BufferedImage;
+
 public class Agregar_paciente extends javax.swing.JFrame {
 
     Conexion mi_cone = new Conexion();
     validaciones misvalidaciones = new validaciones();
-    int id = 0;
-    String Cedula = "";
-    String Nombre = "";
-    String Segundo_nombre = "";
-    String Apellido = "";
-    String Segundo_apellido = "";
-    String Edad = "";
+
     String afiliacion = "";
     String genero = "";
-    String fecha = "";
-    String tipo_sangre = "";
+    String FechaDeIngreso = "";
+
     DateFormat df = DateFormat.getDateInstance();
 
 //    ArrayList<paciente> lista_Paciente = new ArrayList();
     Insert inser = new Insert();
+
+    //IMAGEN
+    FileInputStream fis; //Cambie a clase paciente
+    int longitudBytes;
 
     public Agregar_paciente() {
         initComponents();
@@ -87,6 +98,23 @@ public class Agregar_paciente extends javax.swing.JFrame {
             } else {
                 check_iess.setSelected(false);
             }
+
+            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = null;
+            try {
+                fecha = formatofecha.parse(p.getFecha_Nacimiento());
+            } catch (ParseException ex) {
+                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            fecha_Nacimiento_paciente.setDate(fecha);
+
+            Date fecha2 = null;
+            try {
+                fecha2 = formatofecha.parse(p.getFecha_de_ingreso());
+            } catch (ParseException ex) {
+                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            fecha_ingreso_paciente.setDate(fecha2);
 
             for (int j = 0; j < combo_sangre_paciente.getItemCount(); j++) {
                 if (combo_sangre_paciente.getItemAt(j).equalsIgnoreCase(p.getTipo_sangre())) {
@@ -146,9 +174,10 @@ public class Agregar_paciente extends javax.swing.JFrame {
         text_cedula_paciente = new javax.swing.JTextField();
         text_SegundoNombre_paciente = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        LabelFoto = new javax.swing.JLabel();
+        SeleccionarImagen = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        Consultar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -371,12 +400,24 @@ public class Agregar_paciente extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        LabelFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("Seleccionar Imgen");
+        SeleccionarImagen.setText("Seleccionar Imgen");
+        SeleccionarImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccionarImagenActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setText("Segundo Apellido:");
+
+        Consultar.setText("Consultar");
+        Consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -433,27 +474,29 @@ public class Agregar_paciente extends javax.swing.JFrame {
                                         .addGap(66, 66, 66)
                                         .addComponent(fecha_ingreso_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addGap(48, 48, 48)
-                                                .addComponent(combo_sangre_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addGap(28, 28, 28)
-                                                .addComponent(Masculino_paciente)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(Femenino_paciente)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(Checkbox_Seguro_paciente)))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                                    .addComponent(jLabel10)
+                                                    .addGap(48, 48, 48)
+                                                    .addComponent(combo_sangre_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                                    .addComponent(jLabel8)
+                                                    .addGap(28, 28, 28)
+                                                    .addComponent(Masculino_paciente)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(Femenino_paciente)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(Checkbox_Seguro_paciente)))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(Consultar)
+                                                .addGap(59, 59, 59)
+                                                .addComponent(LabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(18, 18, 18)
                                         .addComponent(check_iess, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(198, 198, 198)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(231, 231, 231)
-                                .addComponent(jButton1))
+                                .addComponent(SeleccionarImagen))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(105, 105, 105)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -465,7 +508,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                         .addComponent(Guardar_paciente)
                         .addGap(141, 141, 141)
                         .addComponent(Regresar_paciente)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,8 +546,13 @@ public class Agregar_paciente extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel19)
                                     .addComponent(fecha_ingreso_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(LabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(59, 59, 59)
+                                        .addComponent(Consultar)))))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -516,29 +564,25 @@ public class Agregar_paciente extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel8)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addGap(19, 19, 19))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel10)
-                                            .addComponent(text_direccion_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(combo_sangre_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18))))
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(text_direccion_paciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(combo_sangre_paciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(check_iess, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton1)
+                                        .addComponent(SeleccionarImagen)
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(Femenino_paciente)
                                             .addComponent(Masculino_paciente)
-                                            .addComponent(Checkbox_Seguro_paciente))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(Checkbox_Seguro_paciente))))))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
@@ -693,6 +737,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     } else {
                         afiliacion = "no";
                     }
+
                     persona.setCorreo(text_email_paciente.getText());
 
                     String dia = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -708,13 +753,19 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     String diaI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
                     String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
                     String añoI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.YEAR));
-                    String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
+
+                    //SI VALE
+                    //String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
+                    FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
 
                     //String FechaDeIngreso = df.format(fecha_ingreso_paciente.getDate());
+                    //SI VALE
                     paciente.setFecha_de_ingreso(FechaDeIngreso);
                     paciente.setSeguro(afiliacion);
                     paciente.setCedula(text_cedula_paciente.getText());
-
+                    //HASTA AQUI
+                    
+                    //VALEEEEEEEEE
                     if (persona.InsertarPersona() && paciente.InsertarPaciente()) {
                         System.out.println("Conexion Exitosa");
                         limpiar();
@@ -722,6 +773,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     } else {
                         System.out.println("Conexion Erronea");
                     }
+
                 } else {
                     JOptionPane.showMessageDialog(this, "EL PACIENTE YA EXISTE EN LA BASE DE DATOS");
                     text_cedula_paciente.setText("");
@@ -734,15 +786,43 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     }
 
-//     public void cargarTabla() {
-//        DefaultTableModel tb = (DefaultTableModel) tabla_paciente.getModel();
-//        tb.setNumRows(0);
-//        List<paciente> com = inser.ListaCamioneros();
-//        com.stream().forEach(p -> {
-//            String[] cami = {p.getDni(), p.getNombre(), p.getTelefono(), p.getDireccion(), String.valueOf(p.getSalario()), p.getPoblacion()};
-//            tb.addRow(cami);
-//        });
-//    }
+    private void Consultar() {
+
+        String sql = "Select foto from prueba where cedula = '7777777777'";
+        ImageIcon foto;
+        InputStream is;
+
+        try {
+
+            ResultSet rs = mi_cone.selectConsulta(sql);
+
+            while (rs.next()) {
+                is = rs.getBinaryStream(1);
+
+                BufferedImage bi = ImageIO.read(is);
+                foto = new ImageIcon(bi);
+
+                Image img = foto.getImage();
+                Image newimg = img.getScaledInstance(140, 170, java.awt.Image.SCALE_SMOOTH);
+
+                ImageIcon newicon = new ImageIcon(newimg);
+                LabelFoto.setIcon(newicon);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "exception:" + ex);
+        }
+        //     public void cargarTabla() {
+        //        DefaultTableModel tb = (DefaultTableModel) tabla_paciente.getModel();
+        //        tb.setNumRows(0);
+        //        List<paciente> com = inser.ListaCamioneros();
+        //        com.stream().forEach(p -> {
+        //            String[] cami = {p.getDni(), p.getNombre(), p.getTelefono(), p.getDireccion(), String.valueOf(p.getSalario()), p.getPoblacion()};
+        //            tb.addRow(cami);
+        //        });
+        //    }
+
+    }
+
     public void limpiar() {
         text_codigo_paciente.setText("");
         text_cedula_paciente.setText("");
@@ -944,6 +1024,34 @@ public class Agregar_paciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_text_email_pacienteActionPerformed
 
+    private void SeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarImagenActionPerformed
+        LabelFoto.setIcon(null);
+        JFileChooser j = new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int estado = j.showOpenDialog(null);
+        if (estado == JFileChooser.APPROVE_OPTION) {
+            try {
+                fis = new FileInputStream(j.getSelectedFile());
+                this.longitudBytes = (int) j.getSelectedFile().length();
+
+                try {
+                    Image icono = ImageIO.read(j.getSelectedFile()).getScaledInstance(LabelFoto.getWidth(), LabelFoto.getHeight(), Image.SCALE_DEFAULT);
+
+                    LabelFoto.setIcon(new ImageIcon(icono));
+                    LabelFoto.updateUI();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "foto:" + ex);
+                }
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_SeleccionarImagenActionPerformed
+
+    private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
+        Consultar();
+    }//GEN-LAST:event_ConsultarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -981,16 +1089,18 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Checkbox_Seguro_paciente;
+    private javax.swing.JButton Consultar;
     private javax.swing.JRadioButton Femenino_paciente;
     private javax.swing.JButton Guardar_paciente;
+    private javax.swing.JLabel LabelFoto;
     private javax.swing.JRadioButton Masculino_paciente;
     private javax.swing.JButton Regresar_paciente;
+    private javax.swing.JButton SeleccionarImagen;
     private javax.swing.JCheckBox check_iess;
     private javax.swing.JComboBox<String> combo_sangre_paciente;
     private com.toedter.calendar.JDateChooser fecha_Nacimiento_paciente;
     private com.toedter.calendar.JDateChooser fecha_ingreso_paciente;
     private javax.swing.ButtonGroup grupo_sexo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1006,7 +1116,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
