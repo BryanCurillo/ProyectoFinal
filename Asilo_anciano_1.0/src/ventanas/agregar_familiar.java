@@ -754,6 +754,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                         ///////////////////////////////////
                         usu.setContraseña(txtContrasenia.getText());
                         usu.setUsuario(txtUsuario.getText());
+                        usu.setRol("Familiar");
                         usu.InsertarUsuario();
                         /////////////////////////////////////
                         familiar.setParectesco(jcb_parentesco.getSelectedItem().toString());
