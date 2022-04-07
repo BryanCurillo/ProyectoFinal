@@ -17,7 +17,8 @@ import javax.swing.JOptionPane;
 public class crud_familiar extends javax.swing.JFrame {
 
     Insert_familiar inser = new Insert_familiar();
-    Conexion mi_cone=new Conexion();
+    Conexion mi_cone = new Conexion();
+
     public crud_familiar() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -164,18 +165,17 @@ public class crud_familiar extends javax.swing.JFrame {
     private void BtEliminarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarFamiliarActionPerformed
         eliminar_familiar();
     }//GEN-LAST:event_BtEliminarFamiliarActionPerformed
-    public void eliminar_familiar(){
-        int fila=TablaFamiliar.getSelectedRow();
+    public void eliminar_familiar() {
+        int fila = TablaFamiliar.getSelectedRow();
         String cod;
-        cod=TablaFamiliar.getValueAt(fila, 0).toString();
-        try{
-            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM familiar where fam_codigo='"+cod+"'");
-            cargarTabla(); 
-        }catch(Exception e){
+        cod = TablaFamiliar.getValueAt(fila, 0).toString();
+        try {
+            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM familiar where fam_codigo='" + cod + "'");
+            cargarTabla();
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
-        
-        
+
     }
     private void BtBuscarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarFamiliarActionPerformed
         if (!text_buscar.getText().isEmpty()) {
@@ -192,15 +192,18 @@ public class crud_familiar extends javax.swing.JFrame {
     public void modificar_familiar() {
 
         int seleccion = TablaFamiliar.getSelectedRow();
-        String cedula = TablaFamiliar.getValueAt(seleccion, 1).toString();
-        inser.ListaFamiliar().forEach((e) -> {
-            if (e.getCedula().equals(cedula)) {
-                new agregar_familiar(cedula).setVisible(true);
-                text_buscar.setText("");
+        if (seleccion == 1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            String cedula = TablaFamiliar.getValueAt(seleccion, 1).toString();
+            inser.ListaFamiliar().forEach((e) -> {
+                if (e.getCedula().equals(cedula)) {
+                    new agregar_familiar(cedula).setVisible(true);
+                    text_buscar.setText("");
 
-            }
-        });
-
+                }
+            });
+        }
     }
     private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
         // TODO add your handling code here:
@@ -254,13 +257,12 @@ public class crud_familiar extends javax.swing.JFrame {
                 matriz[j][10] = familiarfiltro.get(j).getTelefono();
                 matriz[j][11] = familiarfiltro.get(j).getFecha_Nacimiento();
                 matriz[j][12] = familiarfiltro.get(j).getParectesco();
-                
 
             }
             TablaFamiliar.setModel(new javax.swing.table.DefaultTableModel(
                     matriz,
                     new String[]{
-                        "codigo", "Cedula","Nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Correo", "Sexo", "Direccion","Tipo sangre", "Celular", "Fecha nacimiento","Parentesco"
+                        "codigo", "Cedula", "Nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Correo", "Sexo", "Direccion", "Tipo sangre", "Celular", "Fecha nacimiento", "Parentesco"
                     }
             ));
         } else {
