@@ -158,6 +158,9 @@ public class crud_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_BtEliminarRecepcionistaActionPerformed
     public void eliminar_recepcionista() {
         int fila = TablaRecepcionista.getSelectedRow();
+        if (fila==-1){
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        }else{
         String cod;
         cod = TablaRecepcionista.getValueAt(fila, 0).toString();
         try {
@@ -166,7 +169,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-
+        }
     }
     private void BtBuscarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarRecepcionistaActionPerformed
         if (!text_buscar.getText().isEmpty()) {
