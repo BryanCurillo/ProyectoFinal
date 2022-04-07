@@ -166,16 +166,20 @@ public class crud_familiar extends javax.swing.JFrame {
         eliminar_familiar();
     }//GEN-LAST:event_BtEliminarFamiliarActionPerformed
     public void eliminar_familiar() {
-        int fila = TablaFamiliar.getSelectedRow();
-        String cod;
-        cod = TablaFamiliar.getValueAt(fila, 0).toString();
-        try {
-            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM familiar where fam_codigo='" + cod + "'");
-            cargarTabla();
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
 
+        int fila = TablaFamiliar.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            String cod;
+            cod = TablaFamiliar.getValueAt(fila, 0).toString();
+            try {
+                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM familiar where fam_codigo='" + cod + "'");
+                cargarTabla();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
     }
     private void BtBuscarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarFamiliarActionPerformed
         if (!text_buscar.getText().isEmpty()) {
