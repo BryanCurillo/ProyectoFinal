@@ -176,6 +176,9 @@ public class doctor_crud extends javax.swing.JFrame {
     }//GEN-LAST:event_BtEliminarDoctorActionPerformed
     public void eliminar_doctor() {
         int fila = TablaDoctor.getSelectedRow();
+        if(fila==-1){
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        }else{
         String cod;
         cod = TablaDoctor.getValueAt(fila, 0).toString();
         try {
@@ -184,7 +187,7 @@ public class doctor_crud extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-
+        }
     }
     private void BtBuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarDoctorActionPerformed
         if (!text_buscar.getText().isEmpty()) {
