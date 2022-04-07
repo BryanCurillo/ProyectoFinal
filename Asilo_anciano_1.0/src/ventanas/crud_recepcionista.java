@@ -18,7 +18,8 @@ import javax.swing.table.DefaultTableModel;
 public class crud_recepcionista extends javax.swing.JFrame {
 
     Insert_recepcionista inser = new Insert_recepcionista();
-    Conexion mi_cone=new Conexion();
+    Conexion mi_cone = new Conexion();
+
     public crud_recepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -107,7 +108,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 60, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 50, 40));
 
         text_buscar.setText("Buscar...");
         text_buscar.setToolTipText("");
@@ -155,18 +156,17 @@ public class crud_recepcionista extends javax.swing.JFrame {
     private void BtEliminarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarRecepcionistaActionPerformed
         eliminar_recepcionista();
     }//GEN-LAST:event_BtEliminarRecepcionistaActionPerformed
-    public void eliminar_recepcionista(){
-        int fila=TablaRecepcionista.getSelectedRow();
+    public void eliminar_recepcionista() {
+        int fila = TablaRecepcionista.getSelectedRow();
         String cod;
-        cod=TablaRecepcionista.getValueAt(fila, 0).toString();
-        try{
-            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM recepcionista where recep_codigo='"+cod+"'");
-            cargarTabla(); 
-        }catch(Exception e){
+        cod = TablaRecepcionista.getValueAt(fila, 0).toString();
+        try {
+            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM recepcionista where recep_codigo='" + cod + "'");
+            cargarTabla();
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
-        
-        
+
     }
     private void BtBuscarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarRecepcionistaActionPerformed
         if (!text_buscar.getText().isEmpty()) {
@@ -240,21 +240,25 @@ public class crud_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtEditarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarRecepcionistaActionPerformed
-       modificar_recepcionista();
+        modificar_recepcionista();
     }//GEN-LAST:event_BtEditarRecepcionistaActionPerformed
-public void modificar_recepcionista() {
+    public void modificar_recepcionista() {
 
         int seleccion = TablaRecepcionista.getSelectedRow();
-        String cedula = TablaRecepcionista.getValueAt(seleccion, 1).toString();
-        inser.ListaRecepcionista().forEach((e) -> {
-            if (e.getCedula().equals(cedula)) {
-                new Agregar_recepcionista(cedula).setVisible(true);
-                text_buscar.setText("");
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            String cedula = TablaRecepcionista.getValueAt(seleccion, 1).toString();
+            inser.ListaRecepcionista().forEach((e) -> {
+                if (e.getCedula().equals(cedula)) {
+                    new Agregar_recepcionista(cedula).setVisible(true);
+                    text_buscar.setText("");
 
-            }
-        });
-
+                }
+            });
+        }
     }
+
     /**
      * @param args the command line arguments
      */
