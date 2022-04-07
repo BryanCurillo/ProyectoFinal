@@ -204,6 +204,9 @@ public void eliminar_paciente(){
  public void modificar_paciente() {
 
         int seleccion = TablaPaciente.getSelectedRow();
+        if(seleccion == 1 ){
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        }else{
         String cedula = TablaPaciente.getValueAt(seleccion, 1).toString();
         inser.ListaPaciente().forEach((e) -> {
             if (e.getCedula().equals(cedula)) {
@@ -212,7 +215,7 @@ public void eliminar_paciente(){
 
             }
         });
-
+        }
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cargarTabla();
