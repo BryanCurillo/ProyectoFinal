@@ -13,13 +13,14 @@ public class usuario {
 
     private String usuario;
     private String contraseña;
-
+    private String rol;
     public usuario() {
     }
 
-    public usuario(String usuario, String contraseña) {
+    public usuario(String usuario, String contraseña, String rol) {
         this.usuario = usuario;
         this.contraseña = contraseña;
+        this.rol = rol;
     }
 
     public String getUsuario() {
@@ -38,8 +39,11 @@ public class usuario {
         this.contraseña = contraseña;
     }
 
+    public String getRol() {
+        return rol;
+    }
 
-    
-    
-
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 }
