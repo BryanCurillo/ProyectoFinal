@@ -7,16 +7,27 @@ import conexion_bada.insert_enfermedad;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
 import javax.swing.DefaultListModel;
 
+////////////////
+import clases.paciente;
+import conexion_bada.Insert;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class FichaMedica extends javax.swing.JFrame {
+
+    Insert inser = new Insert();
 
     public FichaMedica() {
         initComponents();
         this.setLocationRelativeTo(null);
         LLenarComboBoxAlergias();
         LLenarComboBoxEnfermedades();
+        BloquearCampos();
     }
 
     /**
@@ -71,12 +82,12 @@ public class FichaMedica extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        CheckBoxSeguro = new javax.swing.JCheckBox();
         jLabel23 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txtTipoSangre = new javax.swing.JTextField();
         txtFechaNacimiento = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        Buscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         JListAlergias = new javax.swing.JList<>();
         CargarAlergias = new javax.swing.JButton();
@@ -157,12 +168,12 @@ public class FichaMedica extends javax.swing.JFrame {
         });
         jPanel1.add(txtapellidofm, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 180, 30));
         jPanel1.add(txtsegundoapellidofm, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, 160, 30));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 660, 20));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 840, 20));
 
         jLabel9.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel9.setText("Cedula:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 102, 710, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 102, 890, 10));
         jPanel1.add(txtcedulafm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 180, 30));
 
         jLabel10.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
@@ -236,19 +247,19 @@ public class FichaMedica extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, 840, -1));
 
         jLabel21.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
-        jLabel21.setText("Fecha Actual:");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, -1, -1));
+        jLabel21.setText("Fecha de registro:");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 20, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel22.setText("Tiene Seguro Medico:");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, -1, -1));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 100, 30));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 10, 140, 30));
 
-        jCheckBox1.setBackground(new java.awt.Color(204, 204, 204));
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setText("SI");
-        jCheckBox1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 40, 30));
+        CheckBoxSeguro.setBackground(new java.awt.Color(204, 204, 204));
+        CheckBoxSeguro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        CheckBoxSeguro.setText("SI");
+        CheckBoxSeguro.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
+        jPanel1.add(CheckBoxSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 40, 30));
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medical-history.png"))); // NOI18N
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
@@ -260,11 +271,16 @@ public class FichaMedica extends javax.swing.JFrame {
         jPanel1.add(txtTipoSangre, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 310, 70, 30));
         jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 140, 30));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
-        jButton2.setToolTipText("buscar paciente");
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
+        Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        Buscar.setToolTipText("buscar paciente");
+        Buscar.setBorder(null);
+        Buscar.setOpaque(false);
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
         jScrollPane2.setViewportView(JListAlergias);
 
@@ -290,7 +306,7 @@ public class FichaMedica extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 160, 80));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -319,6 +335,10 @@ public class FichaMedica extends javax.swing.JFrame {
 
         CargarEnfermedadesJlist();
     }//GEN-LAST:event_CargarEnfermedadesActionPerformed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        buscar_paciente();
+    }//GEN-LAST:event_BuscarActionPerformed
 
     //Llenar enfermedades en COMBOBOX
     public void LLenarComboBoxEnfermedades() {
@@ -398,6 +418,92 @@ public class FichaMedica extends javax.swing.JFrame {
         }
     }
 
+    //Cargar Datos del Paciente
+    public void buscar_paciente() {
+        String cedula = txtcedulafm.getText();
+        var pacientefiltro = new ArrayList<paciente>();
+        inser.ListaPaciente().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                pacientefiltro.add(e);
+            }
+        });
+        if (pacientefiltro.size() != 0) {
+
+            List<paciente> com = inser.ListaPaciente();
+            com.stream().forEach(p -> {
+                txtcodigopaciente.setText(p.getCodigo().toString());
+                txtnombrefm.setText(p.getPri_nomb().toString());
+                txtsegundonombrefm.setText(p.getSeg_nombre().toString());
+                txtapellidofm.setText(p.getPri_nomb().toString());
+                txtsegundoapellidofm.setText(p.getSeg_apelli().toString());
+
+                txtcorreofm.setText(p.getCorreo().toString());
+                txtdireccionfm.setText(p.getDireccion());
+                txttelefonofm.setText(p.getTelefono());
+                if (p.getGenero().equalsIgnoreCase("hombre")) {
+                    masculinoficha.setSelected(true);
+                }
+                if (p.getGenero().equalsIgnoreCase("mujer")) {
+                    femeninoficha.setSelected(true);
+                }
+
+                if (p.getSeguro().equalsIgnoreCase("si")) {
+                    CheckBoxSeguro.setSelected(true);
+                } else {
+                    CheckBoxSeguro.setSelected(false);
+                }
+
+                txtFechaNacimiento.setText(p.getFecha_Nacimiento());
+
+                txtTipoSangre.setText(p.getTipo_sangre());
+
+            });
+
+        } else {
+            JOptionPane.showMessageDialog(this, "El paciente no existe en la base de datos");
+            LimpiarCampos();
+        }
+    }
+
+    //Bloaquear Campos de texto
+    public void BloquearCampos() {
+        txtcodigoficha.setEditable(false);
+        txtcodigopaciente.setEditable(false);
+        txtnombrefm.setEditable(false);
+        txtsegundonombrefm.setEditable(false);
+        txtapellidofm.setEditable(false);
+        txtsegundoapellidofm.setEditable(false);
+        txtcorreofm.setEditable(false);
+        txtdireccionfm.setEditable(false);
+        txttelefonofm.setEditable(false);
+        txtFechaNacimiento.setEditable(false);
+        txtTipoSangre.setEditable(false);
+        CheckBoxSeguro.setEnabled(false);
+        masculinoficha.setEnabled(false);
+        femeninoficha.setEnabled(false);
+
+    }
+
+    //Limpiar Campo de Texto
+    public void LimpiarCampos() {
+        
+        txtcedulafm.setText("");
+        txtcodigoficha.setText("");
+        txtcodigopaciente.setText("");
+        txtnombrefm.setText("");
+        txtsegundonombrefm.setText("");
+        txtapellidofm.setText("");
+        txtsegundoapellidofm.setText("");
+        txtcorreofm.setText("");
+        txtdireccionfm.setText("");
+        txttelefonofm.setText("");
+        txtFechaNacimiento.setText("");
+        txtTipoSangre.setText("");
+        CheckBoxSeguro.setSelected(false);
+        masculinoficha.setSelected(false);
+        femeninoficha.setSelected(false);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -434,8 +540,10 @@ public class FichaMedica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscar;
     private javax.swing.JButton CargarAlergias;
     private javax.swing.JButton CargarEnfermedades;
+    private javax.swing.JCheckBox CheckBoxSeguro;
     private javax.swing.JList<String> JListAlergias;
     private javax.swing.JList<String> JListEnfermedades;
     private javax.swing.JComboBox<String> comboalergiaficha;
@@ -443,8 +551,6 @@ public class FichaMedica extends javax.swing.JFrame {
     private javax.swing.JRadioButton femeninoficha;
     private javax.swing.ButtonGroup gruposexoficha;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
