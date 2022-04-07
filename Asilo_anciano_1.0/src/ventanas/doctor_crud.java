@@ -20,7 +20,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Carlos
  */
 public class doctor_crud extends javax.swing.JFrame {
-    Conexion mi_cone=new Conexion();
+
+    Conexion mi_cone = new Conexion();
     Insert_doctor inser = new Insert_doctor();
 
     public doctor_crud() {
@@ -173,18 +174,17 @@ public class doctor_crud extends javax.swing.JFrame {
     private void BtEliminarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarDoctorActionPerformed
         eliminar_doctor();
     }//GEN-LAST:event_BtEliminarDoctorActionPerformed
-    public void eliminar_doctor(){
-        int fila=TablaDoctor.getSelectedRow();
+    public void eliminar_doctor() {
+        int fila = TablaDoctor.getSelectedRow();
         String cod;
-        cod=TablaDoctor.getValueAt(fila, 0).toString();
-        try{
-            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM doctor where doc_codigo='"+cod+"'");
-            cargarTabla(); 
-        }catch(Exception e){
+        cod = TablaDoctor.getValueAt(fila, 0).toString();
+        try {
+            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM doctor where doc_codigo='" + cod + "'");
+            cargarTabla();
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
-        
-        
+
     }
     private void BtBuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarDoctorActionPerformed
         if (!text_buscar.getText().isEmpty()) {
@@ -204,21 +204,25 @@ public class doctor_crud extends javax.swing.JFrame {
     }//GEN-LAST:event_text_buscarMousePressed
 
     private void BtEditarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarDoctorActionPerformed
-       modificar_doctor();
+        modificar_doctor();
     }//GEN-LAST:event_BtEditarDoctorActionPerformed
- public void modificar_doctor() {
+    public void modificar_doctor() {
 
         int seleccion = TablaDoctor.getSelectedRow();
-        String cedula = TablaDoctor.getValueAt(seleccion, 1).toString();
-        inser.ListaDoctor().forEach((e) -> {
-            if (e.getCedula().equals(cedula)) {
-                new agregar_doctor(cedula).setVisible(true);
-                text_buscar.setText("");
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            String cedula = TablaDoctor.getValueAt(seleccion, 1).toString();
+            inser.ListaDoctor().forEach((e) -> {
+                if (e.getCedula().equals(cedula)) {
+                    new agregar_doctor(cedula).setVisible(true);
+                    text_buscar.setText("");
 
-            }
-        });
-
+                }
+            });
+        }
     }
+
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaDoctor.getModel();
         tb.setNumRows(0);
@@ -239,29 +243,29 @@ public class doctor_crud extends javax.swing.JFrame {
         });
         if (docfiltro.size() != 0) {
 
-        String matriz[][] = new String[docfiltro.size()][13];
-        for (int j = 0; j < docfiltro.size(); j++) {
-            matriz[j][0] = docfiltro.get(j).getCodigo();
-            matriz[j][1] = docfiltro.get(j).getCedula();
-            matriz[j][2] = docfiltro.get(j).getPri_nomb();
-            matriz[j][3] = docfiltro.get(j).getSeg_nombre();
-            matriz[j][4] = docfiltro.get(j).getPrim_apell();
-            matriz[j][5] = docfiltro.get(j).getSeg_apelli();
-            matriz[j][6] = docfiltro.get(j).getCorreo();
-            matriz[j][7] = docfiltro.get(j).getGenero();
-            matriz[j][8] = docfiltro.get(j).getDireccion();
-            matriz[j][9] = docfiltro.get(j).getTelefono();
-            matriz[j][10] = docfiltro.get(j).getTipo_sangre();
-            matriz[j][11] = docfiltro.get(j).getEspecialidad();
-            matriz[j][12] = docfiltro.get(j).getFecha_Nacimiento();
+            String matriz[][] = new String[docfiltro.size()][13];
+            for (int j = 0; j < docfiltro.size(); j++) {
+                matriz[j][0] = docfiltro.get(j).getCodigo();
+                matriz[j][1] = docfiltro.get(j).getCedula();
+                matriz[j][2] = docfiltro.get(j).getPri_nomb();
+                matriz[j][3] = docfiltro.get(j).getSeg_nombre();
+                matriz[j][4] = docfiltro.get(j).getPrim_apell();
+                matriz[j][5] = docfiltro.get(j).getSeg_apelli();
+                matriz[j][6] = docfiltro.get(j).getCorreo();
+                matriz[j][7] = docfiltro.get(j).getGenero();
+                matriz[j][8] = docfiltro.get(j).getDireccion();
+                matriz[j][9] = docfiltro.get(j).getTelefono();
+                matriz[j][10] = docfiltro.get(j).getTipo_sangre();
+                matriz[j][11] = docfiltro.get(j).getEspecialidad();
+                matriz[j][12] = docfiltro.get(j).getFecha_Nacimiento();
 
-        }
-        TablaDoctor.setModel(new javax.swing.table.DefaultTableModel(
-                matriz,
-                new String[]{
-                    "codigo","cedula", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento"
-                }
-        ));
+            }
+            TablaDoctor.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "codigo", "cedula", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento"
+                    }
+            ));
         } else {
             JOptionPane.showMessageDialog(this, "El doctor no existe en la base de datos");
         }
