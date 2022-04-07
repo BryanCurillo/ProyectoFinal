@@ -22,7 +22,8 @@ import javax.swing.table.DefaultTableModel;
 public class crud_paciente extends javax.swing.JFrame {
 
     Insert inser = new Insert();
-    Conexion mi_cone=new Conexion();
+    Conexion mi_cone = new Conexion();
+
     public crud_paciente() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -175,18 +176,22 @@ public class crud_paciente extends javax.swing.JFrame {
     private void BtEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarPacienteActionPerformed
         eliminar_paciente();
     }//GEN-LAST:event_BtEliminarPacienteActionPerformed
-public void eliminar_paciente(){
-        int fila=TablaPaciente.getSelectedRow();
-        String cod;
-        cod=TablaPaciente.getValueAt(fila, 0).toString();
-        try{
-            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM paciente where paci_codigo='"+cod+"'");
-            cargarTabla();
-        }catch(Exception e){
-            System.out.println(e.toString());
+    public void eliminar_paciente() {
+        int fila = TablaPaciente.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+
+            String cod;
+            cod = TablaPaciente.getValueAt(fila, 0).toString();
+            try {
+                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM paciente where paci_codigo='" + cod + "'");
+                cargarTabla();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+
         }
-        
-        
     }
     private void BtBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarPacienteActionPerformed
         if (!text_buscar.getText().isEmpty()) {
@@ -201,20 +206,20 @@ public void eliminar_paciente(){
         modificar_paciente();
 
     }//GEN-LAST:event_BtEditarPacienteActionPerformed
- public void modificar_paciente() {
+    public void modificar_paciente() {
 
         int seleccion = TablaPaciente.getSelectedRow();
-        if(seleccion == 1 ){
+        if (seleccion == 1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
-        }else{
-        String cedula = TablaPaciente.getValueAt(seleccion, 1).toString();
-        inser.ListaPaciente().forEach((e) -> {
-            if (e.getCedula().equals(cedula)) {
-                new Agregar_paciente(cedula).setVisible(true);
-                text_buscar.setText("");
+        } else {
+            String cedula = TablaPaciente.getValueAt(seleccion, 1).toString();
+            inser.ListaPaciente().forEach((e) -> {
+                if (e.getCedula().equals(cedula)) {
+                    new Agregar_paciente(cedula).setVisible(true);
+                    text_buscar.setText("");
 
-            }
-        });
+                }
+            });
         }
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -237,19 +242,16 @@ public void eliminar_paciente(){
         });
     }
 
- 
-
     public void buscar_paciente() {
         String cedula = text_buscar.getText();
         var pacientefiltro = new ArrayList<paciente>();
-         inser.ListaPaciente().forEach((e) -> {
-                if (e.getCedula().equals(cedula)) {
-                    pacientefiltro.add(e);
-                }
-            });
+        inser.ListaPaciente().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                pacientefiltro.add(e);
+            }
+        });
         if (pacientefiltro.size() != 0) {
 
-           
             String matriz[][] = new String[pacientefiltro.size()][14];
             for (int j = 0; j < pacientefiltro.size(); j++) {
                 matriz[j][0] = pacientefiltro.get(j).getCodigo();
