@@ -36,7 +36,7 @@ public class crud_administrador extends javax.swing.JFrame {
         BtRegresarAdministrador = new javax.swing.JButton();
         BtEliminarAdministrador = new javax.swing.JButton();
         BtEditarAdministrador = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Listar = new javax.swing.JButton();
         BtBuscarAdministrador = new javax.swing.JButton();
         text_buscar = new javax.swing.JTextField();
         BtIngresarAdministrador = new javax.swing.JButton();
@@ -72,7 +72,7 @@ public class crud_administrador extends javax.swing.JFrame {
                 BtEliminarAdministradorActionPerformed(evt);
             }
         });
-        getContentPane().add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 50, 50));
+        getContentPane().add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 50, 50));
 
         BtEditarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         BtEditarAdministrador.setToolTipText("EDITAR ADMINISTRADOR");
@@ -85,16 +85,16 @@ public class crud_administrador extends javax.swing.JFrame {
         });
         getContentPane().add(BtEditarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 50, 40));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
-        jButton1.setToolTipText("Ver todos");
-        jButton1.setBorderPainted(false);
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
+        Listar.setToolTipText("Ver todos");
+        Listar.setBorderPainted(false);
+        Listar.setOpaque(false);
+        Listar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ListarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 60, 50));
+        getContentPane().add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 60, 50));
 
         BtBuscarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BtBuscarAdministrador.setToolTipText("BUSCAR ADMINISTRADOR");
@@ -166,18 +166,18 @@ public class crud_administrador extends javax.swing.JFrame {
         new Agregar_paciente().setVisible(true);
     }//GEN-LAST:event_BtIngresarAdministradorActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
         cargarTabla();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ListarActionPerformed
 
     private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
         text_buscar.setText("");
         text_buscar.setForeground(Color.BLACK);    }//GEN-LAST:event_text_buscarMousePressed
 
     private void BtEditarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarAdministradorActionPerformed
-        modificar_ENFERMERA();
+        modificar_Administrador();
     }//GEN-LAST:event_BtEditarAdministradorActionPerformed
-    public void modificar_ENFERMERA() {
+    public void modificar_Administrador() {
 
         int seleccion = TablaAdministrador.getSelectedRow();
         String cedula = TablaAdministrador.getValueAt(seleccion, 1).toString();
@@ -283,8 +283,8 @@ public class crud_administrador extends javax.swing.JFrame {
     private javax.swing.JButton BtIngresarAdministrador;
     private javax.swing.JButton BtRegresarAdministrador;
     private javax.swing.JLabel Fondo;
+    private javax.swing.JButton Listar;
     private javax.swing.JTable TablaAdministrador;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField text_buscar;
