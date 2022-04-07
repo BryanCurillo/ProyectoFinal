@@ -748,6 +748,7 @@ public class agregar_doctor extends javax.swing.JFrame {
                         ///////////////////////////////////
                         usu.setContraseña(txtnueva_contrasena.getText());
                         usu.setUsuario(txtnuevo_usuario.getText());
+                        usu.setRol("Doctor");
                         usu.InsertarUsuario();
                         ///////////////////////////////////
                         docto.setEspecialidad(combo_especialidad_doctor.getSelectedItem().toString());
