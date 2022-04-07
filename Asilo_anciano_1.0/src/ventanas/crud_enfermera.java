@@ -20,7 +20,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Carlos
  */
 public class crud_enfermera extends javax.swing.JFrame {
-    Conexion mi_cone=new Conexion();
+
+    Conexion mi_cone = new Conexion();
     Insert_enfermera inser = new Insert_enfermera();
 
     public crud_enfermera() {
@@ -209,32 +210,44 @@ public class crud_enfermera extends javax.swing.JFrame {
     private void BtEliminarEnfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarEnfermeraActionPerformed
         eliminar_recepcionista();
     }//GEN-LAST:event_BtEliminarEnfermeraActionPerformed
-    public void eliminar_recepcionista(){
-        int fila=TablaEnfermera.getSelectedRow();
-        String cod;
-        cod=TablaEnfermera.getValueAt(fila, 0).toString();
-        try{
-            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM enfermera where enfer_codigo='"+cod+"'");
-            cargarTabla(); 
-        }catch(Exception e){
-            System.out.println(e.toString());
+    public void eliminar_recepcionista() {
+        int fila = TablaEnfermera.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha selecionado una fila");
+        } else {
+            String cod;
+            cod = TablaEnfermera.getValueAt(fila, 0).toString();
+            try {
+                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM enfermera where enfer_codigo='" + cod + "'");
+                cargarTabla();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
         }
-        
-        
+
     }
+
     public void modificar_ENFERMERA() {
 
         int seleccion = TablaEnfermera.getSelectedRow();
-        String cedula = TablaEnfermera.getValueAt(seleccion, 1).toString();
-        inser.ListaEnfermera().forEach((e) -> {
-            if (e.getCedula().equals(cedula)) {
-                new agregar_enfermera(cedula).setVisible(true);
-                text_buscar.setText("");
 
-            }
-        });
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha selecionado una fila");
+        } else {
+            String cedula = TablaEnfermera.getValueAt(seleccion, 1).toString();
+            inser.ListaEnfermera().forEach((e) -> {
+                if (e.getCedula().equals(cedula)) {
+                    new agregar_enfermera(cedula).setVisible(true);
+                    text_buscar.setText("");
+
+                }
+            });
+
+        }
 
     }
+
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) TablaEnfermera.getModel();
         tb.setNumRows(0);
@@ -279,7 +292,7 @@ public class crud_enfermera extends javax.swing.JFrame {
                         "codigo", "Nombre", "segundo_nombre", "primer apellido", "segundo apellido", "correo", "genero", "direccion", "telefono", "tipo sangre", "seguro", "fecha nacimiento", "fecha ingreso"
                     }
             ));
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "La enfermera no existe en la base de datos");
         }
 
