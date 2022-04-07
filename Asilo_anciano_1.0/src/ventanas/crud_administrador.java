@@ -195,18 +195,9 @@ public class crud_administrador extends javax.swing.JFrame {
 
                 }
             });
+
         }
 
-    }
-
-    public void cargarTabla() {
-        DefaultTableModel tb = (DefaultTableModel) TablaAdministrador.getModel();
-        tb.setNumRows(0);
-        List<administrador> com = inser.ListaAdministrador();
-        com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getGenero(), p.getTipo_sangre(), p.getDireccion(), p.getFecha_Nacimiento(), p.getNivel_educacion(), p.getCorreo(), p.getTelefono()};
-            tb.addRow(cami);
-        });
     }
 
     public void EliminarAdministrador() {
@@ -227,6 +218,16 @@ public class crud_administrador extends javax.swing.JFrame {
             }
         }
 
+    }
+
+    public void cargarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) TablaAdministrador.getModel();
+        tb.setNumRows(0);
+        List<administrador> com = inser.ListaAdministrador();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getGenero(), p.getTipo_sangre(), p.getDireccion(), p.getFecha_Nacimiento(), p.getNivel_educacion(), p.getCorreo(), p.getTelefono()};
+            tb.addRow(cami);
+        });
     }
 
     public void buscar_admin() {
