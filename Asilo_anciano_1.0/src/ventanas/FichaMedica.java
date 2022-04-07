@@ -1,10 +1,14 @@
 package ventanas;
-//
+
 import clases.alergias;
 import conexion_bada.Insert_alergias;
 import clases.enfermedades;
 import conexion_bada.insert_enfermedad;
 import java.util.List;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+import javax.swing.DefaultListModel;
 
 public class FichaMedica extends javax.swing.JFrame {
 
@@ -74,7 +78,11 @@ public class FichaMedica extends javax.swing.JFrame {
         txtFechaNacimiento = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        JListAlergias = new javax.swing.JList<>();
+        CargarAlergias = new javax.swing.JButton();
+        CargarEnfermedades = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        JListEnfermedades = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -189,45 +197,43 @@ public class FichaMedica extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel17.setText("ENFERMEDADES:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
         jPanel1.add(txtcorreofm, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 210, 30));
         jPanel1.add(txtdireccionfm, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 280, 30));
         jPanel1.add(txttelefonofm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 160, 30));
 
         masculinoficha.setBackground(new java.awt.Color(204, 204, 204));
-        gruposexoficha.add(masculinoficha);
         masculinoficha.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         masculinoficha.setText("M");
         jPanel1.add(masculinoficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 270, -1, -1));
 
         femeninoficha.setBackground(new java.awt.Color(204, 204, 204));
-        gruposexoficha.add(femeninoficha);
         femeninoficha.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         femeninoficha.setText("F");
         jPanel1.add(femeninoficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 270, -1, -1));
 
         comboenfermedadficha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion" }));
-        jPanel1.add(comboenfermedadficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 160, 30));
+        jPanel1.add(comboenfermedadficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 160, 30));
 
         jLabel19.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel19.setText("ALERGIAS:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, 90, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 90, -1));
 
         comboalergiaficha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opcion" }));
-        jPanel1.add(comboalergiaficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 160, 30));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 720, 20));
+        jPanel1.add(comboalergiaficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 400, 160, 30));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 720, 20));
 
         jLabel20.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("OBSERVACIONES");
         jLabel20.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.black, null));
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 160, 30));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 160, 30));
 
         txtobservacionesficha.setColumns(20);
         txtobservacionesficha.setRows(5);
         jScrollPane1.setViewportView(txtobservacionesficha);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, 830, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 550, 840, -1));
 
         jLabel21.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel21.setText("Fecha Actual:");
@@ -260,19 +266,42 @@ public class FichaMedica extends javax.swing.JFrame {
         jButton2.setOpaque(false);
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jScrollPane2.setViewportView(JListAlergias);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 440, 160, 80));
+
+        CargarAlergias.setText("Cargar");
+        CargarAlergias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarAlergiasActionPerformed(evt);
+            }
         });
-        jScrollPane2.setViewportView(jList1);
+        jPanel1.add(CargarAlergias, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 400, -1, -1));
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 160, 80));
+        CargarEnfermedades.setText("Cargar");
+        CargarEnfermedades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarEnfermedadesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CargarEnfermedades, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 760));
+        jScrollPane3.setViewportView(JListEnfermedades);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 160, 80));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 760));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtcodigofichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigofichaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcodigofichaActionPerformed
+
+    private void txtcodigopacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigopacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcodigopacienteActionPerformed
 
     private void txtsegundonombrefmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsegundonombrefmActionPerformed
         // TODO add your handling code here:
@@ -282,13 +311,53 @@ public class FichaMedica extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtapellidofmActionPerformed
 
-    private void txtcodigopacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigopacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcodigopacienteActionPerformed
+    private void CargarAlergiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarAlergiasActionPerformed
+        CargarAlergiasJlist();
+    }//GEN-LAST:event_CargarAlergiasActionPerformed
 
-    private void txtcodigofichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigofichaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcodigofichaActionPerformed
+    private void CargarEnfermedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarEnfermedadesActionPerformed
+
+        CargarEnfermedadesJlist();
+    }//GEN-LAST:event_CargarEnfermedadesActionPerformed
+
+    //Llenar enfermedades en COMBOBOX
+    public void LLenarComboBoxEnfermedades() {
+        insert_enfermedad inser = new insert_enfermedad();
+        List<enfermedades> com = inser.ListEnfermedad();
+
+        for (int i = 0; i < com.size(); i++) {
+            comboenfermedadficha.addItem(com.get(i).getNombre_enfermedad());
+        }
+    }
+
+    //Cargar enfermedades en JLIST
+    ArrayList<enfermedades> Listaenfermedades = new ArrayList<>();
+
+    public void CargarEnfermedadesJlist() {
+        enfermedades mi_enfermedad = new enfermedades();
+
+        if (comboenfermedadficha.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una enfermedad");
+        } else {
+
+            DefaultListModel modeloListEnfermedad;
+            modeloListEnfermedad = new DefaultListModel();
+            JListEnfermedades.setModel(modeloListEnfermedad);
+
+            String enferAux;
+            enferAux = comboenfermedadficha.getSelectedItem().toString();
+            mi_enfermedad.setNombre_enfermedad(enferAux);
+
+            Listaenfermedades.add(mi_enfermedad);
+
+            for (int i = 0; i < Listaenfermedades.size(); i++) {
+
+                modeloListEnfermedad.addElement(Listaenfermedades.get(i).getNombre_enfermedad());
+                comboenfermedadficha.setSelectedIndex(0);
+            }
+
+        }
+    }
 
     //Llenar alergias
     public void LLenarComboBoxAlergias() {
@@ -300,13 +369,32 @@ public class FichaMedica extends javax.swing.JFrame {
         }
     }
 
-    //Llenar enfermedades
-    public void LLenarComboBoxEnfermedades() {
-        insert_enfermedad inser = new insert_enfermedad();
-        List<enfermedades> com = inser.ListEnfermedad();
+    //Cargar alergias en JLIST
+    ArrayList<alergias> Listaalergias = new ArrayList<>();
 
-        for (int i = 0; i < com.size(); i++) {
-            comboenfermedadficha.addItem(com.get(i).getNombre_enfermedad());
+    public void CargarAlergiasJlist() {
+        alergias mi_alergia = new alergias();
+
+        if (comboalergiaficha.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una alergia");
+        } else {
+
+            DefaultListModel modeloListAlergia;
+            modeloListAlergia = new DefaultListModel();
+            JListAlergias.setModel(modeloListAlergia);
+
+            String alerAux;
+            alerAux = comboalergiaficha.getSelectedItem().toString();
+            mi_alergia.setNombre_alergia(alerAux);
+
+            Listaalergias.add(mi_alergia);
+
+            for (int i = 0; i < Listaalergias.size(); i++) {
+
+                modeloListAlergia.addElement(Listaalergias.get(i).getNombre_alergia());
+                comboalergiaficha.setSelectedIndex(0);
+            }
+
         }
     }
 
@@ -346,6 +434,10 @@ public class FichaMedica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CargarAlergias;
+    private javax.swing.JButton CargarEnfermedades;
+    private javax.swing.JList<String> JListAlergias;
+    private javax.swing.JList<String> JListEnfermedades;
     private javax.swing.JComboBox<String> comboalergiaficha;
     private javax.swing.JComboBox<String> comboenfermedadficha;
     private javax.swing.JRadioButton femeninoficha;
@@ -376,10 +468,10 @@ public class FichaMedica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
