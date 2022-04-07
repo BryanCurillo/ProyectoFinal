@@ -3,6 +3,7 @@ package ventanas;
 
 import clases.administrador;
 import clases.paciente;
+import conexion_bada.Conexion;
 import conexion_bada.Insert_administrador;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -17,9 +18,11 @@ import javax.swing.table.DefaultTableModel;
 public class crud_administrador extends javax.swing.JFrame {
 
     Insert_administrador inser = new Insert_administrador();
+    Conexion mi_cone = new Conexion();
 
     public crud_administrador() {
         initComponents();
+        this.setLocationRelativeTo(null);
         cargarTabla();
     }
 
@@ -150,7 +153,7 @@ public class crud_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_BtRegresarAdministradorActionPerformed
 
     private void BtEliminarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarAdministradorActionPerformed
-        // TODO add your handling code here:
+        EliminarAdministrador();
     }//GEN-LAST:event_BtEliminarAdministradorActionPerformed
 
     private void BtBuscarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarAdministradorActionPerformed
@@ -180,14 +183,19 @@ public class crud_administrador extends javax.swing.JFrame {
     public void modificar_Administrador() {
 
         int seleccion = TablaAdministrador.getSelectedRow();
-        String cedula = TablaAdministrador.getValueAt(seleccion, 1).toString();
-        inser.ListaAdministrador().forEach((e) -> {
-            if (e.getCedula().equals(cedula)) {
-                new Agregar_administrador(cedula).setVisible(true);
-                text_buscar.setText("");
 
-            }
-        });
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            String cedula = TablaAdministrador.getValueAt(seleccion, 1).toString();
+            inser.ListaAdministrador().forEach((e) -> {
+                if (e.getCedula().equals(cedula)) {
+                    new Agregar_administrador(cedula).setVisible(true);
+                    text_buscar.setText("");
+
+                }
+            });
+        }
 
     }
 
@@ -201,6 +209,26 @@ public class crud_administrador extends javax.swing.JFrame {
         });
     }
 
+    public void EliminarAdministrador() {
+
+        int fila = TablaAdministrador.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            String cod;
+            cod = TablaAdministrador.getValueAt(fila, 0).toString();
+            try {
+                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo='" + cod + "'");
+
+                cargarTabla();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+
+    }
+
     public void buscar_admin() {
 
         String cedula = text_buscar.getText();
@@ -212,29 +240,29 @@ public class crud_administrador extends javax.swing.JFrame {
             }
         });
         if (adminfiltro.size() != 0) {
-        String matriz[][] = new String[adminfiltro.size()][14];
-        for (int j = 0; j < adminfiltro.size(); j++) {
-            matriz[j][0] = adminfiltro.get(j).getCodigo();
-            matriz[j][1] = adminfiltro.get(j).getCedula();
-            matriz[j][2] = adminfiltro.get(j).getPri_nomb();
-            matriz[j][3] = adminfiltro.get(j).getSeg_nombre();
-            matriz[j][4] = adminfiltro.get(j).getPrim_apell();
-            matriz[j][5] = adminfiltro.get(j).getSeg_apelli();
-            matriz[j][6] = adminfiltro.get(j).getGenero();
-            matriz[j][7] = adminfiltro.get(j).getTipo_sangre();
-            matriz[j][8] = adminfiltro.get(j).getDireccion();
-            matriz[j][9] = adminfiltro.get(j).getFecha_Nacimiento();
-            matriz[j][10] = adminfiltro.get(j).getNivel_educacion();
-            matriz[j][11] = adminfiltro.get(j).getCorreo();
-            matriz[j][12] = adminfiltro.get(j).getTelefono();
+            String matriz[][] = new String[adminfiltro.size()][14];
+            for (int j = 0; j < adminfiltro.size(); j++) {
+                matriz[j][0] = adminfiltro.get(j).getCodigo();
+                matriz[j][1] = adminfiltro.get(j).getCedula();
+                matriz[j][2] = adminfiltro.get(j).getPri_nomb();
+                matriz[j][3] = adminfiltro.get(j).getSeg_nombre();
+                matriz[j][4] = adminfiltro.get(j).getPrim_apell();
+                matriz[j][5] = adminfiltro.get(j).getSeg_apelli();
+                matriz[j][6] = adminfiltro.get(j).getGenero();
+                matriz[j][7] = adminfiltro.get(j).getTipo_sangre();
+                matriz[j][8] = adminfiltro.get(j).getDireccion();
+                matriz[j][9] = adminfiltro.get(j).getFecha_Nacimiento();
+                matriz[j][10] = adminfiltro.get(j).getNivel_educacion();
+                matriz[j][11] = adminfiltro.get(j).getCorreo();
+                matriz[j][12] = adminfiltro.get(j).getTelefono();
 
-        }
-        TablaAdministrador.setModel(new javax.swing.table.DefaultTableModel(
-                matriz,
-                new String[]{
-                    "Codigo", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "Genero", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "Nivel de educacion", "E-mail", "Celular"
-                }
-        ));
+            }
+            TablaAdministrador.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "Codigo", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "Genero", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "Nivel de educacion", "E-mail", "Celular"
+                    }
+            ));
         } else {
             JOptionPane.showMessageDialog(this, "El administrador no existe en la base de datos");
         }
