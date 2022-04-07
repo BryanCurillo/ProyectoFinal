@@ -851,6 +851,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
                         usu.setUsuario(txt_usuario.getText());
                         usu.setContraseña(txt_contrasena.getText());
+                        usu.setRol("Recepcionista");
 
                         usu.InsertarUsuario();
                         recep.InsertarPersona();
