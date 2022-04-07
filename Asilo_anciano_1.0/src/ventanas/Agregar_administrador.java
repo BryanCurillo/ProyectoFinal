@@ -76,7 +76,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
             txt_email_administrador.setText(p.getCorreo().toString());
             txt_direccion_administrador.setText(p.getDireccion());
             txt_celular_administrador.setText(p.getTelefono());
-            txt_fechaaux.setText(p.getFecha_Nacimiento());
 //            System.out.println(p.getGenero());
             if (p.getGenero().equalsIgnoreCase("hombre")) {
                 Masculino_administrador.setSelected(true);
@@ -168,7 +167,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         txt_contrasena = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        txt_fechaaux = new javax.swing.JTextField();
         jCB_nivelDeeducacion_administrador = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -463,8 +461,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
                                 .addComponent(Masculino_administrador)
                                 .addGap(36, 36, 36)
                                 .addComponent(Femenino_administrador)
-                                .addGap(36, 36, 36)
-                                .addComponent(txt_fechaaux, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,11 +482,10 @@ public class Agregar_administrador extends javax.swing.JFrame {
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(txt_codigo_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(Fecha_Nacimiento_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Fecha_Nacimiento_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(163, 163, 163))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(109, 109, 109)
                 .addComponent(Guardar_administrador)
@@ -537,8 +532,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(Masculino_administrador)
-                            .addComponent(Femenino_administrador)
-                            .addComponent(txt_fechaaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Femenino_administrador)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -549,7 +543,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Fecha_Nacimiento_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(36, 36, 36)
@@ -1040,7 +1034,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
     private javax.swing.JTextField txt_contrasena;
     private javax.swing.JTextField txt_direccion_administrador;
     private javax.swing.JTextField txt_email_administrador;
-    private javax.swing.JTextField txt_fechaaux;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }
