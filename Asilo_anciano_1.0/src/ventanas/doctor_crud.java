@@ -179,14 +179,20 @@ public class doctor_crud extends javax.swing.JFrame {
         if(fila==-1){
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         }else{
-        String cod;
-        cod = TablaDoctor.getValueAt(fila, 0).toString();
-        try {
-            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM doctor where doc_codigo='" + cod + "'");
-            cargarTabla();
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
+            int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                String cod;
+                String cedula;
+                cedula = TablaDoctor.getValueAt(fila, 1).toString();
+                cod = TablaDoctor.getValueAt(fila, 0).toString();
+                try {
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM doctor where doc_codigo='" + cod + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    cargarTabla();
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
+            }
         }
     }
     private void BtBuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarDoctorActionPerformed
