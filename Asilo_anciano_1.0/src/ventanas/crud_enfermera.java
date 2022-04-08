@@ -216,13 +216,19 @@ public class crud_enfermera extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha selecionado una fila");
         } else {
-            String cod;
-            cod = TablaEnfermera.getValueAt(fila, 0).toString();
-            try {
-                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM enfermera where enfer_codigo='" + cod + "'");
-                cargarTabla();
-            } catch (Exception e) {
-                System.out.println(e.toString());
+            int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                String cod;
+                String cedula;
+                cedula = TablaEnfermera.getValueAt(fila, 1).toString();
+                cod = TablaEnfermera.getValueAt(fila, 0).toString();
+                try {
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM enfermera where enfer_codigo='" + cod + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    cargarTabla();
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
             }
         }
 
