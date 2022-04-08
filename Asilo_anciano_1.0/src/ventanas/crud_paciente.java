@@ -53,6 +53,7 @@ public class crud_paciente extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(240, 211, 139));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -181,16 +182,20 @@ public class crud_paciente extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
-
-            String cod;
-            cod = TablaPaciente.getValueAt(fila, 0).toString();
-            try {
-                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM paciente where paci_codigo='" + cod + "'");
-                cargarTabla();
-            } catch (Exception e) {
-                System.out.println(e.toString());
+            int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                String cod;
+                String cedula;
+                cedula = TablaPaciente.getValueAt(fila, 1).toString();
+                cod = TablaPaciente.getValueAt(fila, 0).toString();
+                try {
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM paciente where paci_codigo='" + cod + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    cargarTabla();
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
             }
-
         }
     }
     private void BtBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarPacienteActionPerformed
@@ -204,18 +209,18 @@ public class crud_paciente extends javax.swing.JFrame {
 
     private void BtEditarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarPacienteActionPerformed
         modificar_paciente();
-
     }//GEN-LAST:event_BtEditarPacienteActionPerformed
     public void modificar_paciente() {
-
         int seleccion = TablaPaciente.getSelectedRow();
-        if (seleccion == 1) {
+        if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
             String cedula = TablaPaciente.getValueAt(seleccion, 1).toString();
+//            System.out.println(cedula);
             inser.ListaPaciente().forEach((e) -> {
                 if (e.getCedula().equals(cedula)) {
                     new Agregar_paciente(cedula).setVisible(true);
+                    this.dispose();
                     text_buscar.setText("");
 
                 }
@@ -327,7 +332,7 @@ public class crud_paciente extends javax.swing.JFrame {
     private javax.swing.JButton BtEliminarPaciente;
     private javax.swing.JButton BtIngresarPaciente;
     private javax.swing.JButton BtRegresarPaciente;
-    private javax.swing.JTable TablaPaciente;
+    public javax.swing.JTable TablaPaciente;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDayChooser jDayChooser1;
     private javax.swing.JLabel jLabel2;

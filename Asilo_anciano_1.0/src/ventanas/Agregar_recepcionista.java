@@ -45,56 +45,57 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         Guardar_recepcionista.setVisible(false);
         String SQL_SELECT = "SELECT * FROM recepcionista WHERE cedula = " + cedula + ";";
-        llenar_recepcionista();
+        llenar_recepcionista(cedula);
     }
 
-    public void llenar_recepcionista() {
+    public void llenar_recepcionista(String cedula) {
         text_codigo_recepcionista.setEnabled(false);
         List<recepcionista> com = recep.ListaRecepcionista();
         com.stream().forEach(p -> {
-            text_codigo_recepcionista.setText(p.getCodigo().toString());
-            text_cedula_recepcionista.setText(p.getCedula().toString());
-            text_PrimerNombre_recepcionista.setText(p.getPri_nomb().toString());
-            text_SegundoNombre_recepcionista.setText(p.getSeg_nombre().toString());
-            text_PrimerApellido_recepcionista.setText(p.getPrim_apell().toString());
-            text_segundoApellido_recepcionista.setText(p.getSeg_apelli().toString());
-            text_email_recepcionista.setText(p.getCorreo().toString());
-            text_direccion_recepcionista.setText(p.getDireccion());
-            text_celular_recepcionista.setText(p.getTelefono());
-            if (p.getGenero().equalsIgnoreCase("hombre")) {
-                Masculino_recepcionista.setSelected(true);
-            }
-            if (p.getGenero().equalsIgnoreCase("mujer")) {
-                Femenino_recepcionista.setSelected(true);
-            }
-
-            Spinner_HoraEntrada_recepcionista.setValue(Integer.parseInt(p.getHora_ingreso().substring(0, 2)));
-            Spinner_MinutosEntrada_recepcionista.setValue(Integer.parseInt(p.getHora_ingreso().substring(3, 5)));
-
-            Spinner_HoraSalida_recepcionista.setValue(Integer.parseInt(p.getHora_salida().substring(0, 2)));
-            Spinner_MinutosSalida_recepcionista.setValue(Integer.parseInt(p.getHora_salida().substring(3, 5)));
-
-            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = null;
-            try {
-                fecha = formatofecha.parse(p.getFecha_Nacimiento());
-            } catch (ParseException ex) {
-                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Fecha_Nacimiento_recepcionista.setDate(fecha);
-
-            for (int j = 0; j < combo_sangre_recepcionista.getItemCount(); j++) {
-                if (combo_sangre_recepcionista.getItemAt(j).equalsIgnoreCase(p.getTipo_sangre())) {
-                    combo_sangre_recepcionista.setSelectedIndex(j);
-                    j = combo_sangre_recepcionista.getItemCount();
+            if (cedula.equalsIgnoreCase(p.getCedula())) {
+                text_codigo_recepcionista.setText(p.getCodigo().toString());
+                text_cedula_recepcionista.setText(p.getCedula().toString());
+                text_PrimerNombre_recepcionista.setText(p.getPri_nomb().toString());
+                text_SegundoNombre_recepcionista.setText(p.getSeg_nombre().toString());
+                text_PrimerApellido_recepcionista.setText(p.getPrim_apell().toString());
+                text_segundoApellido_recepcionista.setText(p.getSeg_apelli().toString());
+                text_email_recepcionista.setText(p.getCorreo().toString());
+                text_direccion_recepcionista.setText(p.getDireccion());
+                text_celular_recepcionista.setText(p.getTelefono());
+                if (p.getGenero().equalsIgnoreCase("hombre")) {
+                    Masculino_recepcionista.setSelected(true);
                 }
-            }
-            List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "recepcionista", "recep");
-            usua.stream().forEach(u -> {
-                txt_usuario.setText(u.getUsuario());
-                txt_contrasena.setText(u.getContraseña());
-            });
+                if (p.getGenero().equalsIgnoreCase("mujer")) {
+                    Femenino_recepcionista.setSelected(true);
+                }
 
+                Spinner_HoraEntrada_recepcionista.setValue(Integer.parseInt(p.getHora_ingreso().substring(0, 2)));
+                Spinner_MinutosEntrada_recepcionista.setValue(Integer.parseInt(p.getHora_ingreso().substring(3, 5)));
+
+                Spinner_HoraSalida_recepcionista.setValue(Integer.parseInt(p.getHora_salida().substring(0, 2)));
+                Spinner_MinutosSalida_recepcionista.setValue(Integer.parseInt(p.getHora_salida().substring(3, 5)));
+
+                SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formatofecha.parse(p.getFecha_Nacimiento());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Fecha_Nacimiento_recepcionista.setDate(fecha);
+
+                for (int j = 0; j < combo_sangre_recepcionista.getItemCount(); j++) {
+                    if (combo_sangre_recepcionista.getItemAt(j).equalsIgnoreCase(p.getTipo_sangre())) {
+                        combo_sangre_recepcionista.setSelectedIndex(j);
+                        j = combo_sangre_recepcionista.getItemCount();
+                    }
+                }
+                List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "recepcionista", "recep");
+                usua.stream().forEach(u -> {
+                    txt_usuario.setText(u.getUsuario());
+                    txt_contrasena.setText(u.getContraseña());
+                });
+            }
         });
 
     }
@@ -731,7 +732,11 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_text_PrimerApellido_recepcionistaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        modificar_recepcionista();
+        int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            modificar_recepcionista();
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void text_cedula_recepcionistaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_text_cedula_recepcionistaFocusLost

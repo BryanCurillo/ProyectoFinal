@@ -44,53 +44,54 @@ public class agregar_enfermera extends javax.swing.JFrame {
         Guardar_enfermera.setVisible(false);
         txtcodigo_enfermera.setEnabled(false);
         String SQL_SELECT = "SELECT * FROM enfermera WHERE cedula = " + cedula + ";";
-        llenar_enfermera();
+        llenar_enfermera(cedula);
     }
 
-    public void llenar_enfermera() {
+    public void llenar_enfermera(String cedula) {
         text_cedula_enfermera.setEnabled(false);
         txtcodigo_enfermera.setEnabled(false);
         List<enfermera> com = inser.ListaEnfermera();
         com.stream().forEach(p -> {
-            txtcodigo_enfermera.setText(p.getCodigo().toString());
-            text_cedula_enfermera.setText(p.getCedula().toString());
-            text_PrimerNombre_enfermera.setText(p.getPri_nomb().toString());
-            text_SegundoNombre_enfermera.setText(p.getSeg_nombre().toString());
-            text_PrimerApellido_enfermera.setText(p.getPrim_apell().toString());
-            text_SegundoApellido_enfermera.setText(p.getSeg_apelli().toString());
-            text_email_enfermera.setText(p.getCorreo().toString());
-            text_direccion_enfermera.setText(p.getDireccion());
-            text_celular_enfermera.setText(p.getTelefono());
-            if (p.getGenero().equalsIgnoreCase("hombre")) {
-                Masculino_enfermera.setSelected(true);
-            }
-            if (p.getGenero().equalsIgnoreCase("mujer")) {
-                Femenino_enfermera.setSelected(true);
-            }
-            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = null;
-            try {
-                fecha = formatofecha.parse(p.getFecha_Nacimiento());
-            } catch (ParseException ex) {
-                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Fecha_Nacimiento_enfermera.setDate(fecha);
-            for (int i = 0; i < combo_sangre_enfermera.getItemCount(); i++) {
-                if (combo_sangre_enfermera.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
-                    combo_sangre_enfermera.setSelectedIndex(i);
-                    i = combo_sangre_enfermera.getItemCount();
+            if (cedula.equalsIgnoreCase(p.getCedula())) {
+                txtcodigo_enfermera.setText(p.getCodigo().toString());
+                text_cedula_enfermera.setText(p.getCedula().toString());
+                text_PrimerNombre_enfermera.setText(p.getPri_nomb().toString());
+                text_SegundoNombre_enfermera.setText(p.getSeg_nombre().toString());
+                text_PrimerApellido_enfermera.setText(p.getPrim_apell().toString());
+                text_SegundoApellido_enfermera.setText(p.getSeg_apelli().toString());
+                text_email_enfermera.setText(p.getCorreo().toString());
+                text_direccion_enfermera.setText(p.getDireccion());
+                text_celular_enfermera.setText(p.getTelefono());
+                if (p.getGenero().equalsIgnoreCase("hombre")) {
+                    Masculino_enfermera.setSelected(true);
                 }
+                if (p.getGenero().equalsIgnoreCase("mujer")) {
+                    Femenino_enfermera.setSelected(true);
+                }
+                SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formatofecha.parse(p.getFecha_Nacimiento());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Fecha_Nacimiento_enfermera.setDate(fecha);
+                for (int i = 0; i < combo_sangre_enfermera.getItemCount(); i++) {
+                    if (combo_sangre_enfermera.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
+                        combo_sangre_enfermera.setSelectedIndex(i);
+                        i = combo_sangre_enfermera.getItemCount();
+                    }
+                }
+                System.out.println();
+
+                spiner_experiencia_enfermera.setValue(Integer.parseInt(p.getAnio_experiencia()));
+
+                List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "enfermera", "enfer");
+                usua.stream().forEach(u -> {
+                    txtusurio_enfermera.setText(u.getUsuario());
+                    txtcontrasena_enfermera.setText(u.getContraseña());
+                });
             }
-            System.out.println();
-
-            spiner_experiencia_enfermera.setValue(Integer.parseInt(p.getAnio_experiencia()));
-
-            List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "enfermera", "enfer");
-            usua.stream().forEach(u -> {
-                txtusurio_enfermera.setText(u.getUsuario());
-                txtcontrasena_enfermera.setText(u.getContraseña());
-            });
-
         });
 
     }
@@ -654,8 +655,10 @@ public class agregar_enfermera extends javax.swing.JFrame {
     }//GEN-LAST:event_text_direccion_enfermeraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        modificar_enfermera();
-        limpiar();
+        int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            modificar_enfermera();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
     public void modificar_enfermera() {
         String genero = "";
@@ -687,7 +690,6 @@ public class agregar_enfermera extends javax.swing.JFrame {
 
     public void RegistrarEnfermera() throws SQLException {
         Insert_enfermera enfermera = new Insert_enfermera();
-        
 
         try {
 

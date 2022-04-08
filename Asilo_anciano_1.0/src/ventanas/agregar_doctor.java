@@ -47,58 +47,60 @@ public class agregar_doctor extends javax.swing.JFrame {
         Guardar_doctor.setVisible(false);
         LLenarComboBoxEspecialidad();
         String SQL_SELECT = "SELECT * FROM doctor WHERE cedula = " + cedula + ";";
-        llenar_doctor();
+        llenar_doctor(cedula);
     }
 
-    public void llenar_doctor() {
+    public void llenar_doctor(String cedula) {
         text_cedula_doctor.setEnabled(false);
         txtcodigo_doctor.setEnabled(false);
         List<doctor> com = inserDoctor.ListaDoctor();
         com.stream().forEach(p -> {
-            txtcodigo_doctor.setText(p.getCodigo().toString());
-            text_cedula_doctor.setText(p.getCedula().toString());
-            text_PrimerNombre_doctor.setText(p.getPri_nomb().toString());
-            text_SegundoNombre_doctor.setText(p.getSeg_nombre().toString());
-            text_PrimerApellido_doctor.setText(p.getPri_nomb().toString());
-            text_SegundoApellido_doctor.setText(p.getSeg_apelli().toString());
-            text_email_doctor.setText(p.getCorreo().toString());
-            text_direccion_doctor.setText(p.getDireccion());
-            text_celular_doctor.setText(p.getTelefono());
+            if (cedula.equalsIgnoreCase(p.getCedula())) {
+                txtcodigo_doctor.setText(p.getCodigo().toString());
+                text_cedula_doctor.setText(p.getCedula().toString());
+                text_PrimerNombre_doctor.setText(p.getPri_nomb().toString());
+                text_SegundoNombre_doctor.setText(p.getSeg_nombre().toString());
+                text_PrimerApellido_doctor.setText(p.getPri_nomb().toString());
+                text_SegundoApellido_doctor.setText(p.getSeg_apelli().toString());
+                text_email_doctor.setText(p.getCorreo().toString());
+                text_direccion_doctor.setText(p.getDireccion());
+                text_celular_doctor.setText(p.getTelefono());
 
-            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = null;
-            try {
-                fecha = formatofecha.parse(p.getFecha_Nacimiento());
-            } catch (ParseException ex) {
-                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Fecha_Nacimiento_doctor.setDate(fecha);
-
-            if (p.getGenero().equalsIgnoreCase("hombre")) {
-                Masculino_doctor.setSelected(true);
-            }
-            if (p.getGenero().equalsIgnoreCase("mujer")) {
-                Femenino_doctor.setSelected(true);
-            }
-            for (int i = 0; i < combo_especialidad_doctor.getItemCount(); i++) {
-                if (combo_especialidad_doctor.getItemAt(i).equalsIgnoreCase(p.getEspecialidad())) {
-                    combo_especialidad_doctor.setSelectedIndex(i);
-                    i = combo_especialidad_doctor.getItemCount();
+                SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formatofecha.parse(p.getFecha_Nacimiento());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
+                Fecha_Nacimiento_doctor.setDate(fecha);
 
-            for (int i = 0; i < combo_sangre_doctor.getItemCount(); i++) {
-                if (combo_sangre_doctor.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
-                    combo_sangre_doctor.setSelectedIndex(i);
-                    i = combo_sangre_doctor.getItemCount();
+                if (p.getGenero().equalsIgnoreCase("hombre")) {
+                    Masculino_doctor.setSelected(true);
                 }
-            }
+                if (p.getGenero().equalsIgnoreCase("mujer")) {
+                    Femenino_doctor.setSelected(true);
+                }
+                for (int i = 0; i < combo_especialidad_doctor.getItemCount(); i++) {
+                    if (combo_especialidad_doctor.getItemAt(i).equalsIgnoreCase(p.getEspecialidad())) {
+                        combo_especialidad_doctor.setSelectedIndex(i);
+                        i = combo_especialidad_doctor.getItemCount();
+                    }
+                }
 
-            List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "doctor", "doc");
-            usua.stream().forEach(u -> {
-                txtnuevo_usuario.setText(u.getUsuario());
-                txtnueva_contrasena.setText(u.getContraseña());
-            });
+                for (int i = 0; i < combo_sangre_doctor.getItemCount(); i++) {
+                    if (combo_sangre_doctor.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
+                        combo_sangre_doctor.setSelectedIndex(i);
+                        i = combo_sangre_doctor.getItemCount();
+                    }
+                }
+
+                List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "doctor", "doc");
+                usua.stream().forEach(u -> {
+                    txtnuevo_usuario.setText(u.getUsuario());
+                    txtnueva_contrasena.setText(u.getContraseña());
+                });
+            }
         });
 
     }
@@ -675,7 +677,10 @@ public class agregar_doctor extends javax.swing.JFrame {
     }//GEN-LAST:event_text_celular_doctorMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        modificar_doctor();
+        int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            modificar_doctor();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
     public void modificar_doctor() {
         if (validaciones()) {
@@ -712,7 +717,7 @@ public class agregar_doctor extends javax.swing.JFrame {
     public void RegistrarDoctor() throws SQLException {
 
         Insert_doctor docto = new Insert_doctor();
-        
+
         try {
             if (validaciones()) {
                 if (docto.validarduplicado(text_cedula_doctor.getText())) {
