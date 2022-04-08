@@ -127,7 +127,7 @@ public class crud_familiar extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Cédula", "Primer nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Correo", "Sexo", "Dirección", "Tipo de sangre", "Celular", "Fecha de nacimiento", "Parentesco"
+                "Codigo", "Cédula", "Nombres", "Apellidos", "Correo", "Sexo", "Dirección", "Tipo de sangre", "Celular", "Fecha de nacimiento", "Parentesco", "Paciente"
             }
         ));
         jScrollPane1.setViewportView(TablaFamiliar);
@@ -192,17 +192,20 @@ public class crud_familiar extends javax.swing.JFrame {
 
     private void BtEditarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarFamiliarActionPerformed
         modificar_familiar();
+        
     }//GEN-LAST:event_BtEditarFamiliarActionPerformed
     public void modificar_familiar() {
 
         int seleccion = TablaFamiliar.getSelectedRow();
-        if (seleccion == 1) {
+        if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
             String cedula = TablaFamiliar.getValueAt(seleccion, 1).toString();
+//            System.out.println(cedula);
             inser.ListaFamiliar().forEach((e) -> {
                 if (e.getCedula().equals(cedula)) {
                     new agregar_familiar(cedula).setVisible(true);
+                    this.dispose();
                     text_buscar.setText("");
 
                 }
@@ -230,7 +233,7 @@ public class crud_familiar extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<familiar> com = inser.ListaFamiliar();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTipo_sangre(), p.getTelefono(), p.getFecha_Nacimiento(), p.getParectesco()};
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb()+"   "+ p.getSeg_nombre(), p.getPrim_apell()+"   "+ p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTipo_sangre(), p.getTelefono(), p.getFecha_Nacimiento(), p.getParectesco(),String.valueOf(p.getCodigo_paciente())};
             tb.addRow(cami);
         });
     }
@@ -246,27 +249,26 @@ public class crud_familiar extends javax.swing.JFrame {
         });
 
         if (familiarfiltro.size() != 0) {
-            String matriz[][] = new String[familiarfiltro.size()][13];
+            String matriz[][] = new String[familiarfiltro.size()][12];
             for (int j = 0; j < familiarfiltro.size(); j++) {
                 matriz[j][0] = familiarfiltro.get(j).getCodigo();
                 matriz[j][1] = familiarfiltro.get(j).getCedula();
-                matriz[j][2] = familiarfiltro.get(j).getPri_nomb();
-                matriz[j][3] = familiarfiltro.get(j).getSeg_nombre();
-                matriz[j][4] = familiarfiltro.get(j).getPrim_apell();
-                matriz[j][5] = familiarfiltro.get(j).getSeg_apelli();
-                matriz[j][6] = familiarfiltro.get(j).getCorreo();
-                matriz[j][7] = familiarfiltro.get(j).getGenero();
-                matriz[j][8] = familiarfiltro.get(j).getDireccion();
-                matriz[j][9] = familiarfiltro.get(j).getTipo_sangre();
-                matriz[j][10] = familiarfiltro.get(j).getTelefono();
-                matriz[j][11] = familiarfiltro.get(j).getFecha_Nacimiento();
-                matriz[j][12] = familiarfiltro.get(j).getParectesco();
+                matriz[j][2] = familiarfiltro.get(j).getPri_nomb()+"   "+familiarfiltro.get(j).getSeg_nombre();;
+                matriz[j][3] = familiarfiltro.get(j).getPrim_apell()+"   "+familiarfiltro.get(j).getSeg_apelli();
+                matriz[j][4] = familiarfiltro.get(j).getCorreo();
+                matriz[j][5] = familiarfiltro.get(j).getGenero();
+                matriz[j][6] = familiarfiltro.get(j).getDireccion();
+                matriz[j][7] = familiarfiltro.get(j).getTipo_sangre();
+                matriz[j][8] = familiarfiltro.get(j).getTelefono();
+                matriz[j][9] = familiarfiltro.get(j).getFecha_Nacimiento();
+                matriz[j][10] = familiarfiltro.get(j).getParectesco();
+                matriz[j][11] = String.valueOf(familiarfiltro.get(j).getCodigo_paciente());
 
             }
             TablaFamiliar.setModel(new javax.swing.table.DefaultTableModel(
                     matriz,
                     new String[]{
-                        "codigo", "Cedula", "Nombre", "Segundo nombre", "Primer apellido", "Segundo apellido", "Correo", "Sexo", "Direccion", "Tipo sangre", "Celular", "Fecha nacimiento", "Parentesco"
+                        "Codigo", "Cédula", "Nombres", "Apellidos", "Correo", "Sexo", "Dirección", "Tipo de sangre", "Celular", "Fecha de nacimiento", "Parentesco", "Paciente"
                     }
             ));
         } else {
