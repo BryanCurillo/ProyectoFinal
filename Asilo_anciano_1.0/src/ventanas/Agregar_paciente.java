@@ -70,58 +70,60 @@ public class Agregar_paciente extends javax.swing.JFrame {
         Guardar_paciente.setVisible(false);
 
         String SQL_SELECT = "SELECT * FROM pacientes WHERE cedula = " + cedula + ";";
-        llenar_paciente();
+        llenar_paciente(cedula);
 
     }
 
-    public void llenar_paciente() {
+    public void llenar_paciente(String cedula) {
         text_cedula_paciente.setEnabled(false);
         text_codigo_paciente.setEnabled(false);
         List<paciente> com = inser.ListaPaciente();
         com.stream().forEach(p -> {
-            text_codigo_paciente.setText(p.getCodigo().toString());
-            text_cedula_paciente.setText(p.getCedula().toString());
-            text_PrimerNombre_paciente.setText(p.getPri_nomb().toString());
-            text_SegundoNombre_paciente.setText(p.getSeg_nombre().toString());
-            text_PrimerApellido_paciente.setText(p.getPri_nomb().toString());
-            text_SegundoApellido_paciente.setText(p.getSeg_apelli().toString());
-            text_email_paciente.setText(p.getCorreo().toString());
-            text_direccion_paciente.setText(p.getDireccion());
-            text_celular_paciente.setText(p.getTelefono());
-            if (p.getGenero().equalsIgnoreCase("hombre")) {
-                Masculino_paciente.setSelected(true);
-            }
-            if (p.getGenero().equalsIgnoreCase("mujer")) {
-                Femenino_paciente.setSelected(true);
-            }
+            if (cedula.equalsIgnoreCase(p.getCedula())) {
+                text_codigo_paciente.setText(p.getCodigo().toString());
+                text_cedula_paciente.setText(p.getCedula().toString());
+                text_PrimerNombre_paciente.setText(p.getPri_nomb().toString());
+                text_SegundoNombre_paciente.setText(p.getSeg_nombre().toString());
+                text_PrimerApellido_paciente.setText(p.getPri_nomb().toString());
+                text_SegundoApellido_paciente.setText(p.getSeg_apelli().toString());
+                text_email_paciente.setText(p.getCorreo().toString());
+                text_direccion_paciente.setText(p.getDireccion());
+                text_celular_paciente.setText(p.getTelefono());
+                if (p.getGenero().equalsIgnoreCase("hombre")) {
+                    Masculino_paciente.setSelected(true);
+                }
+                if (p.getGenero().equalsIgnoreCase("mujer")) {
+                    Femenino_paciente.setSelected(true);
+                }
 
-            if (p.getSeguro().equalsIgnoreCase("si")) {
-                check_iess.setSelected(true);
-            } else {
-                check_iess.setSelected(false);
-            }
+                if (p.getSeguro().equalsIgnoreCase("si")) {
+                    check_iess.setSelected(true);
+                } else {
+                    check_iess.setSelected(false);
+                }
 
-            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = null;
-            try {
-                fecha = formatofecha.parse(p.getFecha_Nacimiento());
-            } catch (ParseException ex) {
-                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            fecha_Nacimiento_paciente.setDate(fecha);
+                SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formatofecha.parse(p.getFecha_Nacimiento());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                fecha_Nacimiento_paciente.setDate(fecha);
 
-            Date fecha2 = null;
-            try {
-                fecha2 = formatofecha.parse(p.getFecha_de_ingreso());
-            } catch (ParseException ex) {
-                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            fecha_ingreso_paciente.setDate(fecha2);
+                Date fecha2 = null;
+                try {
+                    fecha2 = formatofecha.parse(p.getFecha_de_ingreso());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                fecha_ingreso_paciente.setDate(fecha2);
 
-            for (int j = 0; j < combo_sangre_paciente.getItemCount(); j++) {
-                if (combo_sangre_paciente.getItemAt(j).equalsIgnoreCase(p.getTipo_sangre())) {
-                    combo_sangre_paciente.setSelectedIndex(j);
-                    j = combo_sangre_paciente.getItemCount();
+                for (int j = 0; j < combo_sangre_paciente.getItemCount(); j++) {
+                    if (combo_sangre_paciente.getItemAt(j).equalsIgnoreCase(p.getTipo_sangre())) {
+                        combo_sangre_paciente.setSelectedIndex(j);
+                        j = combo_sangre_paciente.getItemCount();
+                    }
                 }
             }
 
@@ -129,11 +131,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -753,7 +750,10 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_text_codigo_pacienteMousePressed
 
     private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
-        modificar_paciente();
+        int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            modificar_paciente();
+        }
     }//GEN-LAST:event_btModificarActionPerformed
 //    public void llenar_paciente() {
 //
@@ -836,7 +836,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     paciente.setSeguro(afiliacion);
                     paciente.setCedula(text_cedula_paciente.getText());
                     //HASTA AQUI
-                    
+
                     //VALEEEEEEEEE
                     if (persona.InsertarPersona() && paciente.InsertarPaciente()) {
                         System.out.println("Conexion Exitosa");
@@ -1010,7 +1010,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         return validado;
     }
 
-   public void modificar_paciente() {
+    public void modificar_paciente() {
         if (Masculino_paciente.isSelected()) {
             genero = "hombre";
         }
@@ -1043,6 +1043,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         }
 
     }
+
     /**
      * @param args the command line arguments
      */
