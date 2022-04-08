@@ -158,17 +158,23 @@ public class crud_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_BtEliminarRecepcionistaActionPerformed
     public void eliminar_recepcionista() {
         int fila = TablaRecepcionista.getSelectedRow();
-        if (fila==-1){
+        if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
-        }else{
-        String cod;
-        cod = TablaRecepcionista.getValueAt(fila, 0).toString();
-        try {
-            mi_cone.InsertUpdateDeleteAcciones("DELETE FROM recepcionista where recep_codigo='" + cod + "'");
-            cargarTabla();
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
+        } else {
+            int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                String cod;
+                String cedula;
+                cedula = TablaRecepcionista.getValueAt(fila, 1).toString();
+                cod = TablaRecepcionista.getValueAt(fila, 0).toString();
+                try {
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM recepcionista where recep_codigo='" + cod + "'");
+                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    cargarTabla();
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
+            }
         }
     }
     private void BtBuscarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarRecepcionistaActionPerformed
