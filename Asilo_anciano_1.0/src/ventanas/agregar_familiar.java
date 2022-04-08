@@ -37,7 +37,7 @@ public class agregar_familiar extends javax.swing.JFrame {
     Insert inser = new Insert();
     Insert_usuario usu = new Insert_usuario();
     Insert_familiar insertFamiliar = new Insert_familiar();
-    crud_familiar cruddami= new crud_familiar();
+    crud_familiar cruddami = new crud_familiar();
     Conexion cone = new Conexion();
 
     public agregar_familiar() {
@@ -61,48 +61,48 @@ public class agregar_familiar extends javax.swing.JFrame {
         com.stream().forEach(p -> {
             if (cedula.equalsIgnoreCase(p.getCedula())) {
                 txtCodigo.setText(p.getCodigo().toString());
-            text_cedula_familiar.setText(p.getCedula().toString());
-            text_PrimerNombre_familiar.setText(p.getPri_nomb().toString());
-            text_SegundoNombre_familiar.setText(p.getSeg_nombre().toString());
-            text_PrimerApellido_familiar.setText(p.getPrim_apell().toString());
-            text_SegundoApellido_familiar.setText(p.getSeg_apelli().toString());
-            text_email_familiar.setText(p.getCorreo().toString());
-            text_direccion_familiar.setText(p.getDireccion());
-            text_celular_familiar.setText(p.getTelefono());
-            for (int j = 0; j < jcb_parentesco.getItemCount(); j++) {
-                if (jcb_parentesco.getItemAt(j).equalsIgnoreCase(p.getParectesco())) {
-                    jcb_parentesco.setSelectedIndex(j);
-                    j = jcb_parentesco.getItemCount();
+                text_cedula_familiar.setText(p.getCedula().toString());
+                text_PrimerNombre_familiar.setText(p.getPri_nomb().toString());
+                text_SegundoNombre_familiar.setText(p.getSeg_nombre().toString());
+                text_PrimerApellido_familiar.setText(p.getPrim_apell().toString());
+                text_SegundoApellido_familiar.setText(p.getSeg_apelli().toString());
+                text_email_familiar.setText(p.getCorreo().toString());
+                text_direccion_familiar.setText(p.getDireccion());
+                text_celular_familiar.setText(p.getTelefono());
+                for (int j = 0; j < jcb_parentesco.getItemCount(); j++) {
+                    if (jcb_parentesco.getItemAt(j).equalsIgnoreCase(p.getParectesco())) {
+                        jcb_parentesco.setSelectedIndex(j);
+                        j = jcb_parentesco.getItemCount();
+                    }
                 }
-            }
-            if (p.getGenero().equalsIgnoreCase("hombre")) {
-                Masculino_familiar.setSelected(true);
-            }
-            if (p.getGenero().equalsIgnoreCase("mujer")) {
-                Femenino_familiar.setSelected(true);
-            }
-            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = null;
-            try {
-                fecha = formatofecha.parse(p.getFecha_Nacimiento());
-            } catch (ParseException ex) {
-                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            fecha_nacimiento_familiar.setDate(fecha);
+                if (p.getGenero().equalsIgnoreCase("hombre")) {
+                    Masculino_familiar.setSelected(true);
+                }
+                if (p.getGenero().equalsIgnoreCase("mujer")) {
+                    Femenino_familiar.setSelected(true);
+                }
+                SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formatofecha.parse(p.getFecha_Nacimiento());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                fecha_nacimiento_familiar.setDate(fecha);
 
-            for (int i = 0; i < combo_sangre_familiar.getItemCount(); i++) {
-                if (combo_sangre_familiar.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
-                    combo_sangre_familiar.setSelectedIndex(i);
-                    i = combo_sangre_familiar.getItemCount();
+                for (int i = 0; i < combo_sangre_familiar.getItemCount(); i++) {
+                    if (combo_sangre_familiar.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
+                        combo_sangre_familiar.setSelectedIndex(i);
+                        i = combo_sangre_familiar.getItemCount();
+                    }
                 }
-            }
-            txt_codPaci.setText(String.valueOf(p.getCodigo_paciente()));
-            
-            List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "familiar", "fam");
-            usua.stream().forEach(u -> {
-                txtUsuario.setText(u.getUsuario());
-                txtContrasenia.setText(u.getContraseña());
-            });
+                txt_codPaci.setText(String.valueOf(p.getCodigo_paciente()));
+
+                List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "familiar", "fam");
+                usua.stream().forEach(u -> {
+                    txtUsuario.setText(u.getUsuario());
+                    txtContrasenia.setText(u.getContraseña());
+                });
             }
 
         });
@@ -781,8 +781,11 @@ public class agregar_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarFamiliarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
         modificar_familiar();
-        limpiar();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtBuscarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarFamiliarActionPerformed
@@ -818,7 +821,7 @@ public class agregar_familiar extends javax.swing.JFrame {
 
     private void cargarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarPActionPerformed
         cargar_codigo_paci();
-        
+
     }//GEN-LAST:event_cargarPActionPerformed
 
     public void modificar_familiar() {
@@ -896,7 +899,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                         familiar.setCedula(text_cedula_familiar.getText());
                         familiar.setCod_usuario(usu.obtenerUsuario());
                         familiar.setCodigo_paciente(Integer.parseInt(txt_codPaci.getText()));
-                        
 
                         if (familiar.InsertarFamiliar()) {
                             System.out.println("Conexion Exitosa");
@@ -1109,7 +1111,7 @@ public class agregar_familiar extends javax.swing.JFrame {
 //            System.out.println(cod);
             cargarPaciente.dispose();
         }
-        
+
     }
 
     /**
