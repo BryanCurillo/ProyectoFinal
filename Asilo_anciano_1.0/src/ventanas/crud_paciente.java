@@ -53,6 +53,7 @@ public class crud_paciente extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(240, 211, 139));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -207,11 +208,12 @@ public class crud_paciente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BtEditarPacienteActionPerformed
     public void modificar_paciente() {
-
         int seleccion = TablaPaciente.getSelectedRow();
-        if (seleccion == 1) {
+        
+        if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
+            this.dispose();
             String cedula = TablaPaciente.getValueAt(seleccion, 1).toString();
             inser.ListaPaciente().forEach((e) -> {
                 if (e.getCedula().equals(cedula)) {
