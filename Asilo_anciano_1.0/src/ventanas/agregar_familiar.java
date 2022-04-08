@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import clases.familiar;
+import clases.paciente;
 import conexion_bada.Insert_familiar;
 //import conexion_bada.Insert;
 import java.awt.Color;
@@ -22,6 +23,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JDialog;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class agregar_familiar extends javax.swing.JFrame {
 
@@ -32,13 +37,14 @@ public class agregar_familiar extends javax.swing.JFrame {
     Insert inser = new Insert();
     Insert_usuario usu = new Insert_usuario();
     Insert_familiar insertFamiliar = new Insert_familiar();
-
+    crud_familiar cruddami= new crud_familiar();
     Conexion cone = new Conexion();
 
     public agregar_familiar() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarcod();
+        txt_codPaci.setEnabled(false);
     }
 
     public agregar_familiar(String cedula) {
@@ -46,14 +52,15 @@ public class agregar_familiar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         GuardarFamiliar.setVisible(false);
         String SQL_SELECT = "SELECT * FROM familiar WHERE fam_cedula = " + cedula + ";";
-        llenar_familiar();
+        llenar_familiar(cedula);
     }
 
-    public void llenar_familiar() {
+    public void llenar_familiar(String cedula) {
 
         List<familiar> com = insertFamiliar.ListaFamiliar();
         com.stream().forEach(p -> {
-            txtCodigo.setText(p.getCodigo().toString());
+            if (cedula.equalsIgnoreCase(p.getCedula())) {
+                txtCodigo.setText(p.getCodigo().toString());
             text_cedula_familiar.setText(p.getCedula().toString());
             text_PrimerNombre_familiar.setText(p.getPri_nomb().toString());
             text_SegundoNombre_familiar.setText(p.getSeg_nombre().toString());
@@ -89,12 +96,14 @@ public class agregar_familiar extends javax.swing.JFrame {
                     i = combo_sangre_familiar.getItemCount();
                 }
             }
-
+            txt_codPaci.setText(String.valueOf(p.getCodigo_paciente()));
+            
             List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "familiar", "fam");
             usua.stream().forEach(u -> {
                 txtUsuario.setText(u.getUsuario());
                 txtContrasenia.setText(u.getContraseña());
             });
+            }
 
         });
 
@@ -105,6 +114,12 @@ public class agregar_familiar extends javax.swing.JFrame {
     private void initComponents() {
 
         Genero_familiar = new javax.swing.ButtonGroup();
+        cargarPaciente = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaPaciente = new javax.swing.JTable();
+        BtBuscarFamiliar = new javax.swing.JButton();
+        text_buscar = new javax.swing.JTextField();
+        cargarP = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -148,10 +163,93 @@ public class agregar_familiar extends javax.swing.JFrame {
         txtContrasenia = new javax.swing.JTextField();
         jcb_parentesco = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        buscarp = new javax.swing.JButton();
+        txt_codPaci = new javax.swing.JTextField();
+
+        cargarPaciente.setResizable(false);
+
+        TablaPaciente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+            }
+        ));
+        TablaPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaPacienteMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaPaciente);
+
+        BtBuscarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BtBuscarFamiliar.setToolTipText("BUSCAR PACIENTE");
+        BtBuscarFamiliar.setBorder(null);
+        BtBuscarFamiliar.setOpaque(false);
+        BtBuscarFamiliar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtBuscarFamiliarActionPerformed(evt);
+            }
+        });
+
+        text_buscar.setText("Buscar...");
+        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarMousePressed(evt);
+            }
+        });
+        text_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_buscarActionPerformed(evt);
+            }
+        });
+
+        cargarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
+        cargarP.setToolTipText("CARGAR CEDULA");
+        cargarP.setBorder(null);
+        cargarP.setOpaque(false);
+        cargarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarPActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout cargarPacienteLayout = new javax.swing.GroupLayout(cargarPaciente.getContentPane());
+        cargarPaciente.getContentPane().setLayout(cargarPacienteLayout);
+        cargarPacienteLayout.setHorizontalGroup(
+            cargarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cargarPacienteLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(cargarPacienteLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(text_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtBuscarFamiliar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cargarP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
+        );
+        cargarPacienteLayout.setVerticalGroup(
+            cargarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarPacienteLayout.createSequentialGroup()
+                .addGroup(cargarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cargarPacienteLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(text_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(cargarPacienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(cargarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BtBuscarFamiliar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cargarP))))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(212, 231, 157));
@@ -374,12 +472,17 @@ public class agregar_familiar extends javax.swing.JFrame {
         jcb_parentesco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el parentesco", "Padre/Madre", "Suegro/a", "Hijo/a", "Yerno/Nuera", "Nieto/a", "Hermano/a", "Cuñado/a", "Tio/a", "Sobrino/a" }));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel16.setText("Cedula de Paciente:");
+        jLabel16.setText("Paciente:");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
-        jButton4.setToolTipText("buscar paciente");
-        jButton4.setBorder(null);
-        jButton4.setOpaque(false);
+        buscarp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        buscarp.setToolTipText("buscar paciente");
+        buscarp.setBorder(null);
+        buscarp.setOpaque(false);
+        buscarp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -437,47 +540,42 @@ public class agregar_familiar extends javax.swing.JFrame {
                                         .addComponent(jSeparator1)
                                         .addContainerGap())))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(jLabel19)
-                                                    .addGap(45, 45, 45)
-                                                    .addComponent(combo_sangre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(jLabel17)
-                                                    .addGap(49, 49, 49)
-                                                    .addComponent(text_celular_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(jLabel15)
-                                                    .addGap(30, 30, 30)
-                                                    .addComponent(fecha_nacimiento_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(jLabel16)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(jLabel2)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                                            .addComponent(jLabel8)
-                                                            .addGap(26, 26, 26)
-                                                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(jcb_parentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addGap(98, 98, 98))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jButton4)
-                                            .addGap(42, 42, 42)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(combo_sangre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(text_celular_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(fecha_nacimiento_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_codPaci, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(buscarp))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addGap(26, 26, 26)
+                                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jcb_parentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(33, 33, 33)
                                         .addComponent(Masculino_familiar)
                                         .addGap(32, 32, 32)
-                                        .addComponent(Femenino_familiar)
-                                        .addGap(39, 39, 39))))))))
+                                        .addComponent(Femenino_familiar)))
+                                .addGap(98, 98, 98))))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -518,12 +616,12 @@ public class agregar_familiar extends javax.swing.JFrame {
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel16)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton4))
-                        .addGap(27, 27, 27)
+                                .addComponent(txt_codPaci, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(buscarp))
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jcb_parentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -594,7 +692,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                                 .addComponent(jLabel14)
                                 .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(combo_sangre_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 790));
@@ -686,6 +784,43 @@ public class agregar_familiar extends javax.swing.JFrame {
         modificar_familiar();
         limpiar();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BtBuscarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarFamiliarActionPerformed
+
+        if (!text_buscar.getText().isEmpty()) {
+            buscar_paciente();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del paciente");
+        }
+    }//GEN-LAST:event_BtBuscarFamiliarActionPerformed
+
+    private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
+        // TODO add your handling code here:
+        text_buscar.setText("");
+        text_buscar.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_buscarMousePressed
+
+    private void text_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_buscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_buscarActionPerformed
+
+    private void buscarpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarpActionPerformed
+        cargarPaciente.setSize(494, 258);
+        cargarTablaF();
+        cargarPaciente.setVisible(true);
+        cargarPaciente.setLocationRelativeTo(buscarp);
+
+    }//GEN-LAST:event_buscarpActionPerformed
+
+    private void TablaPacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPacienteMousePressed
+
+    }//GEN-LAST:event_TablaPacienteMousePressed
+
+    private void cargarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarPActionPerformed
+        cargar_codigo_paci();
+        
+    }//GEN-LAST:event_cargarPActionPerformed
+
     public void modificar_familiar() {
         String genero = "";
         if (Masculino_familiar.isSelected()) {
@@ -705,7 +840,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                 + ", per_primer_apellido='" + text_PrimerApellido_familiar.getText() + "', per_segundo_apellido='" + text_SegundoApellido_familiar.getText() + "'"
                 + ", per_correo='" + text_email_familiar.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_familiar.getText() + "', per_telefono='" + text_celular_familiar.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_familiar.getText() + "'");
 
-        mi_cone.InsertUpdateDeleteAcciones("UPDATE familiar SET fam_parentesco='" + jcb_parentesco.getSelectedItem().toString() + "' WHERE fam_cedula='" + text_cedula_familiar.getText() + "'");
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE familiar SET fam_parentesco='" + jcb_parentesco.getSelectedItem().toString() + "', fam_codigo_paciente='" + Integer.parseInt(txt_codPaci.getText()) + "' WHERE fam_cedula='" + text_cedula_familiar.getText() + "'");
 
         limpiar();
     }
@@ -760,6 +895,8 @@ public class agregar_familiar extends javax.swing.JFrame {
                         familiar.setParectesco(jcb_parentesco.getSelectedItem().toString());
                         familiar.setCedula(text_cedula_familiar.getText());
                         familiar.setCod_usuario(usu.obtenerUsuario());
+                        familiar.setCodigo_paciente(Integer.parseInt(txt_codPaci.getText()));
+                        
 
                         if (familiar.InsertarFamiliar()) {
                             System.out.println("Conexion Exitosa");
@@ -889,7 +1026,6 @@ public class agregar_familiar extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
-//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
         if (fecha_nacimiento_familiar.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento");
@@ -919,6 +1055,61 @@ public class agregar_familiar extends javax.swing.JFrame {
         fecha_nacimiento_familiar.setCalendar(null);
         txtUsuario.setText("");
         txtContrasenia.setText("");
+    }
+
+    public void buscar_paciente() {
+        String cedula = text_buscar.getText();
+        var pacientefiltro = new ArrayList<paciente>();
+        inser.ListaPaciente().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                pacientefiltro.add(e);
+            }
+        });
+        if (pacientefiltro.size() != 0) {
+
+            String matriz[][] = new String[pacientefiltro.size()][14];
+            for (int j = 0; j < pacientefiltro.size(); j++) {
+                matriz[j][0] = pacientefiltro.get(j).getCodigo();
+                matriz[j][1] = pacientefiltro.get(j).getCedula();
+                matriz[j][2] = pacientefiltro.get(j).getPri_nomb() + "  " + pacientefiltro.get(j).getSeg_nombre();
+                matriz[j][3] = pacientefiltro.get(j).getPrim_apell() + "  " + pacientefiltro.get(j).getSeg_apelli();;
+
+            }
+            TablaPaciente.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+                    }
+            ));
+        } else {
+            JOptionPane.showMessageDialog(this, "El paciente no existe en la base de datos");
+        }
+    }
+
+    public void cargarTablaF() {
+        DefaultTableModel tb = (DefaultTableModel) TablaPaciente.getModel();
+        tb.setNumRows(0);
+        List<paciente> com = inser.ListaPaciente();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            tb.addRow(cami);
+        });
+    }
+
+    public void cargar_codigo_paci() {
+        int fila = TablaPaciente.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+
+            String cod;
+            cod = TablaPaciente.getValueAt(fila, 0).toString();
+            txt_codPaci.setText(cod);
+//            System.out.println(cod);
+            cargarPaciente.dispose();
+        }
+        
     }
 
     /**
@@ -964,17 +1155,21 @@ public class agregar_familiar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtBuscarFamiliar;
     private javax.swing.JRadioButton Femenino_familiar;
     private javax.swing.ButtonGroup Genero_familiar;
     private javax.swing.JButton GuardarFamiliar;
     private javax.swing.JRadioButton Masculino_familiar;
     private javax.swing.JButton RegresarFamiliar;
+    private javax.swing.JTable TablaPaciente;
+    private javax.swing.JButton buscarp;
+    private javax.swing.JButton cargarP;
+    private javax.swing.JDialog cargarPaciente;
     private javax.swing.JComboBox<String> combo_sangre_familiar;
     private com.toedter.calendar.JDateChooser fecha_nacimiento_familiar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -995,14 +1190,15 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> jcb_parentesco;
     private javax.swing.JTextField text_PrimerApellido_familiar;
     private javax.swing.JTextField text_PrimerNombre_familiar;
     private javax.swing.JTextField text_SegundoApellido_familiar;
     private javax.swing.JTextField text_SegundoNombre_familiar;
+    private javax.swing.JTextField text_buscar;
     private javax.swing.JTextField text_cedula_familiar;
     private javax.swing.JTextField text_celular_familiar;
     private javax.swing.JTextField text_direccion_familiar;
@@ -1010,5 +1206,6 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txt_codPaci;
     // End of variables declaration//GEN-END:variables
 }
