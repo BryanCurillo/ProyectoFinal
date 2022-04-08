@@ -40,6 +40,8 @@ public class inicio_frame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         boton_enfermera = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        boton_salir = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,7 +62,7 @@ public class inicio_frame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("DOCTOR");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 530, -1, -1));
 
         boton_administrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/admin (1).png"))); // NOI18N
         boton_administrador.setToolTipText("ACCESO ADMINISTRADOR");
@@ -85,7 +87,7 @@ public class inicio_frame extends javax.swing.JFrame {
                 Boton_doctorActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_doctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
+        jPanel1.add(Boton_doctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, -1, -1));
 
         boton_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recepcionista (1).png"))); // NOI18N
         boton_recepcionista.setToolTipText("ACCESOP RECEPCIONISTA");
@@ -125,11 +127,26 @@ public class inicio_frame extends javax.swing.JFrame {
                 boton_enfermeraActionPerformed(evt);
             }
         });
-        jPanel1.add(boton_enfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, -1, -1));
+        jPanel1.add(boton_enfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel8.setText("ENFERMERA");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, -1));
+
+        boton_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/apagar.png"))); // NOI18N
+        boton_salir.setToolTipText("SALIR DEL SISTEMA");
+        boton_salir.setBorder(null);
+        boton_salir.setOpaque(false);
+        boton_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_salirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 370, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
+        jLabel9.setText("SALIR ");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 510, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +156,7 @@ public class inicio_frame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -178,6 +195,11 @@ public class inicio_frame extends javax.swing.JFrame {
         enfer.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_enfermeraActionPerformed
+
+    private void boton_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_salirActionPerformed
+        // TODO add your handling code here:
+         System.exit(0);
+    }//GEN-LAST:event_boton_salirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,6 +242,7 @@ public class inicio_frame extends javax.swing.JFrame {
     private javax.swing.JButton boton_administrador;
     private javax.swing.JButton boton_enfermera;
     private javax.swing.JButton boton_recepcionista;
+    private javax.swing.JButton boton_salir;
     private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JCalendar jCalendar2;
     private javax.swing.JLabel jLabel1;
@@ -230,6 +253,7 @@ public class inicio_frame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
