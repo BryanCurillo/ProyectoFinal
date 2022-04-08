@@ -23,8 +23,8 @@ public class Insert_familiar extends familiar {
 
     public boolean InsertarFamiliar() {
         String sql = "INSERT INTO familiar(\n"
-                + "	fam_cedula,fam_parentesco,fam_codigo_usuario)\n"
-                + "	VALUES ('" + getCedula() + "', '" + getParectesco() + "', '" + getCod_usuario() + "');";
+                + "	fam_cedula,fam_parentesco,fam_codigo_usuario,fam_codigo_paciente)\n"
+                + "	VALUES ('" + getCedula() + "', '" + getParectesco() + "', '" + getCod_usuario() + "', '" + getCodigo_paciente() +"');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
@@ -40,6 +40,7 @@ public class Insert_familiar extends familiar {
                 mi_famili.setCedula(rs.getString("fam_cedula"));
                 mi_famili.setParectesco(rs.getString("fam_parentesco"));
                 mi_famili.setCod_usuario(rs.getInt("fam_codigo_usuario"));
+                mi_famili.setCodigo_paciente(rs.getInt("fam_codigo_paciente"));
 
                 mi_famili.setPri_nomb(rs.getString("per_primer_nombre"));
                 mi_famili.setSeg_nombre(rs.getString("per_segundo_nombre"));
@@ -51,6 +52,7 @@ public class Insert_familiar extends familiar {
                 mi_famili.setDireccion(rs.getString("per_direccion"));
                 mi_famili.setTelefono(rs.getString("per_telefono"));
                 mi_famili.setTipo_sangre(rs.getString("per_tipo_sangre"));
+                
 
                 famili.add(mi_famili);
             }
