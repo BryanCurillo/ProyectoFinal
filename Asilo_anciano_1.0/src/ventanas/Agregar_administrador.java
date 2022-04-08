@@ -59,62 +59,63 @@ public class Agregar_administrador extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
 //        cargarcod();
-        llenar_administrador();
+        llenar_administrador(cedula);
         Guardar_administrador.setVisible(false);
     }
 
-    public void llenar_administrador() {
+    public void llenar_administrador(String cedula) {
         txt_cedula_administrador.setEnabled(false);
         txt_codigo_administrador.setEnabled(false);
         List<administrador> com = inserCargarCodigo.ListaAdministrador();
         com.stream().forEach(p -> {
-            txt_codigo_administrador.setText(p.getCodigo().toString());
-            txt_cedula_administrador.setText(p.getCedula().toString());
-            txt_PrimerNombre_administrador.setText(p.getPri_nomb().toString());
-            txt_SegundoNombre_administrador.setText(p.getSeg_nombre().toString());
-            txt_PrimerApellido_administrador.setText(p.getPrim_apell().toString());
-            txt_SegundoApellido_administrador.setText(p.getSeg_apelli().toString());
-            txt_email_administrador.setText(p.getCorreo().toString());
-            txt_direccion_administrador.setText(p.getDireccion());
-            txt_celular_administrador.setText(p.getTelefono());
+            if (cedula.equalsIgnoreCase(p.getCedula())) {
+                txt_codigo_administrador.setText(p.getCodigo().toString());
+                txt_cedula_administrador.setText(p.getCedula().toString());
+                txt_PrimerNombre_administrador.setText(p.getPri_nomb().toString());
+                txt_SegundoNombre_administrador.setText(p.getSeg_nombre().toString());
+                txt_PrimerApellido_administrador.setText(p.getPrim_apell().toString());
+                txt_SegundoApellido_administrador.setText(p.getSeg_apelli().toString());
+                txt_email_administrador.setText(p.getCorreo().toString());
+                txt_direccion_administrador.setText(p.getDireccion());
+                txt_celular_administrador.setText(p.getTelefono());
 //            System.out.println(p.getGenero());
-            if (p.getGenero().equalsIgnoreCase("hombre")) {
-                Masculino_administrador.setSelected(true);
-            }
-            if (p.getGenero().equalsIgnoreCase("mujer")) {
-                Femenino_administrador.setSelected(true);
-            }
-
-            for (int i = 0; i < combo_sangre_administrador.getItemCount(); i++) {
-                if (combo_sangre_administrador.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
-                    combo_sangre_administrador.setSelectedIndex(i);
-                    i = combo_sangre_administrador.getItemCount();
+                if (p.getGenero().equalsIgnoreCase("hombre")) {
+                    Masculino_administrador.setSelected(true);
                 }
-            }
-
-            for (int j = 0; j < jCB_nivelDeeducacion_administrador.getItemCount(); j++) {
-                if (jCB_nivelDeeducacion_administrador.getItemAt(j).equalsIgnoreCase(p.getNivel_educacion())) {
-                    jCB_nivelDeeducacion_administrador.setSelectedIndex(j);
-                    j = jCB_nivelDeeducacion_administrador.getItemCount();
+                if (p.getGenero().equalsIgnoreCase("mujer")) {
+                    Femenino_administrador.setSelected(true);
                 }
-            }
 
-            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = null;
-            try {
-                fecha = formatofecha.parse(p.getFecha_Nacimiento());
-            } catch (ParseException ex) {
-                Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Fecha_Nacimiento_administrador.setDate(fecha);
+                for (int i = 0; i < combo_sangre_administrador.getItemCount(); i++) {
+                    if (combo_sangre_administrador.getItemAt(i).equalsIgnoreCase(p.getTipo_sangre())) {
+                        combo_sangre_administrador.setSelectedIndex(i);
+                        i = combo_sangre_administrador.getItemCount();
+                    }
+                }
+
+                for (int j = 0; j < jCB_nivelDeeducacion_administrador.getItemCount(); j++) {
+                    if (jCB_nivelDeeducacion_administrador.getItemAt(j).equalsIgnoreCase(p.getNivel_educacion())) {
+                        jCB_nivelDeeducacion_administrador.setSelectedIndex(j);
+                        j = jCB_nivelDeeducacion_administrador.getItemCount();
+                    }
+                }
+
+                SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formatofecha.parse(p.getFecha_Nacimiento());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Fecha_Nacimiento_administrador.setDate(fecha);
 
 //            System.out.println(p.getFecha_Nacimiento());
-            List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "administrador", "admin");
-            usua.stream().forEach(u -> {
-                txt_usuario.setText(u.getUsuario());
-                txt_contrasena.setText(u.getContraseña());
-            });
-
+                List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "administrador", "admin");
+                usua.stream().forEach(u -> {
+                    txt_usuario.setText(u.getUsuario());
+                    txt_contrasena.setText(u.getContraseña());
+                });
+            }
         });
 
     }
@@ -714,7 +715,10 @@ public class Agregar_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_Regresar_administradorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        modificar_administrador();
+        int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            modificar_administrador();
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -967,7 +971,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
         Fecha_Nacimiento_administrador.setCalendar(null);
         txt_usuario.setText("");
         txt_contrasena.setText("");
-        
 
     }
 
