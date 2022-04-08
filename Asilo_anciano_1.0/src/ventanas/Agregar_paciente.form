@@ -251,14 +251,16 @@
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="text_direccion_paciente" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Masculino_paciente" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Femenino_paciente" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Checkbox_Seguro_paciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="check_iess" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="text_direccion_paciente" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Masculino_paciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Femenino_paciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Checkbox_Seguro_paciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
