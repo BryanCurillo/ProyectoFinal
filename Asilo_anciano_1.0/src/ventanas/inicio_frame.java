@@ -27,74 +27,24 @@ public class inicio_frame extends javax.swing.JFrame {
         jCalendar1 = new com.toedter.calendar.JCalendar();
         jCalendar2 = new com.toedter.calendar.JCalendar();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        boton_administrador = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        Boton_doctor = new javax.swing.JButton();
+        boton_recepcionista = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        Boton_familiar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        boton_enfermera = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(240, 232, 158));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton1.setBackground(new java.awt.Color(204, 204, 255));
-        jButton1.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 59, 153));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ancianos.png"))); // NOI18N
-        jButton1.setText("PACIENTE");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 200, -1));
-
-        jButton2.setBackground(new java.awt.Color(204, 204, 255));
-        jButton2.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 59, 153));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor.png"))); // NOI18N
-        jButton2.setText("DOCTOR");
-        jButton2.setOpaque(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, 70));
-
-        jButton3.setBackground(new java.awt.Color(204, 204, 255));
-        jButton3.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 59, 153));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/family.png"))); // NOI18N
-        jButton3.setText("FAMILIAR");
-        jButton3.setOpaque(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
-
-        jButton4.setBackground(new java.awt.Color(204, 204, 255));
-        jButton4.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 59, 153));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recepcionista.png"))); // NOI18N
-        jButton4.setText("RECEPCIONISTA");
-        jButton4.setOpaque(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asilo-de-ancianos (1)_1.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
@@ -107,33 +57,79 @@ public class inicio_frame extends javax.swing.JFrame {
         jLabel4.setText("\"Cristo Rey\"");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
 
-        jButton6.setBackground(new java.awt.Color(204, 204, 255));
-        jButton6.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 59, 153));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/sospechar.png"))); // NOI18N
-        jButton6.setText("Ficha Medica");
-        jButton6.setOpaque(false);
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 320, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("DOCTOR");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, -1, -1));
 
-        jButton7.setBackground(new java.awt.Color(204, 204, 255));
-        jButton7.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(0, 59, 153));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informe-medico.png"))); // NOI18N
-        jButton7.setText("Historial Medico");
-        jButton7.setOpaque(false);
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, -1, -1));
-
-        jButton5.setBackground(new java.awt.Color(204, 204, 255));
-        jButton5.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 59, 153));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enfermeras.png"))); // NOI18N
-        jButton5.setText("ENFERMERA");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        boton_administrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/admin (1).png"))); // NOI18N
+        boton_administrador.setToolTipText("ACCESO ADMINISTRADOR");
+        boton_administrador.setBorder(null);
+        boton_administrador.setOpaque(false);
+        boton_administrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                boton_administradorActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
+        jPanel1.add(boton_administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
+        jLabel5.setText("ADMINISTRADOR");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+
+        Boton_doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor (2).png"))); // NOI18N
+        Boton_doctor.setBorder(null);
+        Boton_doctor.setOpaque(false);
+        Boton_doctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_doctorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Boton_doctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
+
+        boton_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recepcionista (1).png"))); // NOI18N
+        boton_recepcionista.setToolTipText("ACCESOP RECEPCIONISTA");
+        boton_recepcionista.setBorder(null);
+        boton_recepcionista.setOpaque(false);
+        boton_recepcionista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_recepcionistaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(boton_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
+        jLabel6.setText("RECEPCIONISTA");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
+
+        Boton_familiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/familia (1).png"))); // NOI18N
+        Boton_familiar.setBorder(null);
+        Boton_familiar.setOpaque(false);
+        Boton_familiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_familiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Boton_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
+        jLabel7.setText("FAMILIAR");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 320, -1, -1));
+
+        boton_enfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enfermera (1).png"))); // NOI18N
+        boton_enfermera.setToolTipText("ACCESO ENFERMERA");
+        boton_enfermera.setBorder(null);
+        boton_enfermera.setOpaque(false);
+        boton_enfermera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_enfermeraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(boton_enfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
+        jLabel8.setText("ENFERMERA");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,30 +145,39 @@ public class inicio_frame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-        new crud_paciente().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void Boton_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_doctorActionPerformed
+       login_doctor doc = new login_doctor();
+        doc.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Boton_doctorActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-        new doctor_crud().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void boton_administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_administradorActionPerformed
+       
+        login_administrador admin = new login_administrador();
+        admin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_administradorActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.dispose();
-        new crud_familiar().setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void boton_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_recepcionistaActionPerformed
+        // TODO add your handling code here:
+        login_recepcionista rep = new login_recepcionista();
+        rep.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_recepcionistaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.dispose();
-        new crud_recepcionista().setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void Boton_familiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_familiarActionPerformed
+        // TODO add your handling code here:
+        login_familiar fam = new login_familiar();
+        fam.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Boton_familiarActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.dispose();
-        new crud_enfermera().setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void boton_enfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_enfermeraActionPerformed
+        // TODO add your handling code here:
+          login_enfermera enfer = new login_enfermera();
+        enfer.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_enfermeraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,18 +215,21 @@ public class inicio_frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton Boton_doctor;
+    private javax.swing.JButton Boton_familiar;
+    private javax.swing.JButton boton_administrador;
+    private javax.swing.JButton boton_enfermera;
+    private javax.swing.JButton boton_recepcionista;
     private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JCalendar jCalendar2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
