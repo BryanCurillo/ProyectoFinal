@@ -58,13 +58,14 @@ public class Agregar_administrador extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        cargarcod();
+//        cargarcod();
         llenar_administrador();
         Guardar_administrador.setVisible(false);
     }
 
     public void llenar_administrador() {
         txt_cedula_administrador.setEnabled(false);
+        txt_codigo_administrador.setEnabled(false);
         List<administrador> com = inserCargarCodigo.ListaAdministrador();
         com.stream().forEach(p -> {
             txt_codigo_administrador.setText(p.getCodigo().toString());
@@ -170,6 +171,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jCB_nivelDeeducacion_administrador = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(240, 239, 180));
@@ -373,7 +375,9 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setText("NUEVO USUARIO:");
 
+        txt_usuario.setForeground(new java.awt.Color(102, 102, 102));
         txt_usuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_usuario.setText("Ej: Usuario1");
         txt_usuario.setToolTipText("El usuario debe contener minimo 3 letras y 1 numero");
         txt_usuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -384,8 +388,15 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setText("NUEVA CONTRASEÑA:");
 
+        txt_contrasena.setForeground(new java.awt.Color(102, 102, 102));
         txt_contrasena.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_contrasena.setText("Ej: Pass1@");
         txt_contrasena.setToolTipText("Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
+        txt_contrasena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txt_contrasenaMousePressed(evt);
+            }
+        });
         txt_contrasena.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_contrasenaKeyReleased(evt);
@@ -429,7 +440,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                                 .addComponent(jButton1)
                                 .addGap(110, 110, 110)
                                 .addComponent(Regresar_administrador)))
-                        .addGap(123, 123, 123)
+                        .addGap(75, 75, 75)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
                             .addComponent(jLabel17))
@@ -713,9 +724,12 @@ public class Agregar_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_usuarioMousePressed
 
     private void txt_contrasenaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_contrasenaKeyReleased
-//        txt_contrasena.setText("");
-        txt_contrasena.setForeground(Color.BLACK);
+
     }//GEN-LAST:event_txt_contrasenaKeyReleased
+
+    private void txt_contrasenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_contrasenaMousePressed
+        txt_contrasena.setText("");
+        txt_contrasena.setForeground(Color.BLACK);    }//GEN-LAST:event_txt_contrasenaMousePressed
     public void modificar_administrador() {
         String genero = "";
         if (Masculino_administrador.isSelected()) {
