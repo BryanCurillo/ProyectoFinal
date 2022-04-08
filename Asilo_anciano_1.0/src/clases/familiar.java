@@ -3,6 +3,7 @@ package clases;
 public class familiar extends persona {
 
     private String parectesco;
+    private int codigo_paciente;
     private int cod_usuario;
 
     public familiar() {
@@ -14,11 +15,14 @@ public class familiar extends persona {
         this.cod_usuario = cod_usuario;
     }
 
-    public familiar(String parectesco, int cod_usuario, String codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
-        super(codigo, cedula, pri_nomb, seg_nombre, prim_apell, seg_apelli, correo, genero, fecha_Nacimiento, direccion, telefono, tipo_sangre);
+    public familiar(String parectesco, int codigo_paciente, int cod_usuario) {
         this.parectesco = parectesco;
+        this.codigo_paciente = codigo_paciente;
         this.cod_usuario = cod_usuario;
     }
+
+
+
 
     public String getParectesco() {
         return parectesco;
@@ -35,5 +39,19 @@ public class familiar extends persona {
     public void setCod_usuario(int cod_usuario) {
         this.cod_usuario = cod_usuario;
     }
+
+    public int getCodigo_paciente() {
+        return codigo_paciente;
+    }
+
+    public void setCodigo_paciente(int codigo_paciente) {
+        this.codigo_paciente = codigo_paciente;
+    }
+
+
+
+
+    
+    
 
 }
