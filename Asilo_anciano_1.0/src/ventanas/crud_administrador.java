@@ -208,14 +208,20 @@ public class crud_administrador extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
-            String cod;
-            cod = TablaAdministrador.getValueAt(fila, 0).toString();
-            try {
-                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo='" + cod + "'");
-
-                cargarTabla();
-            } catch (Exception e) {
-                System.out.println(e.toString());
+            
+            int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                String cod;
+                String cedula;
+                cedula = TablaAdministrador.getValueAt(fila, 1).toString();
+                cod = TablaAdministrador.getValueAt(fila, 0).toString();
+                try {
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo='" + cod + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    cargarTabla();
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
             }
         }
 
