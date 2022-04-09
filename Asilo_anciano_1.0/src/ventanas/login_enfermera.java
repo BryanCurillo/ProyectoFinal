@@ -5,18 +5,21 @@
  */
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
+import clases.enfermera;
+import clases.usuario;
+import conexion_bada.Insert_enfermera;
+import conexion_bada.Insert_usuario;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 public class login_enfermera extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login_enfermera
-     */
+    Insert_usuario mi_Insert = new Insert_usuario();
+    Insert_enfermera InsertEnfe = new Insert_enfermera();
+
     public login_enfermera() {
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     /**
