@@ -69,28 +69,32 @@ public class login_administrador extends javax.swing.JFrame {
 
     private void BotonIniciarSesionAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionAActionPerformed
         LoginAdministrador();
-        acceso_administrador mi_acceso = new acceso_administrador();
-        mi_acceso.setVisible(true);
-        dispose();
     }//GEN-LAST:event_BotonIniciarSesionAActionPerformed
 
     public void LoginAdministrador() {
         Insert_usuario miInsert = new Insert_usuario();
 
+        boolean bandera = false;
         List<administrador> com = inserAdmin.ListaAdministrador();
 
         for (int i = 0; i < com.size(); i++) {
-            if (com.get(i).getCod_usuario() != miInsert.ConsultarUsuario(txtUsuarioA.getText(), txtContraseniaA.getText())) {
+            if (com.get(i).getCod_usuario() == miInsert.ConsultarUsuario(txtUsuarioA.getText(), txtContraseniaA.getText())) {
 
-                acceso_doctor mi_acceso = new acceso_doctor();
-                mi_acceso.setVisible(true);
+                bandera = true;
+                i = com.size();
+
+                acceso_administrador mi_accesoA = new acceso_administrador();
+                mi_accesoA.setVisible(true);
                 dispose();
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
             }
         }
 
+        if (!bandera) {
+
+            JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+
+        }
     }
 
     /**
