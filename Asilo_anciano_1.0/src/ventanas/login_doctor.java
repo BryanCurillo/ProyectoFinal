@@ -4,6 +4,7 @@ import conexion_bada.Insert_doctor;
 import clases.doctor;
 import clases.usuario;
 import conexion_bada.Insert_usuario;
+import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -56,7 +57,7 @@ public class login_doctor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtUsuarioD = new javax.swing.JTextField();
         BotonIniciarSesionD = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        boton_regresar_menu_principal = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
@@ -74,7 +75,12 @@ public class login_doctor extends javax.swing.JFrame {
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
-        txtContraseniaD.setText("jPasswordField1");
+        txtContraseniaD.setToolTipText("INGRESE SU CONTRASEÑA");
+        txtContraseniaD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseniaDActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtContraseniaD, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 120, 30));
 
         jLabel5.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
@@ -95,11 +101,16 @@ public class login_doctor extends javax.swing.JFrame {
         });
         getContentPane().add(BotonIniciarSesionD, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton2.setToolTipText("REGRESAR");
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        boton_regresar_menu_principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        boton_regresar_menu_principal.setToolTipText("REGRESAR");
+        boton_regresar_menu_principal.setBorder(null);
+        boton_regresar_menu_principal.setOpaque(false);
+        boton_regresar_menu_principal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_regresar_menu_principalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boton_regresar_menu_principal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-hello-kitty-wallpaper-hd-691636 (1).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, -1));
@@ -110,6 +121,19 @@ public class login_doctor extends javax.swing.JFrame {
     private void BotonIniciarSesionDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionDActionPerformed
         LoginDoctor();
     }//GEN-LAST:event_BotonIniciarSesionDActionPerformed
+
+    private void txtContraseniaDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaDActionPerformed
+        // TODO add your handling code here:
+       
+        
+    }//GEN-LAST:event_txtContraseniaDActionPerformed
+
+    private void boton_regresar_menu_principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_menu_principalActionPerformed
+        // TODO add your handling code here:
+        inicio_frame menup = new inicio_frame();
+        menup.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_regresar_menu_principalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,7 +172,7 @@ public class login_doctor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIniciarSesionD;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton boton_regresar_menu_principal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
