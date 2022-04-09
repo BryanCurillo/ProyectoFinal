@@ -27,13 +27,14 @@ public class login_administrador extends javax.swing.JFrame {
         txtUsuarioA = new javax.swing.JTextField();
         txtContraseniaA = new javax.swing.JPasswordField();
         BotonIniciarSesionA = new javax.swing.JButton();
+        boton_regresar_menu_principal = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gerente.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 250, 220));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 250, 220));
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         jLabel3.setText("USUARIO:");
@@ -46,9 +47,11 @@ public class login_administrador extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+
+        txtUsuarioA.setToolTipText("INGRESE SU USUARIO");
         getContentPane().add(txtUsuarioA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 140, 30));
 
-        txtContraseniaA.setText("jPasswordField1");
+        txtContraseniaA.setToolTipText("INGRESE SU CONTRASEÑA");
         getContentPane().add(txtContraseniaA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 140, 30));
 
         BotonIniciarSesionA.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
@@ -61,6 +64,17 @@ public class login_administrador extends javax.swing.JFrame {
         });
         getContentPane().add(BotonIniciarSesionA, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
 
+        boton_regresar_menu_principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        boton_regresar_menu_principal.setToolTipText("REGRESAR MENU PRINCIPAL");
+        boton_regresar_menu_principal.setBorder(null);
+        boton_regresar_menu_principal.setOpaque(false);
+        boton_regresar_menu_principal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_regresar_menu_principalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boton_regresar_menu_principal, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-full-hd-vertical-wallpapers-874835.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -70,6 +84,13 @@ public class login_administrador extends javax.swing.JFrame {
     private void BotonIniciarSesionAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionAActionPerformed
         LoginAdministrador();
     }//GEN-LAST:event_BotonIniciarSesionAActionPerformed
+
+    private void boton_regresar_menu_principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_menu_principalActionPerformed
+        // TODO add your handling code here:
+        inicio_frame menup = new inicio_frame();
+        menup.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_regresar_menu_principalActionPerformed
 
     public void LoginAdministrador() {
         Insert_usuario miInsert = new Insert_usuario();
@@ -134,6 +155,7 @@ public class login_administrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIniciarSesionA;
+    private javax.swing.JButton boton_regresar_menu_principal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
