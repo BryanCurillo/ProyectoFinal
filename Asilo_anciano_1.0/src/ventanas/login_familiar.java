@@ -26,8 +26,8 @@ public class login_familiar extends javax.swing.JFrame {
         for (int i = 0; i < com.size(); i++) {
             if (com.get(i).getCod_usuario() == miInsert.ConsultarUsuario(txtUsuarioF.getText(), txtContraseniaF.getText())) {
 
-                acceso_doctor mi_accesoD = new acceso_doctor();
-                mi_accesoD.setVisible(true);
+                acceso_familiar mi_accesoF = new acceso_familiar();
+                mi_accesoF.setVisible(true);
                 dispose();
 
                 bandera = true;
