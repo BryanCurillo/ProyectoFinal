@@ -31,9 +31,9 @@ public class login_administrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        txtUsuarioA = new javax.swing.JTextField();
+        txtContraseniaA = new javax.swing.JPasswordField();
+        BotonIniciarSesionA = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,15 +53,15 @@ public class login_administrador extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 140, 30));
+        getContentPane().add(txtUsuarioA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 140, 30));
 
-        jPasswordField1.setText("jPasswordField1");
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 140, 30));
+        txtContraseniaA.setText("jPasswordField1");
+        getContentPane().add(txtContraseniaA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 140, 30));
 
-        jButton1.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
-        jButton1.setText("INICIAR SESION");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
+        BotonIniciarSesionA.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
+        BotonIniciarSesionA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
+        BotonIniciarSesionA.setText("INICIAR SESION");
+        getContentPane().add(BotonIniciarSesionA, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-full-hd-vertical-wallpapers-874835.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -105,12 +105,12 @@ public class login_administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BotonIniciarSesionA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtContraseniaA;
+    private javax.swing.JTextField txtUsuarioA;
     // End of variables declaration//GEN-END:variables
 }
