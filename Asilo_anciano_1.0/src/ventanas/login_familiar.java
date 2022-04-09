@@ -1,6 +1,5 @@
 package ventanas;
 
-import clases.enfermera;
 import clases.familiar;
 import conexion_bada.Insert_familiar;
 import conexion_bada.Insert_usuario;
@@ -9,7 +8,6 @@ import javax.swing.JOptionPane;
 
 public class login_familiar extends javax.swing.JFrame {
 
-    Insert_usuario mi_Insert = new Insert_usuario();
     Insert_familiar InsertFami = new Insert_familiar();
 
     public login_familiar() {
@@ -20,18 +18,27 @@ public class login_familiar extends javax.swing.JFrame {
 
     public void LoginFamiliar() {
 
-        List<familiar> com = InsertFami.ListaFamiliar();
-        
-        for (int i = 0; i < com.size(); i++) {
-            if (com.get(i).getCod_usuario() == mi_Insert.ConsultarUsuario(txtUsuarioF.getText(), txtContraseniaF.getText())) {
+        Insert_usuario miInsert = new Insert_usuario();
 
-                acceso_doctor mi_acceso = new acceso_doctor();
-                mi_acceso.setVisible(true);
+        boolean bandera = false;
+        List<familiar> com = InsertFami.ListaFamiliar();
+
+        for (int i = 0; i < com.size(); i++) {
+            if (com.get(i).getCod_usuario() == miInsert.ConsultarUsuario(txtUsuarioF.getText(), txtContraseniaF.getText())) {
+
+                acceso_doctor mi_accesoD = new acceso_doctor();
+                mi_accesoD.setVisible(true);
                 dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+
+                bandera = true;
+                i = com.size();
             }
         }
+
+        if (!bandera) {
+            JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+        }
+
     }
 
     /**
@@ -81,6 +88,11 @@ public class login_familiar extends javax.swing.JFrame {
         BotonIniciarSesionR.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         BotonIniciarSesionR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
         BotonIniciarSesionR.setText("INICIAR SESION");
+        BotonIniciarSesionR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonIniciarSesionRActionPerformed(evt);
+            }
+        });
         getContentPane().add(BotonIniciarSesionR, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
@@ -102,8 +114,11 @@ public class login_familiar extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        LoginFamiliar();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void BotonIniciarSesionRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionRActionPerformed
+        LoginFamiliar();
+    }//GEN-LAST:event_BotonIniciarSesionRActionPerformed
 
     /**
      * @param args the command line arguments
