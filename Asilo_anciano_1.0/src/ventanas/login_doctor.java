@@ -1,22 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
+import conexion_bada.Insert_doctor;
+import clases.doctor;
+import clases.usuario;
+import conexion_bada.Insert_usuario;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class login_doctor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login_doctor
-     */
+    Insert_doctor inserDoct = new Insert_doctor();
+
     public login_doctor() {
         initComponents();
-            this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
+    }
+
+    public void LoginDoctor() {
+        Insert_usuario miInsert = new Insert_usuario();
+
+        List<doctor> com = inserDoct.ListaDoctor();
+
+        for (int i = 0; i < com.size(); i++) {
+            if (com.get(i).getCod_usuario() == miInsert.ConsultarUsuario(txtUsuarioD.getText(), txtContraseniaD.getText())) {
+//
+                acceso_doctor mi_acceso = new acceso_doctor();
+                mi_acceso.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+            }
+        }
+
     }
 
     /**
@@ -67,6 +83,11 @@ public class login_doctor extends javax.swing.JFrame {
         BotonIniciarSesionD.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         BotonIniciarSesionD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
         BotonIniciarSesionD.setText("INICIAR SESION");
+        BotonIniciarSesionD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonIniciarSesionDActionPerformed(evt);
+            }
+        });
         getContentPane().add(BotonIniciarSesionD, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
@@ -80,6 +101,10 @@ public class login_doctor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonIniciarSesionDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionDActionPerformed
+        LoginDoctor();
+    }//GEN-LAST:event_BotonIniciarSesionDActionPerformed
 
     /**
      * @param args the command line arguments
