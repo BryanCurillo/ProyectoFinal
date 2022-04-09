@@ -69,6 +69,9 @@ public class login_administrador extends javax.swing.JFrame {
 
     private void BotonIniciarSesionAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionAActionPerformed
         LoginAdministrador();
+        acceso_administrador mi_acceso = new acceso_administrador();
+        mi_acceso.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BotonIniciarSesionAActionPerformed
 
     public void LoginAdministrador() {
