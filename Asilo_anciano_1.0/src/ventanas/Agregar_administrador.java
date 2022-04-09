@@ -806,7 +806,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         //////////////////////////
                         usu.setContraseña(txt_contrasena.getText());
                         usu.setUsuario(txt_usuario.getText());
-                        usu.setRol("Administrador");
                         usu.InsertarUsuario();
                         ////////////////
                         admin.setNivel_educacion(jCB_nivelDeeducacion_administrador.getSelectedItem().toString());
