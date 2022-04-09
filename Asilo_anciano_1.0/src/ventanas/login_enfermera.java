@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
 import clases.enfermera;
@@ -14,7 +9,6 @@ import javax.swing.JOptionPane;
 
 public class login_enfermera extends javax.swing.JFrame {
 
-    Insert_usuario mi_Insert = new Insert_usuario();
     Insert_enfermera InsertEnfe = new Insert_enfermera();
 
     public login_enfermera() {
@@ -92,16 +86,24 @@ public class login_enfermera extends javax.swing.JFrame {
 
     public void LoginEnfermera() {
 
+        Insert_usuario mi_Insert = new Insert_usuario();
+
+        boolean bandera = false;
         List<enfermera> com = InsertEnfe.ListaEnfermera();
         for (int i = 0; i < com.size(); i++) {
             if (com.get(i).getCod_usuario() == mi_Insert.ConsultarUsuario(txtUsuarioE.getText(), txtContraseniaE.getText())) {
 
-                acceso_doctor mi_acceso = new acceso_doctor();
-                mi_acceso.setVisible(true);
+                acceso_enfermera mi_accesoE = new acceso_enfermera();
+                mi_accesoE.setVisible(true);
                 dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+
+                bandera = true;
+                i = com.size();
             }
+        }
+
+        if (!bandera) {
+            JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
         }
     }
 
