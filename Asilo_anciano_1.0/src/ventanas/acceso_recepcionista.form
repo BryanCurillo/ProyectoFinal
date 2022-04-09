@@ -111,7 +111,7 @@
     <Component class="javax.swing.JButton" name="boton_registrar_familiar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagenes/family.png"/>
+          <Image iconType="3" name="/imagenes/family_1.png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="REGISTRO DE FAMILIAR"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -124,7 +124,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="490" y="80" width="-1" height="-1"/>
+          <AbsoluteConstraints x="480" y="70" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -222,7 +222,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="450" y="150" width="-1" height="-1"/>
+          <AbsoluteConstraints x="440" y="150" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -87,7 +87,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
         });
         getContentPane().add(boton_agendar_chequeos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
 
-        boton_registrar_familiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/family.png"))); // NOI18N
+        boton_registrar_familiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/family_1.png"))); // NOI18N
         boton_registrar_familiar.setToolTipText("REGISTRO DE FAMILIAR");
         boton_registrar_familiar.setBorder(null);
         boton_registrar_familiar.setOpaque(false);
@@ -96,7 +96,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
                 boton_registrar_familiarActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_registrar_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+        getContentPane().add(boton_registrar_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
 
         boton_regresar_login_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         boton_regresar_login_recepcionista.setToolTipText("REGRESAR AL LOGIN");
@@ -131,7 +131,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
         jLabel6.setText("REGISTRO DE FAMILIAR");
         jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel6.setOpaque(true);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
@@ -195,8 +195,8 @@ public class acceso_recepcionista extends javax.swing.JFrame {
 
     private void boton_registrar_familiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_familiarActionPerformed
         // TODO add your handling code here:
-        agregar_familiar fam = new agregar_familiar();
-        fam.setVisible(true);
+       agregar_familiar agrefamiliar = new agregar_familiar();
+        agrefamiliar.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_registrar_familiarActionPerformed
 
