@@ -32,9 +32,9 @@ public class login_enfermera extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton2 = new javax.swing.JButton();
+        txtUsuarioE = new javax.swing.JTextField();
+        txtContraseniaE = new javax.swing.JPasswordField();
+        BotonIniciarSesionE = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,20 +62,20 @@ public class login_enfermera extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 120, 30));
+        getContentPane().add(txtUsuarioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 120, 30));
 
-        jPasswordField1.setText("jPasswordField1");
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 120, 30));
+        txtContraseniaE.setText("jPasswordField1");
+        getContentPane().add(txtContraseniaE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 120, 30));
 
-        jButton2.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
-        jButton2.setText("INICIAR SESION");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BotonIniciarSesionE.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
+        BotonIniciarSesionE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
+        BotonIniciarSesionE.setText("INICIAR SESION");
+        BotonIniciarSesionE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BotonIniciarSesionEActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
+        getContentPane().add(BotonIniciarSesionE, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-colorful-background-wallpaper-1382454 (1).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -83,9 +83,9 @@ public class login_enfermera extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BotonIniciarSesionEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BotonIniciarSesionEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,13 +123,13 @@ public class login_enfermera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonIniciarSesionE;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtContraseniaE;
+    private javax.swing.JTextField txtUsuarioE;
     // End of variables declaration//GEN-END:variables
 }
