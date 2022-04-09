@@ -20,19 +20,24 @@ public class login_doctor extends javax.swing.JFrame {
     public void LoginDoctor() {
         Insert_usuario miInsert = new Insert_usuario();
 
+        boolean bandera = false;
         List<doctor> com = inserDoct.ListaDoctor();
 
         for (int i = 0; i < com.size(); i++) {
             if (com.get(i).getCod_usuario() == miInsert.ConsultarUsuario(txtUsuarioD.getText(), txtContraseniaD.getText())) {
-//
-                acceso_doctor mi_acceso = new acceso_doctor();
-                mi_acceso.setVisible(true);
+
+                acceso_doctor mi_accesoD = new acceso_doctor();
+                mi_accesoD.setVisible(true);
                 dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
-            }
+                
+                bandera=true;
+                i = com.size();
+            } 
         }
 
+        if(!bandera){
+            JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+        }
     }
 
     /**
