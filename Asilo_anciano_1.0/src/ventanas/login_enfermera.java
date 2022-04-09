@@ -87,12 +87,24 @@ public class login_enfermera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonIniciarSesionEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionEActionPerformed
-        // TODO add your handling code here:
+        LoginEnfermera();
     }//GEN-LAST:event_BotonIniciarSesionEActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public void LoginEnfermera() {
+
+        List<enfermera> com = InsertEnfe.ListaEnfermera();
+        for (int i = 0; i < com.size(); i++) {
+            if (com.get(i).getCod_usuario() == mi_Insert.ConsultarUsuario(txtUsuarioE.getText(), txtContraseniaE.getText())) {
+
+                acceso_doctor mi_acceso = new acceso_doctor();
+                mi_acceso.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+            }
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
