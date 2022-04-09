@@ -29,13 +29,11 @@ public class acceso_recepcionista extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        boton_ver_historial_medico = new javax.swing.JButton();
         boton_registrar_paciente = new javax.swing.JButton();
         boton_agendar_chequeos = new javax.swing.JButton();
         boton_registrar_familiar = new javax.swing.JButton();
         boton_regresar_login_recepcionista = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -54,17 +52,6 @@ public class acceso_recepcionista extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
 
-        boton_ver_historial_medico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/historial-medico.png"))); // NOI18N
-        boton_ver_historial_medico.setToolTipText("VER HISTORIAL MEDICO");
-        boton_ver_historial_medico.setBorder(null);
-        boton_ver_historial_medico.setOpaque(false);
-        boton_ver_historial_medico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_ver_historial_medicoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(boton_ver_historial_medico, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
-
         boton_registrar_paciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registros-medicos.png"))); // NOI18N
         boton_registrar_paciente.setToolTipText("REGISTRAR PACIENTE");
         boton_registrar_paciente.setBorder(null);
@@ -74,7 +61,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
                 boton_registrar_pacienteActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_registrar_paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
+        getContentPane().add(boton_registrar_paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
 
         boton_agendar_chequeos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cita-medica.png"))); // NOI18N
         boton_agendar_chequeos.setToolTipText("AGENDAR CHEQUEOS MEDICOS");
@@ -96,7 +83,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
                 boton_registrar_familiarActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_registrar_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
+        getContentPane().add(boton_registrar_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, -1, -1));
 
         boton_regresar_login_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         boton_regresar_login_recepcionista.setToolTipText("REGRESAR AL LOGIN");
@@ -112,26 +99,19 @@ public class acceso_recepcionista extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar_de_los_ancianos__1_-removebg-preview (2).png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 120, 90));
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei Light", 1, 14)); // NOI18N
-        jLabel4.setText("HISTORIAL MEDICO ");
-        jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel4.setOpaque(true);
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
-
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei Light", 1, 14)); // NOI18N
         jLabel5.setText("REGISTRO DE PACIENTES");
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel5.setOpaque(true);
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
         jLabel6.setText("REGISTRO DE FAMILIAR");
         jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel6.setOpaque(true);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
@@ -149,14 +129,14 @@ public class acceso_recepcionista extends javax.swing.JFrame {
                 boton_registrar_visitanteActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_registrar_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, -1, -1));
+        getContentPane().add(boton_registrar_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 1, 14)); // NOI18N
         jLabel8.setText("REGISTRO DE VISITAS");
         jLabel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel8.setOpaque(true);
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-dark-yellow-wallpaper-2550281 (1).jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -178,13 +158,6 @@ public class acceso_recepcionista extends javax.swing.JFrame {
         visita.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_registrar_visitanteActionPerformed
-
-    private void boton_ver_historial_medicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_ver_historial_medicoActionPerformed
-        // TODO add your handling code here:
-        HistorialMedico hm = new HistorialMedico();
-        hm.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_boton_ver_historial_medicoActionPerformed
 
     private void boton_registrar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_pacienteActionPerformed
         // TODO add your handling code here:
@@ -248,11 +221,9 @@ public class acceso_recepcionista extends javax.swing.JFrame {
     private javax.swing.JButton boton_registrar_paciente;
     private javax.swing.JButton boton_registrar_visitante;
     private javax.swing.JButton boton_regresar_login_recepcionista;
-    private javax.swing.JButton boton_ver_historial_medico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
