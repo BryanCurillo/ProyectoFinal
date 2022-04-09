@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
+
+
+
 public class login_recepcionista extends javax.swing.JFrame {
 
     /**
