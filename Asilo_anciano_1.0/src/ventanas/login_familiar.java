@@ -1,23 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
+import clases.enfermera;
+import clases.familiar;
+import conexion_bada.Insert_familiar;
+import conexion_bada.Insert_usuario;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 public class login_familiar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login_familiar
-     */
+    Insert_usuario mi_Insert = new Insert_usuario();
+    Insert_familiar InsertFami = new Insert_familiar();
+
     public login_familiar() {
         initComponents();
         this.setLocationRelativeTo(null);
-    
+
+    }
+
+    public void LoginFamiliar() {
+
+        List<familiar> com = InsertFami.ListaFamiliar();
+        
+        for (int i = 0; i < com.size(); i++) {
+            if (com.get(i).getCod_usuario() == mi_Insert.ConsultarUsuario(txtUsuarioF.getText(), txtContraseniaF.getText())) {
+
+                acceso_doctor mi_acceso = new acceso_doctor();
+                mi_acceso.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+            }
+        }
     }
 
     /**
@@ -87,7 +101,8 @@ public class login_familiar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+
+        LoginFamiliar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
