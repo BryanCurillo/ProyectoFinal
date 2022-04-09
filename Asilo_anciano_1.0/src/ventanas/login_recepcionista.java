@@ -1,19 +1,45 @@
-
 package ventanas;
 
-
-
+import clases.recepcionista;
+import conexion_bada.Insert_recepcionista;
+import conexion_bada.Insert_usuario;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class login_recepcionista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login_recepcionista
-     */
+    Insert_recepcionista inserRecep = new Insert_recepcionista();
+
     public login_recepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
+    public void LoginRecepcionista() {
+        Insert_usuario miInsert = new Insert_usuario();
+
+        boolean bandera = false;
+        List<recepcionista> com = inserRecep.ListaRecepcionista();
+
+        for (int i = 0; i < com.size(); i++) {
+            if (com.get(i).getCod_usuario() == miInsert.ConsultarUsuario(txtUsuarioR.getText(), txtContraseniaR.getText())) {
+
+                
+                acceso_recepcionista mi_accesoR = new acceso_recepcionista();
+                mi_accesoR.setVisible(true);
+                dispose();
+                
+                bandera=true;
+                i = com.size();
+            } 
+        }
+
+        if(!bandera){
+            JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +90,11 @@ public class login_recepcionista extends javax.swing.JFrame {
         BotonIniciarSesionR.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         BotonIniciarSesionR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
         BotonIniciarSesionR.setText("INICIAR SESION");
+        BotonIniciarSesionR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonIniciarSesionRActionPerformed(evt);
+            }
+        });
         getContentPane().add(BotonIniciarSesionR, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-light-color-wallpaper-441495.png"))); // NOI18N
@@ -71,6 +102,10 @@ public class login_recepcionista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonIniciarSesionRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionRActionPerformed
+        LoginRecepcionista();
+    }//GEN-LAST:event_BotonIniciarSesionRActionPerformed
 
     /**
      * @param args the command line arguments
