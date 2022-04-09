@@ -112,8 +112,8 @@ public class acceso_doctor extends javax.swing.JFrame {
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
-        jLabel7.setText("RECETA MEDICA");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
+        jLabel7.setText("TRATAMIENTO DE PACIENTE");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, -1));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/droga.png"))); // NOI18N
         jButton5.setBorder(null);
@@ -162,8 +162,8 @@ public class acceso_doctor extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        agregar_recetamedica receta = new agregar_recetamedica();
-        receta.setVisible(true);
+        agregar_tratamiento tratam = new agregar_tratamiento();
+        tratam.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
