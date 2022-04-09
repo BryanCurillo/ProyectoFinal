@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
+
+
+
 public class login_recepcionista extends javax.swing.JFrame {
 
     /**
@@ -32,9 +27,9 @@ public class login_recepcionista extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton2 = new javax.swing.JButton();
+        txtUsuarioR = new javax.swing.JTextField();
+        txtContraseniaR = new javax.swing.JPasswordField();
+        BotonIniciarSesionR = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,15 +56,15 @@ public class login_recepcionista extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 120, 30));
+        getContentPane().add(txtUsuarioR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 120, 30));
 
-        jPasswordField1.setText("jPasswordField1");
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 120, 30));
+        txtContraseniaR.setText("jPasswordField1");
+        getContentPane().add(txtContraseniaR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 120, 30));
 
-        jButton2.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
-        jButton2.setText("INICIAR SESION");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
+        BotonIniciarSesionR.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
+        BotonIniciarSesionR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
+        BotonIniciarSesionR.setText("INICIAR SESION");
+        getContentPane().add(BotonIniciarSesionR, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-light-color-wallpaper-441495.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -113,13 +108,13 @@ public class login_recepcionista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonIniciarSesionR;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtContraseniaR;
+    private javax.swing.JTextField txtUsuarioR;
     // End of variables declaration//GEN-END:variables
 }

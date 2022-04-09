@@ -727,7 +727,6 @@ public class agregar_enfermera extends javax.swing.JFrame {
                         //////////////////////////
                         usu.setContraseña(txtcontrasena_enfermera.getText());
                         usu.setUsuario(txtusurio_enfermera.getText());
-                        usu.setRol("Enfermera");
                         usu.InsertarUsuario();
                         //////////////////////
                         enfermera.setAnio_experiencia(spiner_experiencia_enfermera.getValue().toString());

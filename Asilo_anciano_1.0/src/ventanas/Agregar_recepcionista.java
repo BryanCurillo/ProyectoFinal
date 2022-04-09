@@ -852,13 +852,13 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         recep.setHora_ingreso(hora_ingresoAux);
                         recep.setHora_salida(hora_salidaAux);
                         recep.setCod_usuario(usu.obtenerUsuario());
-
+                        recep.InsertarPersona();
+                        //////////////////////////////////////////
+                        
                         usu.setUsuario(txt_usuario.getText());
                         usu.setContraseña(txt_contrasena.getText());
-                        usu.setRol("Recepcionista");
-
                         usu.InsertarUsuario();
-                        recep.InsertarPersona();
+                        
                         if (recep.InsertarRecepcionista()) {
                             System.out.println("Conexion Exitosa");
                             limpiar();
