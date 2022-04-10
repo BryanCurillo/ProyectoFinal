@@ -44,6 +44,7 @@ public class inicio_frame extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(240, 232, 158));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,7 +63,7 @@ public class inicio_frame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("DOCTOR");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 530, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, -1, -1));
 
         boton_administrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/admin (1).png"))); // NOI18N
         boton_administrador.setToolTipText("ACCESO ADMINISTRADOR");
@@ -131,7 +132,7 @@ public class inicio_frame extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel8.setText("ENFERMERA");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 500, -1, -1));
 
         boton_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/apagar.png"))); // NOI18N
         boton_salir.setToolTipText("SALIR DEL SISTEMA");
@@ -156,7 +157,9 @@ public class inicio_frame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
