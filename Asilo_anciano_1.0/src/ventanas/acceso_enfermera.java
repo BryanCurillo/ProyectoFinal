@@ -55,7 +55,7 @@ public class acceso_enfermera extends javax.swing.JFrame {
                 boton_acceso_fichaActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_acceso_ficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
+        getContentPane().add(boton_acceso_ficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
 
         boton_acceso_alergias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/antihistaminicos.png"))); // NOI18N
         boton_acceso_alergias.setToolTipText("REGISTRO DE ALERGIAS");
@@ -66,7 +66,7 @@ public class acceso_enfermera extends javax.swing.JFrame {
                 boton_acceso_alergiasActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_acceso_alergias, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, -1, -1));
+        getContentPane().add(boton_acceso_alergias, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
 
         boton_acceso_enfermedad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/virus (1).png"))); // NOI18N
         boton_acceso_enfermedad.setToolTipText("REGISTRO DE ENFERMEDAD");
@@ -77,14 +77,14 @@ public class acceso_enfermera extends javax.swing.JFrame {
                 boton_acceso_enfermedadActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_acceso_enfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
+        getContentPane().add(boton_acceso_enfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei Light", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("FICHA MEDICA");
         jLabel3.setOpaque(true);
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 24)); // NOI18N
@@ -99,14 +99,14 @@ public class acceso_enfermera extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("REGISTRO DE ALERGIAS");
         jLabel5.setOpaque(true);
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("ENFERMEDADES");
         jLabel6.setOpaque(true);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, -1, -1));
 
         boton_regresar_login_enfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         boton_regresar_login_enfermera.setToolTipText("REGRESAR AL LOGIN ENFERMERA");
