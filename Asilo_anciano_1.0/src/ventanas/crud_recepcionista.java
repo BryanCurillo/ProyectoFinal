@@ -150,7 +150,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
 
     private void BtRegresarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarRecepcionistaActionPerformed
         this.dispose();
-        new inicio_frame().setVisible(true);
+        new acceso_administrador().setVisible(true);
     }//GEN-LAST:event_BtRegresarRecepcionistaActionPerformed
 
     private void BtEliminarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarRecepcionistaActionPerformed
@@ -235,7 +235,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
     }
     private void BtIngresarRecepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresarRecepcionistaActionPerformed
         this.dispose();
-        new Agregar_paciente().setVisible(true);
+        new Agregar_recepcionista().setVisible(true);
     }//GEN-LAST:event_BtIngresarRecepcionistaActionPerformed
 
     private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
