@@ -168,7 +168,7 @@ public class doctor_crud extends javax.swing.JFrame {
 
     private void BtRegresarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarDoctorActionPerformed
         this.dispose();
-        new inicio_frame().setVisible(true);
+        new acceso_administrador().setVisible(true);
     }//GEN-LAST:event_BtRegresarDoctorActionPerformed
 
     private void BtEliminarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarDoctorActionPerformed
