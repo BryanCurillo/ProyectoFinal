@@ -68,6 +68,11 @@ public class login_recepcionista extends javax.swing.JFrame {
         jButton1.setToolTipText("REGRESAR");
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
@@ -82,9 +87,11 @@ public class login_recepcionista extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+
+        txtUsuarioR.setToolTipText("INGRESE SU USUARIO");
         getContentPane().add(txtUsuarioR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 120, 30));
 
-        txtContraseniaR.setText("jPasswordField1");
+        txtContraseniaR.setToolTipText("INGRESE SU CONTRASEÑA");
         getContentPane().add(txtContraseniaR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 120, 30));
 
         BotonIniciarSesionR.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
@@ -106,6 +113,13 @@ public class login_recepcionista extends javax.swing.JFrame {
     private void BotonIniciarSesionRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionRActionPerformed
         LoginRecepcionista();
     }//GEN-LAST:event_BotonIniciarSesionRActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        inicio_frame menup = new inicio_frame();
+        menup.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
