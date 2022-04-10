@@ -23,6 +23,7 @@ public class crud_familiar extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
+        this.BtIngresarFamiliar.setEnabled(false);
     }
 
     /**
