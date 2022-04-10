@@ -32,7 +32,7 @@ public class listado_citas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        boton_regresar_menu_doctor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
@@ -55,10 +55,15 @@ public class listado_citas extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton2.setToolTipText("regresar");
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
+        boton_regresar_menu_doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        boton_regresar_menu_doctor.setToolTipText("regresar");
+        boton_regresar_menu_doctor.setBorder(null);
+        boton_regresar_menu_doctor.setOpaque(false);
+        boton_regresar_menu_doctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_regresar_menu_doctorActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,7 +113,7 @@ public class listado_citas extends javax.swing.JFrame {
                         .addContainerGap(227, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(boton_regresar_menu_doctor)
                                 .addGap(162, 162, 162))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -146,7 +151,7 @@ public class listado_citas extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jButton1)
                             .addComponent(jButton3)
-                            .addComponent(jButton2)))
+                            .addComponent(boton_regresar_menu_doctor)))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -172,6 +177,13 @@ public class listado_citas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void boton_regresar_menu_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_menu_doctorActionPerformed
+        // TODO add your handling code here:
+        acceso_doctor acdoctor = new acceso_doctor();
+        acdoctor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_regresar_menu_doctorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,8 +221,8 @@ public class listado_citas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_regresar_menu_doctor;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
