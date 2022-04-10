@@ -11,9 +11,8 @@ package ventanas;
  */
 public class acceso_doctor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form acceso_doctor
-     */
+    public static int botonAtrasDoctor;
+
     public acceso_doctor() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -134,15 +133,19 @@ public class acceso_doctor extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+
         Medicamentos cm = new Medicamentos();
         cm.setVisible(true);
+        botonAtrasDoctor = cm.botonAtras = 1;
+        //System.out.println(bA);
         dispose();
-        
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-          login_doctor doc = new login_doctor();
+        login_doctor doc = new login_doctor();
         doc.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -156,7 +159,7 @@ public class acceso_doctor extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        listado_citas lc = new listado_citas() ;
+        listado_citas lc = new listado_citas();
         lc.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
