@@ -168,7 +168,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
 
     private void boton_registrar_familiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_familiarActionPerformed
         // TODO add your handling code here:
-       agregar_familiar agrefamiliar = new agregar_familiar();
+       crud_familiar agrefamiliar = new crud_familiar();
         agrefamiliar.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_registrar_familiarActionPerformed
