@@ -28,6 +28,7 @@ public class crud_paciente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
+        this.BtIngresarPaciente.setEnabled(false);
     }
 
     /**
@@ -167,6 +168,7 @@ public class crud_paciente extends javax.swing.JFrame {
     private void BtIngresarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresarPacienteActionPerformed
         this.dispose();
         new Agregar_paciente().setVisible(true);
+        
     }//GEN-LAST:event_BtIngresarPacienteActionPerformed
 
     private void BtRegresarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarPacienteActionPerformed
