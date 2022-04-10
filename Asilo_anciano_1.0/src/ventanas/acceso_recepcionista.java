@@ -61,7 +61,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
                 boton_registrar_pacienteActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_registrar_paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+        getContentPane().add(boton_registrar_paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
         boton_agendar_chequeos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cita-medica.png"))); // NOI18N
         boton_agendar_chequeos.setToolTipText("AGENDAR CHEQUEOS MEDICOS");
@@ -72,7 +72,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
                 boton_agendar_chequeosActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_agendar_chequeos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
+        getContentPane().add(boton_agendar_chequeos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
 
         boton_registrar_familiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/family_1.png"))); // NOI18N
         boton_registrar_familiar.setToolTipText("REGISTRO DE FAMILIAR");
@@ -83,7 +83,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
                 boton_registrar_familiarActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_registrar_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, -1, -1));
+        getContentPane().add(boton_registrar_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
 
         boton_regresar_login_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         boton_regresar_login_recepcionista.setToolTipText("REGRESAR AL LOGIN");
@@ -104,21 +104,21 @@ public class acceso_recepcionista extends javax.swing.JFrame {
         jLabel5.setText("REGISTRO DE PACIENTES");
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel5.setOpaque(true);
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
         jLabel6.setText("REGISTRO DE FAMILIAR");
         jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel6.setOpaque(true);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Microsoft YaHei Light", 1, 14)); // NOI18N
         jLabel7.setText("REGISTRAR CHEQUEO MEDICO");
         jLabel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel7.setOpaque(true);
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
 
         boton_registrar_visitante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/curriculum (1).png"))); // NOI18N
         boton_registrar_visitante.setToolTipText("REGISTRAR VISITANTE");
@@ -129,14 +129,14 @@ public class acceso_recepcionista extends javax.swing.JFrame {
                 boton_registrar_visitanteActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_registrar_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
+        getContentPane().add(boton_registrar_visitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 1, 14)); // NOI18N
         jLabel8.setText("REGISTRO DE VISITAS");
         jLabel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel8.setOpaque(true);
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-dark-yellow-wallpaper-2550281 (1).jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
