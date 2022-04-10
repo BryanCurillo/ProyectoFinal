@@ -16,6 +16,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
      */
     public crud_vistafamiliar() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,7 +33,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         fecha_visita = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        boton_regresar_acceso_recepcionista = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtvisitcedula = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
@@ -54,7 +55,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         tablavisitante = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        txt_codigo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,14 +74,19 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jButton1.setToolTipText("GUARDAR");
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 280, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton2.setToolTipText("REGRESAR");
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 10, 40, 40));
+        boton_regresar_acceso_recepcionista.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        boton_regresar_acceso_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        boton_regresar_acceso_recepcionista.setToolTipText("REGRESAR");
+        boton_regresar_acceso_recepcionista.setBorder(null);
+        boton_regresar_acceso_recepcionista.setOpaque(false);
+        boton_regresar_acceso_recepcionista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_regresar_acceso_recepcionistaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(boton_regresar_acceso_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 40, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Cedula Visitante:");
@@ -116,23 +121,23 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jPanel2.add(combosalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 130, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("Nombres Visitante");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        jLabel6.setText("Nombres Visitante:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
         jPanel2.add(txtvisitnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 250, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("INFORMACION DE PACIENTE");
-        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 260, -1));
 
         jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 710, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setText("Apellidos Visitante");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, -1));
-        jPanel2.add(txtvisitapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 250, 30));
+        jLabel8.setText("Apellidos Visitante:");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
+        jPanel2.add(txtvisitapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 250, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setText("Nombres:");
@@ -140,7 +145,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setText("Apellidos:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, -1, -1));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 230, 30));
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 280, 30));
 
@@ -161,9 +166,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 230, 30));
 
-        txt_codigo.setText("jLabel9");
-        jPanel2.add(txt_codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, 40, 20));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,6 +183,13 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void boton_regresar_acceso_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_acceso_recepcionistaActionPerformed
+        // TODO add your handling code here:
+        acceso_recepcionista acrep = new acceso_recepcionista();
+        acrep.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_regresar_acceso_recepcionistaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,11 +227,11 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_regresar_acceso_recepcionista;
     private javax.swing.JComboBox<String> comboentrada;
     private javax.swing.JComboBox<String> combosalida;
     private com.toedter.calendar.JDateChooser fecha_visita;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -242,7 +251,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTable tablavisitante;
-    private javax.swing.JLabel txt_codigo;
     private javax.swing.JTextField txtvisitapellido;
     private javax.swing.JTextField txtvisitcedula;
     private javax.swing.JTextField txtvisitnombre;
