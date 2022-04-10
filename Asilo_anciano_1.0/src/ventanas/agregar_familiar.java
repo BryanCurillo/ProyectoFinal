@@ -325,7 +325,7 @@ public class agregar_familiar extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Datos Personales");
-        jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         text_cedula_familiar.setForeground(new java.awt.Color(102, 102, 102));
         text_cedula_familiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -449,6 +449,11 @@ public class agregar_familiar extends javax.swing.JFrame {
         jButton3.setToolTipText("ELIMINAR");
         jButton3.setBorder(null);
         jButton3.setOpaque(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Registro de Familiar");
@@ -460,7 +465,7 @@ public class agregar_familiar extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setText("CREAR USUARIO");
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -829,6 +834,10 @@ public class agregar_familiar extends javax.swing.JFrame {
         cargar_codigo_paci();
 
     }//GEN-LAST:event_cargarPActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public void modificar_familiar() {
         String genero = "";
