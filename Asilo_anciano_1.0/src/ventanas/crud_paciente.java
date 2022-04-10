@@ -171,7 +171,7 @@ public class crud_paciente extends javax.swing.JFrame {
 
     private void BtRegresarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarPacienteActionPerformed
         this.dispose();
-        new inicio_frame().setVisible(true);
+        new acceso_administrador().setVisible(true);
     }//GEN-LAST:event_BtRegresarPacienteActionPerformed
 
     private void BtEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarPacienteActionPerformed
