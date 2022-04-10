@@ -52,7 +52,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        boton_regresar_acceso_doctor = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -84,7 +84,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Datos del Paciente");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -110,7 +110,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setText("Datos de Tratamiento");
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setText("Nombre de Medicamento:");
@@ -130,10 +130,15 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         jButton3.setBorder(null);
         jButton3.setOpaque(false);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anterior.png"))); // NOI18N
-        jButton4.setToolTipText("regresar");
-        jButton4.setBorder(null);
-        jButton4.setOpaque(false);
+        boton_regresar_acceso_doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anterior.png"))); // NOI18N
+        boton_regresar_acceso_doctor.setToolTipText("regresar");
+        boton_regresar_acceso_doctor.setBorder(null);
+        boton_regresar_acceso_doctor.setOpaque(false);
+        boton_regresar_acceso_doctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_regresar_acceso_doctorActionPerformed(evt);
+            }
+        });
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -258,7 +263,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                                         .addComponent(fecha_inicio_medicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(175, 175, 175)
                                         .addComponent(fecha_final_medicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton4)))
+                                    .addComponent(boton_regresar_acceso_doctor)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton2)
                                 .addGap(297, 297, 297)
@@ -347,7 +352,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4))
+                        .addComponent(boton_regresar_acceso_doctor))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -372,6 +377,13 @@ public class agregar_tratamiento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void boton_regresar_acceso_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_acceso_doctorActionPerformed
+        // TODO add your handling code here:
+        acceso_doctor acdoctor = new acceso_doctor();
+        acdoctor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_regresar_acceso_doctorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -409,12 +421,12 @@ public class agregar_tratamiento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_regresar_acceso_doctor;
     private com.toedter.calendar.JDateChooser fecha_final_medicamento;
     private com.toedter.calendar.JDateChooser fecha_inicio_medicamento;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
