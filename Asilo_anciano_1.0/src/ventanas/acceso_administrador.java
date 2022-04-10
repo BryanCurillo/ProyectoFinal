@@ -280,6 +280,8 @@ public class acceso_administrador extends javax.swing.JFrame {
         Medicamentos medi = new Medicamentos();
         medi.setVisible(true);
         dispose();
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void boton_regresar_administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_administradorActionPerformed
