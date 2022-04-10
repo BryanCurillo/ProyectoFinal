@@ -57,7 +57,7 @@ public class login_familiar extends javax.swing.JFrame {
         txtUsuarioF = new javax.swing.JTextField();
         txtContraseniaF = new javax.swing.JPasswordField();
         BotonIniciarSesionR = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        boton_para_menu_principal = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
@@ -80,9 +80,11 @@ public class login_familiar extends javax.swing.JFrame {
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel5.setOpaque(true);
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+
+        txtUsuarioF.setToolTipText("INGRESE SU USUARIO");
         getContentPane().add(txtUsuarioF, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 140, 30));
 
-        txtContraseniaF.setText("jPasswordField1");
+        txtContraseniaF.setToolTipText("INGRESE SU CONTRASEÑA");
         getContentPane().add(txtContraseniaF, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 140, 30));
 
         BotonIniciarSesionR.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
@@ -95,16 +97,16 @@ public class login_familiar extends javax.swing.JFrame {
         });
         getContentPane().add(BotonIniciarSesionR, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton2.setToolTipText("REGRESAR");
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        boton_para_menu_principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        boton_para_menu_principal.setToolTipText("REGRESAR");
+        boton_para_menu_principal.setBorder(null);
+        boton_para_menu_principal.setOpaque(false);
+        boton_para_menu_principal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                boton_para_menu_principalActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        getContentPane().add(boton_para_menu_principal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-pastel-color-wallpaper-409511 (1).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -112,9 +114,11 @@ public class login_familiar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void boton_para_menu_principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_para_menu_principalActionPerformed
+        inicio_frame menup = new inicio_frame();
+        menup.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_para_menu_principalActionPerformed
 
     private void BotonIniciarSesionRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionRActionPerformed
         LoginFamiliar();
@@ -157,7 +161,7 @@ public class login_familiar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIniciarSesionR;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton boton_para_menu_principal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
