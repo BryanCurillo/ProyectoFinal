@@ -231,6 +231,8 @@ public class crud_especialidad extends javax.swing.JFrame {
 
     private void btregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btregresarActionPerformed
         // TODO add your handling code here:
+        acceso_administrador adminis = new acceso_administrador();
+        adminis.setVisible(true);
     }//GEN-LAST:event_btregresarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
