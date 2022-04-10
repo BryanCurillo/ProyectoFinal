@@ -26,7 +26,7 @@ public class login_enfermera extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        boton_menu_principal = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtUsuarioE = new javax.swing.JTextField();
@@ -40,11 +40,16 @@ public class login_enfermera extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enfermera.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton1.setToolTipText("REGRESAR");
-        jButton1.setBorder(null);
-        jButton1.setOpaque(false);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
+        boton_menu_principal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        boton_menu_principal.setToolTipText("REGRESAR");
+        boton_menu_principal.setBorder(null);
+        boton_menu_principal.setOpaque(false);
+        boton_menu_principal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_menu_principalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boton_menu_principal, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -59,9 +64,11 @@ public class login_enfermera extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+
+        txtUsuarioE.setToolTipText("INGRESE SU USUARIO");
         getContentPane().add(txtUsuarioE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 120, 30));
 
-        txtContraseniaE.setText("jPasswordField1");
+        txtContraseniaE.setToolTipText("INGRESE SU CONTRASEÑA");
         getContentPane().add(txtContraseniaE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 120, 30));
 
         BotonIniciarSesionE.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
@@ -83,6 +90,13 @@ public class login_enfermera extends javax.swing.JFrame {
     private void BotonIniciarSesionEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionEActionPerformed
         LoginEnfermera();
     }//GEN-LAST:event_BotonIniciarSesionEActionPerformed
+
+    private void boton_menu_principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_menu_principalActionPerformed
+        // TODO add your handling code here:
+        inicio_frame menup = new inicio_frame();
+        menup.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_menu_principalActionPerformed
 
     public void LoginEnfermera() {
 
@@ -141,7 +155,7 @@ public class login_enfermera extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonIniciarSesionE;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton boton_menu_principal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
