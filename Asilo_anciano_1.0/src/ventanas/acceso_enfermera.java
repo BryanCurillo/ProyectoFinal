@@ -104,9 +104,9 @@ public class acceso_enfermera extends javax.swing.JFrame {
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("ENFERMEDADES");
+        jLabel6.setText("REGISTRO DE ENFERMEDADES");
         jLabel6.setOpaque(true);
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
 
         boton_regresar_login_enfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         boton_regresar_login_enfermera.setToolTipText("REGRESAR AL LOGIN ENFERMERA");
