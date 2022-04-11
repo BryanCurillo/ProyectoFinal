@@ -215,6 +215,7 @@ public class crud_paciente extends javax.swing.JFrame {
         if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
+            
             String cedula = TablaPaciente.getValueAt(seleccion, 1).toString();
 //            System.out.println(cedula);
             inser.ListaPaciente().forEach((e) -> {
