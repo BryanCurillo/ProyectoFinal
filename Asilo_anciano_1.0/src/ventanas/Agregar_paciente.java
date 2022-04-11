@@ -698,8 +698,9 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_text_SegundoApellido_pacienteMousePressed
 
     private void Regresar_acceso_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_acceso_recepcionistaActionPerformed
-        this.dispose();
-        new crud_paciente().setVisible(true);
+        crud_paciente mi_crudP = new crud_paciente();
+        mi_crudP.setVisible(true);
+        dispose();
     }//GEN-LAST:event_Regresar_acceso_recepcionistaActionPerformed
 
     private void Guardar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_pacienteActionPerformed
