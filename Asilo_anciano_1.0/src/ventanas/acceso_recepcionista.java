@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
-public class acceso_recepcionista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form acceso_recepcionista
-     */
+public class acceso_recepcionista extends javax.swing.JFrame {
+    
+    public static int Botones;
+    
     public acceso_recepcionista() {
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
+        Botones = 1;
     }
 
     /**
@@ -148,6 +141,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
         // TODO add your handling code here:
         login_recepcionista re = new login_recepcionista();
         re.setVisible(true);
+        Botones = 0;
         dispose();
        
     }//GEN-LAST:event_boton_regresar_login_recepcionistaActionPerformed
@@ -161,9 +155,10 @@ public class acceso_recepcionista extends javax.swing.JFrame {
 
     private void boton_registrar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_pacienteActionPerformed
         // TODO add your handling code here:
-        Agregar_paciente ap = new Agregar_paciente();
-        ap.setVisible(true);
+        crud_paciente mi_crudP = new crud_paciente();
+        mi_crudP.setVisible(true);
         dispose();
+        
     }//GEN-LAST:event_boton_registrar_pacienteActionPerformed
 
     private void boton_registrar_familiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_familiarActionPerformed
