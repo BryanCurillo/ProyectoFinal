@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
 import ventanas.Agregar_paciente;
@@ -28,7 +23,7 @@ public class crud_paciente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
-        this.BtIngresarPaciente.setEnabled(false);
+        apagar();
     }
 
     /**
@@ -168,17 +163,48 @@ public class crud_paciente extends javax.swing.JFrame {
     private void BtIngresarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresarPacienteActionPerformed
         this.dispose();
         new Agregar_paciente().setVisible(true);
-        
+
     }//GEN-LAST:event_BtIngresarPacienteActionPerformed
 
     private void BtRegresarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarPacienteActionPerformed
-        this.dispose();
-        new acceso_administrador().setVisible(true);
+        if (acceso_recepcionista.Botones == 1) {
+            acceso_recepcionista mi_accesoR = new acceso_recepcionista();
+            mi_accesoR.setVisible(true);
+            dispose();
+        }else{
+            if(acceso_administrador.BotonAgregarApagar == 2){
+                acceso_administrador mi_accesoA = new acceso_administrador();
+                mi_accesoA.setVisible(true);
+                dispose();
+            }
+        }
     }//GEN-LAST:event_BtRegresarPacienteActionPerformed
 
     private void BtEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarPacienteActionPerformed
         eliminar_paciente();
     }//GEN-LAST:event_BtEliminarPacienteActionPerformed
+
+    public void apagar() {
+        //acceso_recepcionista aR = new acceso_recepcionista();
+        if (acceso_recepcionista.Botones == 1) {
+            BtEditarPaciente.setEnabled(false);
+            BtEliminarPaciente.setEnabled(false);
+        } else {
+            if (acceso_administrador.BotonAgregarApagar == 2) {
+                BtIngresarPaciente.setEnabled(false);
+            }
+        }
+    }
+    //Desactiva los botones al ingresar como Recepcionista
+//    public void DesactivarBotonModificarYEliminar() {
+//        BtEditarPaciente.setEnabled(false);
+//        BtEliminarPaciente.setEnabled(false);
+//    }
+
+    //Desactiva los botones al ingresar como Recepcionista
+//    public void DesactivarBotonAgregar() {
+//        BtIngresarPaciente.setEnabled(false);
+//    }
     public void eliminar_paciente() {
         int fila = TablaPaciente.getSelectedRow();
         if (fila == -1) {
