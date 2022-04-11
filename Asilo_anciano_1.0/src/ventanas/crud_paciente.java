@@ -185,9 +185,7 @@ public class crud_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_BtEliminarPacienteActionPerformed
 
     public void apagar() {
-        //acceso_recepcionista aR = new acceso_recepcionista();
         if (acceso_recepcionista.Botones == 1) {
-            BtEditarPaciente.setEnabled(false);
             BtEliminarPaciente.setEnabled(false);
         } else {
             if (acceso_administrador.BotonAgregarApagar == 2) {
@@ -273,6 +271,7 @@ public class crud_paciente extends javax.swing.JFrame {
             String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTelefono(), p.getTipo_sangre(), p.getSeguro(), p.getFecha_Nacimiento(), p.getFecha_de_ingreso()};
             tb.addRow(cami);
         });
+        
     }
 
     public void buscar_paciente() {
