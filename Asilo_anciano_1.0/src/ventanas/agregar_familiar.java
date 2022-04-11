@@ -792,8 +792,9 @@ public class agregar_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarFamiliarActionPerformed
 
     private void RegresarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarFamiliarActionPerformed
-        this.dispose();
-        new acceso_recepcionista().setVisible(true);
+        crud_familiar mi_crudF = new crud_familiar();
+        mi_crudF.setVisible(true);
+        dispose();
     }//GEN-LAST:event_RegresarFamiliarActionPerformed
 
     private void Masculino_familiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Masculino_familiarActionPerformed
