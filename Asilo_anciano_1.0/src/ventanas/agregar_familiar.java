@@ -471,6 +471,12 @@ public class agregar_familiar extends javax.swing.JFrame {
             }
         });
 
+        txt_codPaci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_codPaciActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -511,7 +517,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                         .addComponent(jSeparator1)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -798,8 +803,12 @@ public class agregar_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_RegresarFamiliarActionPerformed
 
     private void Masculino_familiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Masculino_familiarActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_Masculino_familiarActionPerformed
+
+    private void txt_codPaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codPaciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_codPaciActionPerformed
 
     public void modificar_familiar() {
         String genero = "";
