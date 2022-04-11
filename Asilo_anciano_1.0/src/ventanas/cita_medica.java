@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 public class cita_medica extends javax.swing.JFrame {
 
@@ -36,6 +38,13 @@ public class cita_medica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        CargarChequeo = new javax.swing.JDialog();
+        text_buscarDoctorDialog = new javax.swing.JTextField();
+        BotonBuscarDoctorDialog = new javax.swing.JButton();
+        cargarDoctorDialog = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaDoctorDialog = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         BuscarPaciente = new javax.swing.JButton();
         BuscarDoctor = new javax.swing.JButton();
@@ -72,6 +81,92 @@ public class cita_medica extends javax.swing.JFrame {
         boton_regresar_acceso_recepcionista = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         FechaChequeoActual = new com.toedter.calendar.JDateChooser();
+
+        text_buscarDoctorDialog.setText("Buscar...");
+        text_buscarDoctorDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarDoctorMousePressed(evt);
+            }
+        });
+        text_buscarDoctorDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_buscarDoctorActionPerformed(evt);
+            }
+        });
+
+        BotonBuscarDoctorDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BotonBuscarDoctorDialog.setToolTipText("BUSCAR PACIENTE");
+        BotonBuscarDoctorDialog.setBorder(null);
+        BotonBuscarDoctorDialog.setOpaque(false);
+        BotonBuscarDoctorDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarDoctorDialogActionPerformed(evt);
+            }
+        });
+
+        cargarDoctorDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
+        cargarDoctorDialog.setToolTipText("CARGAR CEDULA");
+        cargarDoctorDialog.setBorder(null);
+        cargarDoctorDialog.setOpaque(false);
+        cargarDoctorDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarDoctorActionPerformed(evt);
+            }
+        });
+
+        TablaDoctorDialog.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS", "ESPECIALIDAD"
+            }
+        ));
+        TablaDoctorDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaPacienteMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaDoctorDialog);
+
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CargarChequeoLayout = new javax.swing.GroupLayout(CargarChequeo.getContentPane());
+        CargarChequeo.getContentPane().setLayout(CargarChequeoLayout);
+        CargarChequeoLayout.setHorizontalGroup(
+            CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CargarChequeoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(CargarChequeoLayout.createSequentialGroup()
+                        .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton1)
+                        .addGap(149, 149, 149)
+                        .addComponent(cargarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        CargarChequeoLayout.setVerticalGroup(
+            CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CargarChequeoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cargarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -363,7 +458,11 @@ public class cita_medica extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarPacienteActionPerformed
 
     private void BuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarDoctorActionPerformed
-        Buscar_Doctor();
+        CargarChequeo.setSize(535, 290);
+        CargarTodosLosDoctores();
+        CargarChequeo.setVisible(true);
+        CargarChequeo.setLocationRelativeTo(BuscarDoctor);
+
     }//GEN-LAST:event_BuscarDoctorActionPerformed
 
     private void boton_regresar_acceso_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_acceso_recepcionistaActionPerformed
@@ -379,9 +478,40 @@ public class cita_medica extends javax.swing.JFrame {
             IngresarChequeo();
         } catch (NullPointerException x) {
 
-            System.out.println("Error: " +x);
+            //System.out.println("Error: " + x);
         }
     }//GEN-LAST:event_BotonGuardarActionPerformed
+
+    private void text_buscarDoctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarDoctorMousePressed
+        // TODO add your handling code here:
+        text_buscarDoctorDialog.setText("");
+        text_buscarDoctorDialog.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_buscarDoctorMousePressed
+
+    private void text_buscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_buscarDoctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_buscarDoctorActionPerformed
+
+    private void BotonBuscarDoctorDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarDoctorDialogActionPerformed
+
+        if (!text_buscarDoctorDialog.getText().isEmpty()) {
+            Buscar_DoctorDialog();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del doctor");
+        }
+    }//GEN-LAST:event_BotonBuscarDoctorDialogActionPerformed
+
+    private void cargarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarDoctorActionPerformed
+        CargarDatosDoctorEnTXT();
+    }//GEN-LAST:event_cargarDoctorActionPerformed
+
+    private void TablaPacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPacienteMousePressed
+
+    }//GEN-LAST:event_TablaPacienteMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CargarTodosLosDoctores();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,6 +546,76 @@ public class cita_medica extends javax.swing.JFrame {
                 new cita_medica().setVisible(true);
             }
         });
+    }
+
+    public void CargarTodosLosDoctores() {
+        DefaultTableModel tb = (DefaultTableModel) TablaDoctorDialog.getModel();
+        tb.setNumRows(0);
+        List<doctor> com = insertDoc.ListaDoctor();
+        com.stream().forEach(p -> {
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getEspecialidad()};
+            tb.addRow(cami);
+        });
+    }
+    public void CargarDatosDoctorEnTXT() {
+        int fila = TablaDoctorDialog.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+
+            String codigoAux;
+            String cedulaAux;
+            String nombresAux;
+            String apellidosAux;
+            String especialidadAux;
+            
+            codigoAux = TablaDoctorDialog.getValueAt(fila, 0).toString();
+            cedulaAux = TablaDoctorDialog.getValueAt(fila, 1).toString();
+            nombresAux = TablaDoctorDialog.getValueAt(fila, 2).toString();
+            apellidosAux = TablaDoctorDialog.getValueAt(fila, 3).toString();
+            especialidadAux = TablaDoctorDialog.getValueAt(fila, 4).toString();
+            
+            
+            txtcodigoDoctor.setText(codigoAux);
+            txtCedulaDoctor.setText(cedulaAux);
+            txtNombreDoctor.setText(nombresAux);
+            txtApellidoDoctor.setText(apellidosAux);
+            txtEspecialidad.setText(especialidadAux);
+                    
+            CargarChequeo.dispose();
+        }
+
+    }
+
+    public void Buscar_DoctorDialog() {
+        String cedula = text_buscarDoctorDialog.getText();
+        var doctorDialogfiltro = new ArrayList<doctor>();
+        insertDoc.ListaDoctor().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                doctorDialogfiltro.add(e);
+            }
+        });
+        if (doctorDialogfiltro.size() != 0) {
+
+            String matriz[][] = new String[doctorDialogfiltro.size()][14];
+            for (int j = 0; j < doctorDialogfiltro.size(); j++) {
+                matriz[j][0] = doctorDialogfiltro.get(j).getCodigo();
+                matriz[j][1] = doctorDialogfiltro.get(j).getCedula();
+                matriz[j][2] = doctorDialogfiltro.get(j).getPri_nomb() + "  " + doctorDialogfiltro.get(j).getSeg_nombre();
+                matriz[j][3] = doctorDialogfiltro.get(j).getPrim_apell() + "  " + doctorDialogfiltro.get(j).getSeg_apelli();;
+                matriz[j][4] = doctorDialogfiltro.get(j).getEspecialidad();
+
+            }
+            TablaDoctorDialog.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS", "ESPECIALIDAD"
+                    }
+            ));
+        } else {
+            JOptionPane.showMessageDialog(this, "El doctor no se encuentra registrado");
+        }
     }
 
     public void IngresarChequeo() {
@@ -518,21 +718,6 @@ public class cita_medica extends javax.swing.JFrame {
         return validado;
     }
 
-//    public boolean VerificarExisteciaDePaciente() {
-//        String cedula = txtcedulapaciente_citas.getText();
-//        var pacientefiltro = new ArrayList<paciente>();
-//        inser.ListaPaciente().forEach((e) -> {
-//            if (e.getCedula().equals(cedula)) {
-//                pacientefiltro.add(e);
-//            }
-//        });
-//        if (!pacientefiltro.isEmpty()) {
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "El paciente no se encuentra registrado");
-//
-//        }
-//    }
     //Cargar Datos del Paciente
     public void Buscar_Paciente() {
         String cedula = txtcedulapaciente_citas.getText();
@@ -556,29 +741,29 @@ public class cita_medica extends javax.swing.JFrame {
         }
     }
 
-    //Cargar Datos del Doctor
-    public void Buscar_Doctor() {
-        String cedula = txtCedulaDoctor.getText();
-        var doctorfiltro = new ArrayList<doctor>();
-        insertDoc.ListaDoctor().forEach((e) -> {
-            if (e.getCedula().equals(cedula)) {
-                doctorfiltro.add(e);
-            }
-        });
-        if (!doctorfiltro.isEmpty()) {
-
-            for (int i = 0; i < doctorfiltro.size(); i++) {
-                txtcodigoDoctor.setText(doctorfiltro.get(i).getCodigo());
-                txtNombreDoctor.setText(doctorfiltro.get(i).getPri_nomb() + " " + doctorfiltro.get(i).getSeg_nombre());
-                txtApellidoDoctor.setText(doctorfiltro.get(i).getPrim_apell() + " " + doctorfiltro.get(i).getSeg_apelli());
-                txtEspecialidad.setText(doctorfiltro.get(i).getEspecialidad());
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(this, "El doctor no se encuentra registrado");
-            LimpiarCamposPaciente();
-        }
-    }
+//    //Cargar Datos del Doctor
+//    public void Buscar_Doctor() {
+//        String cedula = txtCedulaDoctor.getText();
+//        var doctorfiltro = new ArrayList<doctor>();
+//        insertDoc.ListaDoctor().forEach((e) -> {
+//            if (e.getCedula().equals(cedula)) {
+//                doctorfiltro.add(e);
+//            }
+//        });
+//        if (!doctorfiltro.isEmpty()) {
+//
+//            for (int i = 0; i < doctorfiltro.size(); i++) {
+//                txtcodigoDoctor.setText(doctorfiltro.get(i).getCodigo());
+//                txtNombreDoctor.setText(doctorfiltro.get(i).getPri_nomb() + " " + doctorfiltro.get(i).getSeg_nombre());
+//                txtApellidoDoctor.setText(doctorfiltro.get(i).getPrim_apell() + " " + doctorfiltro.get(i).getSeg_apelli());
+//                txtEspecialidad.setText(doctorfiltro.get(i).getEspecialidad());
+//            }
+//
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El doctor no se encuentra registrado");
+//            LimpiarCamposPaciente();
+//        }
+//    }
 
     public void BloquearCamposPaciente() {
         txtcodigoPaciente.setEditable(false);
@@ -619,10 +804,13 @@ public class cita_medica extends javax.swing.JFrame {
     }
 
     public void BloquearCamposDoctor() {
+        
+        txtCedulaDoctor.setEditable(false);
         txtcodigoDoctor.setEditable(false);
         txtNombreDoctor.setEditable(false);
         txtApellidoDoctor.setEditable(false);
         txtEspecialidad.setEditable(false);
+        
     }
 
     public void LimpiarCamposDoctor() {
@@ -632,13 +820,18 @@ public class cita_medica extends javax.swing.JFrame {
         txtEspecialidad.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonBuscarDoctorDialog;
     private javax.swing.JButton BotonGuardar;
     private javax.swing.JButton BuscarDoctor;
     private javax.swing.JButton BuscarPaciente;
+    private javax.swing.JDialog CargarChequeo;
     private javax.swing.JComboBox<String> ComboHoraChequeo;
     private com.toedter.calendar.JDateChooser FechaChequeoActual;
     private com.toedter.calendar.JDateChooser FechaProximoChequeo;
+    private javax.swing.JTable TablaDoctorDialog;
     private javax.swing.JButton boton_regresar_acceso_recepcionista;
+    private javax.swing.JButton cargarDoctorDialog;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -656,8 +849,10 @@ public class cita_medica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField text_buscarDoctorDialog;
     private javax.swing.JTextField txtApellidoDoctor;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCedulaDoctor;
