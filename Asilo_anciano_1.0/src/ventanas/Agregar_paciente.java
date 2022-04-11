@@ -84,7 +84,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                 text_cedula_paciente.setText(p.getCedula().toString());
                 text_PrimerNombre_paciente.setText(p.getPri_nomb().toString());
                 text_SegundoNombre_paciente.setText(p.getSeg_nombre().toString());
-                text_PrimerApellido_paciente.setText(p.getPri_nomb().toString());
+                text_PrimerApellido_paciente.setText(p.getPrim_apell().toString());
                 text_SegundoApellido_paciente.setText(p.getSeg_apelli().toString());
                 text_email_paciente.setText(p.getCorreo().toString());
                 text_direccion_paciente.setText(p.getDireccion());
