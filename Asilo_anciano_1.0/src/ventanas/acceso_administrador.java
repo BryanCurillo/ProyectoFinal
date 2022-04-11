@@ -3,7 +3,6 @@ package ventanas;
 public class acceso_administrador extends javax.swing.JFrame {
 
     public static int BotonAgregarApagar;
-
     public acceso_administrador() {
         initComponents();
         BotonAgregarApagar = 2;
