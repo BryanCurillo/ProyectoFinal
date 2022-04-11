@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
 public class acceso_administrador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form acceso_administrador
-     */
+    public static int BotonAgregarApagar;
+
     public acceso_administrador() {
         initComponents();
+        BotonAgregarApagar = 2;
         this.setLocationRelativeTo(null);
     }
 
@@ -235,9 +226,6 @@ public class acceso_administrador extends javax.swing.JFrame {
         crud_enfermedades enferm = new crud_enfermedades();
         enferm.setVisible(true);
         dispose();
-      
-        
-        
     }//GEN-LAST:event_boton_otrosActionPerformed
 
     private void boton_crud_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_crud_pacienteActionPerformed
@@ -280,14 +268,15 @@ public class acceso_administrador extends javax.swing.JFrame {
         Medicamentos medi = new Medicamentos();
         medi.setVisible(true);
         dispose();
-        
-        
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void boton_regresar_administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_administradorActionPerformed
         // TODO add your handling code here:
         login_administrador admin = new login_administrador();
         admin.setVisible(true);
+        BotonAgregarApagar =0;
         dispose();
     }//GEN-LAST:event_boton_regresar_administradorActionPerformed
 
