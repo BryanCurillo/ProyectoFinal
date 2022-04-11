@@ -144,7 +144,7 @@ public class crud_paciente extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 50, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 60, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,19 +167,23 @@ public class crud_paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_BtIngresarPacienteActionPerformed
 
     private void BtRegresarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarPacienteActionPerformed
+
+        BotonAtras();
+    }//GEN-LAST:event_BtRegresarPacienteActionPerformed
+
+    public void BotonAtras() {
         if (acceso_recepcionista.Botones == 1) {
             acceso_recepcionista mi_accesoR = new acceso_recepcionista();
             mi_accesoR.setVisible(true);
             dispose();
-        }else{
-            if(acceso_administrador.BotonAgregarApagar == 2){
+        } else {
+            if (acceso_administrador.BotonAgregarApagar == 2) {
                 acceso_administrador mi_accesoA = new acceso_administrador();
                 mi_accesoA.setVisible(true);
                 dispose();
             }
         }
-    }//GEN-LAST:event_BtRegresarPacienteActionPerformed
-
+    }
     private void BtEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarPacienteActionPerformed
         eliminar_paciente();
     }//GEN-LAST:event_BtEliminarPacienteActionPerformed
@@ -271,7 +275,7 @@ public class crud_paciente extends javax.swing.JFrame {
             String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTelefono(), p.getTipo_sangre(), p.getSeguro(), p.getFecha_Nacimiento(), p.getFecha_de_ingreso()};
             tb.addRow(cami);
         });
-        
+
     }
 
     public void buscar_paciente() {
