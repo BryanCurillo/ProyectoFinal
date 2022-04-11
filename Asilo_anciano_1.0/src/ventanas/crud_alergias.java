@@ -104,6 +104,11 @@ public class crud_alergias extends javax.swing.JFrame {
         bt_regresar.setToolTipText("REGRESAR");
         bt_regresar.setBorder(null);
         bt_regresar.setOpaque(false);
+        bt_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_regresarActionPerformed(evt);
+            }
+        });
 
         Consultar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Consultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
@@ -235,6 +240,13 @@ public class crud_alergias extends javax.swing.JFrame {
     private void txtalergiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtalergiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtalergiaActionPerformed
+
+    private void bt_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_regresarActionPerformed
+        // TODO add your handling code here:
+        acceso_enfermera enfer = new acceso_enfermera();
+        enfer.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bt_regresarActionPerformed
 
     public void cargarcod() {
         txt_codigo_alergia.setEnabled(false);

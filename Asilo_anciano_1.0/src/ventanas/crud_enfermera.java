@@ -176,7 +176,7 @@ public class crud_enfermera extends javax.swing.JFrame {
 
     private void BtRegresarEnfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarEnfermeraActionPerformed
         this.dispose();
-        new inicio_frame().setVisible(true);
+        new acceso_administrador().setVisible(true);
     }//GEN-LAST:event_BtRegresarEnfermeraActionPerformed
 
     private void BtAgregarEnfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAgregarEnfermeraActionPerformed

@@ -23,6 +23,7 @@ public class crud_familiar extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
+        this.BtIngresarFamiliar.setEnabled(false);
     }
 
     /**
@@ -154,7 +155,7 @@ public class crud_familiar extends javax.swing.JFrame {
 
     private void BtRegresarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarFamiliarActionPerformed
         this.dispose();
-        new inicio_frame().setVisible(true);
+        new acceso_administrador().setVisible(true);
     }//GEN-LAST:event_BtRegresarFamiliarActionPerformed
 
     private void BtIngresarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresarFamiliarActionPerformed

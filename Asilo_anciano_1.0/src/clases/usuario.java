@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases;
 
 /**
@@ -13,14 +8,15 @@ public class usuario {
 
     private String usuario;
     private String contraseña;
-    private String rol;
+    private int codigo_usuario;
+
     public usuario() {
     }
 
-    public usuario(String usuario, String contraseña, String rol) {
+    public usuario(String usuario, String contraseña, int codigo_usuario) {
         this.usuario = usuario;
         this.contraseña = contraseña;
-        this.rol = rol;
+        this.codigo_usuario = codigo_usuario;
     }
 
     public String getUsuario() {
@@ -39,11 +35,11 @@ public class usuario {
         this.contraseña = contraseña;
     }
 
-    public String getRol() {
-        return rol;
+    public int getCodigo_usuario() {
+        return codigo_usuario;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setCodigo_usuario(int codigo_usuario) {
+        this.codigo_usuario = codigo_usuario;
     }
 }

@@ -163,7 +163,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
         botonguardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_enfermedad = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        boton_regresar_acceso = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
@@ -175,7 +175,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(240, 222, 114));
+        jPanel1.setBackground(new java.awt.Color(240, 232, 158));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -209,11 +209,16 @@ public class crud_enfermedades extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla_enfermedad);
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton4.setToolTipText("REGRESAR");
-        jButton4.setBorder(null);
-        jButton4.setOpaque(false);
+        boton_regresar_acceso.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        boton_regresar_acceso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        boton_regresar_acceso.setToolTipText("REGRESAR");
+        boton_regresar_acceso.setBorder(null);
+        boton_regresar_acceso.setOpaque(false);
+        boton_regresar_acceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_regresar_accesoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Código:");
@@ -282,7 +287,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
                                 .addGap(332, 332, 332)
                                 .addComponent(Consultar)
                                 .addGap(116, 116, 116)
-                                .addComponent(jButton4)))
+                                .addComponent(boton_regresar_acceso)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -310,7 +315,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Consultar)
-                    .addComponent(jButton4))
+                    .addComponent(boton_regresar_acceso))
                 .addGap(187, 187, 187))
         );
 
@@ -337,6 +342,13 @@ public class crud_enfermedades extends javax.swing.JFrame {
     private void txtEnfermedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnfermedadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEnfermedadActionPerformed
+
+    private void boton_regresar_accesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_accesoActionPerformed
+        // TODO add your handling code here:
+        acceso_enfermera enferm = new acceso_enfermera();
+        enferm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_regresar_accesoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,8 +388,8 @@ public class crud_enfermedades extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JButton Consultar;
+    private javax.swing.JButton boton_regresar_acceso;
     private javax.swing.JButton botonguardar;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -215,7 +215,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         text_codigo_recepcionista.setForeground(new java.awt.Color(102, 102, 102));
         text_codigo_recepcionista.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_codigo_recepcionista.setText("Código de recep");
         text_codigo_recepcionista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_codigo_recepcionistaMousePressed(evt);
@@ -853,13 +852,13 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         recep.setHora_ingreso(hora_ingresoAux);
                         recep.setHora_salida(hora_salidaAux);
                         recep.setCod_usuario(usu.obtenerUsuario());
-
+                        recep.InsertarPersona();
+                        //////////////////////////////////////////
+                        
                         usu.setUsuario(txt_usuario.getText());
                         usu.setContraseña(txt_contrasena.getText());
-                        usu.setRol("Recepcionista");
-
                         usu.InsertarUsuario();
-                        recep.InsertarPersona();
+                        
                         if (recep.InsertarRecepcionista()) {
                             System.out.println("Conexion Exitosa");
                             limpiar();

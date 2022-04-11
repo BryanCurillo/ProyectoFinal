@@ -84,7 +84,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                 text_cedula_paciente.setText(p.getCedula().toString());
                 text_PrimerNombre_paciente.setText(p.getPri_nomb().toString());
                 text_SegundoNombre_paciente.setText(p.getSeg_nombre().toString());
-                text_PrimerApellido_paciente.setText(p.getPri_nomb().toString());
+                text_PrimerApellido_paciente.setText(p.getPrim_apell().toString());
                 text_SegundoApellido_paciente.setText(p.getSeg_apelli().toString());
                 text_email_paciente.setText(p.getCorreo().toString());
                 text_direccion_paciente.setText(p.getDireccion());
@@ -157,7 +157,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         Femenino_paciente = new javax.swing.JRadioButton();
         Masculino_paciente = new javax.swing.JRadioButton();
         Guardar_paciente = new javax.swing.JButton();
-        Regresar_paciente = new javax.swing.JButton();
+        Regresar_acceso_recepcionista = new javax.swing.JButton();
         check_iess = new javax.swing.JCheckBox();
         Checkbox_Seguro_paciente = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -203,7 +203,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Datos Personales");
-        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         text_codigo_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_codigo_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -298,15 +298,15 @@ public class Agregar_paciente extends javax.swing.JFrame {
             }
         });
 
-        Regresar_paciente.setBackground(new java.awt.Color(204, 204, 204));
-        Regresar_paciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        Regresar_paciente.setToolTipText("Regresar");
-        Regresar_paciente.setBorder(null);
-        Regresar_paciente.setFocusPainted(false);
-        Regresar_paciente.setOpaque(false);
-        Regresar_paciente.addActionListener(new java.awt.event.ActionListener() {
+        Regresar_acceso_recepcionista.setBackground(new java.awt.Color(204, 204, 204));
+        Regresar_acceso_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        Regresar_acceso_recepcionista.setToolTipText("Regresar");
+        Regresar_acceso_recepcionista.setBorder(null);
+        Regresar_acceso_recepcionista.setFocusPainted(false);
+        Regresar_acceso_recepcionista.setOpaque(false);
+        Regresar_acceso_recepcionista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Regresar_pacienteActionPerformed(evt);
+                Regresar_acceso_recepcionistaActionPerformed(evt);
             }
         });
 
@@ -401,7 +401,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
             }
         });
 
-        LabelFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        LabelFoto.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         SeleccionarImagen.setText("Seleccionar Imgen");
         SeleccionarImagen.addActionListener(new java.awt.event.ActionListener() {
@@ -522,7 +522,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addComponent(btModificar)
                 .addGap(53, 53, 53)
-                .addComponent(Regresar_paciente)
+                .addComponent(Regresar_acceso_recepcionista)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -599,7 +599,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Guardar_paciente)
-                    .addComponent(Regresar_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Regresar_acceso_recepcionista, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btModificar))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -697,10 +697,11 @@ public class Agregar_paciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_text_SegundoApellido_pacienteMousePressed
 
-    private void Regresar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_pacienteActionPerformed
-        this.dispose();
-        new crud_paciente().setVisible(true);
-    }//GEN-LAST:event_Regresar_pacienteActionPerformed
+    private void Regresar_acceso_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_acceso_recepcionistaActionPerformed
+        crud_paciente mi_crudP = new crud_paciente();
+        mi_crudP.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Regresar_acceso_recepcionistaActionPerformed
 
     private void Guardar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar_pacienteActionPerformed
         try {
@@ -1086,7 +1087,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     private javax.swing.JButton Guardar_paciente;
     private javax.swing.JLabel LabelFoto;
     private javax.swing.JRadioButton Masculino_paciente;
-    private javax.swing.JButton Regresar_paciente;
+    private javax.swing.JButton Regresar_acceso_recepcionista;
     private javax.swing.JButton SeleccionarImagen;
     private javax.swing.JButton btModificar;
     private javax.swing.JCheckBox check_iess;

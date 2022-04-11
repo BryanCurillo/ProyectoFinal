@@ -1,24 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
+import clases.recepcionista;
+import conexion_bada.Insert_recepcionista;
+import conexion_bada.Insert_usuario;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class login_recepcionista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form login_recepcionista
-     */
+    Insert_recepcionista inserRecep = new Insert_recepcionista();
+
     public login_recepcionista() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
+    public void LoginRecepcionista() {
+        Insert_usuario miInsert = new Insert_usuario();
+
+        boolean bandera = false;
+        List<recepcionista> com = inserRecep.ListaRecepcionista();
+
+        for (int i = 0; i < com.size(); i++) {
+            if (com.get(i).getCod_usuario() == miInsert.ConsultarUsuario(txtUsuarioR.getText(), txtContraseniaR.getText())) {
+
+                
+                acceso_recepcionista mi_accesoR = new acceso_recepcionista();
+                mi_accesoR.setVisible(true);
+                dispose();
+                
+                bandera=true;
+                i = com.size();
+            } 
+        }
+
+        if(!bandera){
+            JOptionPane.showMessageDialog(null, "Usuario/Contraseña incorrecto");
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,9 +53,9 @@ public class login_recepcionista extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton2 = new javax.swing.JButton();
+        txtUsuarioR = new javax.swing.JTextField();
+        txtContraseniaR = new javax.swing.JPasswordField();
+        BotonIniciarSesionR = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,6 +68,11 @@ public class login_recepcionista extends javax.swing.JFrame {
         jButton1.setToolTipText("REGRESAR");
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
@@ -61,21 +87,39 @@ public class login_recepcionista extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel4.setOpaque(true);
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 120, 30));
 
-        jPasswordField1.setText("jPasswordField1");
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 120, 30));
+        txtUsuarioR.setToolTipText("INGRESE SU USUARIO");
+        getContentPane().add(txtUsuarioR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 120, 30));
 
-        jButton2.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
-        jButton2.setText("INICIAR SESION");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
+        txtContraseniaR.setToolTipText("INGRESE SU CONTRASEÑA");
+        getContentPane().add(txtContraseniaR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 120, 30));
+
+        BotonIniciarSesionR.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
+        BotonIniciarSesionR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iniciar-sesion (1).png"))); // NOI18N
+        BotonIniciarSesionR.setText("INICIAR SESION");
+        BotonIniciarSesionR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonIniciarSesionRActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonIniciarSesionR, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-light-color-wallpaper-441495.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BotonIniciarSesionRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionRActionPerformed
+        LoginRecepcionista();
+    }//GEN-LAST:event_BotonIniciarSesionRActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        inicio_frame menup = new inicio_frame();
+        menup.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,13 +157,13 @@ public class login_recepcionista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonIniciarSesionR;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtContraseniaR;
+    private javax.swing.JTextField txtUsuarioR;
     // End of variables declaration//GEN-END:variables
 }

@@ -231,6 +231,17 @@ public class crud_especialidad extends javax.swing.JFrame {
 
     private void btregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btregresarActionPerformed
         // TODO add your handling code here:
+
+        if (acceso_administrador.BotonAgregarApagar == 2) {
+            acceso_administrador adminis = new acceso_administrador();
+            adminis.setVisible(true);
+            dispose();
+        }else{
+            acceso_doctor mi_accesoDoc = new acceso_doctor();
+            mi_accesoDoc.setVisible(true);
+            dispose();
+        }
+
     }//GEN-LAST:event_btregresarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
@@ -265,7 +276,6 @@ public class crud_especialidad extends javax.swing.JFrame {
         try {
             if (validarInformacion() == true && ValidarDuplicados() == true) {
                 alergia.setNombre_especialidad(txtespecialidad.getText());
-                
 
                 if (alergia.InsertarEspecialidad()) {
                     System.out.println("Conexion Exitosa");

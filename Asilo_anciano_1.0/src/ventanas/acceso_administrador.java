@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
-/**
- *
- * @author Usuario
- */
 public class acceso_administrador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form acceso_administrador
-     */
+    public static int BotonAgregarApagar;
     public acceso_administrador() {
         initComponents();
+        BotonAgregarApagar = 2;
         this.setLocationRelativeTo(null);
     }
 
@@ -34,18 +24,14 @@ public class acceso_administrador extends javax.swing.JFrame {
         boton_crud_enfermera = new javax.swing.JButton();
         boton_crud_recepcionista = new javax.swing.JButton();
         boton_crud_familiar = new javax.swing.JButton();
-        boton_otros = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         botol_crud_especialidades = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        boton_crud_alergias = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         boton_regresar_administrador = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -117,17 +103,6 @@ public class acceso_administrador extends javax.swing.JFrame {
         });
         getContentPane().add(boton_crud_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
 
-        boton_otros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/virus (1).png"))); // NOI18N
-        boton_otros.setToolTipText("AGREGAR ENFERMEDADES");
-        boton_otros.setBorder(null);
-        boton_otros.setOpaque(false);
-        boton_otros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_otrosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(boton_otros, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, -1));
-
         jLabel3.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         jLabel3.setText("CRUD PACIENTE");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
@@ -151,10 +126,6 @@ public class acceso_administrador extends javax.swing.JFrame {
         jLabel8.setText("CRUD FAMILIAR");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        jLabel10.setText("ENFERMEDADES");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, -1, -1));
-
         botol_crud_especialidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor (3).png"))); // NOI18N
         botol_crud_especialidades.setToolTipText("AGREGAR ESPECIALIDADES");
         botol_crud_especialidades.setBorder(null);
@@ -164,26 +135,11 @@ public class acceso_administrador extends javax.swing.JFrame {
                 botol_crud_especialidadesActionPerformed(evt);
             }
         });
-        getContentPane().add(botol_crud_especialidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
+        getContentPane().add(botol_crud_especialidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         jLabel9.setText("ESPECIALIDADES MEDICAS");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
-
-        boton_crud_alergias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/antihistaminicos.png"))); // NOI18N
-        boton_crud_alergias.setToolTipText("CRUD ALERGIAS");
-        boton_crud_alergias.setBorder(null);
-        boton_crud_alergias.setOpaque(false);
-        boton_crud_alergias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_crud_alergiasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(boton_crud_alergias, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
-        jLabel11.setText("ALERGIAS");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, -1, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medicamento.png"))); // NOI18N
         jButton2.setToolTipText("CRUD MEDICAMENTOS");
@@ -194,7 +150,7 @@ public class acceso_administrador extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, -1, -1));
 
         boton_regresar_administrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         boton_regresar_administrador.setBorder(null);
@@ -204,11 +160,11 @@ public class acceso_administrador extends javax.swing.JFrame {
                 boton_regresar_administradorActionPerformed(evt);
             }
         });
-        getContentPane().add(boton_regresar_administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, -1, -1));
+        getContentPane().add(boton_regresar_administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         jLabel12.setText("MEDICAMENTOS");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos-de-pantalla-lisos-color-pastel-mountainstyle.co_.-fondo-de-pantalla-hd-1080p-lisos (1).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -229,16 +185,6 @@ public class acceso_administrador extends javax.swing.JFrame {
         fa.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_crud_familiarActionPerformed
-
-    private void boton_otrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_otrosActionPerformed
-        // TODO add your handling code here:
-        crud_enfermedades enferm = new crud_enfermedades();
-        enferm.setVisible(true);
-        dispose();
-      
-        
-        
-    }//GEN-LAST:event_boton_otrosActionPerformed
 
     private void boton_crud_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_crud_pacienteActionPerformed
         // TODO add your handling code here:
@@ -261,33 +207,29 @@ public class acceso_administrador extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_boton_crud_recepcionistaActionPerformed
 
-    private void botol_crud_especialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botol_crud_especialidadesActionPerformed
-        // TODO add your handling code here:
-        crud_especialidad espec = new crud_especialidad();
-        espec.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_botol_crud_especialidadesActionPerformed
-
-    private void boton_crud_alergiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_crud_alergiasActionPerformed
-        // TODO add your handling code here:
-        crud_alergias ale = new crud_alergias();
-        ale.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_boton_crud_alergiasActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Medicamentos medi = new Medicamentos();
         medi.setVisible(true);
         dispose();
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void boton_regresar_administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_administradorActionPerformed
         // TODO add your handling code here:
         login_administrador admin = new login_administrador();
         admin.setVisible(true);
+        BotonAgregarApagar =0;
         dispose();
     }//GEN-LAST:event_boton_regresar_administradorActionPerformed
+
+    private void botol_crud_especialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botol_crud_especialidadesActionPerformed
+        // TODO add your handling code here:
+        crud_especialidad espec = new crud_especialidad();
+        espec.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botol_crud_especialidadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,18 +268,14 @@ public class acceso_administrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botol_crud_especialidades;
-    private javax.swing.JButton boton_crud_alergias;
     private javax.swing.JButton boton_crud_doctor;
     private javax.swing.JButton boton_crud_enfermera;
     private javax.swing.JButton boton_crud_familiar;
     private javax.swing.JButton boton_crud_paciente;
     private javax.swing.JButton boton_crud_recepcionista;
-    private javax.swing.JButton boton_otros;
     private javax.swing.JButton boton_regresar_administrador;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

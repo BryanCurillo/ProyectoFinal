@@ -19,6 +19,8 @@ import clases.validaciones;
  */
 public class Medicamentos extends javax.swing.JFrame {
 
+    public static int botonAtras;
+
     validaciones misvalidaciones = new validaciones();
     Insert_medicamento inser = new Insert_medicamento();
 
@@ -41,7 +43,7 @@ public class Medicamentos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        btmedmodificar = new javax.swing.JButton();
+        BotonAtras = new javax.swing.JButton();
         txt_nombre_medicamento = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -75,14 +77,14 @@ public class Medicamentos extends javax.swing.JFrame {
             }
         });
 
-        btmedmodificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btmedmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anterior.png"))); // NOI18N
-        btmedmodificar.setToolTipText("Regresar");
-        btmedmodificar.setBorder(null);
-        btmedmodificar.setOpaque(false);
-        btmedmodificar.addActionListener(new java.awt.event.ActionListener() {
+        BotonAtras.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BotonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anterior.png"))); // NOI18N
+        BotonAtras.setToolTipText("Regresar");
+        BotonAtras.setBorder(null);
+        BotonAtras.setOpaque(false);
+        BotonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btmedmodificarActionPerformed(evt);
+                BotonAtrasActionPerformed(evt);
             }
         });
 
@@ -168,7 +170,7 @@ public class Medicamentos extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(88, 88, 88)
-                        .addComponent(btmedmodificar)
+                        .addComponent(BotonAtras)
                         .addGap(382, 382, 382))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(224, 224, 224)
@@ -195,10 +197,11 @@ public class Medicamentos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_nombre_medicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jButton1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_nombre_medicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1)))
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -209,7 +212,7 @@ public class Medicamentos extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2))
-                            .addComponent(btmedmodificar)))
+                            .addComponent(BotonAtras)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(jLabel3))))
@@ -220,9 +223,21 @@ public class Medicamentos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btmedmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmedmodificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btmedmodificarActionPerformed
+    private void BotonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAtrasActionPerformed
+
+        acceso_doctor mi_accesoDoc = new acceso_doctor();
+        //System.out.println("Atras:" + mi_accesoDoc.botonAtrasDoctor);
+        if (mi_accesoDoc.botonAtrasDoctor == 1) {
+
+            acceso_doctor accd = new acceso_doctor();
+            accd.setVisible(true);
+            dispose();
+        } else {
+            acceso_administrador accA = new acceso_administrador();
+            accA.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_BotonAtrasActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         buscar_medicamento();;
@@ -375,8 +390,8 @@ public class Medicamentos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAtras;
     private javax.swing.JButton Buscar;
-    private javax.swing.JButton btmedmodificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

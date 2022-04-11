@@ -16,6 +16,7 @@ public class acceso_enfermera extends javax.swing.JFrame {
      */
     public acceso_enfermera() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,21 +28,130 @@ public class acceso_enfermera extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel2 = new javax.swing.JLabel();
+        boton_acceso_ficha = new javax.swing.JButton();
+        boton_acceso_alergias = new javax.swing.JButton();
+        boton_acceso_enfermedad = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        boton_regresar_login_enfermera = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 366, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar_de_los_ancianos__1_-removebg-preview (2).png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 120, 90));
+
+        boton_acceso_ficha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informe-medico.png"))); // NOI18N
+        boton_acceso_ficha.setToolTipText("FICHA MEDICA");
+        boton_acceso_ficha.setBorder(null);
+        boton_acceso_ficha.setOpaque(false);
+        boton_acceso_ficha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_acceso_fichaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boton_acceso_ficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+
+        boton_acceso_alergias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/antihistaminicos.png"))); // NOI18N
+        boton_acceso_alergias.setToolTipText("REGISTRO DE ALERGIAS");
+        boton_acceso_alergias.setBorder(null);
+        boton_acceso_alergias.setOpaque(false);
+        boton_acceso_alergias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_acceso_alergiasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boton_acceso_alergias, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
+
+        boton_acceso_enfermedad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/virus (1).png"))); // NOI18N
+        boton_acceso_enfermedad.setToolTipText("REGISTRO DE ENFERMEDAD");
+        boton_acceso_enfermedad.setBorder(null);
+        boton_acceso_enfermedad.setOpaque(false);
+        boton_acceso_enfermedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_acceso_enfermedadActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boton_acceso_enfermedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei Light", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("FICHA MEDICA");
+        jLabel3.setOpaque(true);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("ACCESO DE ENFERMERA");
+        jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel4.setOpaque(true);
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Microsoft YaHei UI Light", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("REGISTRO DE ALERGIAS");
+        jLabel5.setOpaque(true);
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 1, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("REGISTRO DE ENFERMEDADES");
+        jLabel6.setOpaque(true);
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
+
+        boton_regresar_login_enfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        boton_regresar_login_enfermera.setToolTipText("REGRESAR AL LOGIN ENFERMERA");
+        boton_regresar_login_enfermera.setBorder(null);
+        boton_regresar_login_enfermera.setOpaque(false);
+        boton_regresar_login_enfermera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_regresar_login_enfermeraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boton_regresar_login_enfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/teahub.io-one-color-wallpaper-1901959 (1).jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void boton_acceso_fichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_acceso_fichaActionPerformed
+        // TODO add your handling code here:
+        FichaMedica fm = new FichaMedica();
+        fm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_acceso_fichaActionPerformed
+
+    private void boton_acceso_alergiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_acceso_alergiasActionPerformed
+        // TODO add your handling code here:
+        crud_alergias al = new crud_alergias();
+        al.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_acceso_alergiasActionPerformed
+
+    private void boton_acceso_enfermedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_acceso_enfermedadActionPerformed
+        // TODO add your handling code here:
+        crud_enfermedades en = new crud_enfermedades();
+        en.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_acceso_enfermedadActionPerformed
+
+    private void boton_regresar_login_enfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_login_enfermeraActionPerformed
+        // TODO add your handling code here:
+        login_enfermera lf = new login_enfermera();
+        lf.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_boton_regresar_login_enfermeraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +189,15 @@ public class acceso_enfermera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton boton_acceso_alergias;
+    private javax.swing.JButton boton_acceso_enfermedad;
+    private javax.swing.JButton boton_acceso_ficha;
+    private javax.swing.JButton boton_regresar_login_enfermera;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }
