@@ -23,7 +23,7 @@ public class crud_familiar extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
-        this.BtIngresarFamiliar.setEnabled(false);
+        ApagarBotones();
     }
 
     /**
@@ -154,10 +154,23 @@ public class crud_familiar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtRegresarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarFamiliarActionPerformed
-        this.dispose();
-        new acceso_administrador().setVisible(true);
+
+        BotonAtras();
     }//GEN-LAST:event_BtRegresarFamiliarActionPerformed
 
+    public void BotonAtras() {
+        if (acceso_recepcionista.Botones == 1) {
+            acceso_recepcionista mi_accesoR = new acceso_recepcionista();
+            mi_accesoR.setVisible(true);
+            dispose();
+        } else {
+            if (acceso_administrador.BotonAgregarApagar == 2) {
+                acceso_administrador mi_accesoA = new acceso_administrador();
+                mi_accesoA.setVisible(true);
+                dispose();
+            }
+        }
+    }
     private void BtIngresarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresarFamiliarActionPerformed
         this.dispose();
         new agregar_familiar().setVisible(true);
@@ -166,6 +179,16 @@ public class crud_familiar extends javax.swing.JFrame {
     private void BtEliminarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarFamiliarActionPerformed
         eliminar_familiar();
     }//GEN-LAST:event_BtEliminarFamiliarActionPerformed
+    public void ApagarBotones() {
+        if (acceso_recepcionista.Botones == 1) {
+            BtEliminarFamiliar.setEnabled(false);
+        } else {
+            if (acceso_administrador.BotonAgregarApagar == 2) {
+                BtIngresarFamiliar.setEnabled(false);
+            }
+        }
+    }
+
     public void eliminar_familiar() {
 
         int fila = TablaFamiliar.getSelectedRow();
@@ -193,7 +216,7 @@ public class crud_familiar extends javax.swing.JFrame {
 
     private void BtEditarFamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarFamiliarActionPerformed
         modificar_familiar();
-        
+
     }//GEN-LAST:event_BtEditarFamiliarActionPerformed
     public void modificar_familiar() {
 
@@ -234,7 +257,7 @@ public class crud_familiar extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<familiar> com = inser.ListaFamiliar();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb()+"   "+ p.getSeg_nombre(), p.getPrim_apell()+"   "+ p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTipo_sangre(), p.getTelefono(), p.getFecha_Nacimiento(), p.getParectesco(),String.valueOf(p.getCodigo_paciente())};
+            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb() + "   " + p.getSeg_nombre(), p.getPrim_apell() + "   " + p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTipo_sangre(), p.getTelefono(), p.getFecha_Nacimiento(), p.getParectesco(), String.valueOf(p.getCodigo_paciente())};
             tb.addRow(cami);
         });
     }
@@ -254,8 +277,8 @@ public class crud_familiar extends javax.swing.JFrame {
             for (int j = 0; j < familiarfiltro.size(); j++) {
                 matriz[j][0] = familiarfiltro.get(j).getCodigo();
                 matriz[j][1] = familiarfiltro.get(j).getCedula();
-                matriz[j][2] = familiarfiltro.get(j).getPri_nomb()+"   "+familiarfiltro.get(j).getSeg_nombre();;
-                matriz[j][3] = familiarfiltro.get(j).getPrim_apell()+"   "+familiarfiltro.get(j).getSeg_apelli();
+                matriz[j][2] = familiarfiltro.get(j).getPri_nomb() + "   " + familiarfiltro.get(j).getSeg_nombre();;
+                matriz[j][3] = familiarfiltro.get(j).getPrim_apell() + "   " + familiarfiltro.get(j).getSeg_apelli();
                 matriz[j][4] = familiarfiltro.get(j).getCorreo();
                 matriz[j][5] = familiarfiltro.get(j).getGenero();
                 matriz[j][6] = familiarfiltro.get(j).getDireccion();
@@ -295,13 +318,17 @@ public class crud_familiar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(crud_familiar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crud_familiar.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(crud_familiar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crud_familiar.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(crud_familiar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crud_familiar.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(crud_familiar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(crud_familiar.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

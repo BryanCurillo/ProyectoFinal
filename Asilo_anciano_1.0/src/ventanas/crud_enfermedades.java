@@ -103,7 +103,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
         tab.setNumRows(0);
         List<enfermedades> com = inser.ListEnfermedad();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo_enfermedad(), p.getNombre_enfermedad()};
+            String[] cami = {String.valueOf(p.getCodigo_enfermedad()), p.getNombre_enfermedad()};
             tab.addRow(cami);
 
         });
@@ -111,17 +111,17 @@ public class crud_enfermedades extends javax.swing.JFrame {
     }
 
     public void buscar_enfermedad() {
-        String codigo = txtBuscar.getText();
+        int codigo = Integer.parseInt(txtBuscar.getText());
         var enfermedadfiltro = new ArrayList<enfermedades>();
 
         inser.ListEnfermedad().forEach((e) -> {
-            if (e.getCodigo_enfermedad().equals(codigo)) {
+            if (e.getCodigo_enfermedad()==codigo) {
                 enfermedadfiltro.add(e);
             }
         });
         String matriz[][] = new String[enfermedadfiltro.size()][3];
         for (int j = 0; j < enfermedadfiltro.size(); j++) {
-            matriz[j][0] = enfermedadfiltro.get(j).getCodigo_enfermedad();
+            matriz[j][0] = String.valueOf(enfermedadfiltro.get(j).getCodigo_enfermedad());
             matriz[j][1] = enfermedadfiltro.get(j).getNombre_enfermedad();
 
         }

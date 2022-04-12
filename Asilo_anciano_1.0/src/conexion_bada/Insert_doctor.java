@@ -83,13 +83,13 @@ public class Insert_doctor extends doctor {
     }
     
         
-        public int cargarcodigo() {
+    public int cargarcodigo() {
         int codigo = 0;
         String sqls = "select max(doc_codigo) from doctor;";
         ResultSet ru = cone.selectConsulta(sqls);
         try {
             while (ru.next()) {
-                codigo = ru.getInt("max")+1;
+                codigo = ru.getInt("max") + 1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);

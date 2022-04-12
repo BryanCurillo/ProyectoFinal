@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package clases;
 
 import java.util.Date;
@@ -15,20 +11,20 @@ public class cita_medica {
     private String codigo_citas;
     private String codigo_paciente;
     private String codigo_medico;
-    private Date fecha_cita;
-    private int hora_inicio;
-    private int hora_fin;
+    private String fecha_chequeoActual;
+    private String horaChequeo;
+    private String fecha_Proximochequeo;
 
     public cita_medica() {
     }
 
-    public cita_medica(String codigo_citas, String codigo_paciente, String codigo_medico, Date fecha_cita, int hora_inicio, int hora_fin) {
+    public cita_medica(String codigo_citas, String codigo_paciente, String codigo_medico, String fecha_chequeoActual, String horaChequeo, String fecha_Proximochequeo) {
         this.codigo_citas = codigo_citas;
         this.codigo_paciente = codigo_paciente;
         this.codigo_medico = codigo_medico;
-        this.fecha_cita = fecha_cita;
-        this.hora_inicio = hora_inicio;
-        this.hora_fin = hora_fin;
+        this.fecha_chequeoActual = fecha_chequeoActual;
+        this.horaChequeo = horaChequeo;
+        this.fecha_Proximochequeo = fecha_Proximochequeo;
     }
 
     public String getCodigo_citas() {
@@ -55,30 +51,29 @@ public class cita_medica {
         this.codigo_medico = codigo_medico;
     }
 
-    public Date getFecha_cita() {
-        return fecha_cita;
+    public String getFecha_chequeoActual() {
+        return fecha_chequeoActual;
     }
 
-    public void setFecha_cita(Date fecha_cita) {
-        this.fecha_cita = fecha_cita;
+    public void setFecha_chequeoActual(String fecha_chequeoActual) {
+        this.fecha_chequeoActual = fecha_chequeoActual;
     }
 
-    public int getHora_inicio() {
-        return hora_inicio;
+    public String getHoraChequeo() {
+        return horaChequeo;
     }
 
-    public void setHora_inicio(int hora_inicio) {
-        this.hora_inicio = hora_inicio;
+    public void setHoraChequeo(String horaChequeo) {
+        this.horaChequeo = horaChequeo;
     }
 
-    public int getHora_fin() {
-        return hora_fin;
+    public String getFecha_Proximochequeo() {
+        return fecha_Proximochequeo;
     }
 
-    public void setHora_fin(int hora_fin) {
-        this.hora_fin = hora_fin;
+    public void setFecha_Proximochequeo(String fecha_Proximochequeo) {
+        this.fecha_Proximochequeo = fecha_Proximochequeo;
     }
-    
-    
+
     
 }
