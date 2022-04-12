@@ -4,12 +4,23 @@
  * and open the template in the editor.
  */
 package ventanas;
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
+import conexion_bada.Insert;
+import conexion_bada.Insert_doctor;
+import conexion_bada.Insert_visita_familiar;
+
+
 
 /**
  *
  * @author Usuario
  */
 public class crud_vistafamiliar extends javax.swing.JFrame {
+    Insert inser = new Insert();
+    Insert_doctor insertDoc = new Insert_doctor();
+    Insert_visita_familiar inservisitante = new Insert_visita_familiar();
 
     /**
      * Creates new form crud_vistafamiliar
@@ -18,6 +29,12 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    public void buscar_familiar_de_Paciente(){
+       
+
+    
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,6 +45,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -49,7 +67,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         txtvisitapellido = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_paciente_visita = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablavisitante = new javax.swing.JTable();
@@ -60,6 +78,17 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 509, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 321, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,7 +185,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setText("Apellidos:");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, -1, -1));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 190, 30));
+        jPanel2.add(txt_paciente_visita, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 190, 30));
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 200, 30));
 
         tablavisitante.setModel(new javax.swing.table.DefaultTableModel(
@@ -190,6 +219,11 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jButton2.setToolTipText("Buscar Familiar");
         jButton2.setBorder(null);
         jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -220,6 +254,11 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private void comboentradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboentradaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboentradaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,6 +303,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -280,12 +320,12 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tablavisitante;
     private javax.swing.JTextField txt_codigo_paciente_visita;
+    private javax.swing.JTextField txt_paciente_visita;
     private javax.swing.JTextField txtvisitapellido;
     private javax.swing.JTextField txtvisitcedula;
     private javax.swing.JTextField txtvisitnombre;
