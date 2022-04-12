@@ -11,15 +11,16 @@ package clases;
  */
 public class alergias {
     private String nombre_alergia;
-    private String codigo_alergia;
+    private int codigo_alergia;
 
     public alergias() {
     }
 
-    public alergias(String nombre_alergia, String codigo_alergia) {
+    public alergias(String nombre_alergia, int codigo_alergia) {
         this.nombre_alergia = nombre_alergia;
         this.codigo_alergia = codigo_alergia;
     }
+
 
     public String getNombre_alergia() {
         return nombre_alergia;
@@ -29,13 +30,14 @@ public class alergias {
         this.nombre_alergia = nombre_alergia;
     }
 
-    public String getCodigo_alergia() {
+    public int getCodigo_alergia() {
         return codigo_alergia;
     }
 
-    public void setCodigo_alergia(String codigo_alergia) {
+    public void setCodigo_alergia(int codigo_alergia) {
         this.codigo_alergia = codigo_alergia;
     }
-    
+
+
     
 }
