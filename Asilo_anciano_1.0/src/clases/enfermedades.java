@@ -15,15 +15,17 @@ package clases;
  */
 public class enfermedades {
     private String nombre_enfermedad;
-    private String codigo_enfermedad;
+    private int codigo_enfermedad;
 
     public enfermedades() {
     }
 
-    public enfermedades(String nombre_enfermedad, String codigo_enfermedad) {
+    public enfermedades(String nombre_enfermedad, int codigo_enfermedad) {
         this.nombre_enfermedad = nombre_enfermedad;
         this.codigo_enfermedad = codigo_enfermedad;
     }
+
+
 
     public String getNombre_enfermedad() {
         return nombre_enfermedad;
@@ -33,13 +35,14 @@ public class enfermedades {
         this.nombre_enfermedad = nombre_enfermedad;
     }
 
-    public String getCodigo_enfermedad() {
+    public int getCodigo_enfermedad() {
         return codigo_enfermedad;
     }
 
-    public void setCodigo_enfermedad(String codigo_enfermedad) {
+    public void setCodigo_enfermedad(int codigo_enfermedad) {
         this.codigo_enfermedad = codigo_enfermedad;
     }
-    
+
+
     
 }
