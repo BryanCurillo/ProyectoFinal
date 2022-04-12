@@ -23,14 +23,12 @@ public class Insert_administrador extends administrador {
     }
 
 //    usuario miusuario = new usuario();
-
 //    public boolean InsertarUsuario() {
 //        String sql = "INSERT INTO usuario(\n"
 //                + "	us_usuario,us_contraseña)\n"
 //                + "	VALUES ('" + miusuario.getUsuario() + "', '" + miusuario.getContraseña() + "');";
 //        return cone.InsertUpdateDeleteAcciones(sql);
 //    }
-
     public boolean InsertarAdministrador() {
         String sql = "INSERT INTO administrador(\n"
                 + "     admin_cedula, admin_nivel_educacion,admin_codigo_usuario)\n"
@@ -60,7 +58,7 @@ public class Insert_administrador extends administrador {
                 mi_admin.setDireccion(rs.getString("per_direccion"));
                 mi_admin.setTelefono(rs.getString("per_telefono"));
                 mi_admin.setTipo_sangre(rs.getString("per_tipo_sangre"));
-               
+
                 admin.add(mi_admin);
             }
             rs.close();
@@ -70,8 +68,8 @@ public class Insert_administrador extends administrador {
             return null;
         }
     }
-    
-        public int cargarcodigo() {
+
+    public int cargarcodigo() {
         int codigo = 0;
         String sqls = "select max(admin_codigo) from administrador;";
         ResultSet ru = cone.selectConsulta(sqls);
@@ -84,7 +82,5 @@ public class Insert_administrador extends administrador {
         }
         return codigo;
     }
-
-
 
 }
