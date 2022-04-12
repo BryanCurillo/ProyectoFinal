@@ -302,7 +302,7 @@ public class crud_alergias extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<alergias> com = inser.ListaAlergias();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo_alergia(), p.getNombre_alergia()};
+            String[] cami = {String.valueOf(p.getCodigo_alergia()), p.getNombre_alergia()};
             tb.addRow(cami);
         });
     }
@@ -312,17 +312,17 @@ public class crud_alergias extends javax.swing.JFrame {
     }
 
     public void buscar_alergia() {
-        String codigo = txtBuscar.getText();
+        int codigo = Integer.parseInt(txtBuscar.getText());
         var alergiafiltro = new ArrayList<alergias>();
 
         inser.ListaAlergias().forEach((e) -> {
-            if (e.getCodigo_alergia().equals(codigo)) {
+            if (e.getCodigo_alergia()==codigo) {
                 alergiafiltro.add(e);
             }
         });
         String matriz[][] = new String[alergiafiltro.size()][3];
         for (int j = 0; j < alergiafiltro.size(); j++) {
-            matriz[j][0] = alergiafiltro.get(j).getCodigo_alergia();
+            matriz[j][0] = String.valueOf(alergiafiltro.get(j).getCodigo_alergia());
             matriz[j][1] = alergiafiltro.get(j).getNombre_alergia();
 
         }
