@@ -52,7 +52,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         if (!familiarfiltro.isEmpty()) {
 
             for (int i = 0; i < familiarfiltro.size(); i++) {
-                txt_codigo_familiar.setText(familiarfiltro.get(i).getCodigo());
+                txt_codigo_familiar.setText(String.valueOf(familiarfiltro.get(i).getCodigo()));
                 txtvisitnombre.setText(familiarfiltro.get(i).getPri_nomb() + " " + familiarfiltro.get(i).getSeg_nombre());
                 txtvisitapellido.setText(familiarfiltro.get(i).getPrim_apell() + " " + familiarfiltro.get(i).getSeg_apelli());
             }
@@ -113,7 +113,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
             String matriz[][] = new String[pacienteDialogfiltro.size()][14];
             for (int j = 0; j < pacienteDialogfiltro.size(); j++) {
-                matriz[j][0] = pacienteDialogfiltro.get(j).getCodigo();
+                matriz[j][0] = String.valueOf(pacienteDialogfiltro.get(j).getCodigo());
                 matriz[j][1] = pacienteDialogfiltro.get(j).getCedula();
                 matriz[j][2] = pacienteDialogfiltro.get(j).getPri_nomb() + "  " + pacienteDialogfiltro.get(j).getSeg_nombre();
                 matriz[j][3] = pacienteDialogfiltro.get(j).getPrim_apell() + "  " + pacienteDialogfiltro.get(j).getSeg_apelli();;
@@ -135,7 +135,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<paciente> com = inser.ListaPaciente();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
             tb.addRow(cami);
         });
     }
@@ -181,7 +181,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
             List<paciente> com = inser.ListaPaciente();
             com.stream().forEach(p -> {
-                txt_codigo_paciente_visita.setText(p.getCodigo().toString());
+                txt_codigo_paciente_visita.setText(String.valueOf(p.getCodigo()));
                 txt_nombre_paciente_visita.setText(p.getPri_nomb().toString());
                 txt_apellido_paciente_visita.setText(p.getPrim_apell().toString());
              
