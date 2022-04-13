@@ -53,7 +53,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         List<recepcionista> com = recep.ListaRecepcionista();
         com.stream().forEach(p -> {
             if (cedula.equalsIgnoreCase(p.getCedula())) {
-                text_codigo_recepcionista.setText(p.getCodigo().toString());
+                text_codigo_recepcionista.setText(String.valueOf(p.getCodigo()));
                 text_cedula_recepcionista.setText(p.getCedula().toString());
                 text_PrimerNombre_recepcionista.setText(p.getPri_nomb().toString());
                 text_SegundoNombre_recepcionista.setText(p.getSeg_nombre().toString());
@@ -801,7 +801,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                     if (usu.validarNomduplicado(txt_usuario.getText())) {
                         String genero = "";
 
-                        recep.setCodigo(text_codigo_recepcionista.getText());
+                        recep.setCodigo(Integer.parseInt(text_codigo_recepcionista.getText()));
                         recep.setCedula(text_cedula_recepcionista.getText());
                         recep.setPri_nomb(text_PrimerNombre_recepcionista.getText());
                         recep.setSeg_nombre(text_SegundoNombre_recepcionista.getText());
