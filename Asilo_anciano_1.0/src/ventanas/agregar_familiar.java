@@ -60,7 +60,7 @@ public class agregar_familiar extends javax.swing.JFrame {
         List<familiar> com = insertFamiliar.ListaFamiliar();
         com.stream().forEach(p -> {
             if (cedula.equalsIgnoreCase(p.getCedula())) {
-                txtCodigo.setText(p.getCodigo().toString());
+                txtCodigo.setText(String.valueOf(p.getCodigo()));
                 text_cedula_familiar.setText(p.getCedula().toString());
                 text_PrimerNombre_familiar.setText(p.getPri_nomb().toString());
                 text_SegundoNombre_familiar.setText(p.getSeg_nombre().toString());
@@ -1056,7 +1056,7 @@ public class agregar_familiar extends javax.swing.JFrame {
 
             String matriz[][] = new String[pacientefiltro.size()][14];
             for (int j = 0; j < pacientefiltro.size(); j++) {
-                matriz[j][0] = pacientefiltro.get(j).getCodigo();
+                matriz[j][0] = String.valueOf(pacientefiltro.get(j).getCodigo());
                 matriz[j][1] = pacientefiltro.get(j).getCedula();
                 matriz[j][2] = pacientefiltro.get(j).getPri_nomb() + "  " + pacientefiltro.get(j).getSeg_nombre();
                 matriz[j][3] = pacientefiltro.get(j).getPrim_apell() + "  " + pacientefiltro.get(j).getSeg_apelli();;
@@ -1078,7 +1078,7 @@ public class agregar_familiar extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<paciente> com = inser.ListaPaciente();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
             tb.addRow(cami);
         });
     }
