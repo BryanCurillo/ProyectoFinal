@@ -257,7 +257,7 @@ public class crud_familiar extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<familiar> com = inser.ListaFamiliar();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb() + "   " + p.getSeg_nombre(), p.getPrim_apell() + "   " + p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTipo_sangre(), p.getTelefono(), p.getFecha_Nacimiento(), p.getParectesco(), String.valueOf(p.getCodigo_paciente())};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "   " + p.getSeg_nombre(), p.getPrim_apell() + "   " + p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTipo_sangre(), p.getTelefono(), p.getFecha_Nacimiento(), p.getParectesco(), String.valueOf(p.getCodigo_paciente())};
             tb.addRow(cami);
         });
     }
@@ -275,7 +275,7 @@ public class crud_familiar extends javax.swing.JFrame {
         if (familiarfiltro.size() != 0) {
             String matriz[][] = new String[familiarfiltro.size()][12];
             for (int j = 0; j < familiarfiltro.size(); j++) {
-                matriz[j][0] = familiarfiltro.get(j).getCodigo();
+                matriz[j][0] = String.valueOf(familiarfiltro.get(j).getCodigo());
                 matriz[j][1] = familiarfiltro.get(j).getCedula();
                 matriz[j][2] = familiarfiltro.get(j).getPri_nomb() + "   " + familiarfiltro.get(j).getSeg_nombre();;
                 matriz[j][3] = familiarfiltro.get(j).getPrim_apell() + "   " + familiarfiltro.get(j).getSeg_apelli();
