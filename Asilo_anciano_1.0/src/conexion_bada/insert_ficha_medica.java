@@ -80,4 +80,20 @@ public class insert_ficha_medica extends FichaMedica {
         }
         return codigo;
     }
+        public boolean validarduplicado(int codigo) throws SQLException {
+        boolean validar = false;
+        int count = 0;
+        String sqls = "select count(*) from ficha where ficha_paci_codigo=" + codigo + ";";
+        ResultSet dup = cone.selectConsulta(sqls);
+//        try {catch
+        while (dup.next()) {
+            count = dup.getInt("count");
+        }
+        if (count == 0) {
+            validar = true;
+        }
+        System.out.println("repetido="+codigo);
+        return validar;
+    }
+    
 }

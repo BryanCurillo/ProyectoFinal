@@ -611,7 +611,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         .addComponent(Guardar_administrador)
                         .addComponent(Regresar_administrador))
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(755, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 1010, 1460));
