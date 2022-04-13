@@ -232,7 +232,7 @@ public class crud_administrador extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<administrador> com = inser.ListaAdministrador();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getGenero(), p.getTipo_sangre(), p.getDireccion(), p.getFecha_Nacimiento(), p.getNivel_educacion(), p.getCorreo(), p.getTelefono()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getGenero(), p.getTipo_sangre(), p.getDireccion(), p.getFecha_Nacimiento(), p.getNivel_educacion(), p.getCorreo(), p.getTelefono()};
             tb.addRow(cami);
         });
     }
@@ -250,7 +250,7 @@ public class crud_administrador extends javax.swing.JFrame {
         if (adminfiltro.size() != 0) {
             String matriz[][] = new String[adminfiltro.size()][14];
             for (int j = 0; j < adminfiltro.size(); j++) {
-                matriz[j][0] = adminfiltro.get(j).getCodigo();
+                matriz[j][0] = String.valueOf(adminfiltro.get(j).getCodigo());
                 matriz[j][1] = adminfiltro.get(j).getCedula();
                 matriz[j][2] = adminfiltro.get(j).getPri_nomb();
                 matriz[j][3] = adminfiltro.get(j).getSeg_nombre();
