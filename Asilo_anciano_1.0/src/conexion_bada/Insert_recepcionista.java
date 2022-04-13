@@ -34,7 +34,7 @@ public class Insert_recepcionista extends recepcionista {
         try {
             while (rr.next()) {
                 recepcionista mi_recepcionista = new recepcionista();
-                mi_recepcionista.setCodigo(rr.getString("recep_codigo"));
+                mi_recepcionista.setCodigo(rr.getInt("recep_codigo"));
                 mi_recepcionista.setCedula(rr.getString("recep_cedula"));
                 mi_recepcionista.setHora_ingreso(rr.getString("recep_hora_ingreso"));
                 mi_recepcionista.setHora_salida(rr.getString("recep_hora_salida"));
