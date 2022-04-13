@@ -10,46 +10,49 @@ package clases;
  *
  * @author Usuario
  */
-public class visita_familiar {
-    private String cod_vista;
-    private String cod_paciente;
-    private String cod_familiar;
+public class visita_familiar extends persona {
+    private int cod_visita;
+    private int cod_paciente_visita;
+    private int cod_familiar_visita;
     private String horario_visita;
     private String fecha_visita;
+    private int cod_registro_familiar;
 
     public visita_familiar() {
+       super();
     }
 
-    public visita_familiar(String cod_vista, String cod_paciente, String cod_familiar, String horario_visita, String fecha_visita) {
-        this.cod_vista = cod_vista;
-        this.cod_paciente = cod_paciente;
-        this.cod_familiar = cod_familiar;
+    public visita_familiar(int cod_visita, int cod_paciente_visita, int cod_familiar_visita, String horario_visita, String fecha_visita, int cod_registro_familiar) {
+        this.cod_visita = cod_visita;
+        this.cod_paciente_visita = cod_paciente_visita;
+        this.cod_familiar_visita = cod_familiar_visita;
         this.horario_visita = horario_visita;
         this.fecha_visita = fecha_visita;
+        this.cod_registro_familiar = cod_registro_familiar;
     }
 
-    public String getCod_vista() {
-        return cod_vista;
+    public int getCod_visita() {
+        return cod_visita;
     }
 
-    public void setCod_vista(String cod_vista) {
-        this.cod_vista = cod_vista;
+    public void setCod_visita(int cod_visita) {
+        this.cod_visita = cod_visita;
     }
 
-    public String getCod_paciente() {
-        return cod_paciente;
+    public int getCod_paciente_visita() {
+        return cod_paciente_visita;
     }
 
-    public void setCod_paciente(String cod_paciente) {
-        this.cod_paciente = cod_paciente;
+    public void setCod_paciente_visita(int cod_paciente_visita) {
+        this.cod_paciente_visita = cod_paciente_visita;
     }
 
-    public String getCod_familiar() {
-        return cod_familiar;
+    public int getCod_familiar_visita() {
+        return cod_familiar_visita;
     }
 
-    public void setCod_familiar(String cod_familiar) {
-        this.cod_familiar = cod_familiar;
+    public void setCod_familiar_visita(int cod_familiar_visita) {
+        this.cod_familiar_visita = cod_familiar_visita;
     }
 
     public String getHorario_visita() {
@@ -68,7 +71,13 @@ public class visita_familiar {
         this.fecha_visita = fecha_visita;
     }
 
-   
- 
+    public int getCod_registro_familiar() {
+        return cod_registro_familiar;
+    }
+
+    public void setCod_registro_familiar(int cod_registro_familiar) {
+        this.cod_registro_familiar = cod_registro_familiar;
+    }
+
     
 }
