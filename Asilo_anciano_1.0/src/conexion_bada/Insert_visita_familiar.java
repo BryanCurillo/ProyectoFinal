@@ -39,12 +39,13 @@ public class Insert_visita_familiar extends visita_familiar {
                 mi_familiar.setCod_visita(rs.getInt("vis_codigo"));
                 mi_familiar.setCod_familiar_visita(rs.getInt("vis_codigo_familiar"));
                 mi_familiar.setCod_paciente_visita(rs.getInt("vis_codigo_paciente"));
-                mi_familiar.setFecha_visita(rs.getString("vis_fecha"));
-                mi_familiar.setHorario_visita(rs.getString("vis_horario_visita"));
                 mi_familiar.setPri_nomb(rs.getString("per_primer_nombre"));
                 mi_familiar.setSeg_nombre(rs.getString("per_segundo_nombre"));
                 mi_familiar.setPrim_apell(rs.getString("per_primer_apellido"));
                 mi_familiar.setSeg_apelli(rs.getString("per_segundo_apellido"));
+                mi_familiar.setFecha_visita(rs.getString("vis_fecha"));
+                mi_familiar.setHorario_visita(rs.getString("vis_horario_visita"));
+               
                 
                 visitante.add(mi_familiar);
                 
