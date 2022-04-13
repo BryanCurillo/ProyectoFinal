@@ -36,7 +36,7 @@ public class Insert_familiar extends familiar {
             while (rs.next()) {
                 familiar mi_famili = new familiar();
                 //mi_famili.setCodigo(rs.getString("fam_codigo_visit"));
-                mi_famili.setCodigo(rs.getString("fam_codigo"));
+                mi_famili.setCodigo(rs.getInt("fam_codigo"));
                 mi_famili.setCedula(rs.getString("fam_cedula"));
                 mi_famili.setParectesco(rs.getString("fam_parentesco"));
                 mi_famili.setCod_usuario(rs.getInt("fam_codigo_usuario"));

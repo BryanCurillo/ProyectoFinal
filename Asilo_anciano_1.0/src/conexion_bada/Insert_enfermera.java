@@ -34,7 +34,7 @@ public class Insert_enfermera extends enfermera {
         try {
             while (rs.next()) {
                 enfermera mi_enfer = new enfermera();
-                mi_enfer.setCodigo(rs.getString("enfer_codigo"));
+                mi_enfer.setCodigo(rs.getInt("enfer_codigo"));
                 mi_enfer.setCedula(rs.getString("enfer_cedula"));
                 mi_enfer.setAnio_experiencia(rs.getString("enfer_anio_experiencia"));
                 mi_enfer.setCod_usuario(rs.getInt("enfer_codigo_usuario"));

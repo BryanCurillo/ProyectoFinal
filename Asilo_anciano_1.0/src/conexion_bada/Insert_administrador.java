@@ -43,7 +43,7 @@ public class Insert_administrador extends administrador {
         try {
             while (rs.next()) {
                 administrador mi_admin = new administrador();
-                mi_admin.setCodigo(rs.getString("admin_codigo"));
+                mi_admin.setCodigo(rs.getInt("admin_codigo"));
                 mi_admin.setCedula(rs.getString("admin_cedula"));
                 mi_admin.setNivel_educacion(rs.getString("admin_nivel_educacion"));
                 mi_admin.setCod_usuario(rs.getInt("admin_codigo_usuario"));

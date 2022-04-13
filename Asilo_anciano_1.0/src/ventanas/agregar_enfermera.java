@@ -53,7 +53,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
         List<enfermera> com = inser.ListaEnfermera();
         com.stream().forEach(p -> {
             if (cedula.equalsIgnoreCase(p.getCedula())) {
-                txtcodigo_enfermera.setText(p.getCodigo().toString());
+                txtcodigo_enfermera.setText(String.valueOf(p.getCodigo()));
                 text_cedula_enfermera.setText(p.getCedula().toString());
                 text_PrimerNombre_enfermera.setText(p.getPri_nomb().toString());
                 text_SegundoNombre_enfermera.setText(p.getSeg_nombre().toString());

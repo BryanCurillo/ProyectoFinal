@@ -3,7 +3,7 @@ package clases;
 
 
 public class persona {
-    private String codigo;
+    private int codigo;
     private String cedula;
     private String pri_nomb;
     private String seg_nombre;
@@ -21,7 +21,7 @@ public class persona {
         
     }
 
-    public persona(String codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
+    public persona(int codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
         this.codigo = codigo;
         this.cedula = cedula;
         this.pri_nomb = pri_nomb;
@@ -36,13 +36,15 @@ public class persona {
         this.tipo_sangre = tipo_sangre;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+
 
     public String getCedula() {
         return cedula;

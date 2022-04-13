@@ -16,11 +16,7 @@ public class doctor extends persona{
         this.cod_usuario = cod_usuario;
     }
 
-    public doctor(String especialidad, int cod_usuario, String codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
-        super(codigo, cedula, pri_nomb, seg_nombre, prim_apell, seg_apelli, correo, genero, fecha_Nacimiento, direccion, telefono, tipo_sangre);
-        this.especialidad = especialidad;
-        this.cod_usuario = cod_usuario;
-    }
+
 
     public String getEspecialidad() {
         return especialidad;

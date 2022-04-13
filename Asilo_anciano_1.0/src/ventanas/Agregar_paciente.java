@@ -80,7 +80,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         List<paciente> com = inser.ListaPaciente();
         com.stream().forEach(p -> {
             if (cedula.equalsIgnoreCase(p.getCedula())) {
-                text_codigo_paciente.setText(p.getCodigo().toString());
+                text_codigo_paciente.setText(String.valueOf(p.getCodigo()));
                 text_cedula_paciente.setText(p.getCedula().toString());
                 text_PrimerNombre_paciente.setText(p.getPri_nomb().toString());
                 text_SegundoNombre_paciente.setText(p.getSeg_nombre().toString());

@@ -553,7 +553,7 @@ public class cita_medica extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<doctor> com = insertDoc.ListaDoctor();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getEspecialidad()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getEspecialidad()};
             tb.addRow(cami);
         });
     }
@@ -600,7 +600,7 @@ public class cita_medica extends javax.swing.JFrame {
 
             String matriz[][] = new String[doctorDialogfiltro.size()][14];
             for (int j = 0; j < doctorDialogfiltro.size(); j++) {
-                matriz[j][0] = doctorDialogfiltro.get(j).getCodigo();
+                matriz[j][0] = String.valueOf(doctorDialogfiltro.get(j).getCodigo());
                 matriz[j][1] = doctorDialogfiltro.get(j).getCedula();
                 matriz[j][2] = doctorDialogfiltro.get(j).getPri_nomb() + "  " + doctorDialogfiltro.get(j).getSeg_nombre();
                 matriz[j][3] = doctorDialogfiltro.get(j).getPrim_apell() + "  " + doctorDialogfiltro.get(j).getSeg_apelli();;
@@ -730,7 +730,7 @@ public class cita_medica extends javax.swing.JFrame {
         if (!pacientefiltro.isEmpty()) {
 
             for (int i = 0; i < pacientefiltro.size(); i++) {
-                txtcodigoPaciente.setText(pacientefiltro.get(i).getCodigo());
+                txtcodigoPaciente.setText(String.valueOf(pacientefiltro.get(i).getCodigo()));
                 txtNombre.setText(pacientefiltro.get(i).getPri_nomb() + " " + pacientefiltro.get(i).getSeg_nombre());
                 txtApellidos.setText(pacientefiltro.get(i).getPrim_apell() + " " + pacientefiltro.get(i).getSeg_apelli());
             }
@@ -790,7 +790,7 @@ public class cita_medica extends javax.swing.JFrame {
 
             List<doctor> com = insertDoc.ListaDoctor();
             com.stream().forEach(p -> {
-                txtcodigoChequeo.setText(p.getCodigo().toString());
+                txtcodigoChequeo.setText(String.valueOf(p.getCodigo()));
                 txtNombreDoctor.setText(p.getPri_nomb().toString());
                 txtApellidoDoctor.setText(p.getPrim_apell().toString());
                 txtEspecialidad.setText(p.getEspecialidad());

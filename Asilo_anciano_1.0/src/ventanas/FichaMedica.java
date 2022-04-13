@@ -55,6 +55,15 @@ public class FichaMedica extends javax.swing.JFrame {
         cargarcod();
     }
 
+    public FichaMedica(int codigo_paciente) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+    public FichaMedica(String cedula_paciente) {
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,6 +141,7 @@ public class FichaMedica extends javax.swing.JFrame {
         buscarenfermera = new javax.swing.JButton();
         txtnombresapellidos = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         cargarPaciente.setResizable(false);
 
@@ -484,6 +494,12 @@ public class FichaMedica extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel7.setText("Codigo enfermera:");
 
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        jButton2.setToolTipText("REGRESAR");
+        jButton2.setBorder(null);
+        jButton2.setOpaque(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -615,7 +631,9 @@ public class FichaMedica extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(433, 433, 433)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1)
+                        .addGap(79, 79, 79)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -638,8 +656,7 @@ public class FichaMedica extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(txtenfermeraacargo)
                             .addComponent(txtnombresapellidos)
-                            .addComponent(jLabel7))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel7)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel23)
@@ -720,7 +737,9 @@ public class FichaMedica extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69))
         );
 
@@ -877,11 +896,11 @@ public class FichaMedica extends javax.swing.JFrame {
             Listaenfermedades.add(mi_enfermedad);
 
 //            if (Listaenfermedades.size() != 0) {
-                for (int i = 0; i < Listaenfermedades.size(); i++) {
+            for (int i = 0; i < Listaenfermedades.size(); i++) {
 
-                    modeloListEnfermedad.addElement(Listaenfermedades.get(i).getNombre_enfermedad());
-                    comboenfermedadficha.setSelectedIndex(0);
-                }
+                modeloListEnfermedad.addElement(Listaenfermedades.get(i).getNombre_enfermedad());
+                comboenfermedadficha.setSelectedIndex(0);
+            }
 //            } else {
 //                mi_enfermedad.setNombre_enfermedad("Sin enfermedades");
 //                mi_enfermedad.setCodigo_enfermedad(2);
@@ -948,7 +967,7 @@ public class FichaMedica extends javax.swing.JFrame {
 
             String matriz[][] = new String[pacientefiltro.size()][4];
             for (int j = 0; j < pacientefiltro.size(); j++) {
-                matriz[j][0] = pacientefiltro.get(j).getCodigo();
+                matriz[j][0] = String.valueOf(pacientefiltro.get(j).getCodigo());
                 matriz[j][1] = pacientefiltro.get(j).getCedula();
                 matriz[j][2] = pacientefiltro.get(j).getPri_nomb() + "  " + pacientefiltro.get(j).getSeg_nombre();
                 matriz[j][3] = pacientefiltro.get(j).getPrim_apell() + "  " + pacientefiltro.get(j).getSeg_apelli();;
@@ -970,23 +989,23 @@ public class FichaMedica extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<paciente> com = inser.ListaPaciente();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getPri_nomb() + "  " + p.getSeg_nombre()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getPri_nomb() + "  " + p.getSeg_nombre()};
             tb.addRow(cami);
         });
     }
 
-    public void cargar_codigo_paci() {
+     public void cargar_codigo_paci() {
         int seleccion = TablaPaciente.getSelectedRow();
 
         if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
-            String codigo = TablaPaciente.getValueAt(seleccion, 0).toString();
+            int codigo = Integer.parseInt(TablaPaciente.getValueAt(seleccion, 0).toString());
             inser.ListaPaciente().forEach((e) -> {
-                if (e.getCodigo().equals(codigo)) {
+                if (e.getCodigo()==codigo) {
 //                    new Agregar_paciente(codigo).setVisible(true);
                     txtcedulafm.setText(e.getCedula());
-                    txtcodigopaciente.setText(e.getCodigo());
+                    txtcodigopaciente.setText(String.valueOf(e.getCodigo()));
                     txt_apellidos.setText(e.getPrim_apell() + "  " + e.getSeg_apelli());
                     txt_nombres.setText(e.getPri_nomb() + "  " + e.getSeg_apelli());
                     txtcorreofm.setText(e.getCorreo());
@@ -1031,7 +1050,7 @@ public class FichaMedica extends javax.swing.JFrame {
 
             String matriz[][] = new String[enfermerafiltro.size()][4];
             for (int j = 0; j < enfermerafiltro.size(); j++) {
-                matriz[j][0] = enfermerafiltro.get(j).getCodigo();
+                matriz[j][0] = String.valueOf(enfermerafiltro.get(j).getCodigo());
                 matriz[j][1] = enfermerafiltro.get(j).getCedula();
                 matriz[j][2] = enfermerafiltro.get(j).getPri_nomb() + "  " + enfermerafiltro.get(j).getSeg_nombre();
                 matriz[j][3] = enfermerafiltro.get(j).getPrim_apell() + "  " + enfermerafiltro.get(j).getSeg_apelli();;
@@ -1053,7 +1072,7 @@ public class FichaMedica extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<enfermera> com = inserEnfermera.ListaEnfermera();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getPri_nomb() + "  " + p.getSeg_nombre()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getPri_nomb() + "  " + p.getSeg_nombre()};
             tb.addRow(cami);
         });
     }
@@ -1064,11 +1083,11 @@ public class FichaMedica extends javax.swing.JFrame {
         if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
-            String codigo = TablaEnfermera.getValueAt(seleccion, 0).toString();
+            int codigo = Integer.parseInt(TablaEnfermera.getValueAt(seleccion, 0).toString());
             inserEnfermera.ListaEnfermera().forEach((e) -> {
-                if (e.getCodigo().equals(codigo)) {
+                if (e.getCodigo()==codigo) {
 //                    new Agregar_paciente(codigo).setVisible(true);
-                    txtenfermeraacargo.setText(e.getCodigo());
+                    txtenfermeraacargo.setText(String.valueOf(e.getCodigo()));
                     txtnombresapellidos.setText(e.getPri_nomb() + " " + e.getSeg_nombre() + " " + e.getPrim_apell() + " " + e.getSeg_apelli());
 
                     cargarEnfermera.dispose();
@@ -1344,6 +1363,7 @@ public class FichaMedica extends javax.swing.JFrame {
     private javax.swing.JRadioButton femeninoficha;
     private javax.swing.ButtonGroup gruposexoficha;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
