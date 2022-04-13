@@ -14,11 +14,13 @@ public class enfermera extends persona{
         this.cod_usuario = cod_usuario;
     }
 
-    public enfermera(String anio_experiencia, int cod_usuario, String codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
+    public enfermera(String anio_experiencia, int cod_usuario, int codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
         super(codigo, cedula, pri_nomb, seg_nombre, prim_apell, seg_apelli, correo, genero, fecha_Nacimiento, direccion, telefono, tipo_sangre);
         this.anio_experiencia = anio_experiencia;
         this.cod_usuario = cod_usuario;
     }
+
+
 
     public String getAnio_experiencia() {
         return anio_experiencia;

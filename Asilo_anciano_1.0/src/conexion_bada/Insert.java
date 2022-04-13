@@ -43,7 +43,7 @@ public class Insert extends paciente {
                 persona mi_persona = new persona();
 
 //                        System.out.println("coninciden");
-                mi_paciente.setCodigo(respaci.getString("paci_codigo"));
+                mi_paciente.setCodigo(respaci.getInt("paci_codigo"));
                 mi_paciente.setCedula(respaci.getString("paci_cedula"));
                 mi_paciente.setSeguro(respaci.getString("paci_seguro"));
                 mi_paciente.setFecha_de_ingreso(respaci.getString("paci_fecha_de_ingreso"));

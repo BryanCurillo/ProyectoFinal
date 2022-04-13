@@ -3,8 +3,11 @@ package ventanas;
 
 import clases.administrador;
 import clases.paciente;
+import clases.FichaMedica;
 import conexion_bada.Conexion;
+import conexion_bada.Insert;
 import conexion_bada.Insert_administrador;
+import conexion_bada.insert_ficha_medica;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +18,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author User
  */
-public class crud_administrador extends javax.swing.JFrame {
+public class crud_FichaMedica extends javax.swing.JFrame {
 
-    Insert_administrador inser = new Insert_administrador();
+    insert_ficha_medica inserFicha = new insert_ficha_medica();
     Conexion mi_cone = new Conexion();
+    Insert inser = new Insert();
 
-    public crud_administrador() {
+    public crud_FichaMedica() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarTabla();
@@ -44,7 +48,8 @@ public class crud_administrador extends javax.swing.JFrame {
         text_buscar = new javax.swing.JTextField();
         BtIngresarAdministrador = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaAdministrador = new javax.swing.JTable();
+        Tablafichas = new javax.swing.JTable();
+        BtVer_Ficha = new javax.swing.JButton();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,8 +57,8 @@ public class crud_administrador extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("LISTA DE ADMINISTRADORES");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
+        jLabel2.setText("LISTA DE FICHAS MEDICAS");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
         BtRegresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         BtRegresarAdministrador.setToolTipText("Regresar");
@@ -75,7 +80,7 @@ public class crud_administrador extends javax.swing.JFrame {
                 BtEliminarAdministradorActionPerformed(evt);
             }
         });
-        getContentPane().add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 50, 50));
+        getContentPane().add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 50, 50));
 
         BtEditarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         BtEditarAdministrador.setToolTipText("EDITAR ADMINISTRADOR");
@@ -97,7 +102,7 @@ public class crud_administrador extends javax.swing.JFrame {
                 ListarActionPerformed(evt);
             }
         });
-        getContentPane().add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 60, 50));
+        getContentPane().add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 60, 50));
 
         BtBuscarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BtBuscarAdministrador.setToolTipText("BUSCAR ADMINISTRADOR");
@@ -127,19 +132,30 @@ public class crud_administrador extends javax.swing.JFrame {
                 BtIngresarAdministradorActionPerformed(evt);
             }
         });
-        getContentPane().add(BtIngresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 50, 40));
+        getContentPane().add(BtIngresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 50, 40));
 
-        TablaAdministrador.setModel(new javax.swing.table.DefaultTableModel(
+        Tablafichas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "Genero", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "Nivel de educacion", "E-mail", "Celular"
+                "Codigo ficha", "Cédula", "Nombres", "Apellidos", "Fecha de registro"
             }
         ));
-        jScrollPane1.setViewportView(TablaAdministrador);
+        jScrollPane1.setViewportView(Tablafichas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 980, 250));
+
+        BtVer_Ficha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ver_ficha.png"))); // NOI18N
+        BtVer_Ficha.setToolTipText("INGRESAR ADMINISTRADOR");
+        BtVer_Ficha.setBorder(null);
+        BtVer_Ficha.setOpaque(false);
+        BtVer_Ficha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtVer_FichaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtVer_Ficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 50, 40));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/peakpx.jpg"))); // NOI18N
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 460));
@@ -158,15 +174,15 @@ public class crud_administrador extends javax.swing.JFrame {
 
     private void BtBuscarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarAdministradorActionPerformed
         if (!text_buscar.getText().isEmpty()) {
-            buscar_admin();
+//            buscar_admin();
         } else {
             JOptionPane.showMessageDialog(this, "Ingrese la cedula del administrador");
         }
     }//GEN-LAST:event_BtBuscarAdministradorActionPerformed
 
     private void BtIngresarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresarAdministradorActionPerformed
-        this.dispose();
-        new Agregar_administrador().setVisible(true);
+//        this.dispose();
+//        new FichaMedica().setVisible(true);
     }//GEN-LAST:event_BtIngresarAdministradorActionPerformed
 
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
@@ -178,43 +194,47 @@ public class crud_administrador extends javax.swing.JFrame {
         text_buscar.setForeground(Color.BLACK);    }//GEN-LAST:event_text_buscarMousePressed
 
     private void BtEditarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEditarAdministradorActionPerformed
-        modificar_Administrador();
+//        modificar_Administrador();
     }//GEN-LAST:event_BtEditarAdministradorActionPerformed
-    public void modificar_Administrador() {
 
-        int seleccion = TablaAdministrador.getSelectedRow();
-
-        if (seleccion == -1) {
-            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
-        } else {
-            this.dispose();
-            String cedula = TablaAdministrador.getValueAt(seleccion, 1).toString();
-            inser.ListaAdministrador().forEach((e) -> {
-                if (e.getCedula().equals(cedula)) {
-                    new Agregar_administrador(cedula).setVisible(true);
-                    text_buscar.setText("");
-
-                }
-            });
-
-        }
-
-    }
+    private void BtVer_FichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtVer_FichaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtVer_FichaActionPerformed
+//    public void modificar_Administrador() {
+//
+//        int seleccion = Tablafichas.getSelectedRow();
+//
+//        if (seleccion == -1) {
+//            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+//        } else {
+//            this.dispose();
+//            String cedula = Tablafichas.getValueAt(seleccion, 0).toString();
+//            inserFicha.ListaFichaMedica().forEach((e) -> {
+//                if (e.getCodigo_ficha_medica().equals(c)) {
+//                    new Agregar_administrador(cedula).setVisible(true);
+//                    text_buscar.setText("");
+//
+//                }
+//            });
+//
+//        }
+//
+//    }
 
     public void EliminarAdministrador() {
 
-        int fila = TablaAdministrador.getSelectedRow();
+        int fila = Tablafichas.getSelectedRow();
 
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
-            
+
             int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION) {
                 String cod;
                 String cedula;
-                cedula = TablaAdministrador.getValueAt(fila, 1).toString();
-                cod = TablaAdministrador.getValueAt(fila, 0).toString();
+                cedula = Tablafichas.getValueAt(fila, 1).toString();
+                cod = Tablafichas.getValueAt(fila, 0).toString();
                 try {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo='" + cod + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
@@ -228,55 +248,59 @@ public class crud_administrador extends javax.swing.JFrame {
     }
 
     public void cargarTabla() {
-        DefaultTableModel tb = (DefaultTableModel) TablaAdministrador.getModel();
+        DefaultTableModel tb = (DefaultTableModel) Tablafichas.getModel();
         tb.setNumRows(0);
-        List<administrador> com = inser.ListaAdministrador();
-        com.stream().forEach(p -> {
-            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getGenero(), p.getTipo_sangre(), p.getDireccion(), p.getFecha_Nacimiento(), p.getNivel_educacion(), p.getCorreo(), p.getTelefono()};
-            tb.addRow(cami);
+        List<FichaMedica> com = inserFicha.ListaFichaMedica();
+        List<paciente> com2 = inser.ListaPaciente();
+        com.stream().forEach(f -> {
+            com2.stream().forEach(p -> {
+                if (f.getCodigo_paciente() == p.getCodigo()) {
+                    String[] cami = {String.valueOf(f.getCodigo_ficha_medica()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+                    tb.addRow(cami);
+                }
+            });
         });
     }
 
-    public void buscar_admin() {
-
-        String cedula = text_buscar.getText();
-        var adminfiltro = new ArrayList<administrador>();
-
-        inser.ListaAdministrador().forEach((a) -> {
-            if (a.getCedula().equals(cedula)) {
-                adminfiltro.add(a);
-            }
-        });
-        if (adminfiltro.size() != 0) {
-            String matriz[][] = new String[adminfiltro.size()][14];
-            for (int j = 0; j < adminfiltro.size(); j++) {
-                matriz[j][0] = String.valueOf(adminfiltro.get(j).getCodigo());
-                matriz[j][1] = adminfiltro.get(j).getCedula();
-                matriz[j][2] = adminfiltro.get(j).getPri_nomb();
-                matriz[j][3] = adminfiltro.get(j).getSeg_nombre();
-                matriz[j][4] = adminfiltro.get(j).getPrim_apell();
-                matriz[j][5] = adminfiltro.get(j).getSeg_apelli();
-                matriz[j][6] = adminfiltro.get(j).getGenero();
-                matriz[j][7] = adminfiltro.get(j).getTipo_sangre();
-                matriz[j][8] = adminfiltro.get(j).getDireccion();
-                matriz[j][9] = adminfiltro.get(j).getFecha_Nacimiento();
-                matriz[j][10] = adminfiltro.get(j).getNivel_educacion();
-                matriz[j][11] = adminfiltro.get(j).getCorreo();
-                matriz[j][12] = adminfiltro.get(j).getTelefono();
-
-            }
-            TablaAdministrador.setModel(new javax.swing.table.DefaultTableModel(
-                    matriz,
-                    new String[]{
-                        "Codigo", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "Genero", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "Nivel de educacion", "E-mail", "Celular"
-                    }
-            ));
-        } else {
-            JOptionPane.showMessageDialog(this, "El administrador no existe en la base de datos");
-        }
-
-    }
-
+//    public void buscar_admin() {
+//
+//        String cedula = text_buscar.getText();
+//        var adminfiltro = new ArrayList<administrador>();
+//
+//        inser.ListaAdministrador().forEach((a) -> {
+//            if (a.getCedula().equals(cedula)) {
+//                adminfiltro.add(a);
+//            }
+//        });
+//        if (adminfiltro.size() != 0) {
+//            String matriz[][] = new String[adminfiltro.size()][14];
+//            for (int j = 0; j < adminfiltro.size(); j++) {
+//                matriz[j][0] = adminfiltro.get(j).getCodigo();
+//                matriz[j][1] = adminfiltro.get(j).getCedula();
+//                matriz[j][2] = adminfiltro.get(j).getPri_nomb();
+//                matriz[j][3] = adminfiltro.get(j).getSeg_nombre();
+//                matriz[j][4] = adminfiltro.get(j).getPrim_apell();
+//                matriz[j][5] = adminfiltro.get(j).getSeg_apelli();
+//                matriz[j][6] = adminfiltro.get(j).getGenero();
+//                matriz[j][7] = adminfiltro.get(j).getTipo_sangre();
+//                matriz[j][8] = adminfiltro.get(j).getDireccion();
+//                matriz[j][9] = adminfiltro.get(j).getFecha_Nacimiento();
+//                matriz[j][10] = adminfiltro.get(j).getNivel_educacion();
+//                matriz[j][11] = adminfiltro.get(j).getCorreo();
+//                matriz[j][12] = adminfiltro.get(j).getTelefono();
+//
+//            }
+//            Tablafichas.setModel(new javax.swing.table.DefaultTableModel(
+//                    matriz,
+//                    new String[]{
+//                        "Codigo", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "Genero", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "Nivel de educacion", "E-mail", "Celular"
+//                    }
+//            ));
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El administrador no existe en la base de datos");
+//        }
+//
+//    }
     /**
      * @param args the command line arguments
      */
@@ -294,24 +318,25 @@ public class crud_administrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(crud_administrador.class
+            java.util.logging.Logger.getLogger(crud_FichaMedica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(crud_administrador.class
+            java.util.logging.Logger.getLogger(crud_FichaMedica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(crud_administrador.class
+            java.util.logging.Logger.getLogger(crud_FichaMedica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(crud_administrador.class
+            java.util.logging.Logger.getLogger(crud_FichaMedica.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new crud_administrador().setVisible(true);
+                new crud_FichaMedica().setVisible(true);
             }
         });
     }
@@ -322,9 +347,10 @@ public class crud_administrador extends javax.swing.JFrame {
     private javax.swing.JButton BtEliminarAdministrador;
     private javax.swing.JButton BtIngresarAdministrador;
     private javax.swing.JButton BtRegresarAdministrador;
+    private javax.swing.JButton BtVer_Ficha;
     private javax.swing.JLabel Fondo;
     private javax.swing.JButton Listar;
-    private javax.swing.JTable TablaAdministrador;
+    private javax.swing.JTable Tablafichas;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField text_buscar;

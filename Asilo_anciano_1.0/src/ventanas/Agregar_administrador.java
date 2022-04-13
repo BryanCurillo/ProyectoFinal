@@ -69,7 +69,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         List<administrador> com = inserCargarCodigo.ListaAdministrador();
         com.stream().forEach(p -> {
             if (cedula.equalsIgnoreCase(p.getCedula())) {
-                txt_codigo_administrador.setText(p.getCodigo().toString());
+                txt_codigo_administrador.setText(String.valueOf(p.getCodigo()));
                 txt_cedula_administrador.setText(p.getCedula().toString());
                 txt_PrimerNombre_administrador.setText(p.getPri_nomb().toString());
                 txt_SegundoNombre_administrador.setText(p.getSeg_nombre().toString());
@@ -611,7 +611,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         .addComponent(Guardar_administrador)
                         .addComponent(Regresar_administrador))
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(755, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 1010, 1460));

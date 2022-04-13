@@ -29,13 +29,7 @@ public class FichaMedica extends persona {
         this.observaciones = observaciones;
     }
 
-    public FichaMedica(int codigo_ficha_medica, int codigo_paciente, int codigo_enfermera, String observaciones, String codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
-        super(codigo, cedula, pri_nomb, seg_nombre, prim_apell, seg_apelli, correo, genero, fecha_Nacimiento, direccion, telefono, tipo_sangre);
-        this.codigo_ficha_medica = codigo_ficha_medica;
-        this.codigo_paciente = codigo_paciente;
-        this.codigo_enfermera = codigo_enfermera;
-        this.observaciones = observaciones;
-    }
+
 
     public int getCodigo_enfermera() {
         return codigo_enfermera;

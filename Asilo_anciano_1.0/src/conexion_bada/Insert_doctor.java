@@ -39,7 +39,7 @@ public class Insert_doctor extends doctor {
         try {
             while (rs.next()) {
                 doctor mi_doc = new doctor();
-                mi_doc.setCodigo(rs.getString("doc_codigo"));
+                mi_doc.setCodigo(rs.getInt("doc_codigo"));
                 mi_doc.setCedula(rs.getString("doc_cedula"));
                 mi_doc.setEspecialidad(rs.getString("doc_especialidad"));
                 mi_doc.setCod_usuario(rs.getInt("doc_codigo_usuario"));

@@ -237,7 +237,7 @@ public class doctor_crud extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<doctor> com = inser.ListaDoctor();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTelefono(), p.getTipo_sangre(), p.getEspecialidad(), p.getFecha_Nacimiento()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getGenero(), p.getDireccion(), p.getTelefono(), p.getTipo_sangre(), p.getEspecialidad(), p.getFecha_Nacimiento()};
             tb.addRow(cami);
         });
     }
@@ -254,7 +254,7 @@ public class doctor_crud extends javax.swing.JFrame {
 
             String matriz[][] = new String[docfiltro.size()][13];
             for (int j = 0; j < docfiltro.size(); j++) {
-                matriz[j][0] = docfiltro.get(j).getCodigo();
+                matriz[j][0] = String.valueOf(docfiltro.get(j).getCodigo());
                 matriz[j][1] = docfiltro.get(j).getCedula();
                 matriz[j][2] = docfiltro.get(j).getPri_nomb();
                 matriz[j][3] = docfiltro.get(j).getSeg_nombre();

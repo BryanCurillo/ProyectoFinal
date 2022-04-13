@@ -56,7 +56,7 @@ public class agregar_doctor extends javax.swing.JFrame {
         List<doctor> com = inserDoctor.ListaDoctor();
         com.stream().forEach(p -> {
             if (cedula.equalsIgnoreCase(p.getCedula())) {
-                txtcodigo_doctor.setText(p.getCodigo().toString());
+                txtcodigo_doctor.setText(String.valueOf(p.getCodigo()));
                 text_cedula_doctor.setText(p.getCedula().toString());
                 text_PrimerNombre_doctor.setText(p.getPri_nomb().toString());
                 text_SegundoNombre_doctor.setText(p.getSeg_nombre().toString());

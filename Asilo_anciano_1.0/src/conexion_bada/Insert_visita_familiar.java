@@ -21,26 +21,38 @@ import java.util.logging.Logger;
 public class Insert_visita_familiar extends visita_familiar {
 
     Conexion cone = new Conexion();
+    
+    public boolean InsertarPersona() {
+        String sql = "INSERT INTO persona(\n"
+                + "	per_cedula, per_primer_nombre,per_segundo_nombre, per_primer_apellido,per_segundo_apellido, per_correo, per_genero, per_direccion,per_tipo_sangre,per_telefono,per_fecha_nacimiento)\n"
+                + "	VALUES ('" + getCedula() + "', '" + getPri_nomb() + "', '" + getSeg_nombre() + "', '" + getPrim_apell() + "', '" + getSeg_apelli() + "', '" + getCorreo() + "', '" + getGenero() + "', '" + getDireccion() + "', '" + getTipo_sangre() + "','" + getTelefono() + "','" + getFecha_Nacimiento() + "');";
+        return cone.InsertUpdateDeleteAcciones(sql);
+    }
 
-    public boolean InsertarChequeoMedico() {
+    public boolean InsertarVisitaFamiliar() {
         String sql = "INSERT INTO visita(\n"
-                + "	vis_codigo, vis_codigo_familiar,vis_codigo_paciente, vis_fecha,vis_horario)\n"
-                + "	VALUES ('" + getCod_vista()+ "', '" + getCod_familiar()+ "', '" + getCod_paciente()+ "', '" + getFecha_visita()+ "', '" + getHorario_visita()+ "');";
+                + "	 vis_codigo_familiar,vis_codigo_paciente, vis_fecha,vis_horario_visita)\n"
+                + "	VALUES ('" + getCod_familiar_visita()+ "', '" + getCod_paciente_visita()+ "', '" + getFecha_visita()+ "', '" + getHorario_visita()+"');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
     
     public List<visita_familiar>ListaVisita(){
-      String sqls = "select * from visita;";
+      String sqls = "select  from visita,persona;";
         ResultSet rs = cone.selectConsulta(sqls);
         List<visita_familiar> visitante = new ArrayList<>();  
         try{
             while (rs.next()){
                 visita_familiar mi_familiar =  new visita_familiar();
-                mi_familiar.setCod_vista(rs.getString("vis_codigo"));
-                mi_familiar.setCod_familiar(rs.getString("vis_codigo_familiar"));
-                mi_familiar.setCod_paciente(rs.getString("vis_codigo_paciente"));
+                mi_familiar.setCod_visita(rs.getInt("vis_codigo"));
+                mi_familiar.setCod_familiar_visita(rs.getInt("vis_codigo_familiar"));
+                mi_familiar.setCod_paciente_visita(rs.getInt("vis_codigo_paciente"));
+                mi_familiar.setPri_nomb(rs.getString("per_primer_nombre"));
+                mi_familiar.setSeg_nombre(rs.getString("per_segundo_nombre"));
+                mi_familiar.setPrim_apell(rs.getString("per_primer_apellido"));
+                mi_familiar.setSeg_apelli(rs.getString("per_segundo_apellido"));
                 mi_familiar.setFecha_visita(rs.getString("vis_fecha"));
-                mi_familiar.setHorario_visita(rs.getString("vis_horario"));
+                mi_familiar.setHorario_visita(rs.getString("vis_horario_visita"));
+               
                 
                 visitante.add(mi_familiar);
                 
