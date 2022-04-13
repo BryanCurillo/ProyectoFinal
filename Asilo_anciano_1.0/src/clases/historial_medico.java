@@ -30,7 +30,7 @@ public class historial_medico extends persona{
         this.fecha_actualizacion = fecha_actualizacion;
     }
 
-    public historial_medico(String codigo_historial, String codigo_enfermera, String codigo_paciente, String observaciones_historial, Date fecha_actualizacion, String codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
+    public historial_medico(String codigo_historial, String codigo_enfermera, String codigo_paciente, String observaciones_historial, Date fecha_actualizacion, int codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
         super(codigo, cedula, pri_nomb, seg_nombre, prim_apell, seg_apelli, correo, genero, fecha_Nacimiento, direccion, telefono, tipo_sangre);
         this.codigo_historial = codigo_historial;
         this.codigo_enfermera = codigo_enfermera;
@@ -38,6 +38,9 @@ public class historial_medico extends persona{
         this.observaciones_historial = observaciones_historial;
         this.fecha_actualizacion = fecha_actualizacion;
     }
+
+
+
 
     public String getCodigo_historial() {
         return codigo_historial;
