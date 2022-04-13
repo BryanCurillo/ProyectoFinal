@@ -38,6 +38,9 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         cargarcod();
         BloquearCamposFamiliar();
         BloquearCamposPaciente();
+        cargarTabla();
+       
+        
     }
 
     
@@ -193,6 +196,18 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             LimpiarCamposPaciente();
         }
     }
+         public void cargarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) tablavisitante.getModel();
+        tb.setNumRows(0);
+        List<visita_familiar> com = inservisitante.ListaVisita();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getCod_familiar_visita()),String.valueOf(p.getCod_paciente_visita()), p.getCedula(), p.getPri_nomb() + "   " + p.getSeg_nombre(), p.getPrim_apell() + "   " + p.getSeg_apelli(),p.getFecha_visita(),p.getHorario_visita()};
+            tb.addRow(cami);
+        });
+    }
+       
+      
+        
      
 
     public void cargarcod() {
@@ -320,6 +335,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         boton_buscar_familiar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txt_codigo_familiar = new javax.swing.JTextField();
+        refrescar_tabla = new javax.swing.JButton();
 
         txt_buscar_paciente_dialog.setText("Buscar...");
         txt_buscar_paciente_dialog.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -425,7 +441,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                 boton_guardar_registroActionPerformed(evt);
             }
         });
-        jPanel2.add(boton_guardar_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 330, -1, -1));
+        jPanel2.add(boton_guardar_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 330, -1, -1));
 
         boton_regresar_acceso_recepcionista.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         boton_regresar_acceso_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
@@ -437,7 +453,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                 boton_regresar_acceso_recepcionistaActionPerformed(evt);
             }
         });
-        jPanel2.add(boton_regresar_acceso_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 330, 40, 40));
+        jPanel2.add(boton_regresar_acceso_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 330, 40, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Cedula Visitante:");
@@ -457,7 +473,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jPanel2.add(boton_buscar_paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Hora de Entrada");
+        jLabel4.setText("Horario de Visita");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 70, -1, -1));
 
         combohorariovisita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion una hora", "1pm-2pm", "2pm-3pm", "3pm-4pm", "4pm-5pm", "5pm-6pm", " " }));
@@ -503,7 +519,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "E-mail", "Sexo", "Dirección", "Celular", "Tipo de sangre", "Seguro", "Fecha de nacimiento", "Fecha de ingreso"
+                "Codigo Visita", "Codigo Familiar", "Codigo Paciente", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido", "Fecha Visita", "Horario de Visita"
             }
         ));
         jScrollPane2.setViewportView(tablavisitante);
@@ -540,6 +556,17 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jLabel14.setText("Codigo Familiar:");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
         jPanel2.add(txt_codigo_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 50, 30));
+
+        refrescar_tabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        refrescar_tabla.setToolTipText("Cargar");
+        refrescar_tabla.setBorder(null);
+        refrescar_tabla.setOpaque(false);
+        refrescar_tabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refrescar_tablaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(refrescar_tabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 330, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -619,6 +646,11 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         txt_buscar_paciente_dialog.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_buscar_paciente_dialogMousePressed
 
+    private void refrescar_tablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrescar_tablaActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_refrescar_tablaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -681,6 +713,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton refrescar_tabla;
     private javax.swing.JDialog registro_paciente;
     private javax.swing.JTable tabla_paciente_dialog;
     private javax.swing.JTable tablavisitante;
