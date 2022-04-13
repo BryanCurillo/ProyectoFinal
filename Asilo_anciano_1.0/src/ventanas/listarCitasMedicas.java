@@ -5,19 +5,82 @@
  */
 package ventanas;
 
-/**
- *
- * @author User
- */
+import clases.doctor;
+import clases.paciente;
+import conexion_bada.Insert;
+import conexion_bada.Insert_ChequeoMedico;
+import conexion_bada.Insert_doctor;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class listarCitasMedicas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form listarCitasMedicas
-     */
+    Insert inserpaciente = new Insert();
+    Insert_doctor inserdoctor = new Insert_doctor();
+    Insert_ChequeoMedico inserchequeo = new Insert_ChequeoMedico();
+    
     public listarCitasMedicas() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        CargarDatosChequeoTabla();
     }
 
+    public void CargarDatosChequeoTabla() {
+
+        var citfiltro = new ArrayList<clases.cita_medica>();
+        inserchequeo.ListaChequeo().forEach((e) -> {
+            citfiltro.add(e);
+        });
+        String matriz[][] = new String[citfiltro.size()][13];
+
+        if (!citfiltro.isEmpty()) {
+
+            var pacifiltro = new ArrayList<paciente>();
+            inserchequeo.ListaChequeoPaciente().forEach((e) -> {
+                pacifiltro.add(e);
+            });
+
+            for (int i = 0; i < pacifiltro.size(); i++) {
+
+                matriz[i][0] = pacifiltro.get(i).getCedula();
+                matriz[i][1] = pacifiltro.get(i).getPri_nomb() + " " + pacifiltro.get(i).getSeg_nombre();
+                matriz[i][2] = pacifiltro.get(i).getPrim_apell() + " " + pacifiltro.get(i).getSeg_apelli();
+
+            }
+
+            var docfiltro = new ArrayList<doctor>();
+            inserchequeo.ListaChequeoDoctor().forEach((e) -> {
+                docfiltro.add(e);
+            });
+
+            for (int j = 0; j < docfiltro.size(); j++) {
+
+                matriz[j][3] = docfiltro.get(j).getCedula();
+                matriz[j][4] = docfiltro.get(j).getPri_nomb() + " " + docfiltro.get(j).getSeg_nombre();
+                matriz[j][5] = docfiltro.get(j).getPrim_apell() + " " + docfiltro.get(j).getSeg_apelli();
+                matriz[j][6] = docfiltro.get(j).getEspecialidad();
+
+            }
+
+            for (int j = 0; j < citfiltro.size(); j++) {
+
+                matriz[j][7] = citfiltro.get(j).getFecha_chequeoActual();
+                matriz[j][8] = citfiltro.get(j).getHoraChequeo();
+
+            }
+
+            TablaChequeos.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "Cédula del paciente", "Nombres del paciente", "Apellidos del paciente", "Cédula del doctor", "Nombres del doctor", "Apellidos del doctor", "Especialidad del doctor", "Fecha del chequeo médico", "Hora del chequeo médico"
+                    }
+            ));
+
+        }else{
+            JOptionPane.showMessageDialog(null, "No existe chequeos medicos registrados");
+        }
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,20 +90,23 @@ public class listarCitasMedicas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaChequeos = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LISTADO DE CHEQUEOS MEDICOS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 11, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar_de_los_ancianos__1_-removebg-preview (2).png"))); // NOI18N
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaChequeos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -51,33 +117,22 @@ public class listarCitasMedicas extends javax.swing.JFrame {
                 "Cedula del Paciente", " Nombres del Paciente", "Apellidos del Paciente", "Nombre del Doctor", "Apellido del Doctor", "Especialidad del Doctor", "Fecha Chequeo ", "Hora  Chequeo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaChequeos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1024, 126));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar_de_los_ancianos__1_-removebg-preview (2).png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(906, 11, -1, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(29, 29, 29))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
         );
 
         pack();
@@ -119,9 +174,10 @@ public class listarCitasMedicas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaChequeos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
