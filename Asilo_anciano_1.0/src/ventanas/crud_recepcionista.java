@@ -197,7 +197,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
         if (recepfiltro.size() != 0) {
             String matriz[][] = new String[recepfiltro.size()][14];
             for (int j = 0; j < recepfiltro.size(); j++) {
-                matriz[j][0] = recepfiltro.get(j).getCodigo();
+                matriz[j][0] = String.valueOf(recepfiltro.get(j).getCodigo());
                 matriz[j][1] = recepfiltro.get(j).getCedula();
                 matriz[j][2] = recepfiltro.get(j).getPri_nomb();
                 matriz[j][3] = recepfiltro.get(j).getSeg_nombre();
@@ -229,7 +229,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<recepcionista> com = inser.ListaRecepcionista();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo(), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getTelefono(), p.getDireccion(), p.getFecha_Nacimiento(), p.getTipo_sangre(), p.getGenero(), p.getHora_ingreso(), p.getHora_salida()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb(), p.getSeg_nombre(), p.getPrim_apell(), p.getSeg_apelli(), p.getCorreo(), p.getTelefono(), p.getDireccion(), p.getFecha_Nacimiento(), p.getTipo_sangre(), p.getGenero(), p.getHora_ingreso(), p.getHora_salida()};
             tb.addRow(cami);
         });
     }
