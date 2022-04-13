@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 
-////////////////
 import clases.paciente;
 import conexion_bada.Insert;
+import conexion_bada.insert_ficha_medica;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FichaMedica extends javax.swing.JFrame {
-
+    insert_ficha_medica mi_ficha=new insert_ficha_medica();
     Insert inser = new Insert();
 
     public FichaMedica() {
@@ -346,9 +346,18 @@ public class FichaMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public void guardarficha(){
+        
+        
+        
+        
+        
+        
+        
+    }
     //Llenar enfermedades en COMBOBOX
     public void LLenarComboBoxEnfermedades() {
         insert_enfermedad inser = new insert_enfermedad();
