@@ -22,7 +22,7 @@ public class Insert_ChequeoMedico extends cita_medica {
     }
 
     public List<cita_medica> ListaChequeo() {
-        String sqls = "select * from cita;";
+        String sqls = "select * from cita where cita_estado = 'Si';";
         ResultSet rs = cone.selectConsulta(sqls);
         List<cita_medica> chequeo = new ArrayList<>();
         try {
