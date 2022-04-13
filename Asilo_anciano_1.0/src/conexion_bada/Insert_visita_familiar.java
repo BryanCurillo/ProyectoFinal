@@ -21,6 +21,13 @@ import java.util.logging.Logger;
 public class Insert_visita_familiar extends visita_familiar {
 
     Conexion cone = new Conexion();
+    
+    public boolean InsertarPersona() {
+        String sql = "INSERT INTO persona(\n"
+                + "	per_cedula, per_primer_nombre,per_segundo_nombre, per_primer_apellido,per_segundo_apellido, per_correo, per_genero, per_direccion,per_tipo_sangre,per_telefono,per_fecha_nacimiento)\n"
+                + "	VALUES ('" + getCedula() + "', '" + getPri_nomb() + "', '" + getSeg_nombre() + "', '" + getPrim_apell() + "', '" + getSeg_apelli() + "', '" + getCorreo() + "', '" + getGenero() + "', '" + getDireccion() + "', '" + getTipo_sangre() + "','" + getTelefono() + "','" + getFecha_Nacimiento() + "');";
+        return cone.InsertUpdateDeleteAcciones(sql);
+    }
 
     public boolean InsertarVisitaFamiliar() {
         String sql = "INSERT INTO visita(\n"
@@ -30,7 +37,7 @@ public class Insert_visita_familiar extends visita_familiar {
     }
     
     public List<visita_familiar>ListaVisita(){
-      String sqls = "select * from visita;";
+      String sqls = "select  from visita,persona;";
         ResultSet rs = cone.selectConsulta(sqls);
         List<visita_familiar> visitante = new ArrayList<>();  
         try{
