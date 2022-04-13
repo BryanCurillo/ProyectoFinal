@@ -18,20 +18,22 @@ public class recepcionista extends persona{
         this.cod_usuario = cod_usuario;
     }
 
+    public recepcionista(String hora_ingreso, String hora_salida, int cod_usuario, int codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
+        super(codigo, cedula, pri_nomb, seg_nombre, prim_apell, seg_apelli, correo, genero, fecha_Nacimiento, direccion, telefono, tipo_sangre);
+        this.hora_ingreso = hora_ingreso;
+        this.hora_salida = hora_salida;
+        this.cod_usuario = cod_usuario;
+    }
+
+
+    
+
     public int getCod_usuario() {
         return cod_usuario;
     }
 
     public void setCod_usuario(int cod_usuario) {
         this.cod_usuario = cod_usuario;
-    }
-
-    
-
-    public recepcionista(String hora_ingreso, String hora_salida, String codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
-        super(codigo, cedula, pri_nomb, seg_nombre, prim_apell, seg_apelli, correo, genero, fecha_Nacimiento, direccion, telefono, tipo_sangre);
-        this.hora_ingreso = hora_ingreso;
-        this.hora_salida = hora_salida;
     }
 
     public String getHora_ingreso() {
