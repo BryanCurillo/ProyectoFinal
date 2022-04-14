@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 
 public class listado_citas extends javax.swing.JFrame {
 
+    Conexion mi_cone = new Conexion();
     Insert_ChequeoMedico inserchequeo = new Insert_ChequeoMedico();
 
     public listado_citas() {
@@ -40,7 +41,7 @@ public class listado_citas extends javax.swing.JFrame {
         boton_regresar_menu_doctor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaChequeosDoctor = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        ChequeoRealizado = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -74,21 +75,26 @@ public class listado_citas extends javax.swing.JFrame {
 
         TablaChequeosDoctor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Cedula del Paciente", " Nombres del Paciente", "Apellidos del Paciente", "Fecha Chequeo ", "Hora  Chequeo"
+                "Codigo de chequeo", "Cedula del Paciente", " Nombres del Paciente", "Apellidos del Paciente", "Fecha Chequeo ", "Hora  Chequeo"
             }
         ));
         jScrollPane1.setViewportView(TablaChequeosDoctor);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
-        jButton3.setToolTipText("CARGAR DATOS");
-        jButton3.setBorder(null);
-        jButton3.setOpaque(false);
+        ChequeoRealizado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        ChequeoRealizado.setToolTipText("CHEQUEO REALIZADO");
+        ChequeoRealizado.setBorder(null);
+        ChequeoRealizado.setOpaque(false);
+        ChequeoRealizado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChequeoRealizadoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("DIGITE SU NÚMERO DE CÉDULA:");
@@ -100,25 +106,26 @@ public class listado_citas extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jButton1)
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton3)
-                        .addGap(47, 47, 47)
-                        .addComponent(boton_regresar_menu_doctor))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addComponent(jLabel3))
+                        .addGap(77, 77, 77)
+                        .addComponent(ChequeoRealizado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                        .addComponent(boton_regresar_menu_doctor)
+                        .addGap(134, 134, 134))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,12 +139,12 @@ public class listado_citas extends javax.swing.JFrame {
                             .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jButton1)
-                            .addComponent(jButton3)
+                            .addComponent(ChequeoRealizado)
                             .addComponent(boton_regresar_menu_doctor)))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,6 +174,10 @@ public class listado_citas extends javax.swing.JFrame {
         FiltrarDatosChequeoTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void ChequeoRealizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChequeoRealizadoActionPerformed
+        ChequeoRealizado();
+    }//GEN-LAST:event_ChequeoRealizadoActionPerformed
+
     public void FiltrarDatosChequeoTabla() {
 
         String cedulaAux = txtCedula.getText();
@@ -183,7 +194,8 @@ public class listado_citas extends javax.swing.JFrame {
             }
         }
 
-        System.out.println("Bien codDoc: " + codDoc);
+        //Conocer codigo del doctor
+        //System.out.println("Bien codDoc: " + codDoc);
 
         var pacidosfiltro = new ArrayList<paciente>();
         inserchequeo.ListaChequeoPacienteDos(codDoc).forEach((e) -> {
@@ -194,9 +206,9 @@ public class listado_citas extends javax.swing.JFrame {
 
         for (int i = 0; i < pacidosfiltro.size(); i++) {
 
-            matriz[i][0] = pacidosfiltro.get(i).getCedula();
-            matriz[i][1] = pacidosfiltro.get(i).getPri_nomb() + " " + pacidosfiltro.get(i).getSeg_nombre();
-            matriz[i][2] = pacidosfiltro.get(i).getPrim_apell() + " " + pacidosfiltro.get(i).getSeg_apelli();
+            matriz[i][1] = pacidosfiltro.get(i).getCedula();
+            matriz[i][2] = pacidosfiltro.get(i).getPri_nomb() + " " + pacidosfiltro.get(i).getSeg_nombre();
+            matriz[i][3] = pacidosfiltro.get(i).getPrim_apell() + " " + pacidosfiltro.get(i).getSeg_apelli();
 
         }
 
@@ -207,17 +219,42 @@ public class listado_citas extends javax.swing.JFrame {
 
         for (int j = 0; j < citfiltro.size(); j++) {
 
-            matriz[j][3] = citfiltro.get(j).getFecha_chequeoActual();
-            matriz[j][4] = citfiltro.get(j).getHoraChequeo();
-
+            matriz[j][4] = citfiltro.get(j).getFecha_chequeoActual();
+            matriz[j][5] = citfiltro.get(j).getHoraChequeo();
+            matriz[j][0] = String.valueOf(citfiltro.get(j).getCodigo_citas());
         }
-        
+
         TablaChequeosDoctor.setModel(new javax.swing.table.DefaultTableModel(
                 matriz,
                 new String[]{
-                    "Cédula del paciente", "Nombres del paciente", "Apellidos del paciente", "Fecha del chequeo médico", "Hora del chequeo médico"
+                    "Codigo de chequeo", "Cédula del paciente", "Nombres del paciente", "Apellidos del paciente", "Fecha del chequeo médico", "Hora del chequeo médico"
                 }
         ));
+    }
+
+    public void ChequeoRealizado() {
+
+        int fila = TablaChequeosDoctor.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+
+            int response = JOptionPane.showConfirmDialog(this, "Los chequeos realizados se perderan y ya no podra vizualizarlos\n¿Aceptar?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+
+                String codigoCita;
+                codigoCita = TablaChequeosDoctor.getValueAt(fila, 0).toString();
+                try {
+                    mi_cone.InsertUpdateDeleteAcciones("UPDATE cita SET cita_estado = 'No' Where cita_codigo = '" + codigoCita + "'");
+                    JOptionPane.showMessageDialog(null, "La cita ha sido cancelada con éxito");
+                    FiltrarDatosChequeoTabla();
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
+            }
+        }
+
     }
 
     /**
@@ -256,10 +293,10 @@ public class listado_citas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ChequeoRealizado;
     private javax.swing.JTable TablaChequeosDoctor;
     private javax.swing.JButton boton_regresar_menu_doctor;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
