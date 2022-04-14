@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 
 public class listarCitasMedicas extends javax.swing.JFrame {
 
-    Insert inserpaciente = new Insert();
-    Insert_doctor inserdoctor = new Insert_doctor();
+    //Insert inserpaciente = new Insert();
+    //Insert_doctor inserdoctor = new Insert_doctor();
     Insert_ChequeoMedico inserchequeo = new Insert_ChequeoMedico();
-    
+
     public listarCitasMedicas() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -76,11 +76,12 @@ public class listarCitasMedicas extends javax.swing.JFrame {
                     }
             ));
 
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "No existe chequeos medicos registrados");
         }
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
