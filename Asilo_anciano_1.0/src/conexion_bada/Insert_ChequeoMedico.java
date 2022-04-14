@@ -100,6 +100,52 @@ public class Insert_ChequeoMedico extends cita_medica {
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public List<paciente> ListaChequeoPacienteDos(int codigoDoc) {
+        String sqls = "Select pac.paci_cedula,per.per_primer_nombre,per.per_segundo_nombre,per.per_primer_apellido,per.per_segundo_apellido,cit.cita_fecha,cit.cita_hora from cita cit, doctor doc, paciente pac, persona per where cit.cita_codigo_paciente = pac.paci_codigo and pac.paci_cedula = per.per_cedula and doc.doc_codigo = cit.cita_codigo_doctor and cit.cita_estado = 'Si' and cit.cita_codigo_doctor = '" + codigoDoc + "';";
+        ResultSet rescheckpaciente = cone.selectConsulta(sqls);
+        List<paciente> checkpaciente = new ArrayList<>();
+
+        try {
+            while (rescheckpaciente.next()) {
+
+                paciente mi_checkpaci = new paciente();
+                mi_checkpaci.setCedula(rescheckpaciente.getString("paci_cedula"));
+                mi_checkpaci.setPri_nomb(rescheckpaciente.getString("per_primer_nombre"));
+                mi_checkpaci.setSeg_nombre(rescheckpaciente.getString("per_segundo_nombre"));
+                mi_checkpaci.setPrim_apell(rescheckpaciente.getString("per_primer_apellido"));
+                mi_checkpaci.setSeg_apelli(rescheckpaciente.getString("per_segundo_apellido"));
+
+                checkpaciente.add(mi_checkpaci);
+            }
+            return checkpaciente;
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public List<cita_medica> ListaChequeoDos(int codigoDoc) {
+        String sqls = "Select pac.paci_cedula,per.per_primer_nombre,per.per_segundo_nombre,per.per_primer_apellido,per.per_segundo_apellido,cit.cita_fecha,cit.cita_hora from cita cit, doctor doc, paciente pac, persona per where cit.cita_codigo_paciente = pac.paci_codigo and pac.paci_cedula = per.per_cedula and doc.doc_codigo = cit.cita_codigo_doctor and cit.cita_estado = 'Si' and cit.cita_codigo_doctor = '" + codigoDoc + "';";
+        ResultSet rs = cone.selectConsulta(sqls);
+        List<cita_medica> chequeo = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                cita_medica mi_chequeo = new cita_medica();
+
+                mi_chequeo.setFecha_chequeoActual(rs.getString("cita_fecha"));
+                mi_chequeo.setHoraChequeo(rs.getString("cita_hora"));
+
+                chequeo.add(mi_chequeo);
+            }
+            rs.close();
+            return chequeo;
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
     public int cargarcodigo() {
         int codigo = 0;
         String sqls = "select max(cita_codigo) from cita;";
