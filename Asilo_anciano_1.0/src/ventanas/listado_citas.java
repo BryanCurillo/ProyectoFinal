@@ -246,7 +246,7 @@ public class listado_citas extends javax.swing.JFrame {
                 String codigoCita;
                 codigoCita = TablaChequeosDoctor.getValueAt(fila, 0).toString();
                 try {
-                    mi_cone.InsertUpdateDeleteAcciones("UPDATE cita SET cita_estado = 'No' Where cita_codigo = '" + codigoCita + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("UPDATE cita SET cita_check = 'No' Where cita_codigo = '" + codigoCita + "'");
                     JOptionPane.showMessageDialog(null, "La cita ha sido cancelada con éxito");
                     FiltrarDatosChequeoTabla();
                 } catch (Exception e) {
