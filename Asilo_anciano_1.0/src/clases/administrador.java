@@ -17,9 +17,6 @@ public class administrador extends persona {
         this.cod_usuario = cod_usuario;
     }
 
-   
-
-
     public String getNivel_educacion() {
         return nivel_educacion;
     }
