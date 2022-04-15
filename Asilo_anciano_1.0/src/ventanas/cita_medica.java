@@ -631,7 +631,7 @@ public class cita_medica extends javax.swing.JFrame {
                 chequeo.setFecha_chequeoActual(fecha);
 
                 chequeo.setEstado("Si");
-
+                chequeo.setCheck("Si");
                 if (chequeo.InsertarChequeoMedico()) {
                     System.out.println("Conexion Exitosa");
                     LimpiarTodoslosDatos();
