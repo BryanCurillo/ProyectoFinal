@@ -18,10 +18,10 @@ import javax.swing.JOptionPane;
 
 public class listarCitasMedicas extends javax.swing.JFrame {
 
-    Conexion mi_cone = new Conexion();
     //Insert inserpaciente = new Insert();
     //Insert_doctor inserdoctor = new Insert_doctor();
     Insert_ChequeoMedico inserchequeo = new Insert_ChequeoMedico();
+    Conexion mi_cone = new Conexion();
 
     public listarCitasMedicas() {
         initComponents();
@@ -99,7 +99,6 @@ public class listarCitasMedicas extends javax.swing.JFrame {
             codCita = com.get(i).getCodigo_citas();
 
             //System.out.println("CodCita: " + codCita);
-
             matriz[i][0] = String.valueOf(com.get(i).getCodigo_citas());
             matriz[i][8] = com.get(i).getFecha_chequeoActual();
             matriz[i][9] = com.get(i).getHoraChequeo();
@@ -179,6 +178,7 @@ public class listarCitasMedicas extends javax.swing.JFrame {
         TablaChequeos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         CancelarChequeo = new javax.swing.JButton();
+        ModificarCitaMedica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,7 +203,7 @@ public class listarCitasMedicas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaChequeos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1180, 126));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 1180, 190));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar_de_los_ancianos__1_-removebg-preview (2).png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(906, 11, -1, 90));
@@ -215,6 +215,14 @@ public class listarCitasMedicas extends javax.swing.JFrame {
             }
         });
         jPanel1.add(CancelarChequeo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+
+        ModificarCitaMedica.setText("Modificar");
+        ModificarCitaMedica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarCitaMedicaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ModificarCitaMedica, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,6 +241,31 @@ public class listarCitasMedicas extends javax.swing.JFrame {
     private void CancelarChequeoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarChequeoActionPerformed
         CancelarChequeo();
     }//GEN-LAST:event_CancelarChequeoActionPerformed
+
+    private void ModificarCitaMedicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarCitaMedicaActionPerformed
+        modificar_Cita();
+    }//GEN-LAST:event_ModificarCitaMedicaActionPerformed
+
+    public void modificar_Cita() {
+
+        int seleccion = TablaChequeos.getSelectedRow();
+
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            this.dispose();
+            int codigo = (Integer) TablaChequeos.getValueAt(seleccion, 1);
+            inserchequeo.ListaChequeo().forEach((e) -> {
+                if (e.getCodigo_citas() == codigo) {
+
+                    new agregar_citamedica(codigo).setVisible(true);
+                    
+                }
+            });
+
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -271,6 +304,7 @@ public class listarCitasMedicas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelarChequeo;
+    private javax.swing.JButton ModificarCitaMedica;
     private javax.swing.JTable TablaChequeos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
