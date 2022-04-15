@@ -195,7 +195,7 @@ public class listado_citas extends javax.swing.JFrame {
         }
 
         //Conocer codigo del doctor
-        //System.out.println("Bien codDoc: " + codDoc);
+        System.out.println("Bien codDoc: " + codDoc);
 
         var pacidosfiltro = new ArrayList<paciente>();
         inserchequeo.ListaChequeoPacienteDos(codDoc).forEach((e) -> {
