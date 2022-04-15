@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="1200" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -64,7 +64,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="170" width="1024" height="126"/>
+              <AbsoluteConstraints x="10" y="170" width="1180" height="126"/>
             </Constraint>
           </Constraints>
 
@@ -73,11 +73,12 @@
             <Component class="javax.swing.JTable" name="TablaChequeos">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="9" rowCount="4">
+                  <Table columnCount="10" rowCount="4">
                     <Column editable="true" title="Codigo de chequeo" type="java.lang.Object"/>
                     <Column editable="true" title="C&#xe9;dula del paciente" type="java.lang.Object"/>
-                    <Column editable="true" title=" Nombres del Paciente" type="java.lang.Object"/>
+                    <Column editable="true" title="Nombres del Paciente" type="java.lang.Object"/>
                     <Column editable="true" title="Apellidos del Paciente" type="java.lang.Object"/>
+                    <Column editable="true" title="Cedula del doctor" type="java.lang.Object"/>
                     <Column editable="true" title="Nombre del Doctor" type="java.lang.Object"/>
                     <Column editable="true" title="Apellido del Doctor" type="java.lang.Object"/>
                     <Column editable="true" title="Especialidad del Doctor" type="java.lang.Object"/>
