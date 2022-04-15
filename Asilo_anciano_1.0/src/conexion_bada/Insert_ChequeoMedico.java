@@ -133,6 +133,7 @@ public class Insert_ChequeoMedico extends cita_medica {
         }
     }
 
+    
     public List<paciente> ListaChequeoPacienteDos(int codigoDoc) {
         String sqls = "Select cit.cita_codigo,pac.paci_cedula,per.per_primer_nombre,per.per_segundo_nombre,per.per_primer_apellido,per.per_segundo_apellido,cit.cita_fecha,cit.cita_hora from cita cit, doctor doc, paciente pac, persona per where cit.cita_codigo_paciente = pac.paci_codigo and pac.paci_cedula = per.per_cedula and doc.doc_codigo = cit.cita_codigo_doctor and cit.cita_estado = 'Si' and cit.cita_check = 'Si' and cit.cita_codigo_doctor = '" + codigoDoc + "' ORDER BY cit.cita_codigo;";
         ResultSet rescheckpaciente = cone.selectConsulta(sqls);
@@ -157,6 +158,7 @@ public class Insert_ChequeoMedico extends cita_medica {
         }
     }
 
+    
     public List<cita_medica> ListaChequeoDos(int codigoDoc) {
         String sqls = "Select cit.cita_codigo,pac.paci_cedula,per.per_primer_nombre,per.per_segundo_nombre,per.per_primer_apellido,per.per_segundo_apellido,cit.cita_fecha,cit.cita_hora from cita cit, doctor doc, paciente pac, persona per where cit.cita_codigo_paciente = pac.paci_codigo and pac.paci_cedula = per.per_cedula and doc.doc_codigo = cit.cita_codigo_doctor and cit.cita_estado = 'Si' and cit.cita_check = 'Si' and cit.cita_codigo_doctor = '" + codigoDoc + "' ORDER BY cit.cita_codigo;";
         ResultSet rs = cone.selectConsulta(sqls);
