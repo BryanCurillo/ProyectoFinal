@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ventanas;
+
 import clases.paciente;
 import clases.familiar;
 import clases.persona;
@@ -11,6 +12,7 @@ import clases.visita_familiar;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
+import conexion_bada.Conexion;
 import javax.swing.table.DefaultTableModel;
 import conexion_bada.Insert;
 import conexion_bada.Insert_Persona;
@@ -18,12 +20,16 @@ import conexion_bada.Insert_visita_familiar;
 import conexion_bada.Insert_familiar;
 import java.util.Calendar;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Usuario
  */
 public class crud_vistafamiliar extends javax.swing.JFrame {
 
+    Conexion cone = new Conexion();
     Insert inser = new Insert();
     Insert_visita_familiar inservisitante = new Insert_visita_familiar();
     Insert_familiar insertfamiliar = new Insert_familiar();
@@ -39,12 +45,10 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         BloquearCamposFamiliar();
         BloquearCamposPaciente();
         cargarTabla();
-       
-        
+
     }
 
-    
-   public void Buscar_Familiar() {
+    public void Buscar_Familiar() {
         String cedula = txtvisitcedula.getText();
         var familiarfiltro = new ArrayList<familiar>();
         insertfamiliar.ListaFamiliar().forEach((e) -> {
@@ -65,7 +69,8 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             LimpiarCamposVisita();
         }
     }
-     public void IngresarVisitante() {
+
+    public void IngresarVisitante() {
         Insert_visita_familiar fam = new Insert_visita_familiar();
 
         if (ValidarDatos()) {
@@ -103,8 +108,10 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
             }
         }
+
     }
-      public void Buscar_PacienteDialog() {
+
+    public void Buscar_PacienteDialog() {
         String cedula = txt_buscar_paciente_dialog.getText();
         var pacienteDialogfiltro = new ArrayList<paciente>();
         inser.ListaPaciente().forEach((e) -> {
@@ -120,7 +127,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                 matriz[j][1] = pacienteDialogfiltro.get(j).getCedula();
                 matriz[j][2] = pacienteDialogfiltro.get(j).getPri_nomb() + "  " + pacienteDialogfiltro.get(j).getSeg_nombre();
                 matriz[j][3] = pacienteDialogfiltro.get(j).getPrim_apell() + "  " + pacienteDialogfiltro.get(j).getSeg_apelli();;
-               
 
             }
             tabla_paciente_dialog.setModel(new javax.swing.table.DefaultTableModel(
@@ -133,7 +139,8 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El paciente no se encuentra registrado");
         }
     }
-       public void CargarTodosLosPacientes() {
+
+    public void CargarTodosLosPacientes() {
         DefaultTableModel tb = (DefaultTableModel) tabla_paciente_dialog.getModel();
         tb.setNumRows(0);
         List<paciente> com = inser.ListaPaciente();
@@ -142,7 +149,8 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             tb.addRow(cami);
         });
     }
-       public void CargarDatosPacienteEnTXT() {
+
+    public void CargarDatosPacienteEnTXT() {
         int fila = tabla_paciente_dialog.getSelectedRow();
 
         if (fila == -1) {
@@ -153,26 +161,23 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             String cedulaAux;
             String nombresAux;
             String apellidosAux;
-            
-            
+
             codigoAux = tabla_paciente_dialog.getValueAt(fila, 0).toString();
             cedulaAux = tabla_paciente_dialog.getValueAt(fila, 1).toString();
             nombresAux = tabla_paciente_dialog.getValueAt(fila, 2).toString();
             apellidosAux = tabla_paciente_dialog.getValueAt(fila, 3).toString();
-            
-            
-            
+
             txt_codigo_paciente_visita.setText(codigoAux);
             txt_cedula_paciente_visita.setText(cedulaAux);
             txt_nombre_paciente_visita.setText(nombresAux);
             txt_apellido_paciente_visita.setText(apellidosAux);
-            
-                    
+
             registro_paciente.dispose();
         }
 
     }
-        public void buscar_Paciente() {
+
+    public void buscar_Paciente() {
         String cedula = txt_cedula_paciente_visita.getText();
         var pacientefiltro = new ArrayList<paciente>();
         inser.ListaPaciente().forEach((e) -> {
@@ -187,7 +192,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                 txt_codigo_paciente_visita.setText(String.valueOf(p.getCodigo()));
                 txt_nombre_paciente_visita.setText(p.getPri_nomb().toString());
                 txt_apellido_paciente_visita.setText(p.getPrim_apell().toString());
-             
 
             });
 
@@ -196,19 +200,49 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             LimpiarCamposPaciente();
         }
     }
-         public void cargarTabla() {
-        DefaultTableModel tb = (DefaultTableModel) tablavisitante.getModel();
-        tb.setNumRows(0);
-        List<visita_familiar> com = inservisitante.ListaVisita();
-        com.stream().forEach(p -> {
-            String[] cami = {String.valueOf(p.getCod_visita()),String.valueOf(p.getCod_familiar_visita()),String.valueOf(p.getCod_paciente_visita()),p.getPri_nomb(),p.getSeg_nombre(),p.getPrim_apell(),p.getSeg_apelli(),p.getFecha_visita(),p.getHorario_visita()};
-            tb.addRow(cami);
+
+    public void cargarTabla() {
+         
+        int cod = 0;
+        Insert_visita_familiar insertvisita = new Insert_visita_familiar();
+        var visitafiltro = new ArrayList<familiar>();
+        insertvisita.ListaFamiliares().forEach((e) -> {
+            visitafiltro.add(e);
         });
+
+        String matriz[][] = new String[visitafiltro.size()][9];
+
+        for (int i = 0; i < visitafiltro.size(); i++) {
+
+            
+            matriz[i][3] = visitafiltro.get(i).getPri_nomb();
+            matriz[i][4] = visitafiltro.get(i).getSeg_nombre();
+            matriz[i][5] = visitafiltro.get(i).getPrim_apell();
+            matriz[i][6] = visitafiltro.get(i).getSeg_apelli();
+
+        }
+
+        var registrofiltro = new ArrayList<clases.visita_familiar>();
+        inservisitante.ListaVisita().forEach((e) -> {
+            registrofiltro.add(e);
+        });
+
+        for (int j = 0; j < registrofiltro.size(); j++) {
+
+            matriz[j][0] = String.valueOf(registrofiltro.get(j).getCod_visita());
+            matriz[j][1] = String.valueOf(registrofiltro.get(j).getCod_familiar_visita());
+            matriz[j][2] = String.valueOf(registrofiltro.get(j).getCod_paciente_visita());
+            matriz[j][7] = registrofiltro.get(j).getFecha_visita();
+            matriz[j][8] = registrofiltro.get(j).getHorario_visita();
+        }
+
+        tablavisitante.setModel(new javax.swing.table.DefaultTableModel(
+                matriz,
+                new String[]{
+                    "Codigo Visitante","Codigo Familiar","Codigo Paciente", "Primer Nombre ", "Segundo Nombre","Primer Apellido","Segundo Apellido","Fecha de Visita", "Horario Visita"
+                }
+        ));
     }
-       
-      
-        
-     
 
     public void cargarcod() {
         txt_codigo_registro.setEnabled(false);
@@ -221,7 +255,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
         if (txtvisitcedula.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese la cedula del paciente");
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del visitante");
         }
 
         if (txt_codigo_paciente_visita.getText().isEmpty()) {
@@ -230,7 +264,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
         if (txt_codigo_registro.getText().isEmpty()) {
             validado = false;
-            JOptionPane.showMessageDialog(this, "Ingrese la cedula del doctor");
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del visitante");
         }
 
         if (txt_cedula_paciente_visita.getText().isEmpty()) {
@@ -238,14 +272,31 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         }
 
         if (combohorariovisita.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Ingrese la hora del chequeo médico");
+            JOptionPane.showMessageDialog(this, "Ingrese la hora de la visita del familiar");
         }
 
         if (fecha_visita.getCalendar() == null) {
-            JOptionPane.showMessageDialog(this, "Ingrese la fecha del chequeo médico");
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha de la visita del familiar");
         }
 
         return validado;
+    }
+
+    public boolean validarduplicado(String cedula) throws SQLException {
+        boolean validar = false;
+        int codigo = 0;
+        String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
+        ResultSet dup = cone.selectConsulta(sqls);
+//        try {catch
+        while (dup.next()) {
+            codigo = dup.getInt("count");
+        }
+        if (codigo == 0) {
+            validar = true;
+        }
+
+        System.out.println("repetido=" + codigo);
+        return validar;
     }
 
     public void LimpiarTodoslosDatos() {
@@ -256,7 +307,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         txtvisitcedula.setText("");
         fecha_visita.setCalendar(null);
         combohorariovisita.setSelectedIndex(0);
-        
 
     }
 
@@ -272,16 +322,17 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         txtvisitapellido.setText("");
 
     }
+
     public void BloquearCamposPaciente() {
-        
+
         txt_cedula_paciente_visita.setEditable(false);
         txt_codigo_paciente_visita.setEditable(false);
         txt_nombre_paciente_visita.setEditable(false);
         txt_apellido_paciente_visita.setEditable(false);
-        
-        
+
     }
-       public void BloquearCamposFamiliar() {
+
+    public void BloquearCamposFamiliar() {
         txt_codigo_familiar.setEditable(false);
         txtvisitnombre.setEditable(false);
         txtvisitapellido.setEditable(false);
@@ -335,7 +386,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         boton_buscar_familiar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txt_codigo_familiar = new javax.swing.JTextField();
-        refrescar_tabla = new javax.swing.JButton();
 
         txt_buscar_paciente_dialog.setText("Buscar...");
         txt_buscar_paciente_dialog.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -424,8 +474,8 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("REGISTRO DE VISITANTE");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        jLabel2.setText("REGISTRO DE VISITA");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Fecha de Visita:");
@@ -476,7 +526,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jLabel4.setText("Horario de Visita");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 70, -1, -1));
 
-        combohorariovisita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion una hora", "1pm-2pm", "2pm-3pm", "3pm-4pm", "4pm-5pm", "5pm-6pm", " " }));
+        combohorariovisita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccion una hora", "1pm-2pm", "2pm-3pm", "3pm-4pm", "4pm-5pm", "5pm-6pm" }));
         combohorariovisita.setOpaque(false);
         combohorariovisita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -557,17 +607,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
         jPanel2.add(txt_codigo_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 50, 30));
 
-        refrescar_tabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
-        refrescar_tabla.setToolTipText("Cargar");
-        refrescar_tabla.setBorder(null);
-        refrescar_tabla.setOpaque(false);
-        refrescar_tabla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refrescar_tablaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(refrescar_tabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 330, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -584,7 +623,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
     private void boton_buscar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscar_pacienteActionPerformed
         // TODO add your handling code here:
-        
+
         registro_paciente.setSize(529, 309);
         CargarTodosLosPacientes();
         registro_paciente.setVisible(true);
@@ -606,19 +645,19 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private void boton_buscar_familiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscar_familiarActionPerformed
         // TODO add your handling code here:
         Buscar_Familiar();
-      
+
 
     }//GEN-LAST:event_boton_buscar_familiarActionPerformed
 
     private void boton_buscar_paciente_visita_dialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscar_paciente_visita_dialogActionPerformed
         // TODO add your handling code here:
-          if (!txt_buscar_paciente_dialog.getText().isEmpty()) {
+        if (!txt_buscar_paciente_dialog.getText().isEmpty()) {
             Buscar_PacienteDialog();
         } else {
             JOptionPane.showMessageDialog(this, "Ingrese la cedula del paciente");
         }
-        
-        
+
+
     }//GEN-LAST:event_boton_buscar_paciente_visita_dialogActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -638,6 +677,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
             //System.out.println("Error: " + x);
         }
+        cargarTabla();
     }//GEN-LAST:event_boton_guardar_registroActionPerformed
 
     private void txt_buscar_paciente_dialogMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_buscar_paciente_dialogMousePressed
@@ -645,11 +685,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         txt_buscar_paciente_dialog.setText("");
         txt_buscar_paciente_dialog.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_buscar_paciente_dialogMousePressed
-
-    private void refrescar_tablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrescar_tablaActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_refrescar_tablaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -713,7 +748,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton refrescar_tabla;
     private javax.swing.JDialog registro_paciente;
     private javax.swing.JTable tabla_paciente_dialog;
     private javax.swing.JTable tablavisitante;
