@@ -155,12 +155,12 @@ public class listadoDeCitasDoctor extends javax.swing.JFrame {
         jLabel1.setText("Listado de Chequeos Medicos del Paciente");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("Buscar Cedula:");
+        jLabel2.setText("Digite su número de cédula:");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar_de_los_ancianos__1_-removebg-preview (2).png"))); // NOI18N
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
-        jButton1.setToolTipText("BUSCAR PACIENTE");
+        jButton1.setToolTipText("BUSCAR CITAS PENDIENTES");
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -227,11 +227,11 @@ public class listadoDeCitasDoctor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
+                    .addComponent(ChequeoRealizado)
+                    .addComponent(boton_regresar_menu_doctor)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)
-                        .addComponent(ChequeoRealizado)
-                        .addComponent(boton_regresar_menu_doctor)))
+                        .addComponent(jButton1)))
                 .addGap(55, 55, 55)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
