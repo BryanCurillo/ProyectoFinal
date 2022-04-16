@@ -14,14 +14,15 @@ import javax.swing.JOptionPane;
 
 public class listarCitasMedicas extends javax.swing.JFrame {
 
-    //Insert inserpaciente = new Insert();
-    //Insert_doctor inserdoctor = new Insert_doctor();
+
+    public static int abrir;
     Insert_ChequeoMedico inserchequeo = new Insert_ChequeoMedico();
     Conexion mi_cone = new Conexion();
 
     public listarCitasMedicas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
         CargarDatosChequeoTabla();
     }
 
@@ -175,6 +176,7 @@ public class listarCitasMedicas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         CancelarChequeo = new javax.swing.JButton();
         ModificarCitaMedica = new javax.swing.JButton();
+        Regresar_acceso_recepcionista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -220,6 +222,19 @@ public class listarCitasMedicas extends javax.swing.JFrame {
         });
         jPanel1.add(ModificarCitaMedica, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
+        Regresar_acceso_recepcionista.setBackground(new java.awt.Color(204, 204, 204));
+        Regresar_acceso_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        Regresar_acceso_recepcionista.setToolTipText("Regresar");
+        Regresar_acceso_recepcionista.setBorder(null);
+        Regresar_acceso_recepcionista.setFocusPainted(false);
+        Regresar_acceso_recepcionista.setOpaque(false);
+        Regresar_acceso_recepcionista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Regresar_acceso_recepcionistaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Regresar_acceso_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -242,8 +257,16 @@ public class listarCitasMedicas extends javax.swing.JFrame {
         modificar_Cita();
     }//GEN-LAST:event_ModificarCitaMedicaActionPerformed
 
+    private void Regresar_acceso_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_acceso_recepcionistaActionPerformed
+        agregar_citamedica mi_cita = new agregar_citamedica();
+        abrir = 0;
+        mi_cita.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Regresar_acceso_recepcionistaActionPerformed
+
     public void modificar_Cita() {
 
+        
         int seleccion = TablaChequeos.getSelectedRow();
 
         if (seleccion == -1) {
@@ -257,9 +280,9 @@ public class listarCitasMedicas extends javax.swing.JFrame {
                 
                 String codigoAux = String.valueOf(e.getCodigo_citas());
                 if ( codigoAux.equals(codigo)) {
-                    new agregar_citamedica(codigo).setVisible(true);
+                    abrir = 1;
+                    new agregar_citamedica(codigo).setVisible(true); 
                     this.dispose();
-
                 }
             });
         }
@@ -303,6 +326,7 @@ public class listarCitasMedicas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelarChequeo;
     private javax.swing.JButton ModificarCitaMedica;
+    private javax.swing.JButton Regresar_acceso_recepcionista;
     private javax.swing.JTable TablaChequeos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
