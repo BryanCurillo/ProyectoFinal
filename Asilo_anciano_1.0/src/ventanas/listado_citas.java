@@ -41,9 +41,9 @@ public class listado_citas extends javax.swing.JFrame {
         boton_regresar_menu_doctor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaChequeosDoctor = new javax.swing.JTable();
-        ChequeoRealizado = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        ChequeoRealizado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,20 +86,17 @@ public class listado_citas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaChequeosDoctor);
 
-        ChequeoRealizado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
-        ChequeoRealizado.setToolTipText("CHEQUEO REALIZADO");
-        ChequeoRealizado.setBorder(null);
-        ChequeoRealizado.setOpaque(false);
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("DIGITE SU NÚMERO DE CÉDULA:");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar_de_los_ancianos__1_-removebg-preview (2).png"))); // NOI18N
+
+        ChequeoRealizado.setText("Chequeo atendido");
         ChequeoRealizado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChequeoRealizadoActionPerformed(evt);
             }
         });
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("DIGITE SU NÚMERO DE CÉDULA:");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar_de_los_ancianos__1_-removebg-preview (2).png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,9 +115,9 @@ public class listado_citas extends javax.swing.JFrame {
                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jButton1)
-                        .addGap(77, 77, 77)
+                        .addGap(50, 50, 50)
                         .addComponent(ChequeoRealizado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                         .addComponent(boton_regresar_menu_doctor)
                         .addGap(134, 134, 134))))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -139,8 +136,8 @@ public class listado_citas extends javax.swing.JFrame {
                             .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jButton1)
-                            .addComponent(ChequeoRealizado)
-                            .addComponent(boton_regresar_menu_doctor)))
+                            .addComponent(boton_regresar_menu_doctor)
+                            .addComponent(ChequeoRealizado)))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,10 +244,10 @@ public class listado_citas extends javax.swing.JFrame {
                 codigoCita = TablaChequeosDoctor.getValueAt(fila, 0).toString();
                 try {
                     mi_cone.InsertUpdateDeleteAcciones("UPDATE cita SET cita_check = 'No' Where cita_codigo = '" + codigoCita + "'");
-                    JOptionPane.showMessageDialog(null, "La cita se ha vaciado con éxito");
+                    JOptionPane.showMessageDialog(null, "La chequeo se ha vaciado de su lista con éxito");
                     FiltrarDatosChequeoTabla();
                 } catch (Exception e) {
-                    System.out.println(e.toString());
+                    //System.out.println(e.toString());
                 }
             }
         }
