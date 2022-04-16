@@ -82,11 +82,11 @@
                   <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="ChequeoRealizado" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="boton_regresar_menu_doctor" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtCedula" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ChequeoRealizado" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="boton_regresar_menu_doctor" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
@@ -133,7 +133,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Buscar Cedula:"/>
+            <Property name="text" type="java.lang.String" value="Digite su n&#xfa;mero de c&#xe9;dula:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCedula">
@@ -150,7 +150,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/buscar (2).png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="BUSCAR PACIENTE"/>
+            <Property name="toolTipText" type="java.lang.String" value="BUSCAR CITAS PENDIENTES"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
