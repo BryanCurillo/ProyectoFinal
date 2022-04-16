@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ventanas;
 
+import ventanas.agregar_citamedica;
 import clases.doctor;
 import clases.paciente;
 import clases.cita_medica;
@@ -253,18 +249,20 @@ public class listarCitasMedicas extends javax.swing.JFrame {
         if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
-            this.dispose();
-            int codigo = (Integer) TablaChequeos.getValueAt(seleccion, 1);
-            inserchequeo.ListaChequeo().forEach((e) -> {
-                if (e.getCodigo_citas() == codigo) {
 
+            String codigo = TablaChequeos.getValueAt(seleccion, 0).toString();
+            System.out.println(codigo);
+
+            inserchequeo.ListaChequeo().forEach((e) -> {
+                
+                String codigoAux = String.valueOf(e.getCodigo_citas());
+                if ( codigoAux.equals(codigo)) {
                     new agregar_citamedica(codigo).setVisible(true);
-                    
+                    this.dispose();
+
                 }
             });
-
         }
-
     }
 
     /**
