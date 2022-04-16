@@ -152,7 +152,7 @@ public class listadoDeCitasDoctor extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TablaChequeosDoctor);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setText("Listado de Chequeos Medicos");
+        jLabel1.setText("Listado de Chequeos Medicos del Paciente");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Buscar Cedula:");
@@ -197,9 +197,9 @@ public class listadoDeCitasDoctor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 277, Short.MAX_VALUE)
+                        .addGap(0, 264, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(289, 289, 289)
+                        .addGap(89, 89, 89)
                         .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
