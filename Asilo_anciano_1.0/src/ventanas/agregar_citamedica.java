@@ -213,7 +213,10 @@ public class agregar_citamedica extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaDoctorDialog);
 
-        ActualizarJDialog.setText("Actualizar");
+        ActualizarJDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        ActualizarJDialog.setToolTipText("ACTUALIZAR");
+        ActualizarJDialog.setBorder(null);
+        ActualizarJDialog.setOpaque(false);
         ActualizarJDialog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ActualizarJDialogActionPerformed(evt);
@@ -226,10 +229,10 @@ public class agregar_citamedica extends javax.swing.JFrame {
             CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CargarChequeoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(CargarChequeoLayout.createSequentialGroup()
-                        .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(ActualizarJDialog)
@@ -241,13 +244,18 @@ public class agregar_citamedica extends javax.swing.JFrame {
         CargarChequeoLayout.setVerticalGroup(
             CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CargarChequeoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cargarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ActualizarJDialog))
-                .addGap(21, 21, 21)
+                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CargarChequeoLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ActualizarJDialog))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CargarChequeoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cargarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -279,7 +287,10 @@ public class agregar_citamedica extends javax.swing.JFrame {
             }
         });
 
-        ActualizarPacienteJDialog.setText("Actualizar");
+        ActualizarPacienteJDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        ActualizarPacienteJDialog.setToolTipText("ACTUALIZAR ");
+        ActualizarPacienteJDialog.setBorder(null);
+        ActualizarPacienteJDialog.setOpaque(false);
         ActualizarPacienteJDialog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ActualizarPacienteJDialogActionPerformed(evt);
@@ -314,27 +325,33 @@ public class agregar_citamedica extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
-                        .addComponent(text_buscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                        .addComponent(text_buscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
                         .addComponent(BotonBuscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(ActualizarPacienteJDialog)
+                        .addGap(28, 28, 28)
+                        .addComponent(ActualizarPacienteJDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CargarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(CargarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
         );
         CargarDatosPacienteLayout.setVerticalGroup(
             CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CargarDatosPacienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonBuscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(text_buscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ActualizarPacienteJDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(CargarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addGap(26, 26, 26)
+                .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(text_buscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CargarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ActualizarPacienteJDialog)
+                            .addComponent(BotonBuscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -376,7 +393,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CHEQUEO MÉDICO");
+        jLabel1.setText("CHEQUEO MÉDICO ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Cedula Paciente:");
@@ -449,7 +466,10 @@ public class agregar_citamedica extends javax.swing.JFrame {
             }
         });
 
-        BotonListarregistros.setText("Revisar chequeos");
+        BotonListarregistros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/revision-de-codigo.png"))); // NOI18N
+        BotonListarregistros.setToolTipText("REVISAR CHEQUEOS MEDICOS");
+        BotonListarregistros.setBorder(null);
+        BotonListarregistros.setOpaque(false);
         BotonListarregistros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonListarregistrosActionPerformed(evt);
@@ -547,9 +567,9 @@ public class agregar_citamedica extends javax.swing.JFrame {
                     .addComponent(BotonGuardar))
                 .addGap(69, 69, 69)
                 .addComponent(BotonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(59, 59, 59)
                 .addComponent(BotonListarregistros)
-                .addGap(38, 38, 38)
+                .addGap(67, 67, 67)
                 .addComponent(boton_regresar_acceso_recepcionista)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
