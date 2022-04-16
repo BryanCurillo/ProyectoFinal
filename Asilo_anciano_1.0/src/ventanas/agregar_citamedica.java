@@ -189,7 +189,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
         });
 
         cargarDoctorDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
-        cargarDoctorDialog.setToolTipText("CARGAR CEDULA");
+        cargarDoctorDialog.setToolTipText("CARGAR DATOS");
         cargarDoctorDialog.setBorder(null);
         cargarDoctorDialog.setOpaque(false);
         cargarDoctorDialog.addActionListener(new java.awt.event.ActionListener() {
@@ -298,7 +298,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
         });
 
         CargarPacienteDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
-        CargarPacienteDialog.setToolTipText("CARGAR CEDULA");
+        CargarPacienteDialog.setToolTipText("CARGAR DATOS");
         CargarPacienteDialog.setBorder(null);
         CargarPacienteDialog.setOpaque(false);
         CargarPacienteDialog.addActionListener(new java.awt.event.ActionListener() {
@@ -693,9 +693,9 @@ public class agregar_citamedica extends javax.swing.JFrame {
 
         try {
             IngresarChequeo();
-        } catch (NullPointerException x) {
+        } catch (Exception e) {
 
-            //System.out.println("Error: " + x);
+            System.out.println("Error: " + e);
         }
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
