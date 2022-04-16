@@ -180,13 +180,13 @@ public class listarCitasMedicas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(240, 232, 158));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LISTADO DE CHEQUEOS MEDICOS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 11, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
 
         TablaChequeos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,23 +204,29 @@ public class listarCitasMedicas extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 1180, 190));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar_de_los_ancianos__1_-removebg-preview (2).png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(906, 11, -1, 90));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 0, 120, 90));
 
-        CancelarChequeo.setText("Cancelar Chequeo");
+        CancelarChequeo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
+        CancelarChequeo.setToolTipText("CANCELAR CHEQUEO MEDICO");
+        CancelarChequeo.setBorder(null);
+        CancelarChequeo.setOpaque(false);
         CancelarChequeo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelarChequeoActionPerformed(evt);
             }
         });
-        jPanel1.add(CancelarChequeo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+        jPanel1.add(CancelarChequeo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, -1, -1));
 
-        ModificarCitaMedica.setText("Modificar");
+        ModificarCitaMedica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
+        ModificarCitaMedica.setToolTipText("MODIFICAR DATOS DE CHEQUEO MEDICO");
+        ModificarCitaMedica.setBorder(null);
+        ModificarCitaMedica.setOpaque(false);
         ModificarCitaMedica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarCitaMedicaActionPerformed(evt);
             }
         });
-        jPanel1.add(ModificarCitaMedica, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
+        jPanel1.add(ModificarCitaMedica, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, -1, -1));
 
         Regresar_acceso_recepcionista.setBackground(new java.awt.Color(204, 204, 204));
         Regresar_acceso_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
@@ -233,13 +239,13 @@ public class listarCitasMedicas extends javax.swing.JFrame {
                 Regresar_acceso_recepcionistaActionPerformed(evt);
             }
         });
-        jPanel1.add(Regresar_acceso_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
+        jPanel1.add(Regresar_acceso_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
