@@ -121,7 +121,14 @@ public class agregar_citamedica extends javax.swing.JFrame {
         cargarDoctorDialog = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDoctorDialog = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        ActualizarJDialog = new javax.swing.JButton();
+        CargarDatosPaciente = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaPacienteDialog = new javax.swing.JTable();
+        text_buscarPacienteDialog = new javax.swing.JTextField();
+        ActualizarPacienteJDialog = new javax.swing.JButton();
+        CargarPacienteDialog = new javax.swing.JButton();
+        BotonBuscarPacienteDialog = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         BotonBuscarPaciente = new javax.swing.JButton();
         BuscarDoctor = new javax.swing.JButton();
@@ -159,7 +166,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
         BotonModificar = new javax.swing.JButton();
         BotonListarregistros = new javax.swing.JButton();
 
-        text_buscarDoctorDialog.setText("Buscar...");
+        text_buscarDoctorDialog.setText("Buscar cédula...");
         text_buscarDoctorDialog.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_buscarDoctorMousePressed(evt);
@@ -206,10 +213,10 @@ public class agregar_citamedica extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaDoctorDialog);
 
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ActualizarJDialog.setText("Actualizar");
+        ActualizarJDialog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ActualizarJDialogActionPerformed(evt);
             }
         });
 
@@ -225,7 +232,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
-                        .addComponent(jButton1)
+                        .addComponent(ActualizarJDialog)
                         .addGap(149, 149, 149)
                         .addComponent(cargarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -239,9 +246,96 @@ public class agregar_citamedica extends javax.swing.JFrame {
                     .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cargarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(ActualizarJDialog))
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        TablaPacienteDialog.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+            }
+        ));
+        TablaPacienteDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaPacienteDialogTablaPacienteMousePressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TablaPacienteDialog);
+
+        text_buscarPacienteDialog.setText("Buscar cédula...");
+        text_buscarPacienteDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarPacienteDialogtext_buscarDoctorMousePressed(evt);
+            }
+        });
+        text_buscarPacienteDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_buscarPacienteDialogtext_buscarDoctorActionPerformed(evt);
+            }
+        });
+
+        ActualizarPacienteJDialog.setText("Actualizar");
+        ActualizarPacienteJDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarPacienteJDialogActionPerformed(evt);
+            }
+        });
+
+        CargarPacienteDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
+        CargarPacienteDialog.setToolTipText("CARGAR CEDULA");
+        CargarPacienteDialog.setBorder(null);
+        CargarPacienteDialog.setOpaque(false);
+        CargarPacienteDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarPacienteDialogcargarDoctorActionPerformed(evt);
+            }
+        });
+
+        BotonBuscarPacienteDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BotonBuscarPacienteDialog.setToolTipText("BUSCAR PACIENTE");
+        BotonBuscarPacienteDialog.setBorder(null);
+        BotonBuscarPacienteDialog.setOpaque(false);
+        BotonBuscarPacienteDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarPacienteDialogActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CargarDatosPacienteLayout = new javax.swing.GroupLayout(CargarDatosPaciente.getContentPane());
+        CargarDatosPaciente.getContentPane().setLayout(CargarDatosPacienteLayout);
+        CargarDatosPacienteLayout.setHorizontalGroup(
+            CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                        .addComponent(text_buscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(BotonBuscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(ActualizarPacienteJDialog)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CargarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        CargarDatosPacienteLayout.setVerticalGroup(
+            CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CargarDatosPacienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonBuscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(text_buscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ActualizarPacienteJDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CargarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -370,7 +464,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -381,11 +475,9 @@ public class agregar_citamedica extends javax.swing.JFrame {
                                     .addComponent(FechaChequeoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCedulaDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(BuscarDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(84, 84, 84)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCedulaDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(112, 112, 112)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
@@ -396,10 +488,10 @@ public class agregar_citamedica extends javax.swing.JFrame {
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel12))
                                 .addGap(30, 30, 30)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtApellidoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ComboHoraChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 40, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ComboHoraChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtApellidoDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
@@ -449,8 +541,10 @@ public class agregar_citamedica extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(475, 475, 475)
-                .addComponent(BotonGuardar)
+                .addGap(458, 458, 458)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BuscarDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonGuardar))
                 .addGap(69, 69, 69)
                 .addComponent(BotonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
@@ -487,29 +581,26 @@ public class agregar_citamedica extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel15)
-                                        .addComponent(txtcodigoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtcodigoChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel15)
+                                .addComponent(txtcodigoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtcodigoChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCedulaDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3))))
+                                .addComponent(BuscarDoctor)
+                                .addGap(7, 7, 7))))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(26, 26, 26)
                             .addComponent(jLabel9)
                             .addGap(18, 18, 18)
-                            .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(txtCedulaDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(BuscarDoctor)
-                                .addComponent(jLabel16)))))
+                            .addGap(14, 14, 14)
+                            .addComponent(jLabel16))))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -546,7 +637,11 @@ public class agregar_citamedica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarPacienteActionPerformed
-        Buscar_Paciente();
+        CargarDatosPaciente.setSize(535, 290);
+        CargarTodosLosPacientes();
+        CargarDatosPaciente.setVisible(true);
+        CargarDatosPaciente.setLocationRelativeTo(BotonBuscarPaciente);
+
     }//GEN-LAST:event_BotonBuscarPacienteActionPerformed
 
     private void BuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarDoctorActionPerformed
@@ -611,9 +706,9 @@ public class agregar_citamedica extends javax.swing.JFrame {
 
     }//GEN-LAST:event_TablaPacienteMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ActualizarJDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarJDialogActionPerformed
         CargarTodosLosDoctores();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ActualizarJDialogActionPerformed
 
     private void BotonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarActionPerformed
         int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -630,6 +725,37 @@ public class agregar_citamedica extends javax.swing.JFrame {
         dispose();
 
     }//GEN-LAST:event_BotonListarregistrosActionPerformed
+
+    private void TablaPacienteDialogTablaPacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPacienteDialogTablaPacienteMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaPacienteDialogTablaPacienteMousePressed
+
+    private void text_buscarPacienteDialogtext_buscarDoctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarPacienteDialogtext_buscarDoctorMousePressed
+        text_buscarPacienteDialog.setText("");
+        text_buscarPacienteDialog.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_buscarPacienteDialogtext_buscarDoctorMousePressed
+
+    private void text_buscarPacienteDialogtext_buscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_buscarPacienteDialogtext_buscarDoctorActionPerformed
+
+
+    }//GEN-LAST:event_text_buscarPacienteDialogtext_buscarDoctorActionPerformed
+
+    private void ActualizarPacienteJDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarPacienteJDialogActionPerformed
+        CargarTodosLosPacientes();
+    }//GEN-LAST:event_ActualizarPacienteJDialogActionPerformed
+
+    private void CargarPacienteDialogcargarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarPacienteDialogcargarDoctorActionPerformed
+        CargarDatosPacienteEnTXT();
+    }//GEN-LAST:event_CargarPacienteDialogcargarDoctorActionPerformed
+
+    private void BotonBuscarPacienteDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarPacienteDialogActionPerformed
+
+        if (!text_buscarPacienteDialog.getText().isEmpty()) {
+            Buscar_PacienteDialog();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del paciente");
+        }
+    }//GEN-LAST:event_BotonBuscarPacienteDialogActionPerformed
 
     public void modificar_CitaMedica() {
         if (ValidarDatos()) {
@@ -682,6 +808,16 @@ public class agregar_citamedica extends javax.swing.JFrame {
         });
     }
 
+    public void CargarTodosLosPacientes() {
+        DefaultTableModel tb = (DefaultTableModel) TablaPacienteDialog.getModel();
+        tb.setNumRows(0);
+        List<paciente> com = inser.ListaPaciente();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            tb.addRow(cami);
+        });
+    }
+
     public void CargarTodosLosDoctores() {
         DefaultTableModel tb = (DefaultTableModel) TablaDoctorDialog.getModel();
         tb.setNumRows(0);
@@ -690,6 +826,33 @@ public class agregar_citamedica extends javax.swing.JFrame {
             String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getEspecialidad()};
             tb.addRow(cami);
         });
+    }
+
+    public void CargarDatosPacienteEnTXT() {
+        int fila = TablaPacienteDialog.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+
+            String codigoAux;
+            String cedulaAux;
+            String nombresAux;
+            String apellidosAux;
+
+            codigoAux = TablaPacienteDialog.getValueAt(fila, 0).toString();
+            cedulaAux = TablaPacienteDialog.getValueAt(fila, 1).toString();
+            nombresAux = TablaPacienteDialog.getValueAt(fila, 2).toString();
+            apellidosAux = TablaPacienteDialog.getValueAt(fila, 3).toString();
+
+            txtcodigoPaciente.setText(codigoAux);
+            txtcedulapaciente_citas.setText(cedulaAux);
+            txtNombre.setText(nombresAux);
+            txtApellidos.setText(apellidosAux);
+
+            CargarDatosPaciente.dispose();
+        }
+
     }
 
     public void CargarDatosDoctorEnTXT() {
@@ -722,6 +885,35 @@ public class agregar_citamedica extends javax.swing.JFrame {
 
     }
 
+    public void Buscar_PacienteDialog() {
+        String cedula = text_buscarPacienteDialog.getText();
+        var pacienteDialogfiltro = new ArrayList<paciente>();
+        inser.ListaPaciente().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                pacienteDialogfiltro.add(e);
+            }
+        });
+        if (!pacienteDialogfiltro.isEmpty()) {
+
+            String matriz[][] = new String[pacienteDialogfiltro.size()][14];
+            for (int j = 0; j < pacienteDialogfiltro.size(); j++) {
+                matriz[j][0] = String.valueOf(pacienteDialogfiltro.get(j).getCodigo());
+                matriz[j][1] = pacienteDialogfiltro.get(j).getCedula();
+                matriz[j][2] = pacienteDialogfiltro.get(j).getPri_nomb() + "  " + pacienteDialogfiltro.get(j).getSeg_nombre();
+                matriz[j][3] = pacienteDialogfiltro.get(j).getPrim_apell() + "  " + pacienteDialogfiltro.get(j).getSeg_apelli();;
+
+            }
+            TablaPacienteDialog.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+                    }
+            ));
+        } else {
+            JOptionPane.showMessageDialog(this, "El paciente no se encuentra registrado");
+        }
+    }
+
     public void Buscar_DoctorDialog() {
         String cedula = text_buscarDoctorDialog.getText();
         var doctorDialogfiltro = new ArrayList<doctor>();
@@ -730,7 +922,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
                 doctorDialogfiltro.add(e);
             }
         });
-        if (doctorDialogfiltro.size() != 0) {
+        if (!doctorDialogfiltro.isEmpty()) {
 
             String matriz[][] = new String[doctorDialogfiltro.size()][14];
             for (int j = 0; j < doctorDialogfiltro.size(); j++) {
@@ -891,6 +1083,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
 //    }
     public void BloquearCamposPaciente() {
 
+        txtcedulapaciente_citas.setEditable(false);
         txtcodigoPaciente.setEditable(false);
         txtNombre.setEditable(false);
         txtApellidos.setEditable(false);
@@ -945,19 +1138,24 @@ public class agregar_citamedica extends javax.swing.JFrame {
         txtEspecialidad.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ActualizarJDialog;
+    private javax.swing.JButton ActualizarPacienteJDialog;
     private javax.swing.JButton BotonBuscarDoctorDialog;
     private javax.swing.JButton BotonBuscarPaciente;
+    private javax.swing.JButton BotonBuscarPacienteDialog;
     private javax.swing.JButton BotonGuardar;
     private javax.swing.JButton BotonListarregistros;
     private javax.swing.JButton BotonModificar;
     private javax.swing.JButton BuscarDoctor;
     private javax.swing.JDialog CargarChequeo;
+    private javax.swing.JDialog CargarDatosPaciente;
+    private javax.swing.JButton CargarPacienteDialog;
     private javax.swing.JComboBox<String> ComboHoraChequeo;
     private com.toedter.calendar.JDateChooser FechaChequeoActual;
     private javax.swing.JTable TablaDoctorDialog;
+    private javax.swing.JTable TablaPacienteDialog;
     private javax.swing.JButton boton_regresar_acceso_recepcionista;
     private javax.swing.JButton cargarDoctorDialog;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -975,9 +1173,11 @@ public class agregar_citamedica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField text_buscarDoctorDialog;
+    private javax.swing.JTextField text_buscarPacienteDialog;
     private javax.swing.JTextField txtApellidoDoctor;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCedulaDoctor;
