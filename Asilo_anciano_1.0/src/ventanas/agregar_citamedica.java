@@ -1,8 +1,11 @@
 package ventanas;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import clases.cita_medica;
 import clases.doctor;
 import clases.paciente;
+import conexion_bada.Conexion;
 import conexion_bada.Insert;
 import conexion_bada.Insert_ChequeoMedico;
 import conexion_bada.Insert_doctor;
@@ -14,9 +17,12 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.Color;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 public class agregar_citamedica extends javax.swing.JFrame {
+
+    Conexion mi_cone = new Conexion();
 
     Insert inser = new Insert();
     Insert_doctor insertDoc = new Insert_doctor();
@@ -30,20 +36,67 @@ public class agregar_citamedica extends javax.swing.JFrame {
         BloquearCamposDoctor();
     }
 
-    public agregar_citamedica(int codigo) {
+    public agregar_citamedica(String codigo) {
         initComponents();
         this.setLocationRelativeTo(null);
         llenar_cita(codigo);
         BotonGuardar.setVisible(false);
     }
 
-    public void llenar_cita(int codigo) {
+    public void llenar_cita(String codigo) {
         List<cita_medica> com = inserChequeo.ListaChequeo();
 
         com.stream().forEach(p -> {
-            if (codigo == p.getCodigo_citas()) {
 
+            String codigoAux = String.valueOf(p.getCodigo_citas());
+            if (codigoAux.equals(codigo)) {
+
+                //Datos del chequeo
                 txtcodigoChequeo.setText(String.valueOf(p.getCodigo_citas()));
+                for (int j = 0; j < ComboHoraChequeo.getItemCount(); j++) {
+                    if (ComboHoraChequeo.getItemAt(j).equalsIgnoreCase(p.getHoraChequeo())) {
+                        ComboHoraChequeo.setSelectedIndex(j);
+                        j = ComboHoraChequeo.getItemCount();
+                    }
+                }
+
+                SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formatofecha.parse(p.getFecha_chequeoActual());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                FechaChequeoActual.setDate(fecha);
+                txtcodigoDoctor.setText(String.valueOf(p.getCodigo_medico()));
+                txtcodigoPaciente.setText(String.valueOf(p.getCodigo_paciente()));
+
+                //Datos del paciente
+                List<paciente> paci = inserChequeo.ListaChequeoPaciente(p.getCodigo_citas());
+                paci.stream().forEach(pac -> {
+
+                    //System.out.println("Cod Paci: " + pac.getCodigo());
+                    txtcedulapaciente_citas.setText(pac.getCedula());
+                    txtNombre.setText(pac.getPri_nomb() + " " + pac.getSeg_nombre());
+                    txtApellidos.setText(pac.getPrim_apell() + " " + pac.getSeg_apelli());
+
+                });
+
+                //Datos del doctor
+                List<doctor> doc = inserChequeo.ListaChequeoDoctor(p.getCodigo_citas());
+                doc.stream().forEach(d -> {
+
+                    // System.out.println("Cod doc: " + d.getCodigo());
+                    txtCedulaDoctor.setText(d.getCedula());
+                    txtNombreDoctor.setText(d.getPri_nomb() + " " + d.getSeg_nombre());
+                    txtApellidoDoctor.setText(d.getPrim_apell() + " " + d.getSeg_apelli());
+                    txtEspecialidad.setText(d.getEspecialidad());
+                });
+
+                //Bloquear Campos
+                txtcedulapaciente_citas.setEditable(false);
+                BloquearCamposDoctor();
+                BloquearCamposPaciente();
             }
 
         });
@@ -99,6 +152,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
         txtcodigoDoctor = new javax.swing.JTextField();
         boton_regresar_acceso_recepcionista = new javax.swing.JButton();
         FechaChequeoActual = new com.toedter.calendar.JDateChooser();
+        jButton2 = new javax.swing.JButton();
 
         text_buscarDoctorDialog.setText("Buscar...");
         text_buscarDoctorDialog.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -285,6 +339,17 @@ public class agregar_citamedica extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
+        jButton2.setToolTipText("MODIFICAR");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -372,9 +437,11 @@ public class agregar_citamedica extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(540, 540, 540)
+                .addGap(475, 475, 475)
                 .addComponent(BotonGuardar)
-                .addGap(97, 97, 97)
+                .addGap(69, 69, 69)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
                 .addComponent(boton_regresar_acceso_recepcionista)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -411,9 +478,8 @@ public class agregar_citamedica extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel16)
-                                        .addComponent(txtcodigoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtcodigoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -451,7 +517,8 @@ public class agregar_citamedica extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotonGuardar)
-                    .addComponent(boton_regresar_acceso_recepcionista))
+                    .addComponent(boton_regresar_acceso_recepcionista)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66))
         );
 
@@ -519,6 +586,30 @@ public class agregar_citamedica extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CargarTodosLosDoctores();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            modificar_CitaMedica();
+            JOptionPane.showMessageDialog(null, "La cita se modificó éxitosamente");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void modificar_CitaMedica() {
+        if (ValidarDatos()) {
+            String horario = ComboHoraChequeo.getSelectedItem().toString();
+
+            String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
+            String FechaChequeo = (dia + "-" + mes + "-" + año);
+
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE cita SET cita_fecha='" + FechaChequeo + "', cita_hora='" + horario + "' WHERE cita_codigo = '" + txtcodigoChequeo.getText() + "';");
+            
+            LimpiarTodoslosDatos();
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -763,6 +854,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
 //        }
 //    }
     public void BloquearCamposPaciente() {
+
         txtcodigoPaciente.setEditable(false);
         txtNombre.setEditable(false);
         txtApellidos.setEditable(false);
@@ -828,6 +920,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
     private javax.swing.JButton boton_regresar_acceso_recepcionista;
     private javax.swing.JButton cargarDoctorDialog;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
