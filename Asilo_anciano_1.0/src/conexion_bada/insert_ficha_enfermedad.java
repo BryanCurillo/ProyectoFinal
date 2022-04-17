@@ -5,6 +5,8 @@
 package conexion_bada;
 
 import clases.FichaEnfermedad;
+import clases.alergias;
+import clases.enfermedades;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -61,5 +63,25 @@ public class insert_ficha_enfermedad extends FichaEnfermedad {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
         }
         return codigo;
+    }
+    
+        public List<enfermedades> ListaEnfermedades(int cod_ficha) {
+        String sqls = "SELECT enfermedad_nombre_,enfermedad_codigo FROM enfermedad,ficha_enfermedad where fe_codigo_enfermedad=enfermedad_codigo and fe_codigo_ficha=" + cod_ficha + ";";
+        ResultSet rs = cone.selectConsulta(sqls);
+        List<enfermedades> enfermedad = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                enfermedades mienfermedad = new enfermedades();
+                mienfermedad.setCodigo_enfermedad(rs.getInt("enfermedad_codigo"));
+                mienfermedad.setNombre_enfermedad(rs.getString("enfermedad_nombre_"));
+
+                enfermedad.add(mienfermedad);
+            }
+//            rs.close();
+            return enfermedad;
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 }
