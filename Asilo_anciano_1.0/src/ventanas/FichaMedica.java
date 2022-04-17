@@ -13,7 +13,11 @@ import javax.swing.DefaultListModel;
 
 ////////////////
 import clases.paciente;
+import clases.FichaAlergia;
+import clases.FichaEnfermedad;
 import clases.validaciones;
+import conexion_bada.Conexion;
+//import clases.FichaMedica;
 import conexion_bada.Insert;
 import conexion_bada.Insert_Persona;
 import conexion_bada.Insert_administrador;
@@ -46,9 +50,22 @@ public class FichaMedica extends javax.swing.JFrame {
     Insert_alergias inserAlergias = new Insert_alergias();
     List<alergias> Aler = inserAlergias.ListaAlergias();
 
+    DefaultListModel modeloListAlergia;
+    DefaultListModel modeloListEnfermedad;
+    Conexion mi_cone = new Conexion();
+
+    ArrayList<enfermedades> Listaenfermedades = new ArrayList<>();
+    ArrayList<alergias> Listaalergias = new ArrayList<>();
+    boolean modificar = false, guardar = false;
+
     public FichaMedica() {
         initComponents();
         this.setLocationRelativeTo(null);
+        guardar = true;
+        btGuardarCambios.setVisible(false);
+        off.setVisible(false);
+        on.setVisible(false);
+        MODIFICAR.setVisible(false);
         LLenarComboBoxAlergias();
         LLenarComboBoxEnfermedades();
         BloquearCampos();
@@ -58,12 +75,22 @@ public class FichaMedica extends javax.swing.JFrame {
     public FichaMedica(int codigo_paciente) {
         initComponents();
         this.setLocationRelativeTo(null);
+        guardar = false;
+        LLenarComboBoxAlergias();
+        LLenarComboBoxEnfermedades();
+        off.setSelected(true);
+        btGuardarCambios.setVisible(false);
+        desabilitarParaVer();
+        llenar_ficha(codigo_paciente);
+        BloquearCampos();
+        GuardarFicha.setVisible(false);
+        cargarlistaAlergiasmodificar();
+        cargarlistaEnfermedadesmodificar();
     }
 
-    public FichaMedica(String cedula_paciente) {
-
-    }
-
+//    public FichaMedica(String cedula_paciente) {
+//
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,6 +113,7 @@ public class FichaMedica extends javax.swing.JFrame {
         BtBuscarenfermera = new javax.swing.JButton();
         text_buscare = new javax.swing.JTextField();
         cargarP1 = new javax.swing.JButton();
+        EstadoModi = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -123,7 +151,7 @@ public class FichaMedica extends javax.swing.JFrame {
         fecharegistro = new com.toedter.calendar.JDateChooser();
         CheckBoxSeguro = new javax.swing.JCheckBox();
         jLabel23 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        GuardarFicha = new javax.swing.JButton();
         txtTipoSangre = new javax.swing.JTextField();
         txtFechaNacimiento = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
@@ -141,7 +169,13 @@ public class FichaMedica extends javax.swing.JFrame {
         buscarenfermera = new javax.swing.JButton();
         txtnombresapellidos = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        RegresarCancelar = new javax.swing.JButton();
+        btGuardarCambios = new javax.swing.JButton();
+        EliminarEnfermedades = new javax.swing.JButton();
+        EliminarAlergias = new javax.swing.JButton();
+        on = new javax.swing.JRadioButton();
+        off = new javax.swing.JRadioButton();
+        MODIFICAR = new javax.swing.JLabel();
 
         cargarPaciente.setResizable(false);
 
@@ -415,12 +449,11 @@ public class FichaMedica extends javax.swing.JFrame {
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/medical-history.png"))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
-        jButton1.setText("GUARDAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        GuardarFicha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GuardarFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
+        GuardarFicha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                GuardarFichaActionPerformed(evt);
             }
         });
 
@@ -494,147 +527,212 @@ public class FichaMedica extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Bell MT", 1, 14)); // NOI18N
         jLabel7.setText("Codigo enfermera:");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton2.setToolTipText("REGRESAR");
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
+        RegresarCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        RegresarCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        RegresarCancelar.setToolTipText("REGRESAR");
+        RegresarCancelar.setBorder(null);
+        RegresarCancelar.setOpaque(false);
+        RegresarCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarCancelarActionPerformed(evt);
+            }
+        });
+
+        btGuardarCambios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
+        btGuardarCambios.setToolTipText("MODIFICAR");
+        btGuardarCambios.setBorder(null);
+        btGuardarCambios.setBorderPainted(false);
+        btGuardarCambios.setOpaque(false);
+        btGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGuardarCambiosActionPerformed(evt);
+            }
+        });
+
+        EliminarEnfermedades.setText("Eliminar");
+        EliminarEnfermedades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarEnfermedadesActionPerformed(evt);
+            }
+        });
+
+        EliminarAlergias.setText("Eliminar");
+        EliminarAlergias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarAlergiasActionPerformed(evt);
+            }
+        });
+
+        EstadoModi.add(on);
+        on.setText("Habilitado");
+        on.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onActionPerformed(evt);
+            }
+        });
+
+        EstadoModi.add(off);
+        off.setText("Deshabilitado");
+        off.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                offActionPerformed(evt);
+            }
+        });
+
+        MODIFICAR.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        MODIFICAR.setText("MODIFICAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(16, 16, 16)
-                            .addComponent(jLabel11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txttelefonofm, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addComponent(jLabel9))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel5)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtcedulafm, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Buscar)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(123, 123, 123)
-                                    .addComponent(jLabel22)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(CheckBoxSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(70, 70, 70)
-                                    .addComponent(jLabel12)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(masculinoficha)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(femeninoficha)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(jLabel15)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtTipoSangre, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(8, 8, 8)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel13)
-                                        .addComponent(jLabel4))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(txtdireccionfm, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(60, 60, 60))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(txt_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel10)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtcorreofm, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel14)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(44, 44, 44)
-                            .addComponent(jLabel17)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(comboenfermedadficha, 0, 160, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(CargarEnfermedades)
-                            .addGap(175, 175, 175)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(comboalergiaficha, 0, 160, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(CargarAlergias))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel20)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jSeparator3))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txttelefonofm, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel9))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel5)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtcedulafm, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Buscar)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(123, 123, 123)
+                                .addComponent(jLabel22)
+                                .addGap(18, 18, 18)
+                                .addComponent(CheckBoxSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)
+                                .addComponent(jLabel12)
+                                .addGap(6, 6, 6)
+                                .addComponent(masculinoficha)
+                                .addGap(18, 18, 18)
+                                .addComponent(femeninoficha)
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTipoSangre, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSeparator2))
+                                        .addComponent(txtdireccionfm, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(60, 60, 60))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txt_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtcorreofm, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel23)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtcodigoficha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtcodigopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(26, 26, 26)
-                                            .addComponent(jLabel21)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(fecharegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtnombresapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel7)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtenfermeraacargo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(buscarenfermera))))))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(60, 60, 60)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(433, 433, 433)
-                        .addComponent(jButton1)
-                        .addGap(79, 79, 79)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(44, 44, 44)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboenfermedadficha, 0, 160, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(CargarEnfermedades)
+                                .addGap(175, 175, 175)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(EliminarEnfermedades))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(comboalergiaficha, 0, 160, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CargarAlergias)
+                            .addComponent(EliminarAlergias)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel16)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jSeparator2))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtcodigoficha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtcodigopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jLabel21)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(fecharegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtnombresapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtenfermeraacargo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(buscarenfermera))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(11, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(459, 459, 459)
+                .addComponent(GuardarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btGuardarCambios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RegresarCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(on)
+                        .addGap(18, 18, 18)
+                        .addComponent(off)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(MODIFICAR)
+                        .addGap(113, 113, 113))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -725,22 +823,36 @@ public class FichaMedica extends javax.swing.JFrame {
                     .addComponent(comboalergiaficha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CargarAlergias))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
+                    .addComponent(EliminarEnfermedades)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EliminarAlergias, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGap(19, 19, 19)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(9, 9, 9)
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(18, 18, 18)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(MODIFICAR)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(off)
+                                        .addComponent(on)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(RegresarCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(3, 3, 3))))
+                        .addComponent(btGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(GuardarFicha)))
+                .addGap(67, 67, 67))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1040, 710));
@@ -766,6 +878,7 @@ public class FichaMedica extends javax.swing.JFrame {
 
     private void CargarEnfermedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarEnfermedadesActionPerformed
         CargarEnfermedadesJlist();
+//        verlistaemfer();
     }//GEN-LAST:event_CargarEnfermedadesActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
@@ -841,30 +954,236 @@ public class FichaMedica extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombresapellidosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void GuardarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarFichaActionPerformed
         try {
             RegistrarFicha();
         } catch (SQLException ex) {
             Logger.getLogger(FichaMedica.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_GuardarFichaActionPerformed
+
+    private void RegresarCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarCancelarActionPerformed
+
+        new crud_FichaMedica().setVisible(true);
+        this.dispose();
+        System.out.println(guardar);
+        comprobarlista();
+        if (guardar == false) {
+            GuardarEnferAlergMODI();
+        }
+
+//        }
+
+    }//GEN-LAST:event_RegresarCancelarActionPerformed
+
+    private void btGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarCambiosActionPerformed
+        int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            modificar_ficha();
+            guardar = true;
+            off.setSelected(true);
+        }
+    }//GEN-LAST:event_btGuardarCambiosActionPerformed
+
+    private void EliminarEnfermedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEnfermedadesActionPerformed
+        if (JListEnfermedades.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una enfermedad");
+        } else {
+            ElimarEnfermedadesJlist();
+        }
+//        verlistaemfer();
+    }//GEN-LAST:event_EliminarEnfermedadesActionPerformed
+
+    private void EliminarAlergiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAlergiasActionPerformed
+        if (JListAlergias.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una alergia");
+        } else {
+            ElimarAlergiaJlist();
+        }
+    }//GEN-LAST:event_EliminarAlergiasActionPerformed
+
+    private void onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onActionPerformed
+        habilitarModificar();
+    }//GEN-LAST:event_onActionPerformed
+
+    private void offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offActionPerformed
+        desabilitarParaVer();
+    }//GEN-LAST:event_offActionPerformed
+
+    public void modificar_ficha() {
+
+        Buscar.setEnabled(true);
+        buscarenfermera.setEnabled(true);
+        modificar = true;
+
+        GuardarEnferAlergMODI();
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE ficha SET ficha_paci_codigo=" + Integer.parseInt(txtcodigopaciente.getText()) + ",ficha_enfermera_acargo=" + Integer.parseInt(txtenfermeraacargo.getText()) + ",ficha_observaciones='" + txtobservacionesficha.getText() + "' WHERE ficha_codigo=" + Integer.parseInt(txtcodigoficha.getText()) + ";");
+
+        modificar = false;
+        desabilitarParaVer();
+
+    }
+
+    public void comprobarlista() {
+        System.out.println("ENFERMEDADES");
+        for (int i = 0; i < Listaenfermedades.size(); i++) {
+
+            System.out.println(Listaenfermedades.get(i).getCodigo_enfermedad());
+        }
+
+        System.out.println("/n ALERGIAS");
+        for (int i = 0; i < Listaalergias.size(); i++) {
+
+            System.out.println(Listaalergias.get(i).getNombre_alergia());
+        }
+    }
+
+    public void RegistrarFicha() throws SQLException {
+        modificar = false;
+        try {
+            if (validaciones()) {
+                if (inserficha.validarduplicado(Integer.parseInt(txtcodigopaciente.getText()))) {
+                    inserficha.setCodigo_enfermera(Integer.parseInt(txtenfermeraacargo.getText()));
+                    inserficha.setCodigo_paciente(Integer.parseInt(txtcodigopaciente.getText()));
+                    inserficha.setObservaciones(txtobservacionesficha.getText());
+                    inserficha.InsertarFichaMedica();
+
+                    GuardarEnferAlerg();
+
+                    System.out.println("Conexion Exitosa");
+                    Limpiar();
+                    Limpiar2();
+                    cargarcod();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "LA FICHA DEL PACIENTE YA EXISTE");
+                    Limpiar();
+                }
+            }
+        } catch (NullPointerException n) {
+
+        }
+
+    }
+
+    public void GuardarEnferAlergMODI() {
+        for (int i = 0; i < Listaenfermedades.size(); i++) {
+//                System.out.println("Enfermedar=" + Listaenfermedades.get(i).getNombre_enfermedad());
+            inserfichaenfermedad.setCodigo_ficha(Integer.parseInt(txtcodigoficha.getText()));
+            inserfichaenfermedad.setCodigo_enfermedad(Listaenfermedades.get(i).getCodigo_enfermedad());
+            inserfichaenfermedad.InsertarFichaEnfermedad();
+        }
+
+        for (int i = 0; i < Listaalergias.size(); i++) {
+            inserfichaalergia.setCodigo_ficha(Integer.parseInt(txtcodigoficha.getText()));
+            inserfichaalergia.setCodigo_alergia(Listaalergias.get(i).getCodigo_alergia());
+            inserfichaalergia.InsertarFichaAlergia();
+        }
+    }
+
+    public void GuardarEnferAlerg() {
+        for (int i = 0; i < Listaenfermedades.size(); i++) {
+            inserfichaenfermedad.setCodigo_ficha(inserficha.obtenerFicha());
+            inserfichaenfermedad.setCodigo_enfermedad(Listaenfermedades.get(i).getCodigo_enfermedad());
+            inserfichaenfermedad.InsertarFichaEnfermedad();
+        }
+
+        for (int i = 0; i < Listaalergias.size(); i++) {
+            inserfichaalergia.setCodigo_ficha(inserficha.obtenerFicha());
+            inserfichaalergia.setCodigo_alergia(Listaalergias.get(i).getCodigo_alergia());
+            inserfichaalergia.InsertarFichaAlergia();
+        }
+
+    }
+
+    public void desabilitarParaVer() {
+        txtnombresapellidos.setEditable(false);
+        txtobservacionesficha.setEditable(false);
+        comboalergiaficha.setEnabled(false);
+        comboenfermedadficha.setEnabled(false);
+        CargarEnfermedades.setEnabled(false);
+        CargarAlergias.setEnabled(false);
+        buscarenfermera.setEnabled(false);
+        Buscar.setEnabled(false);
+        btGuardarCambios.setVisible(false);
+    }
+
+    public void habilitarModificar() {
+        txtnombresapellidos.setEditable(true);
+        txtobservacionesficha.setEditable(true);
+        comboalergiaficha.setEnabled(true);
+        comboenfermedadficha.setEnabled(true);
+        CargarEnfermedades.setEnabled(true);
+        CargarAlergias.setEnabled(true);
+        buscarenfermera.setEnabled(true);
+        Buscar.setEnabled(true);
+        GuardarFicha.setVisible(false);
+        btGuardarCambios.setVisible(true);
+    }
+
+    public void llenar_ficha(int codigoP) {
+//        Limpiar2();
+        List<clases.claseFichaMedica> com = inserficha.ListaFichaMedica();
+        com.stream().forEach(f -> {
+            if (codigoP == f.getCodigo_paciente()) {
+                txtenfermeraacargo.setText(String.valueOf(f.getCodigo_enfermera()));
+                txtcodigoficha.setText(String.valueOf(f.getCodigo_ficha_medica()));
+                txtobservacionesficha.setText(f.getObservaciones());
+                txtcodigopaciente.setText(String.valueOf(f.getCodigo_paciente()));
+                SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formatofecha.parse(f.getFecha_de_ingreso());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                fecharegistro.setDate(fecha);
+                txtcedulafm.setText(f.getCedula());
+                txt_nombres.setText(f.getPri_nomb() + "  " + f.getSeg_nombre());
+                txt_apellidos.setText(f.getPrim_apell() + "  " + f.getSeg_apelli());
+                txttelefonofm.setText(f.getTelefono());
+                txtdireccionfm.setText(f.getDireccion());
+                txtcorreofm.setText(f.getCorreo());
+                txtFechaNacimiento.setText(f.getFecha_Nacimiento());
+                if (f.getGenero().equalsIgnoreCase("hombre")) {
+                    masculinoficha.setSelected(true);
+                }
+                if (f.getGenero().equalsIgnoreCase("mujer")) {
+                    femeninoficha.setSelected(true);
+                }
+                txtTipoSangre.setText(f.getTipo_sangre());
+                if (f.getSeguro().equalsIgnoreCase("si")) {
+                    CheckBoxSeguro.setSelected(true);
+                } else {
+                    CheckBoxSeguro.setSelected(false);
+                }
+                List<enfermera> enferA = inserEnfermera.ListaEnfermeraAcargo(f.getCodigo_enfermera());
+                enferA.stream().forEach(e -> {
+                    txtnombresapellidos.setText(e.getPri_nomb() + "  " + e.getSeg_nombre() + "  " + e.getPrim_apell() + "  " + e.getSeg_apelli());
+                });
+                modeloListEnfermedad = new DefaultListModel();
+                List<enfermedades> enfer = inserfichaenfermedad.ListaEnfermedades(f.getCodigo_ficha_medica());
+                enfer.stream().forEach(enfe -> {
+
+                    JListEnfermedades.setModel(modeloListEnfermedad);
+                    modeloListEnfermedad.addElement(enfe.getNombre_enfermedad());
+                });
+                modeloListAlergia = new DefaultListModel();
+                List<alergias> aler = inserfichaalergia.Listaalergias(f.getCodigo_ficha_medica());
+                aler.stream().forEach(ale -> {
+//                    
+                    JListAlergias.setModel(modeloListAlergia);
+                    modeloListAlergia.addElement(ale.getNombre_alergia());
+                });
+
+            }
+        });
+
+    }
+
     public void cargarcod() {
         txtcodigoficha.setEnabled(false);
         txtcodigoficha.setText(String.valueOf(inserficha.cargarcodigo()));
-        Date fecha = null;
-        LocalDate ahora = LocalDate.now();
-
-        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-
-        try {
-            fecha = formatofecha.parse(ahora.toString());
-        } catch (ParseException ex) {
-            Logger.getLogger(FichaMedica.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        System.out.println(ahora);
-        fecharegistro.setDate(fecha);
-
     }
 
     //Llenar enfermedades en COMBOBOX
@@ -875,48 +1194,91 @@ public class FichaMedica extends javax.swing.JFrame {
     }
 
     //Cargar enfermedades en JLIST
-    ArrayList<enfermedades> Listaenfermedades = new ArrayList<>();
+    public void cargarlistaEnfermedadesmodificar() {
+        int codigo = Integer.valueOf(txtcodigoficha.getText());
+        enfermedades mi_enfermedad = new enfermedades();
+        for (int i = 0; i < inserfichaenfermedad.ListaEnfermedades(Integer.parseInt(txtcodigoficha.getText())).size(); i++) {
+            mi_enfermedad.setCodigo_enfermedad(inserfichaenfermedad.ListaEnfermedades(Integer.parseInt(txtcodigoficha.getText())).get(i).getCodigo_enfermedad());
+            mi_enfermedad.setNombre_enfermedad(inserfichaenfermedad.ListaEnfermedades(Integer.parseInt(txtcodigoficha.getText())).get(i).getNombre_enfermedad());
+            Listaenfermedades.add(mi_enfermedad);
+        }
+
+        mi_cone.InsertUpdateDeleteAcciones("DELETE FROM ficha_enfermedad where fe_codigo_ficha=" + codigo + "");
+
+//        for (int i = 0; i < Listaenfermedades.size(); i++) {
+//            System.out.println(Listaenfermedades.get(i).getNombre_enfermedad());
+//        }
+    }
+
+    public void cargarlistaAlergiasmodificar() {
+        int codigo = Integer.valueOf(txtcodigoficha.getText());
+        alergias mi_alergia = new alergias();
+//        Listaalergias = (ArrayList<alergias>) inserfichaalergia.Listaalergias(Integer.parseInt(txtcodigoficha.getText()));
+        for (int i = 0; i < inserfichaalergia.Listaalergias(Integer.parseInt(txtcodigoficha.getText())).size(); i++) {
+            mi_alergia.setCodigo_alergia(inserfichaalergia.Listaalergias(Integer.parseInt(txtcodigoficha.getText())).get(i).getCodigo_alergia());
+            mi_alergia.setNombre_alergia(inserfichaalergia.Listaalergias(Integer.parseInt(txtcodigoficha.getText())).get(i).getNombre_alergia());
+
+            Listaalergias.add(mi_alergia);
+        }
+        mi_cone.InsertUpdateDeleteAcciones("DELETE FROM ficha_alergia where fa_codigo_ficha=" + codigo + "");
+
+    }
 
     public void CargarEnfermedadesJlist() {
         enfermedades mi_enfermedad = new enfermedades();
-
+        boolean rep = false;
         if (comboenfermedadficha.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una enfermedad");
         } else {
 
-            DefaultListModel modeloListEnfermedad;
+//            DefaultListModel modeloListEnfermedad;
             modeloListEnfermedad = new DefaultListModel();
             JListEnfermedades.setModel(modeloListEnfermedad);
 
             String enferAux;
             enferAux = comboenfermedadficha.getSelectedItem().toString();
+
             mi_enfermedad.setNombre_enfermedad(enferAux);
             mi_enfermedad.setCodigo_enfermedad(inserfichaenfermedad.cargarcodigoEnfermedad(enferAux));
+            if (Listaenfermedades.size() != 0) {
+                for (int i = 0; i < Listaenfermedades.size(); i++) {
+                    rep = false;
+                    if (enferAux.equalsIgnoreCase(Listaenfermedades.get(i).getNombre_enfermedad())) {
+//                        System.out.println(enferAux + " = " + Listaenfermedades.get(i).getNombre_enfermedad());
+                        rep = true;
+                        i = Listaenfermedades.size();
+                    }
+                }
+            } else {
+                rep = true;
+                Listaenfermedades.add(mi_enfermedad);
+            }
+            if (rep == false) {
+                Listaenfermedades.add(mi_enfermedad);
+            }
 
-            Listaenfermedades.add(mi_enfermedad);
-
-//            if (Listaenfermedades.size() != 0) {
             for (int i = 0; i < Listaenfermedades.size(); i++) {
 
                 modeloListEnfermedad.addElement(Listaenfermedades.get(i).getNombre_enfermedad());
                 comboenfermedadficha.setSelectedIndex(0);
             }
-//            } else {
-//                mi_enfermedad.setNombre_enfermedad("Sin enfermedades");
-//                mi_enfermedad.setCodigo_enfermedad(2);
-//                Listaenfermedades.add(mi_enfermedad);
-//                for (int i = 0; i < Listaenfermedades.size(); i++) {
-//
-//                    modeloListEnfermedad.addElement(Listaenfermedades.get(i).getNombre_enfermedad());
-//                    comboenfermedadficha.setSelectedIndex(0);
-//                    System.out.println(Listaenfermedades.get(i).getCodigo_enfermedad() + "  " + Listaenfermedades.get(i).getNombre_enfermedad());
-//
-//                }
-//
-//            }
 
         }
+
     }
+
+    public void ElimarEnfermedadesJlist() {
+        if (Listaenfermedades.size() != 0) {
+            int indice = JListEnfermedades.getSelectedIndex();
+//            System.out.println(indice);
+            modeloListEnfermedad.remove(indice);
+            Listaenfermedades.remove(indice);
+        } else {
+            cargarlistaEnfermedadesmodificar();
+        }
+
+    }
+
 
     //Llenar alergias
     public void LLenarComboBoxAlergias() {
@@ -927,16 +1289,14 @@ public class FichaMedica extends javax.swing.JFrame {
     }
 
     //Cargar alergias en JLIST
-    ArrayList<alergias> Listaalergias = new ArrayList<>();
-
     public void CargarAlergiasJlist() {
         alergias mi_alergia = new alergias();
-
+        boolean rep = false;
         if (comboalergiaficha.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una alergia");
         } else {
 
-            DefaultListModel modeloListAlergia;
+//            DefaultListModel modeloListAlergia;
             modeloListAlergia = new DefaultListModel();
             JListAlergias.setModel(modeloListAlergia);
 
@@ -944,7 +1304,22 @@ public class FichaMedica extends javax.swing.JFrame {
             alerAux = comboalergiaficha.getSelectedItem().toString();
             mi_alergia.setNombre_alergia(alerAux);
             mi_alergia.setCodigo_alergia(inserfichaalergia.cargarcodigoAlergia(alerAux));
-            Listaalergias.add(mi_alergia);
+
+            if (Listaalergias.size() != 0) {
+                for (int i = 0; i < Listaalergias.size(); i++) {
+                    rep = false;
+                    if (alerAux.equalsIgnoreCase(Listaalergias.get(i).getNombre_alergia())) {
+                        rep = true;
+                        i = Listaalergias.size();
+                    }
+                }
+            } else {
+                rep = true;
+                Listaalergias.add(mi_alergia);
+            }
+            if (rep == false) {
+                Listaalergias.add(mi_alergia);
+            }
 
             for (int i = 0; i < Listaalergias.size(); i++) {
 
@@ -953,6 +1328,18 @@ public class FichaMedica extends javax.swing.JFrame {
             }
 
         }
+    }
+
+    public void ElimarAlergiaJlist() {
+        if (Listaalergias.size() != 0) {
+            int indice = JListAlergias.getSelectedIndex();
+//            System.out.println(indice);
+            modeloListAlergia.remove(indice);
+            Listaalergias.remove(indice);
+        } else {
+            cargarlistaAlergiasmodificar();
+        }
+
     }
 
     public void buscar_paciente() {
@@ -989,38 +1376,46 @@ public class FichaMedica extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<paciente> com = inser.ListaPaciente();
         com.stream().forEach(p -> {
-            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getPri_nomb() + "  " + p.getSeg_nombre()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getCedula(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
             tb.addRow(cami);
         });
     }
 
-     public void cargar_codigo_paci() {
+    public void cargar_codigo_paci() {
         int seleccion = TablaPaciente.getSelectedRow();
 
         if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
             int codigo = Integer.parseInt(TablaPaciente.getValueAt(seleccion, 0).toString());
-            inser.ListaPaciente().forEach((e) -> {
-                if (e.getCodigo()==codigo) {
+            inser.ListaPaciente().forEach((p) -> {
+                if (p.getCodigo() == codigo) {
 //                    new Agregar_paciente(codigo).setVisible(true);
-                    txtcedulafm.setText(e.getCedula());
-                    txtcodigopaciente.setText(String.valueOf(e.getCodigo()));
-                    txt_apellidos.setText(e.getPrim_apell() + "  " + e.getSeg_apelli());
-                    txt_nombres.setText(e.getPri_nomb() + "  " + e.getSeg_apelli());
-                    txtcorreofm.setText(e.getCorreo());
-                    txttelefonofm.setText(e.getTelefono());
-                    txtdireccionfm.setText(e.getDireccion());
-                    txtFechaNacimiento.setText(e.getFecha_Nacimiento());
-                    txtTipoSangre.setText(e.getTipo_sangre());
-                    if (e.getGenero().equalsIgnoreCase("hombre")) {
+                    txtcedulafm.setText(p.getCedula());
+                    txtcodigopaciente.setText(String.valueOf(p.getCodigo()));
+                    txt_apellidos.setText(p.getPrim_apell() + "  " + p.getSeg_apelli());
+                    txt_nombres.setText(p.getPri_nomb() + "  " + p.getSeg_nombre());
+                    txtcorreofm.setText(p.getCorreo());
+                    txttelefonofm.setText(p.getTelefono());
+                    txtdireccionfm.setText(p.getDireccion());
+                    txtFechaNacimiento.setText(p.getFecha_Nacimiento());
+                    txtTipoSangre.setText(p.getTipo_sangre());
+                    SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fecha = null;
+                    try {
+                        fecha = formatofecha.parse(p.getFecha_de_ingreso());
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    fecharegistro.setDate(fecha);
+                    if (p.getGenero().equalsIgnoreCase("hombre")) {
                         masculinoficha.setSelected(true);
                     }
-                    if (e.getGenero().equalsIgnoreCase("mujer")) {
+                    if (p.getGenero().equalsIgnoreCase("mujer")) {
                         femeninoficha.setSelected(true);
                     }
 
-                    if (e.getSeguro().equalsIgnoreCase("si")) {
+                    if (p.getSeguro().equalsIgnoreCase("si")) {
                         CheckBoxSeguro.setSelected(true);
                     } else {
                         CheckBoxSeguro.setSelected(false);
@@ -1085,7 +1480,7 @@ public class FichaMedica extends javax.swing.JFrame {
         } else {
             int codigo = Integer.parseInt(TablaEnfermera.getValueAt(seleccion, 0).toString());
             inserEnfermera.ListaEnfermera().forEach((e) -> {
-                if (e.getCodigo()==codigo) {
+                if (e.getCodigo() == codigo) {
 //                    new Agregar_paciente(codigo).setVisible(true);
                     txtenfermeraacargo.setText(String.valueOf(e.getCodigo()));
                     txtnombresapellidos.setText(e.getPri_nomb() + " " + e.getSeg_nombre() + " " + e.getPrim_apell() + " " + e.getSeg_apelli());
@@ -1147,46 +1542,6 @@ public class FichaMedica extends javax.swing.JFrame {
 
         txtenfermeraacargo.setText("");
         txtnombresapellidos.setText("");
-    }
-
-    public void RegistrarFicha() throws SQLException {
-
-        try {
-            if (validaciones()) {
-                if (inserficha.validarduplicado(Integer.parseInt(txtcodigopaciente.getText()))) {
-                    inserficha.setCodigo_enfermera(Integer.parseInt(txtenfermeraacargo.getText()));
-                    inserficha.setCodigo_paciente(Integer.parseInt(txtcodigopaciente.getText()));
-                    inserficha.setObservaciones(txtobservacionesficha.getText());
-                    inserficha.InsertarFichaMedica();
-
-                    for (int i = 0; i < Listaenfermedades.size(); i++) {
-                        inserfichaenfermedad.setCodigo_ficha(inserficha.obtenerFicha());
-                        inserfichaenfermedad.setCodigo_enfermedad(Listaenfermedades.get(i).getCodigo_enfermedad());
-                        inserfichaenfermedad.InsertarFichaEnfermedad();
-                    }
-
-                    for (int i = 0; i < Listaalergias.size(); i++) {
-                        inserfichaalergia.setCodigo_ficha(inserficha.obtenerFicha());
-                        inserfichaalergia.setCodigo_alergia(Listaalergias.get(i).getCodigo_alergia());
-                        inserfichaalergia.InsertarFichaAlergia();
-                    }
-//                    if (&&) {
-                    System.out.println("Conexion Exitosa");
-                    Limpiar();
-                    Limpiar2();
-                    cargarcod();
-//                    } else {
-//                        System.out.println("Conexion Erronea");
-//                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "LA FICHA DEL PACIENTE YA EXISTE");
-                    Limpiar();
-                }
-            }
-        } catch (NullPointerException n) {
-
-        }
-
     }
 
     public boolean validaciones() {
@@ -1295,56 +1650,13 @@ public class FichaMedica extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FichaMedica().setVisible(true);
             }
         });
     }
-//    //Cargar Datos del Paciente
-//    public void buscar_paciente() {
-//        String cedula = txtcedulafm.getText();
-//        var pacientefiltro = new ArrayList<paciente>();
-//        inser.ListaPaciente().forEach((e) -> {
-//            if (e.getCedula().equals(cedula)) {
-//                pacientefiltro.add(e);
-//            }
-//        });
-//        if (pacientefiltro.size() != 0) {
-//
-//            List<paciente> com = inser.ListaPaciente();
-//            com.stream().forEach(p -> {
-//                txtcodigopaciente.setText(p.getCodigo().toString());
-//                txt_apellidos.setText(p.getPri_nomb().toString());
-//                txt_nombres.setText(p.getSeg_nombre().toString());
-//
-//
-//                txtcorreofm.setText(p.getCorreo().toString());
-//                txtdireccionfm.setText(p.getDireccion());
-//                txttelefonofm.setText(p.getTelefono());
-//                if (p.getGenero().equalsIgnoreCase("hombre")) {
-//                    masculinoficha.setSelected(true);
-//                }
-//                if (p.getGenero().equalsIgnoreCase("mujer")) {
-//                    femeninoficha.setSelected(true);
-//                }
-//
-//                if (p.getSeguro().equalsIgnoreCase("si")) {
-//                    CheckBoxSeguro.setSelected(true);
-//                } else {
-//                    CheckBoxSeguro.setSelected(false);
-//                }
-//
-//                txtFechaNacimiento.setText(p.getFecha_Nacimiento());
-//
-//                txtTipoSangre.setText(p.getTipo_sangre());
-//
-//            });
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "El paciente no existe en la base de datos");
-//            LimpiarCampos();
-//        }
-//    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtBuscarPaciente;
     private javax.swing.JButton BtBuscarenfermera;
@@ -1352,10 +1664,17 @@ public class FichaMedica extends javax.swing.JFrame {
     private javax.swing.JButton CargarAlergias;
     private javax.swing.JButton CargarEnfermedades;
     private javax.swing.JCheckBox CheckBoxSeguro;
+    private javax.swing.JButton EliminarAlergias;
+    private javax.swing.JButton EliminarEnfermedades;
+    private javax.swing.ButtonGroup EstadoModi;
+    private javax.swing.JButton GuardarFicha;
     private javax.swing.JList<String> JListAlergias;
     private javax.swing.JList<String> JListEnfermedades;
+    private javax.swing.JLabel MODIFICAR;
+    private javax.swing.JButton RegresarCancelar;
     private javax.swing.JTable TablaEnfermera;
     private javax.swing.JTable TablaPaciente;
+    private javax.swing.JButton btGuardarCambios;
     private javax.swing.JButton buscarenfermera;
     private javax.swing.JDialog cargarEnfermera;
     private javax.swing.JButton cargarP;
@@ -1366,8 +1685,6 @@ public class FichaMedica extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser fecharegistro;
     private javax.swing.JRadioButton femeninoficha;
     private javax.swing.ButtonGroup gruposexoficha;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1400,6 +1717,8 @@ public class FichaMedica extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JRadioButton masculinoficha;
+    private javax.swing.JRadioButton off;
+    private javax.swing.JRadioButton on;
     private javax.swing.JTextField text_buscar;
     private javax.swing.JTextField text_buscare;
     private javax.swing.JTextField txtFechaNacimiento;
