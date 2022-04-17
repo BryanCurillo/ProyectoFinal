@@ -757,7 +757,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
             mi_cone.InsertUpdateDeleteAcciones("UPDATE administrador SET admin_nivel_educacion='" + jCB_nivelDeeducacion_administrador.getSelectedItem().toString() + "' WHERE admin_cedula='" + txt_cedula_administrador.getText() + "'");
             limpiar();
         }
-
     }
 
     public void cargarcod() {
