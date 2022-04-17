@@ -458,7 +458,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
          com.stream().forEach(p -> {
              txt_nombre_paciente.setText(p.getPri_nomb().toString());
              txt_apellido_paciente.setText(p.getPrim_apell().toString());
-             jTextField1.setText(p.getCodigo().toString());
+             jTextField1.setText(String.valueOf(p.getCodigo()));
          });
         
     }
