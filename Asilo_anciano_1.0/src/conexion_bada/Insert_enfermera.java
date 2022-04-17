@@ -89,4 +89,25 @@ public class Insert_enfermera extends enfermera {
         }
         return codigo;
     }
+
+    public List<enfermera> ListaEnfermeraAcargo(int codigoenfermera) {
+        String sqls = "select per_primer_nombre,per_segundo_nombre,per_primer_apellido,per_segundo_apellido from persona,enfermera where enfer_cedula=per_cedula and enfer_codigo=" + codigoenfermera + ";";
+        ResultSet rs = cone.selectConsulta(sqls);
+        List<enfermera> usu = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                enfermera mi_enferA = new enfermera();
+                mi_enferA.setPri_nomb(rs.getString("per_primer_nombre"));
+                mi_enferA.setSeg_nombre(rs.getString("per_segundo_nombre"));
+                mi_enferA.setPrim_apell(rs.getString("per_primer_apellido"));
+                mi_enferA.setSeg_apelli(rs.getString("per_segundo_apellido"));
+                usu.add(mi_enferA);
+            }
+//            rs.close();
+            return usu;
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }
