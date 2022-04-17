@@ -35,6 +35,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
         BloquearCamposPaciente();
         BloquearCamposDoctor();
         BotonModificar.setVisible(false);
+
     }
 
     public agregar_citamedica(String codigo) {
@@ -969,41 +970,47 @@ public class agregar_citamedica extends javax.swing.JFrame {
 
         if (ValidarDatos()) {
 
-            String cedula = txtcedulapaciente_citas.getText();
-            var pacientefiltro = new ArrayList<paciente>();
-            inser.ListaPaciente().forEach((e) -> {
-                if (e.getCedula().equals(cedula)) {
-                    pacientefiltro.add(e);
-                }
-            });
-            if (!pacientefiltro.isEmpty()) {
+            if (ValidarDuplicadosDeFechayHora() == false) {
+                String cedula = txtcedulapaciente_citas.getText();
+                var pacientefiltro = new ArrayList<paciente>();
+                inser.ListaPaciente().forEach((e) -> {
+                    if (e.getCedula().equals(cedula)) {
+                        pacientefiltro.add(e);
+                    }
+                });
+                if (!pacientefiltro.isEmpty()) {
 
-                chequeo.setCodigo_paciente(Integer.parseInt(txtcodigoPaciente.getText()));
-                chequeo.setCodigo_medico(Integer.parseInt(txtcodigoDoctor.getText()));
+                    chequeo.setCodigo_paciente(Integer.parseInt(txtcodigoPaciente.getText()));
+                    chequeo.setCodigo_medico(Integer.parseInt(txtcodigoDoctor.getText()));
 
-                chequeo.setHoraChequeo(ComboHoraChequeo.getSelectedItem().toString());
+                    chequeo.setHoraChequeo(ComboHoraChequeo.getSelectedItem().toString());
 
-                String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
-                String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
-                String anio = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
-                String fecha = (dia + "-" + mes + "-" + anio);
-                chequeo.setFecha_chequeoActual(fecha);
+                    String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
+                    String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
+                    String anio = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
+                    String fecha = (dia + "-" + mes + "-" + anio);
+                    chequeo.setFecha_chequeoActual(fecha);
 
-                chequeo.setEstado("Si");
-                chequeo.setCheck("Si");
-                if (chequeo.InsertarChequeoMedico()) {
-                    System.out.println("Conexion Exitosa");
-                    LimpiarTodoslosDatos();
-                    cargarcod();
+                    chequeo.setEstado("Si");
+                    chequeo.setCheck("Si");
+                    if (chequeo.InsertarChequeoMedico()) {
+                        System.out.println("Conexion Exitosa");
+                        LimpiarTodoslosDatos();
+                        cargarcod();
 
+                    } else {
+                        System.out.println("Conexion Erronea");
+                    }
                 } else {
-                    System.out.println("Conexion Erronea");
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "El paciente no se encuentra registrado");
+                    JOptionPane.showMessageDialog(this, "El paciente no se encuentra registrado");
 
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Ya existe un chequeo agendado en esta fecha y hora");
             }
+
         }
+
     }
 
     public void cargarcod() {
@@ -1020,6 +1027,41 @@ public class agregar_citamedica extends javax.swing.JFrame {
         FechaChequeoActual.setCalendar(null);
         ComboHoraChequeo.setSelectedIndex(0);
 
+    }
+
+    public boolean ValidarDuplicadosDeFechayHora() {
+
+        boolean validar2 = false;
+        try {
+
+            String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
+            String anio = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
+
+            if (dia.length() == 1) {
+                dia = "0" + dia;
+            }
+
+            if (mes.length() == 1) {
+                mes = "0" + mes;
+            }
+            String fechaAux = (anio + "-" + dia + "-" + mes);
+//        System.out.println("Mi Fec: " + fechaAux);
+            List<cita_medica> com = inserChequeo.ListaChequeo();
+
+            for (int i = 0; i < com.size(); i++) {
+
+                if (com.get(i).getHoraChequeo().equals(ComboHoraChequeo.getSelectedItem().toString()) && com.get(i).getFecha_chequeoActual().equals(fechaAux)) {
+                    //System.out.println("Bien");
+                    validar2 = true;
+                }
+            }
+
+        } catch (Exception x) {
+            System.out.println("Error 2:" + x);
+        }
+
+        return validar2;
     }
 
     public boolean ValidarDatos() {
@@ -1046,12 +1088,36 @@ public class agregar_citamedica extends javax.swing.JFrame {
 
         if (ComboHoraChequeo.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Ingrese la hora del chequeo médico");
+            validado = false;
         }
 
         if (FechaChequeoActual.getCalendar() == null) {
             JOptionPane.showMessageDialog(this, "Ingrese la fecha del chequeo médico");
+            validado = false;
         }
 
+//        //Validar Duplicados de Fecha y Hora
+//        String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
+//        String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
+//        String anio = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
+//
+//        if (dia.length() == 1) {
+//            dia = "0" + dia;
+//        }
+//
+//        if (mes.length() == 1) {
+//            mes = "0" + mes;
+//        }
+//        String fechaAux = (anio + "-" + dia + "-" + mes);
+//        
+//        List<cita_medica> com = inserChequeo.ListaChequeo();
+//
+//        for (int i = 0; i < com.size(); i++) {
+//
+//            if (com.get(i).getHoraChequeo().equals(ComboHoraChequeo.getSelectedItem().toString()) && com.get(i).getFecha_chequeoActual().equals(fechaAux)) {
+//                validado = false;
+//            }
+//        }
         return validado;
     }
 
