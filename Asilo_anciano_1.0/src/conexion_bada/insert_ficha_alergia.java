@@ -6,6 +6,8 @@ package conexion_bada;
 
 import java.sql.ResultSet;
 import clases.FichaAlergia;
+import clases.alergias;
+//import clases.enfermera;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
@@ -63,4 +65,23 @@ public class insert_ficha_alergia extends FichaAlergia {
         return codigo;
     }
 
+    public List<alergias> Listaalergias(int cod_ficha) {
+        String sqls = "SELECT aler_nombre_,aler_codigo FROM alergias,ficha_alergia where fa_codigo_alergia=aler_codigo and fa_codigo_ficha=" + cod_ficha + ";";
+        ResultSet rs = cone.selectConsulta(sqls);
+        List<alergias> aler = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                alergias mialergia = new alergias();
+                mialergia.setCodigo_alergia(rs.getInt("aler_codigo"));
+                mialergia.setNombre_alergia(rs.getString("aler_nombre_"));
+
+                aler.add(mialergia);
+            }
+//            rs.close();
+            return aler;
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }
