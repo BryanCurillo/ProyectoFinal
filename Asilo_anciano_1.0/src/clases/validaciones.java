@@ -100,7 +100,7 @@ public class validaciones {
 
     public boolean validarDireccion(String direccion) {
         direccion = direccion.trim();//trim()
-        boolean validar = direccion.matches("([\\w\\s]+\\-*+\\#*)*");
+        boolean validar = direccion.matches("([\\w\\s]+\\-*+\\#*+\\.*)*");
         return validar;
     }
 
