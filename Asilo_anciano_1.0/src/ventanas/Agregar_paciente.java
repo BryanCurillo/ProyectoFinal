@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.awt.image.BufferedImage;
+import java.time.LocalDate;
 
 public class Agregar_paciente extends javax.swing.JFrame {
 
@@ -780,6 +781,20 @@ public class Agregar_paciente extends javax.swing.JFrame {
     public void cargarcod() {
         text_codigo_paciente.setEnabled(false);
         text_codigo_paciente.setText(String.valueOf(inser.cargarcodigo()));
+        fecha_ingreso_paciente.setEnabled(false);
+        Date fecha = null;
+        LocalDate ahora = LocalDate.now();
+
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            fecha = formatofecha.parse(ahora.toString());
+        } catch (ParseException ex) {
+            Logger.getLogger(clases.paciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        System.out.println(ahora);
+        fecha_ingreso_paciente.setDate(fecha);
     }
 
     public void RegistrarPacientes() throws SQLException {
