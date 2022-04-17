@@ -48,6 +48,7 @@ public class listadoDeCitasDoctor extends javax.swing.JFrame {
             if (com.get(i).getCedula().equalsIgnoreCase(cedulaAux)) {
 
                 codDoc = com.get(i).getCodigo();
+                
             }
         }
 
