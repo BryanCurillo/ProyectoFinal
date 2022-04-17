@@ -6,7 +6,7 @@ package clases;
 
 /**
  *
- * @author Bryan
+ * @author grupo1
  */
 public class FichaAlergia {
 
@@ -47,6 +47,7 @@ public class FichaAlergia {
         this.codigo_ficha = codigo_ficha;
     }
     
+    //errores
     
     
     
