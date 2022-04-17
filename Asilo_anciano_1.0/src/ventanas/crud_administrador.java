@@ -193,12 +193,9 @@ public class crud_administrador extends javax.swing.JFrame {
                 if (e.getCedula().equals(cedula)) {
                     new Agregar_administrador(cedula).setVisible(true);
                     text_buscar.setText("");
-
                 }
             });
-
         }
-
     }
 
     public void EliminarAdministrador() {
@@ -216,7 +213,7 @@ public class crud_administrador extends javax.swing.JFrame {
                 cedula = TablaAdministrador.getValueAt(fila, 1).toString();
                 cod = TablaAdministrador.getValueAt(fila, 0).toString();
                 try {
-                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo='" + cod + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo=" + cod + "");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
                     cargarTabla();
                 } catch (Exception e) {
