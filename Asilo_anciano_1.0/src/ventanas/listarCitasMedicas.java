@@ -215,7 +215,7 @@ public class listarCitasMedicas extends javax.swing.JFrame {
                 CancelarChequeoActionPerformed(evt);
             }
         });
-        jPanel1.add(CancelarChequeo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, -1, -1));
+        jPanel1.add(CancelarChequeo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 60, 40));
 
         ModificarCitaMedica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
         ModificarCitaMedica.setToolTipText("MODIFICAR DATOS DE CHEQUEO MEDICO");
@@ -226,7 +226,7 @@ public class listarCitasMedicas extends javax.swing.JFrame {
                 ModificarCitaMedicaActionPerformed(evt);
             }
         });
-        jPanel1.add(ModificarCitaMedica, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, -1, -1));
+        jPanel1.add(ModificarCitaMedica, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 80, 40));
 
         Regresar_acceso_recepcionista.setBackground(new java.awt.Color(204, 204, 204));
         Regresar_acceso_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
@@ -239,13 +239,16 @@ public class listarCitasMedicas extends javax.swing.JFrame {
                 Regresar_acceso_recepcionistaActionPerformed(evt);
             }
         });
-        jPanel1.add(Regresar_acceso_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, -1));
+        jPanel1.add(Regresar_acceso_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 60, 60, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
