@@ -3,7 +3,7 @@ package ventanas;
 
 import clases.administrador;
 import clases.paciente;
-import clases.FichaMedica;
+import clases.claseFichaMedica;
 import conexion_bada.Conexion;
 import conexion_bada.Insert;
 import conexion_bada.Insert_administrador;
@@ -139,7 +139,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo ficha", "Cédula", "Nombres", "Apellidos", "Fecha de registro"
+                "Codigo ficha", "Codigo Paciente", "Cédula", "Nombres", "Apellidos", "Fecha de registro"
             }
         ));
         jScrollPane1.setViewportView(Tablafichas);
@@ -169,20 +169,20 @@ public class crud_FichaMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_BtRegresarAdministradorActionPerformed
 
     private void BtEliminarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarAdministradorActionPerformed
-        EliminarAdministrador();
+        EliminarFicha();
     }//GEN-LAST:event_BtEliminarAdministradorActionPerformed
 
     private void BtBuscarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarAdministradorActionPerformed
         if (!text_buscar.getText().isEmpty()) {
-//            buscar_admin();
+            buscar_ficha();
         } else {
             JOptionPane.showMessageDialog(this, "Ingrese la cedula del administrador");
         }
     }//GEN-LAST:event_BtBuscarAdministradorActionPerformed
 
     private void BtIngresarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresarAdministradorActionPerformed
-//        this.dispose();
-//        new FichaMedica().setVisible(true);
+        this.dispose();
+        new FichaMedica().setVisible(true);
     }//GEN-LAST:event_BtIngresarAdministradorActionPerformed
 
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
@@ -198,30 +198,53 @@ public class crud_FichaMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_BtEditarAdministradorActionPerformed
 
     private void BtVer_FichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtVer_FichaActionPerformed
-        // TODO add your handling code here:
+        ver_ficha();
     }//GEN-LAST:event_BtVer_FichaActionPerformed
-//    public void modificar_Administrador() {
-//
-//        int seleccion = Tablafichas.getSelectedRow();
-//
-//        if (seleccion == -1) {
-//            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
-//        } else {
-//            this.dispose();
-//            String cedula = Tablafichas.getValueAt(seleccion, 0).toString();
-//            inserFicha.ListaFichaMedica().forEach((e) -> {
-//                if (e.getCodigo_ficha_medica().equals(c)) {
-//                    new Agregar_administrador(cedula).setVisible(true);
-//                    text_buscar.setText("");
-//
-//                }
-//            });
-//
-//        }
-//
-//    }
 
-    public void EliminarAdministrador() {
+
+    public void ver_ficha() {
+
+        int seleccion = Tablafichas.getSelectedRow();
+
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            this.dispose();
+            int cod_paciente = Integer.parseInt(Tablafichas.getValueAt(seleccion, 1).toString());
+            inserFicha.ListaFichaMedica().forEach((e) -> {
+                if (e.getCodigo_paciente() == cod_paciente) {
+                    new FichaMedica(cod_paciente).setVisible(true);
+                    text_buscar.setText("");
+
+                }
+            });
+
+        }
+
+    }
+
+    public void SeleccionarFicha() {
+
+        int seleccion = Tablafichas.getSelectedRow();
+
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            this.dispose();
+            int CodigoP = Integer.parseInt(Tablafichas.getValueAt(seleccion, 0).toString());
+            inserFicha.ListaFichaMedica().forEach((e) -> {
+                if (e.getCodigo_paciente() == CodigoP) {
+                    new ventanas.FichaMedica(CodigoP).setVisible(true);
+                    text_buscar.setText("");
+
+                }
+            });
+
+        }
+
+    }
+
+    public void EliminarFicha() {
 
         int fila = Tablafichas.getSelectedRow();
 
@@ -236,8 +259,10 @@ public class crud_FichaMedica extends javax.swing.JFrame {
                 cedula = Tablafichas.getValueAt(fila, 1).toString();
                 cod = Tablafichas.getValueAt(fila, 0).toString();
                 try {
-                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo='" + cod + "'");
-                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM ficha_alergia where fa_codigo_ficha=" + cod + "");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM ficha_enfermedad where fe_codigo_ficha=" + cod + "");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM ficha where ficha_codigo=" + cod + "");
+
                     cargarTabla();
                 } catch (Exception e) {
                     System.out.println(e.toString());
@@ -250,57 +275,51 @@ public class crud_FichaMedica extends javax.swing.JFrame {
     public void cargarTabla() {
         DefaultTableModel tb = (DefaultTableModel) Tablafichas.getModel();
         tb.setNumRows(0);
-        List<FichaMedica> com = inserFicha.ListaFichaMedica();
+        List<claseFichaMedica> com = inserFicha.ListaFichaMedica();
         List<paciente> com2 = inser.ListaPaciente();
         com.stream().forEach(f -> {
             com2.stream().forEach(p -> {
                 if (f.getCodigo_paciente() == p.getCodigo()) {
-                    String[] cami = {String.valueOf(f.getCodigo_ficha_medica()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+                    String[] cami = {String.valueOf(f.getCodigo_ficha_medica()), String.valueOf(f.getCodigo_paciente()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli(),p.getFecha_de_ingreso()};
                     tb.addRow(cami);
                 }
             });
         });
     }
 
-//    public void buscar_admin() {
-//
-//        String cedula = text_buscar.getText();
-//        var adminfiltro = new ArrayList<administrador>();
-//
-//        inser.ListaAdministrador().forEach((a) -> {
-//            if (a.getCedula().equals(cedula)) {
-//                adminfiltro.add(a);
-//            }
-//        });
-//        if (adminfiltro.size() != 0) {
-//            String matriz[][] = new String[adminfiltro.size()][14];
-//            for (int j = 0; j < adminfiltro.size(); j++) {
-//                matriz[j][0] = adminfiltro.get(j).getCodigo();
-//                matriz[j][1] = adminfiltro.get(j).getCedula();
-//                matriz[j][2] = adminfiltro.get(j).getPri_nomb();
-//                matriz[j][3] = adminfiltro.get(j).getSeg_nombre();
-//                matriz[j][4] = adminfiltro.get(j).getPrim_apell();
-//                matriz[j][5] = adminfiltro.get(j).getSeg_apelli();
-//                matriz[j][6] = adminfiltro.get(j).getGenero();
-//                matriz[j][7] = adminfiltro.get(j).getTipo_sangre();
-//                matriz[j][8] = adminfiltro.get(j).getDireccion();
-//                matriz[j][9] = adminfiltro.get(j).getFecha_Nacimiento();
-//                matriz[j][10] = adminfiltro.get(j).getNivel_educacion();
-//                matriz[j][11] = adminfiltro.get(j).getCorreo();
-//                matriz[j][12] = adminfiltro.get(j).getTelefono();
-//
-//            }
-//            Tablafichas.setModel(new javax.swing.table.DefaultTableModel(
-//                    matriz,
-//                    new String[]{
-//                        "Codigo", "Cédula", "Primer nombre", "segundo nombre", "Primer apellido", "Segundo apellido", "Genero", "Tipo de sangre", "Dirección", "Fecha de nacimiento", "Nivel de educacion", "E-mail", "Celular"
-//                    }
-//            ));
-//        } else {
-//            JOptionPane.showMessageDialog(this, "El administrador no existe en la base de datos");
-//        }
-//
-//    }
+    public void buscar_ficha() {
+
+        String cedula = text_buscar.getText();
+        var fichafiltro = new ArrayList<claseFichaMedica>();
+
+        inserFicha.ListaFichaMedica().forEach((a) -> {
+            if (a.getCedula().equals(cedula)) {
+                fichafiltro.add(a);
+            }
+        });
+        if (fichafiltro.size() != 0) {
+            String matriz[][] = new String[fichafiltro.size()][6];
+            for (int j = 0; j < fichafiltro.size(); j++) {
+                matriz[j][0] = String.valueOf(fichafiltro.get(j).getCodigo_ficha_medica());
+                matriz[j][1] = String.valueOf(fichafiltro.get(j).getCodigo_paciente());
+                matriz[j][2] = fichafiltro.get(j).getCedula();
+                matriz[j][3] = fichafiltro.get(j).getPri_nomb() + "   " + fichafiltro.get(j).getSeg_nombre();
+                matriz[j][4] = fichafiltro.get(j).getPrim_apell() + "   " + fichafiltro.get(j).getSeg_apelli();
+                matriz[j][5] = fichafiltro.get(j).getFecha_de_ingreso();
+
+            }
+            Tablafichas.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "Codigo ficha", "Codigo Paciente", "Cédula", "Nombres", "Apellidos", "Fecha de registro"
+                    }
+            ));
+        } else {
+            JOptionPane.showMessageDialog(this, "El administrador no existe en la base de datos");
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
