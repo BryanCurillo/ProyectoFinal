@@ -1005,7 +1005,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "El paciente no se encuentra registrado");
 
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Ya existe un chequeo agendado en esta fecha y hora");
             }
 
@@ -1051,9 +1051,12 @@ public class agregar_citamedica extends javax.swing.JFrame {
 
             for (int i = 0; i < com.size(); i++) {
 
-                if (com.get(i).getHoraChequeo().equals(ComboHoraChequeo.getSelectedItem().toString()) && com.get(i).getFecha_chequeoActual().equals(fechaAux)) {
+                String codigoDocAux = String.valueOf(com.get(i).getCodigo_medico());
+                
+                if (codigoDocAux.equals(txtcodigoDoctor.getText()) && com.get(i).getHoraChequeo().equals(ComboHoraChequeo.getSelectedItem().toString()) && com.get(i).getFecha_chequeoActual().equals(fechaAux)) {
                     //System.out.println("Bien");
                     validar2 = true;
+                    
                 }
             }
 
@@ -1095,29 +1098,6 @@ public class agregar_citamedica extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ingrese la fecha del chequeo médico");
             validado = false;
         }
-
-//        //Validar Duplicados de Fecha y Hora
-//        String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
-//        String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
-//        String anio = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
-//
-//        if (dia.length() == 1) {
-//            dia = "0" + dia;
-//        }
-//
-//        if (mes.length() == 1) {
-//            mes = "0" + mes;
-//        }
-//        String fechaAux = (anio + "-" + dia + "-" + mes);
-//        
-//        List<cita_medica> com = inserChequeo.ListaChequeo();
-//
-//        for (int i = 0; i < com.size(); i++) {
-//
-//            if (com.get(i).getHoraChequeo().equals(ComboHoraChequeo.getSelectedItem().toString()) && com.get(i).getFecha_chequeoActual().equals(fechaAux)) {
-//                validado = false;
-//            }
-//        }
         return validado;
     }
 
