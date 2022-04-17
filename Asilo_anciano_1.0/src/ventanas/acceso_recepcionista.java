@@ -170,7 +170,7 @@ public class acceso_recepcionista extends javax.swing.JFrame {
 
     private void boton_agendar_chequeosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_agendar_chequeosActionPerformed
         // TODO add your handling code here:
-        cita_medica ct = new cita_medica();
+        agregar_citamedica ct = new agregar_citamedica();
         ct.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_agendar_chequeosActionPerformed

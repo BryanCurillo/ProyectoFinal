@@ -1,7 +1,11 @@
 package ventanas;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import clases.cita_medica;
 import clases.doctor;
 import clases.paciente;
+import conexion_bada.Conexion;
 import conexion_bada.Insert;
 import conexion_bada.Insert_ChequeoMedico;
 import conexion_bada.Insert_doctor;
@@ -13,20 +17,94 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.Color;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
-public class cita_medica extends javax.swing.JFrame {
+public class agregar_citamedica extends javax.swing.JFrame {
+
+    Conexion mi_cone = new Conexion();
 
     Insert inser = new Insert();
     Insert_doctor insertDoc = new Insert_doctor();
     Insert_ChequeoMedico inserChequeo = new Insert_ChequeoMedico();
 
-    public cita_medica() {
+    public agregar_citamedica() {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarcod();
         BloquearCamposPaciente();
         BloquearCamposDoctor();
+        BotonModificar.setVisible(false);
+
+    }
+
+    public agregar_citamedica(String codigo) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        llenar_cita(codigo);
+        BotonGuardar.setVisible(false);
+        BotonListarregistros.setVisible(false);
+        BotonBuscarPaciente.setVisible(false);
+        BuscarDoctor.setVisible(false);
+    }
+
+    public void llenar_cita(String codigo) {
+        List<cita_medica> com = inserChequeo.ListaChequeo();
+
+        com.stream().forEach(p -> {
+
+            String codigoAux = String.valueOf(p.getCodigo_citas());
+            if (codigoAux.equals(codigo)) {
+
+                //Datos del chequeo
+                txtcodigoChequeo.setText(String.valueOf(p.getCodigo_citas()));
+                for (int j = 0; j < ComboHoraChequeo.getItemCount(); j++) {
+                    if (ComboHoraChequeo.getItemAt(j).equalsIgnoreCase(p.getHoraChequeo())) {
+                        ComboHoraChequeo.setSelectedIndex(j);
+                        j = ComboHoraChequeo.getItemCount();
+                    }
+                }
+
+                SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = null;
+                try {
+                    fecha = formatofecha.parse(p.getFecha_chequeoActual());
+                } catch (ParseException ex) {
+                    Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                FechaChequeoActual.setDate(fecha);
+                txtcodigoDoctor.setText(String.valueOf(p.getCodigo_medico()));
+                txtcodigoPaciente.setText(String.valueOf(p.getCodigo_paciente()));
+
+                //Datos del paciente
+                List<paciente> paci = inserChequeo.ListaChequeoPaciente(p.getCodigo_citas());
+                paci.stream().forEach(pac -> {
+
+                    //System.out.println("Cod Paci: " + pac.getCodigo());
+                    txtcedulapaciente_citas.setText(pac.getCedula());
+                    txtNombre.setText(pac.getPri_nomb() + " " + pac.getSeg_nombre());
+                    txtApellidos.setText(pac.getPrim_apell() + " " + pac.getSeg_apelli());
+
+                });
+
+                //Datos del doctor
+                List<doctor> doc = inserChequeo.ListaChequeoDoctor(p.getCodigo_citas());
+                doc.stream().forEach(d -> {
+
+                    // System.out.println("Cod doc: " + d.getCodigo());
+                    txtCedulaDoctor.setText(d.getCedula());
+                    txtNombreDoctor.setText(d.getPri_nomb() + " " + d.getSeg_nombre());
+                    txtApellidoDoctor.setText(d.getPrim_apell() + " " + d.getSeg_apelli());
+                    txtEspecialidad.setText(d.getEspecialidad());
+                });
+
+                //Bloquear Campos
+                txtcedulapaciente_citas.setEditable(false);
+                BloquearCamposDoctor();
+                BloquearCamposPaciente();
+            }
+
+        });
     }
 
     /**
@@ -44,9 +122,16 @@ public class cita_medica extends javax.swing.JFrame {
         cargarDoctorDialog = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDoctorDialog = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        ActualizarJDialog = new javax.swing.JButton();
+        CargarDatosPaciente = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaPacienteDialog = new javax.swing.JTable();
+        text_buscarPacienteDialog = new javax.swing.JTextField();
+        ActualizarPacienteJDialog = new javax.swing.JButton();
+        CargarPacienteDialog = new javax.swing.JButton();
+        BotonBuscarPacienteDialog = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        BuscarPaciente = new javax.swing.JButton();
+        BotonBuscarPaciente = new javax.swing.JButton();
         BuscarDoctor = new javax.swing.JButton();
         BotonGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -79,8 +164,10 @@ public class cita_medica extends javax.swing.JFrame {
         txtcodigoDoctor = new javax.swing.JTextField();
         boton_regresar_acceso_recepcionista = new javax.swing.JButton();
         FechaChequeoActual = new com.toedter.calendar.JDateChooser();
+        BotonModificar = new javax.swing.JButton();
+        BotonListarregistros = new javax.swing.JButton();
 
-        text_buscarDoctorDialog.setText("Buscar...");
+        text_buscarDoctorDialog.setText("Buscar cédula...");
         text_buscarDoctorDialog.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_buscarDoctorMousePressed(evt);
@@ -103,7 +190,7 @@ public class cita_medica extends javax.swing.JFrame {
         });
 
         cargarDoctorDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
-        cargarDoctorDialog.setToolTipText("CARGAR CEDULA");
+        cargarDoctorDialog.setToolTipText("CARGAR DATOS");
         cargarDoctorDialog.setBorder(null);
         cargarDoctorDialog.setOpaque(false);
         cargarDoctorDialog.addActionListener(new java.awt.event.ActionListener() {
@@ -127,10 +214,13 @@ public class cita_medica extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaDoctorDialog);
 
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ActualizarJDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        ActualizarJDialog.setToolTipText("ACTUALIZAR");
+        ActualizarJDialog.setBorder(null);
+        ActualizarJDialog.setOpaque(false);
+        ActualizarJDialog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ActualizarJDialogActionPerformed(evt);
             }
         });
 
@@ -140,13 +230,13 @@ public class cita_medica extends javax.swing.JFrame {
             CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CargarChequeoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(CargarChequeoLayout.createSequentialGroup()
-                        .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
-                        .addComponent(jButton1)
+                        .addComponent(ActualizarJDialog)
                         .addGap(149, 149, 149)
                         .addComponent(cargarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,14 +245,115 @@ public class cita_medica extends javax.swing.JFrame {
         CargarChequeoLayout.setVerticalGroup(
             CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CargarChequeoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cargarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(21, 21, 21)
+                .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CargarChequeoLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(CargarChequeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BotonBuscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(text_buscarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ActualizarJDialog))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CargarChequeoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cargarDoctorDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        TablaPacienteDialog.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+            }
+        ));
+        TablaPacienteDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaPacienteDialogTablaPacienteMousePressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TablaPacienteDialog);
+
+        text_buscarPacienteDialog.setText("Buscar cédula...");
+        text_buscarPacienteDialog.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarPacienteDialogtext_buscarDoctorMousePressed(evt);
+            }
+        });
+        text_buscarPacienteDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_buscarPacienteDialogtext_buscarDoctorActionPerformed(evt);
+            }
+        });
+
+        ActualizarPacienteJDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        ActualizarPacienteJDialog.setToolTipText("ACTUALIZAR ");
+        ActualizarPacienteJDialog.setBorder(null);
+        ActualizarPacienteJDialog.setOpaque(false);
+        ActualizarPacienteJDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarPacienteJDialogActionPerformed(evt);
+            }
+        });
+
+        CargarPacienteDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
+        CargarPacienteDialog.setToolTipText("CARGAR DATOS");
+        CargarPacienteDialog.setBorder(null);
+        CargarPacienteDialog.setOpaque(false);
+        CargarPacienteDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarPacienteDialogcargarDoctorActionPerformed(evt);
+            }
+        });
+
+        BotonBuscarPacienteDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BotonBuscarPacienteDialog.setToolTipText("BUSCAR PACIENTE");
+        BotonBuscarPacienteDialog.setBorder(null);
+        BotonBuscarPacienteDialog.setOpaque(false);
+        BotonBuscarPacienteDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarPacienteDialogActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CargarDatosPacienteLayout = new javax.swing.GroupLayout(CargarDatosPaciente.getContentPane());
+        CargarDatosPaciente.getContentPane().setLayout(CargarDatosPacienteLayout);
+        CargarDatosPacienteLayout.setHorizontalGroup(
+            CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                        .addComponent(text_buscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(BotonBuscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(ActualizarPacienteJDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CargarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
+        );
+        CargarDatosPacienteLayout.setVerticalGroup(
+            CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CargarDatosPacienteLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(text_buscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CargarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(CargarDatosPacienteLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(CargarDatosPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ActualizarPacienteJDialog)
+                            .addComponent(BotonBuscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -171,13 +362,13 @@ public class cita_medica extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(240, 232, 158));
 
-        BuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
-        BuscarPaciente.setToolTipText("Buscar paciente");
-        BuscarPaciente.setBorder(null);
-        BuscarPaciente.setOpaque(false);
-        BuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
+        BotonBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BotonBuscarPaciente.setToolTipText("Buscar paciente");
+        BotonBuscarPaciente.setBorder(null);
+        BotonBuscarPaciente.setOpaque(false);
+        BotonBuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarPacienteActionPerformed(evt);
+                BotonBuscarPacienteActionPerformed(evt);
             }
         });
 
@@ -203,7 +394,7 @@ public class cita_medica extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CHEQUEO MÉDICO");
+        jLabel1.setText("CHEQUEO MÉDICO ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Cedula Paciente:");
@@ -265,6 +456,27 @@ public class cita_medica extends javax.swing.JFrame {
             }
         });
 
+        BotonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
+        BotonModificar.setToolTipText("MODIFICAR");
+        BotonModificar.setBorder(null);
+        BotonModificar.setBorderPainted(false);
+        BotonModificar.setOpaque(false);
+        BotonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonModificarActionPerformed(evt);
+            }
+        });
+
+        BotonListarregistros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/revision-de-codigo.png"))); // NOI18N
+        BotonListarregistros.setToolTipText("REVISAR CHEQUEOS MEDICOS");
+        BotonListarregistros.setBorder(null);
+        BotonListarregistros.setOpaque(false);
+        BotonListarregistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonListarregistrosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -273,36 +485,34 @@ public class cita_medica extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel11))
-                                .addGap(45, 45, 45)
+                                .addGap(36, 36, 36)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNombreDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(FechaChequeoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addGap(27, 27, 27)
-                                .addComponent(txtCedulaDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(BuscarDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(64, 64, 64)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCedulaDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(112, 112, 112)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
-                                .addGap(35, 35, 35)
+                                .addGap(27, 27, 27)
                                 .addComponent(txtcodigoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel12))
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtApellidoDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                    .addComponent(ComboHoraChequeo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(18, 54, Short.MAX_VALUE)
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ComboHoraChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtApellidoDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
@@ -345,16 +555,22 @@ public class cita_medica extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtcedulapaciente_citas, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(BuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(BotonBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(554, 554, 554)
                                 .addComponent(jLabel1)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(540, 540, 540)
-                .addComponent(BotonGuardar)
-                .addGap(97, 97, 97)
+                .addGap(458, 458, 458)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BuscarDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonGuardar))
+                .addGap(69, 69, 69)
+                .addComponent(BotonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(BotonListarregistros)
+                .addGap(67, 67, 67)
                 .addComponent(boton_regresar_acceso_recepcionista)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -375,7 +591,7 @@ public class cita_medica extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
                         .addComponent(txtcodigoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BotonBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,54 +600,55 @@ public class cita_medica extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel16)
-                                        .addComponent(txtcodigoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(txtcodigoChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BuscarDoctor)
-                            .addComponent(txtCedulaDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel15)
+                                .addComponent(txtcodigoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtcodigoChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(BuscarDoctor)
+                                .addGap(7, 7, 7))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addComponent(jLabel9)
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(txtCedulaDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(14, 14, 14)
+                            .addComponent(jLabel16))))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtNombreDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel11))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(ComboHoraChequeo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12)))))
+                                    .addComponent(jLabel12)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(FechaChequeoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11)))))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10)
                         .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtApellidoDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7))
-                    .addComponent(FechaChequeoActual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel7)
+                        .addComponent(txtNombreDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonGuardar)
-                    .addComponent(boton_regresar_acceso_recepcionista))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BotonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boton_regresar_acceso_recepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonListarregistros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
         );
 
@@ -440,9 +657,13 @@ public class cita_medica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPacienteActionPerformed
-        Buscar_Paciente();
-    }//GEN-LAST:event_BuscarPacienteActionPerformed
+    private void BotonBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarPacienteActionPerformed
+        CargarDatosPaciente.setSize(535, 290);
+        CargarTodosLosPacientes();
+        CargarDatosPaciente.setVisible(true);
+        CargarDatosPaciente.setLocationRelativeTo(BotonBuscarPaciente);
+
+    }//GEN-LAST:event_BotonBuscarPacienteActionPerformed
 
     private void BuscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarDoctorActionPerformed
         CargarChequeo.setSize(535, 290);
@@ -453,19 +674,29 @@ public class cita_medica extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarDoctorActionPerformed
 
     private void boton_regresar_acceso_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_acceso_recepcionistaActionPerformed
-        // TODO add your handling code here:
-        acceso_recepcionista acrep = new acceso_recepcionista();
-        acrep.setVisible(true);
-        dispose();
+        if (listarCitasMedicas.abrir == 1) {
+
+            listarCitasMedicas mi_lista = new listarCitasMedicas();
+            mi_lista.setVisible(true);
+            dispose();
+        } else {
+
+            if (listarCitasMedicas.abrir == 0) {
+                acceso_recepcionista acrep = new acceso_recepcionista();
+                acrep.setVisible(true);
+                dispose();
+            }
+
+        }
     }//GEN-LAST:event_boton_regresar_acceso_recepcionistaActionPerformed
 
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
 
         try {
             IngresarChequeo();
-        } catch (NullPointerException x) {
+        } catch (Exception e) {
 
-            //System.out.println("Error: " + x);
+            System.out.println("Error: " + e);
         }
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
@@ -496,9 +727,72 @@ public class cita_medica extends javax.swing.JFrame {
 
     }//GEN-LAST:event_TablaPacienteMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ActualizarJDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarJDialogActionPerformed
         CargarTodosLosDoctores();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ActualizarJDialogActionPerformed
+
+    private void BotonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarActionPerformed
+        int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            modificar_CitaMedica();
+            JOptionPane.showMessageDialog(null, "La cita se modificó éxitosamente");
+        }
+    }//GEN-LAST:event_BotonModificarActionPerformed
+
+    private void BotonListarregistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonListarregistrosActionPerformed
+
+        listarCitasMedicas mi_listado = new listarCitasMedicas();
+        mi_listado.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_BotonListarregistrosActionPerformed
+
+    private void TablaPacienteDialogTablaPacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPacienteDialogTablaPacienteMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaPacienteDialogTablaPacienteMousePressed
+
+    private void text_buscarPacienteDialogtext_buscarDoctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarPacienteDialogtext_buscarDoctorMousePressed
+        text_buscarPacienteDialog.setText("");
+        text_buscarPacienteDialog.setForeground(Color.BLACK);
+    }//GEN-LAST:event_text_buscarPacienteDialogtext_buscarDoctorMousePressed
+
+    private void text_buscarPacienteDialogtext_buscarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_buscarPacienteDialogtext_buscarDoctorActionPerformed
+
+
+    }//GEN-LAST:event_text_buscarPacienteDialogtext_buscarDoctorActionPerformed
+
+    private void ActualizarPacienteJDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarPacienteJDialogActionPerformed
+        CargarTodosLosPacientes();
+    }//GEN-LAST:event_ActualizarPacienteJDialogActionPerformed
+
+    private void CargarPacienteDialogcargarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarPacienteDialogcargarDoctorActionPerformed
+        CargarDatosPacienteEnTXT();
+    }//GEN-LAST:event_CargarPacienteDialogcargarDoctorActionPerformed
+
+    private void BotonBuscarPacienteDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarPacienteDialogActionPerformed
+
+        if (!text_buscarPacienteDialog.getText().isEmpty()) {
+            Buscar_PacienteDialog();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del paciente");
+        }
+    }//GEN-LAST:event_BotonBuscarPacienteDialogActionPerformed
+
+    public void modificar_CitaMedica() {
+        if (ValidarDatos()) {
+            String horario = ComboHoraChequeo.getSelectedItem().toString();
+
+            String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
+            String FechaChequeo = (dia + "-" + mes + "-" + año);
+
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE cita SET cita_fecha='" + FechaChequeo + "', cita_hora='" + horario + "' WHERE cita_codigo = '" + txtcodigoChequeo.getText() + "';");
+
+            LimpiarTodoslosDatos();
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -517,21 +811,31 @@ public class cita_medica extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(cita_medica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(agregar_citamedica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(cita_medica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(agregar_citamedica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(cita_medica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(agregar_citamedica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(cita_medica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(agregar_citamedica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cita_medica().setVisible(true);
+                new agregar_citamedica().setVisible(true);
             }
+        });
+    }
+
+    public void CargarTodosLosPacientes() {
+        DefaultTableModel tb = (DefaultTableModel) TablaPacienteDialog.getModel();
+        tb.setNumRows(0);
+        List<paciente> com = inser.ListaPaciente();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            tb.addRow(cami);
         });
     }
 
@@ -544,6 +848,34 @@ public class cita_medica extends javax.swing.JFrame {
             tb.addRow(cami);
         });
     }
+
+    public void CargarDatosPacienteEnTXT() {
+        int fila = TablaPacienteDialog.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+
+            String codigoAux;
+            String cedulaAux;
+            String nombresAux;
+            String apellidosAux;
+
+            codigoAux = TablaPacienteDialog.getValueAt(fila, 0).toString();
+            cedulaAux = TablaPacienteDialog.getValueAt(fila, 1).toString();
+            nombresAux = TablaPacienteDialog.getValueAt(fila, 2).toString();
+            apellidosAux = TablaPacienteDialog.getValueAt(fila, 3).toString();
+
+            txtcodigoPaciente.setText(codigoAux);
+            txtcedulapaciente_citas.setText(cedulaAux);
+            txtNombre.setText(nombresAux);
+            txtApellidos.setText(apellidosAux);
+
+            CargarDatosPaciente.dispose();
+        }
+
+    }
+
     public void CargarDatosDoctorEnTXT() {
         int fila = TablaDoctorDialog.getSelectedRow();
 
@@ -556,23 +888,51 @@ public class cita_medica extends javax.swing.JFrame {
             String nombresAux;
             String apellidosAux;
             String especialidadAux;
-            
+
             codigoAux = TablaDoctorDialog.getValueAt(fila, 0).toString();
             cedulaAux = TablaDoctorDialog.getValueAt(fila, 1).toString();
             nombresAux = TablaDoctorDialog.getValueAt(fila, 2).toString();
             apellidosAux = TablaDoctorDialog.getValueAt(fila, 3).toString();
             especialidadAux = TablaDoctorDialog.getValueAt(fila, 4).toString();
-            
-            
+
             txtcodigoDoctor.setText(codigoAux);
             txtCedulaDoctor.setText(cedulaAux);
             txtNombreDoctor.setText(nombresAux);
             txtApellidoDoctor.setText(apellidosAux);
             txtEspecialidad.setText(especialidadAux);
-                    
+
             CargarChequeo.dispose();
         }
 
+    }
+
+    public void Buscar_PacienteDialog() {
+        String cedula = text_buscarPacienteDialog.getText();
+        var pacienteDialogfiltro = new ArrayList<paciente>();
+        inser.ListaPaciente().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                pacienteDialogfiltro.add(e);
+            }
+        });
+        if (!pacienteDialogfiltro.isEmpty()) {
+
+            String matriz[][] = new String[pacienteDialogfiltro.size()][14];
+            for (int j = 0; j < pacienteDialogfiltro.size(); j++) {
+                matriz[j][0] = String.valueOf(pacienteDialogfiltro.get(j).getCodigo());
+                matriz[j][1] = pacienteDialogfiltro.get(j).getCedula();
+                matriz[j][2] = pacienteDialogfiltro.get(j).getPri_nomb() + "  " + pacienteDialogfiltro.get(j).getSeg_nombre();
+                matriz[j][3] = pacienteDialogfiltro.get(j).getPrim_apell() + "  " + pacienteDialogfiltro.get(j).getSeg_apelli();;
+
+            }
+            TablaPacienteDialog.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+                    }
+            ));
+        } else {
+            JOptionPane.showMessageDialog(this, "El paciente no se encuentra registrado");
+        }
     }
 
     public void Buscar_DoctorDialog() {
@@ -583,7 +943,7 @@ public class cita_medica extends javax.swing.JFrame {
                 doctorDialogfiltro.add(e);
             }
         });
-        if (doctorDialogfiltro.size() != 0) {
+        if (!doctorDialogfiltro.isEmpty()) {
 
             String matriz[][] = new String[doctorDialogfiltro.size()][14];
             for (int j = 0; j < doctorDialogfiltro.size(); j++) {
@@ -610,41 +970,47 @@ public class cita_medica extends javax.swing.JFrame {
 
         if (ValidarDatos()) {
 
-            String cedula = txtcedulapaciente_citas.getText();
-            var pacientefiltro = new ArrayList<paciente>();
-            inser.ListaPaciente().forEach((e) -> {
-                if (e.getCedula().equals(cedula)) {
-                    pacientefiltro.add(e);
-                }
-            });
-            if (!pacientefiltro.isEmpty()) {
+            if (ValidarDuplicadosDeFechayHora() == false) {
+                String cedula = txtcedulapaciente_citas.getText();
+                var pacientefiltro = new ArrayList<paciente>();
+                inser.ListaPaciente().forEach((e) -> {
+                    if (e.getCedula().equals(cedula)) {
+                        pacientefiltro.add(e);
+                    }
+                });
+                if (!pacientefiltro.isEmpty()) {
 
-                chequeo.setCodigo_paciente(Integer.parseInt(txtcodigoPaciente.getText()));
-                chequeo.setCodigo_medico(Integer.parseInt(txtcodigoDoctor.getText()));
+                    chequeo.setCodigo_paciente(Integer.parseInt(txtcodigoPaciente.getText()));
+                    chequeo.setCodigo_medico(Integer.parseInt(txtcodigoDoctor.getText()));
 
-                chequeo.setHoraChequeo(ComboHoraChequeo.getSelectedItem().toString());
+                    chequeo.setHoraChequeo(ComboHoraChequeo.getSelectedItem().toString());
 
-                String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
-                String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
-                String anio = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
-                String fecha = (dia + "-" + mes + "-" + anio);
-                chequeo.setFecha_chequeoActual(fecha);
+                    String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
+                    String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
+                    String anio = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
+                    String fecha = (dia + "-" + mes + "-" + anio);
+                    chequeo.setFecha_chequeoActual(fecha);
 
-                chequeo.setEstado("Si");
-                chequeo.setCheck("Si");
-                if (chequeo.InsertarChequeoMedico()) {
-                    System.out.println("Conexion Exitosa");
-                    LimpiarTodoslosDatos();
-                    cargarcod();
+                    chequeo.setEstado("Si");
+                    chequeo.setCheck("Si");
+                    if (chequeo.InsertarChequeoMedico()) {
+                        System.out.println("Conexion Exitosa");
+                        LimpiarTodoslosDatos();
+                        cargarcod();
 
+                    } else {
+                        System.out.println("Conexion Erronea");
+                    }
                 } else {
-                    System.out.println("Conexion Erronea");
+                    JOptionPane.showMessageDialog(this, "El paciente no se encuentra registrado");
+
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "El paciente no se encuentra registrado");
-
+                JOptionPane.showMessageDialog(null, "Ya existe un chequeo agendado en esta fecha y hora");
             }
+
         }
+
     }
 
     public void cargarcod() {
@@ -661,6 +1027,44 @@ public class cita_medica extends javax.swing.JFrame {
         FechaChequeoActual.setCalendar(null);
         ComboHoraChequeo.setSelectedIndex(0);
 
+    }
+
+    public boolean ValidarDuplicadosDeFechayHora() {
+
+        boolean validar2 = false;
+        try {
+
+            String dia = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.MONTH) + 1);
+            String anio = Integer.toString(FechaChequeoActual.getCalendar().get(Calendar.YEAR));
+
+            if (dia.length() == 1) {
+                dia = "0" + dia;
+            }
+
+            if (mes.length() == 1) {
+                mes = "0" + mes;
+            }
+            String fechaAux = (anio + "-" + dia + "-" + mes);
+//        System.out.println("Mi Fec: " + fechaAux);
+            List<cita_medica> com = inserChequeo.ListaChequeo();
+
+            for (int i = 0; i < com.size(); i++) {
+
+                String codigoDocAux = String.valueOf(com.get(i).getCodigo_medico());
+                
+                if (codigoDocAux.equals(txtcodigoDoctor.getText()) && com.get(i).getHoraChequeo().equals(ComboHoraChequeo.getSelectedItem().toString()) && com.get(i).getFecha_chequeoActual().equals(fechaAux)) {
+                    //System.out.println("Bien");
+                    validar2 = true;
+                    
+                }
+            }
+
+        } catch (Exception x) {
+            System.out.println("Error 2:" + x);
+        }
+
+        return validar2;
     }
 
     public boolean ValidarDatos() {
@@ -687,12 +1091,13 @@ public class cita_medica extends javax.swing.JFrame {
 
         if (ComboHoraChequeo.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Ingrese la hora del chequeo médico");
+            validado = false;
         }
 
         if (FechaChequeoActual.getCalendar() == null) {
             JOptionPane.showMessageDialog(this, "Ingrese la fecha del chequeo médico");
+            validado = false;
         }
-
         return validado;
     }
 
@@ -742,8 +1147,9 @@ public class cita_medica extends javax.swing.JFrame {
 //            LimpiarCamposPaciente();
 //        }
 //    }
-
     public void BloquearCamposPaciente() {
+
+        txtcedulapaciente_citas.setEditable(false);
         txtcodigoPaciente.setEditable(false);
         txtNombre.setEditable(false);
         txtApellidos.setEditable(false);
@@ -782,13 +1188,13 @@ public class cita_medica extends javax.swing.JFrame {
     }
 
     public void BloquearCamposDoctor() {
-        
+
         txtCedulaDoctor.setEditable(false);
         txtcodigoDoctor.setEditable(false);
         txtNombreDoctor.setEditable(false);
         txtApellidoDoctor.setEditable(false);
         txtEspecialidad.setEditable(false);
-        
+
     }
 
     public void LimpiarCamposDoctor() {
@@ -798,17 +1204,24 @@ public class cita_medica extends javax.swing.JFrame {
         txtEspecialidad.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ActualizarJDialog;
+    private javax.swing.JButton ActualizarPacienteJDialog;
     private javax.swing.JButton BotonBuscarDoctorDialog;
+    private javax.swing.JButton BotonBuscarPaciente;
+    private javax.swing.JButton BotonBuscarPacienteDialog;
     private javax.swing.JButton BotonGuardar;
+    private javax.swing.JButton BotonListarregistros;
+    private javax.swing.JButton BotonModificar;
     private javax.swing.JButton BuscarDoctor;
-    private javax.swing.JButton BuscarPaciente;
     private javax.swing.JDialog CargarChequeo;
+    private javax.swing.JDialog CargarDatosPaciente;
+    private javax.swing.JButton CargarPacienteDialog;
     private javax.swing.JComboBox<String> ComboHoraChequeo;
     private com.toedter.calendar.JDateChooser FechaChequeoActual;
     private javax.swing.JTable TablaDoctorDialog;
+    private javax.swing.JTable TablaPacienteDialog;
     private javax.swing.JButton boton_regresar_acceso_recepcionista;
     private javax.swing.JButton cargarDoctorDialog;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -826,9 +1239,11 @@ public class cita_medica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField text_buscarDoctorDialog;
+    private javax.swing.JTextField text_buscarPacienteDialog;
     private javax.swing.JTextField txtApellidoDoctor;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtCedulaDoctor;

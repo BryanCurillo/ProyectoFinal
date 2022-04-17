@@ -14,17 +14,19 @@ public class cita_medica {
     private String fecha_chequeoActual;
     private String horaChequeo;
     private String estado;
+    private String check;
 
     public cita_medica() {
     }
 
-    public cita_medica(int codigo_citas, int codigo_paciente, int codigo_medico, String fecha_chequeoActual, String horaChequeo, String estado) {
+    public cita_medica(int codigo_citas, int codigo_paciente, int codigo_medico, String fecha_chequeoActual, String horaChequeo, String estado, String check) {
         this.codigo_citas = codigo_citas;
         this.codigo_paciente = codigo_paciente;
         this.codigo_medico = codigo_medico;
         this.fecha_chequeoActual = fecha_chequeoActual;
         this.horaChequeo = horaChequeo;
         this.estado = estado;
+        this.check = check;
     }
 
     public int getCodigo_citas() {
@@ -73,6 +75,14 @@ public class cita_medica {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getCheck() {
+        return check;
+    }
+
+    public void setCheck(String check) {
+        this.check = check;
     }
 
 }

@@ -158,9 +158,9 @@ public class acceso_doctor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        listado_citas lc = new listado_citas();
-        lc.setVisible(true);
+
+        listadoDeCitasDoctor mi_listadoDoctor = new listadoDeCitasDoctor();
+        mi_listadoDoctor.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
