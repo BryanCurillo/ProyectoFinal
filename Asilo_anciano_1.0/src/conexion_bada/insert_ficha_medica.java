@@ -5,7 +5,7 @@
  */
 package conexion_bada;
 
-import clases.FichaMedica;
+import clases.claseFichaMedica;
 import clases.paciente;
 import clases.persona;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author Bryan
  */
-public class insert_ficha_medica extends FichaMedica {
+public class insert_ficha_medica extends claseFichaMedica {
 
     Conexion cone = new Conexion();
 
@@ -29,21 +29,35 @@ public class insert_ficha_medica extends FichaMedica {
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
-    public List<FichaMedica> ListaFichaMedica() {
-        String sqls = "select * from ficha;";
+    public List<claseFichaMedica> ListaFichaMedica() {
+        String sqls = "select * from ficha,paciente,persona,enfermera where ficha_paci_codigo=paci_codigo and ficha_enfermera_acargo=enfer_codigo and paci_cedula=per_cedula;";
+
+//        String sqls = "select ficha_enfermera_acargo,ficha_paci_codigo,ficha_observaciones,ficha_codigo from ficha,paciente,persona,enfermera where ficha_paci_codigo=paci_codigo and ficha_enfermera_acargo=enfer_codigo and paci_cedula=per_cedula;";
         ResultSet resficha = cone.selectConsulta(sqls);
-        List<FichaMedica> ficha = new ArrayList<>();
+        List<claseFichaMedica> ficha = new ArrayList<>();
 
         try {
             while (resficha.next()) {
 
-                FichaMedica mificha = new FichaMedica();
+                claseFichaMedica mificha = new claseFichaMedica();
 
                 mificha.setCodigo_ficha_medica(resficha.getInt("ficha_codigo"));
                 mificha.setObservaciones(resficha.getString("ficha_observaciones"));
                 mificha.setCodigo_paciente(resficha.getInt("ficha_paci_codigo"));
                 mificha.setCodigo_enfermera(resficha.getInt("ficha_enfermera_acargo"));
-
+                mificha.setCedula(resficha.getString("paci_cedula"));
+                mificha.setPri_nomb(resficha.getString("per_primer_nombre"));
+                mificha.setSeg_nombre(resficha.getString("per_segundo_nombre"));
+                mificha.setPrim_apell(resficha.getString("per_primer_apellido"));
+                mificha.setSeg_apelli(resficha.getString("per_segundo_apellido"));
+                mificha.setCorreo(resficha.getString("per_correo"));
+                mificha.setGenero(resficha.getString("per_genero"));
+                mificha.setDireccion(resficha.getString("per_direccion"));
+                mificha.setTipo_sangre(resficha.getString("per_tipo_sangre"));
+                mificha.setTelefono(resficha.getString("per_telefono"));
+                mificha.setFecha_Nacimiento(resficha.getString("per_fecha_nacimiento"));
+                mificha.setSeguro(resficha.getString("paci_seguro"));
+                mificha.setFecha_de_ingreso(resficha.getString("paci_fecha_de_ingreso"));
                 ficha.add(mificha);
             }
             return ficha;
@@ -80,7 +94,8 @@ public class insert_ficha_medica extends FichaMedica {
         }
         return codigo;
     }
-        public boolean validarduplicado(int codigo) throws SQLException {
+
+    public boolean validarduplicado(int codigo) throws SQLException {
         boolean validar = false;
         int count = 0;
         String sqls = "select count(*) from ficha where ficha_paci_codigo=" + codigo + ";";
@@ -92,8 +107,8 @@ public class insert_ficha_medica extends FichaMedica {
         if (count == 0) {
             validar = true;
         }
-        System.out.println("repetido="+codigo);
+        System.out.println("repetido=" + codigo);
         return validar;
     }
-    
+
 }
