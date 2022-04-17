@@ -215,7 +215,7 @@ public class listarCitasMedicas extends javax.swing.JFrame {
                 CancelarChequeoActionPerformed(evt);
             }
         });
-        jPanel1.add(CancelarChequeo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 60, 40));
+        jPanel1.add(CancelarChequeo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 60, 50));
 
         ModificarCitaMedica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
         ModificarCitaMedica.setToolTipText("MODIFICAR DATOS DE CHEQUEO MEDICO");
@@ -226,7 +226,7 @@ public class listarCitasMedicas extends javax.swing.JFrame {
                 ModificarCitaMedicaActionPerformed(evt);
             }
         });
-        jPanel1.add(ModificarCitaMedica, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 80, 40));
+        jPanel1.add(ModificarCitaMedica, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 60, 50));
 
         Regresar_acceso_recepcionista.setBackground(new java.awt.Color(204, 204, 204));
         Regresar_acceso_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
