@@ -6,7 +6,7 @@
 package conexion_bada;
 import java.sql.SQLException;
 import clases.Tratamiento;
-import clases.FichaMedica;
+import clases.claseFichaMedica;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
