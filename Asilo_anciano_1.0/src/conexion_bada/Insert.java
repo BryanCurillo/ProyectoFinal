@@ -11,11 +11,28 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import clases.validaciones;
+import com.sun.jdi.connect.spi.Connection;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.beans.Statement;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.PreparedStatement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import ventanas.Agregar_administrador;
 
 public class Insert extends paciente {
 
     Conexion cone = new Conexion();
+    private Statement st;
+    private ResultSet rs;
 
     public boolean InsertarPersona() {
         String sql = "INSERT INTO persona(\n"
@@ -24,11 +41,135 @@ public class Insert extends paciente {
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
-    public boolean InsertarPaciente() {
-        String sql = "INSERT INTO paciente(\n"
-                + "	paci_cedula,paci_seguro,paci_fecha_de_ingreso)\n"
-                + "	VALUES ('" + getCedula() + "','" + getSeguro() + "','" + getFecha_de_ingreso() + "');";
-        return cone.InsertUpdateDeleteAcciones(sql);
+//    public boolean InsertarPaciente() {
+//        String sql = "INSERT INTO paciente(\n"
+//                + "	paci_cedula,paci_seguro,paci_fecha_de_ingreso)\n"
+//                + "	VALUES ('" + getCedula() + "','" + getSeguro() + "','" + getFecha_de_ingreso() + "');";
+//        return cone.InsertUpdateDeleteAcciones(sql);
+//    }
+//    public boolean InsertarPaciente() {
+//        String sql = "INSERT INTO paciente(\n"
+//                + "	paci_cedula,paci_seguro,paci_fecha_de_ingreso)\n"
+//                + "	VALUES ('" + getCedula() + "','" + getSeguro() + "','" + getFecha_de_ingreso() + "');";
+//        return cone.InsertUpdateDeleteAcciones(sql);
+//    }
+//    public boolean InsertarPacientefoto(String cedula, FileInputStream foto) {
+//        System.out.println(foto.toString());
+//        Boolean inserto = false;
+//        String sql = "UPDATE paciente SET paci_foto= " + foto + "WHERE paci_cedula='" + cedula + "'";
+//        try {
+////            String sql = "UPDATE paciente SET paci_foto= " + foto + "WHERE paci_cedula='" + cedula + "'";
+//
+//            PreparedStatement ps = cone.getCon().prepareStatement(sql);
+//            // ps.setInt(1,co);
+//
+//            ps.setBinaryStream(1, foto);
+//            ps.execute();
+//            ps.close();
+//
+//            System.out.println("Guardado Exitosamente");
+//            inserto = true;
+//            return inserto;
+//        } catch (SQLException | NumberFormatException | HeadlessException x) {
+//            System.out.println("No ha registrado nada" + x.getLocalizedMessage());
+//        }           // TODO add your handling code here:
+//        inserto = false;
+////        return inserto;
+//        return cone.InsertUpdateDeleteAcciones(sql);
+//
+//    }
+//    public boolean InsertarPaciente(String fecha, FileInputStream foto) {
+//        Date date = new Date();
+//        Boolean inserto = false;
+//        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+//        fecha = formatofecha.format(date);
+//        java.sql.Date fecha1 = java.sql.Date.valueOf(fecha);
+//
+//
+//        try {
+//            String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
+//
+//            PreparedStatement ps = cone.getCon().prepareStatement(sql);
+//            // ps.setInt(1,co);
+//
+//            ps.setString(1, getCedula());
+//            ps.setString(2, getSeguro());
+//            ps.setDate(3, fecha1);
+//            ps.setBinaryStream(4, foto);
+//            ps.execute();
+//            ps.close();
+//
+//            System.out.println("Guardado Exitosamente");
+//            inserto = true;
+//            return inserto;
+//        } catch (SQLException | NumberFormatException | HeadlessException x) {
+//            System.out.println("No ha registrado nada" + x.getLocalizedMessage());
+//        }           // TODO add your handling code here:
+//        inserto = false;
+//        return inserto;
+//
+//    }
+    public boolean InsertarPaciente(String fecha, FileInputStream foto) {
+        Date date = new Date();
+        Boolean inserto = false;
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+        fecha = formatofecha.format(date);
+        java.sql.Date fecha1 = java.sql.Date.valueOf(fecha);
+
+        try {
+            String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro,paci_foto) VALUES (?, ?, ?)";
+
+            PreparedStatement ps = cone.getCon().prepareStatement(sql);
+            // ps.setInt(1,co);
+
+            ps.setString(1, getCedula());
+            ps.setString(2, getSeguro());
+//            ps.setDate(3, fecha1);
+            ps.setBinaryStream(3, foto);
+            ps.execute();
+            ps.close();
+
+            System.out.println("Guardado Exitosamente");
+
+            inserto = true;
+            return inserto;
+        } catch (SQLException | NumberFormatException | HeadlessException x) {
+            System.out.println("No ha registrado nada" + x.getLocalizedMessage());
+        }           // TODO add your handling code here:
+        inserto = false;
+        return inserto;
+
+    }
+
+    public void ConsultarFoto(int cod, JLabel fotoL) {
+        cone.getCon();
+        String sql = "select paci_foto from \"paciente\" where paci_codigo = " + cod + ";";
+        ImageIcon foto;
+        InputStream is;
+
+        try {
+            ResultSet rs = cone.selectConsulta(sql);
+            while (rs.next()) {
+                is = rs.getBinaryStream(1);
+                // nombre = rs.getString(2);
+
+                BufferedImage bi = ImageIO.read(is);
+                foto = new ImageIcon(bi);
+
+                Image img = foto.getImage();
+                Image newimg = img.getScaledInstance(170, 170, java.awt.Image.SCALE_SMOOTH);
+
+                ImageIcon newicon = new ImageIcon(newimg);
+
+                fotoL.setIcon(newicon);
+                //  txtnombre.setText(nombre);
+            }
+        } catch (Exception ex) {
+            // JOptionPane.showMessageDialog(rootPane,"exception: "+ex);
+            System.out.println(ex.getSuppressed());
+
+        }
+
     }
 
     public List<paciente> ListaPaciente() {
@@ -78,7 +219,7 @@ public class Insert extends paciente {
         ResultSet ru = cone.selectConsulta(sqls);
         try {
             while (ru.next()) {
-                codigo = ru.getInt("max")+1;
+                codigo = ru.getInt("max") + 1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
@@ -114,6 +255,7 @@ public class Insert extends paciente {
             validar = true;
         }
 //        System.out.println("repetido="+codigo);
+        System.out.println(codigo);
         return validar;
     }
 
