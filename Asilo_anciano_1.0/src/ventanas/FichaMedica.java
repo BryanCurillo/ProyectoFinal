@@ -486,6 +486,11 @@ public class FichaMedica extends javax.swing.JFrame {
             }
         });
 
+        JListEnfermedades.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JListEnfermedadesKeyPressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(JListEnfermedades);
 
         masculinoficha.setBackground(new java.awt.Color(204, 204, 204));
@@ -718,11 +723,11 @@ public class FichaMedica extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(459, 459, 459)
+                .addGap(453, 453, 453)
                 .addComponent(GuardarFicha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btGuardarCambios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RegresarCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -842,19 +847,23 @@ public class FichaMedica extends javax.swing.JFrame {
                                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(18, 18, 18)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(MODIFICAR)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(off)
-                                        .addComponent(on)))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(MODIFICAR)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(off)
+                                                .addComponent(on)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(RegresarCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(3, 3, 3))))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(RegresarCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(3, 3, 3))))
-                        .addComponent(btGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(GuardarFicha)))
+                                    .addGap(32, 32, 32)
+                                    .addComponent(GuardarFicha))))
+                        .addComponent(btGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(67, 67, 67))
         );
 
@@ -1012,6 +1021,10 @@ public class FichaMedica extends javax.swing.JFrame {
     private void offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offActionPerformed
         desabilitarParaVer();
     }//GEN-LAST:event_offActionPerformed
+
+    private void JListEnfermedadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JListEnfermedadesKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JListEnfermedadesKeyPressed
 
     public void modificar_ficha() {
 
@@ -1246,10 +1259,10 @@ public class FichaMedica extends javax.swing.JFrame {
         enfermedades mi_enfermedad = new enfermedades();
         boolean rep = false;
         if (comboenfermedadficha.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una enfermedad");
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado un medicamento");
         } else {
 
-//            DefaultListModel modeloListEnfermedad;
+
             modeloListEnfermedad = new DefaultListModel();
             JListEnfermedades.setModel(modeloListEnfermedad);
 
