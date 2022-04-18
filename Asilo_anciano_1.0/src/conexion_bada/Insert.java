@@ -26,7 +26,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
-import ventanas.Agregar_administrador;
+import ventanas.Agregar_paciente;
 
 public class Insert extends paciente {
 
@@ -78,23 +78,48 @@ public class Insert extends paciente {
 //        return cone.InsertUpdateDeleteAcciones(sql);
 //
 //    }
-//    public boolean InsertarPaciente(String fecha, FileInputStream foto) {
-//        Date date = new Date();
+    public boolean InsertarPaciente(String fecha,int longitud, FileInputStream foto) {
+        Date date = new Date();
+        Boolean inserto = false;
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+        fecha = formatofecha.format(date);
+        java.sql.Date fecha1 = java.sql.Date.valueOf(fecha);
+        String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
+        try {
+//            String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
+
+            PreparedStatement ps = cone.getCon().prepareStatement(sql);
+            // ps.setInt(1,co);
+
+            ps.setString(1, getCedula());
+            ps.setString(2, getSeguro());
+            ps.setDate(3, fecha1);
+            ps.setBinaryStream(4, foto,longitud);
+            ps.execute();
+            ps.close();
+
+            System.out.println("Guardado Exitosamente");
+            inserto = true;
+            return inserto;
+        } catch (SQLException | NumberFormatException | HeadlessException x) {
+            System.out.println("No ha registrado nada" + x.getLocalizedMessage());
+        }           // TODO add your handling code here:
+        inserto = false;
+        return cone.InsertUpdateDeleteAcciones(sql);
+
+    }
+//    public boolean InsertarPaciente(String a, String b, String c, FileInputStream foto) {
+//
 //        Boolean inserto = false;
-//        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-//        fecha = formatofecha.format(date);
-//        java.sql.Date fecha1 = java.sql.Date.valueOf(fecha);
-//
-//
 //        try {
 //            String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
 //
 //            PreparedStatement ps = cone.getCon().prepareStatement(sql);
 //            // ps.setInt(1,co);
 //
-//            ps.setString(1, getCedula());
-//            ps.setString(2, getSeguro());
-//            ps.setDate(3, fecha1);
+//            ps.setString(1, a);
+//            ps.setString(2, b);
+//            ps.setString(3, c);
 //            ps.setBinaryStream(4, foto);
 //            ps.execute();
 //            ps.close();
@@ -109,32 +134,6 @@ public class Insert extends paciente {
 //        return inserto;
 //
 //    }
-    public boolean InsertarPaciente(String a, String b, String c, FileInputStream foto) {
-
-        Boolean inserto = false;
-        try {
-            String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
-
-            PreparedStatement ps = cone.getCon().prepareStatement(sql);
-            // ps.setInt(1,co);
-
-            ps.setString(1, a);
-            ps.setString(2, b);
-            ps.setString(3, c);
-            ps.setBinaryStream(4, foto);
-            ps.execute();
-            ps.close();
-
-            System.out.println("Guardado Exitosamente");
-            inserto = true;
-            return inserto;
-        } catch (SQLException | NumberFormatException | HeadlessException x) {
-            System.out.println("No ha registrado nada" + x.getLocalizedMessage());
-        }           // TODO add your handling code here:
-        inserto = false;
-        return inserto;
-
-    }
 
     public void ConsultarFoto(String cod, JLabel fotoL) {
         cone.getCon();
@@ -145,6 +144,7 @@ public class Insert extends paciente {
         try {
             ResultSet rs = cone.selectConsulta(sql);
             while (rs.next()) {
+                System.out.println("si entra");
                 is = rs.getBinaryStream(1);
                 // nombre = rs.getString(2);
 
@@ -152,7 +152,8 @@ public class Insert extends paciente {
                 foto = new ImageIcon(bi);
 
                 Image img = foto.getImage();
-                Image newimg = img.getScaledInstance(170, 170, java.awt.Image.SCALE_SMOOTH);
+//                Image newimg = img.getScaledInstance(Agregar_pacienteLabelFoto.getWidth(), LabelFoto.getHeight(), Image.SCALE_DEFAULT);
+                Image newimg = img.getScaledInstance(118, 139, java.awt.Image.SCALE_SMOOTH);
 
                 ImageIcon newicon = new ImageIcon(newimg);
 
@@ -161,10 +162,11 @@ public class Insert extends paciente {
             }
         } catch (Exception ex) {
             // JOptionPane.showMessageDialog(rootPane,"exception: "+ex);
+//            System.out.println(cone.InsertUpdateDeleteAcciones(sql));
             System.out.println(ex.getSuppressed());
 
         }
-
+        
     }
 
     public List<paciente> ListaPaciente() {
@@ -250,7 +252,7 @@ public class Insert extends paciente {
             validar = true;
         }
 //        System.out.println("repetido="+codigo);
-        System.out.println(codigo);
+//        System.out.println(codigo);
         return validar;
     }
 
