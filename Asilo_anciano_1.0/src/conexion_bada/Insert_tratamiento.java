@@ -16,12 +16,12 @@ public class Insert_tratamiento extends Tratamiento{
     
     Conexion cone = new Conexion();
     
-//    public boolean Insertar_tratamiento() {
-//        String sql = "INSERT INTO tratamiento(\n"
-//                + "	trar_codigo, trat_descripcion ,trat_fecha_inicio, trat_fecha_fin,trat_codigo_paciente   , his_observaciones)\n"
-//                + "	VALUES ('" + getCodigo_tratamiento()+ "', '" + getDescripcion_tratamiento()+ "', '" + getFecha_inicio()+ "', '" + getFecha_fin()+ "', '" + getCodigo_paciente()+ "', '" + getTra_observaciones()+  "');";
-//        return cone.InsertUpdateDeleteAcciones(sql);
-//    }
+    public boolean Insertar_tratamiento() {
+        String sql = "INSERT INTO tratamiento(\n"
+                + "	trat_codigo, trat_diagnostico, trat_codigo_medicamento, trat_dosis ,trat_fecha_inicio, trat_fecha_fin, trat_codigo_paciente )\n"
+                + "	VALUES ('" + getCodigo_tratamiento()+ "', '" + getDiagnostico()+ "','" + getCodigo_medicamento()+ "','" + getDosis()+ "', '" + getFecha_inicio_trata()+ "', '" + getFecha_fin_trata()+ "', '" + getCodigo_paciente()+ "');";
+        return cone.InsertUpdateDeleteAcciones(sql);
+    }
     
     public  List<Tratamiento> lista_tratamiento(){
        String sqls = "select * from tratamiento join paciente on tratamiento.trat_codigo = paciente.paci_codigo;";
@@ -32,11 +32,13 @@ public class Insert_tratamiento extends Tratamiento{
             while (trata.next()) {
                 Tratamiento mi_trata=new Tratamiento();
                 mi_trata.setCodigo_tratamiento(trata.getString("trat_codigo"));
-                mi_trata.setDescripcion_tratamiento(trata.getString("trat_descripcion"));
-                mi_trata.setFecha_inicio(trata.getDate("trat_fecha_inicio"));
-                mi_trata.setFecha_fin(trata.getDate("trat_fecha_fin"));
+                mi_trata.setDiagnostico(trata.getString("trat_diagnostico"));
+                mi_trata.setCodigo_medicamento(trata.getString("trat_codigo_medicamento"));
+                mi_trata.setDosis(trata.getString("trat_dosis"));
+                mi_trata.setFecha_inicio_trata(trata.getString("trat_fecha_inicio"));
+                mi_trata.setFecha_fin_trata(trata.getString("trat_fecha_fin"));
                 mi_trata.setCodigo_paciente(trata.getString("trat_codigo_paciente"));
-//                mi_trata.setTra_observaciones(trata.getString("his_observaciones"));
+               
                 
                 list_tratamiento.add(mi_trata);
                 
@@ -56,6 +58,20 @@ public class Insert_tratamiento extends Tratamiento{
         try {
             while (ru.next()) {
                 codigo = ru.getInt("max")+1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
+    
+    public int cargarcodigoMedicina(String medicina) {
+        int codigo = 0;
+        String sqls = "select medi_codigo from medicamentos where medi_nombre_= '" + medicina + "';";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("medi_codigo");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
