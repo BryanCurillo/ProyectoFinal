@@ -49,7 +49,8 @@ public class Agregar_paciente extends javax.swing.JFrame {
     String FechaDeIngreso = "";
 
     DateFormat df = DateFormat.getDateInstance();
-
+    Insert persona = new Insert();
+    Insert paciente = new Insert();
 //    ArrayList<paciente> lista_Paciente = new ArrayList();
     Insert inser = new Insert();
 
@@ -204,7 +205,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Datos Personales");
-        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         text_codigo_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_codigo_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -402,7 +403,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
             }
         });
 
-        LabelFoto.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        LabelFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         SeleccionarImagen.setText("Seleccionar Imgen");
         SeleccionarImagen.addActionListener(new java.awt.event.ActionListener() {
@@ -620,7 +621,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
-        Consultar();
+        paciente.ConsultarFoto(11, LabelFoto);
     }//GEN-LAST:event_ConsultarActionPerformed
 
     private void SeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarImagenActionPerformed
@@ -757,26 +758,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
             modificar_paciente();
         }
     }//GEN-LAST:event_btModificarActionPerformed
-//    public void llenar_paciente() {
-//
-//        for (int i = 0; i < inser.ListaPaciente().size(); i++) {
-//            System.out.println(inser.ListaPaciente().get(i).getCedula());
-//            List<paciente> com = inser.ListaPaciente();
-//            com.stream().forEach(p -> {
-//                text_codigo_paciente.setText(p.getCodigo());
-//                text_cedula_paciente.setText(p.getCedula());
-//                text_PrimerNombre_paciente.setText(p.getPri_nomb().toString());
-//                text_SegundoNombre_paciente.setText(p.getSeg_nombre().toString());
-//                text_PrimerApellido_paciente.setText(p.getPri_nomb().toString());
-//                text_SegundoApellido_paciente.setText(p.getSeg_apelli().toString());
-//                text_email_paciente.setText(p.getCorreo().toString());
-//                text_direccion_paciente.setText(p.getDireccion().toString());
-//                text_celular_paciente.setText(p.getTelefono().toString());
-//
-//            });
-//        }
-//
-//    }
 
     public void cargarcod() {
         text_codigo_paciente.setEnabled(false);
@@ -798,8 +779,8 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }
 
     public void RegistrarPacientes() throws SQLException {
-        Insert persona = new Insert();
-        Insert paciente = new Insert();
+//        Insert persona = new Insert();
+//        Insert paciente = new Insert();
 //        System.out.println("holaaaaaaaaaaa" + text_cedula_paciente.getText());
 //        llenar_paciente();
 //        inser.ListaPaciente();
@@ -851,10 +832,12 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     paciente.setFecha_de_ingreso(FechaDeIngreso);
                     paciente.setSeguro(afiliacion);
                     paciente.setCedula(text_cedula_paciente.getText());
+//                    Date ingresoAux = fecha_ingreso_paciente.getDate();
+//                    System.out.println(ingresoAux);
                     //HASTA AQUI
-
+                    System.out.println("como entra al metodo="+fis.toString());
                     //VALEEEEEEEEE
-                    if (persona.InsertarPersona() && paciente.InsertarPaciente()) {
+                    if (persona.InsertarPersona() && paciente.InsertarPaciente(FechaDeIngreso, fis)) {
                         System.out.println("Conexion Exitosa");
                         limpiar();
                         cargarcod();
@@ -871,43 +854,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
         } catch (NullPointerException n) {
 
         }
-
-    }
-
-    private void Consultar() {
-
-        String sql = "Select foto from prueba where cedula = '7777777777'";
-        ImageIcon foto;
-        InputStream is;
-
-        try {
-
-            ResultSet rs = mi_cone.selectConsulta(sql);
-
-            while (rs.next()) {
-                is = rs.getBinaryStream(1);
-
-                BufferedImage bi = ImageIO.read(is);
-                foto = new ImageIcon(bi);
-
-                Image img = foto.getImage();
-                Image newimg = img.getScaledInstance(140, 170, java.awt.Image.SCALE_SMOOTH);
-
-                ImageIcon newicon = new ImageIcon(newimg);
-                LabelFoto.setIcon(newicon);
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "exception:" + ex);
-        }
-        //     public void cargarTabla() {
-        //        DefaultTableModel tb = (DefaultTableModel) tabla_paciente.getModel();
-        //        tb.setNumRows(0);
-        //        List<paciente> com = inser.ListaCamioneros();
-        //        com.stream().forEach(p -> {
-        //            String[] cami = {p.getDni(), p.getNombre(), p.getTelefono(), p.getDireccion(), String.valueOf(p.getSalario()), p.getPoblacion()};
-        //            tb.addRow(cami);
-        //        });
-        //    }
 
     }
 
@@ -1085,6 +1031,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Agregar_paciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
