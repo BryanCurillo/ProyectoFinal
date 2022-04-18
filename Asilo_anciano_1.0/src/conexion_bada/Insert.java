@@ -109,28 +109,23 @@ public class Insert extends paciente {
 //        return inserto;
 //
 //    }
-    public boolean InsertarPaciente(String fecha, FileInputStream foto) {
-        Date date = new Date();
-        Boolean inserto = false;
-        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
-        fecha = formatofecha.format(date);
-        java.sql.Date fecha1 = java.sql.Date.valueOf(fecha);
+    public boolean InsertarPaciente(String a, String b, String c, FileInputStream foto) {
 
+        Boolean inserto = false;
         try {
-            String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro,paci_foto) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
 
             PreparedStatement ps = cone.getCon().prepareStatement(sql);
             // ps.setInt(1,co);
 
-            ps.setString(1, getCedula());
-            ps.setString(2, getSeguro());
-//            ps.setDate(3, fecha1);
-            ps.setBinaryStream(3, foto);
+            ps.setString(1, a);
+            ps.setString(2, b);
+            ps.setString(3, c);
+            ps.setBinaryStream(4, foto);
             ps.execute();
             ps.close();
 
             System.out.println("Guardado Exitosamente");
-
             inserto = true;
             return inserto;
         } catch (SQLException | NumberFormatException | HeadlessException x) {
@@ -141,7 +136,7 @@ public class Insert extends paciente {
 
     }
 
-    public void ConsultarFoto(int cod, JLabel fotoL) {
+    public void ConsultarFoto(String cod, JLabel fotoL) {
         cone.getCon();
         String sql = "select paci_foto from \"paciente\" where paci_codigo = " + cod + ";";
         ImageIcon foto;
