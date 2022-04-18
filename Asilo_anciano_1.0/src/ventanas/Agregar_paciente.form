@@ -133,7 +133,7 @@
                                   <Component id="fecha_ingreso_paciente" min="-2" pref="149" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="LabelFoto" min="-2" pref="196" max="-2" attributes="0"/>
+                                  <Component id="LabelFoto" min="-2" pref="118" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -246,7 +246,7 @@
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                   <Component id="Consultar" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="LabelFoto" min="-2" pref="188" max="-2" attributes="0"/>
+                              <Component id="LabelFoto" min="-2" pref="139" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

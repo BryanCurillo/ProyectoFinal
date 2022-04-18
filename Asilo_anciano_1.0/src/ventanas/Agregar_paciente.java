@@ -38,6 +38,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
+import javax.swing.JLabel;
 
 public class Agregar_paciente extends javax.swing.JFrame {
 
@@ -53,6 +54,14 @@ public class Agregar_paciente extends javax.swing.JFrame {
     Insert paciente = new Insert();
 //    ArrayList<paciente> lista_Paciente = new ArrayList();
     Insert inser = new Insert();
+
+    public JLabel getLabelFoto() {
+        return LabelFoto;
+    }
+
+    public void setLabelFoto(JLabel LabelFoto) {
+        this.LabelFoto = LabelFoto;
+    }
 
     //IMAGEN
     FileInputStream fis; //Cambie a clase paciente
@@ -77,6 +86,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }
 
     public void llenar_paciente(String cedula) {
+        fecha_ingreso_paciente.setEnabled(false);
         text_cedula_paciente.setEnabled(false);
         text_codigo_paciente.setEnabled(false);
         List<paciente> com = inser.ListaPaciente();
@@ -127,6 +137,9 @@ public class Agregar_paciente extends javax.swing.JFrame {
                         j = combo_sangre_paciente.getItemCount();
                     }
                 }
+                System.out.println("====");
+                System.out.println(p.getCodigo());
+                paciente.ConsultarFoto(String.valueOf(p.getCodigo()), LabelFoto);
             }
 
         });
@@ -488,7 +501,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(fecha_ingreso_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(LabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(33, 33, 33)
@@ -574,7 +587,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                                 .addComponent(SeleccionarImagen)
                                 .addGap(53, 53, 53)
                                 .addComponent(Consultar))
-                            .addComponent(LabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(LabelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(check_iess, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -621,8 +634,8 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
-        System.out.println(text_codigo_paciente.getText());
-        paciente.ConsultarFoto("1", LabelFoto);
+//        System.out.println(text_codigo_paciente.getText());
+        paciente.ConsultarFoto("2", LabelFoto);
     }//GEN-LAST:event_ConsultarActionPerformed
 
     private void SeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarImagenActionPerformed
@@ -640,6 +653,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
                     LabelFoto.setIcon(new ImageIcon(icono));
                     LabelFoto.updateUI();
+                    System.out.println("si seleccione");
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(rootPane, "foto:" + ex);
                 }
@@ -775,7 +789,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
             Logger.getLogger(clases.paciente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println(ahora);
+//        System.out.println(ahora);
         fecha_ingreso_paciente.setDate(fecha);
     }
 
@@ -832,12 +846,12 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
                     //String FechaDeIngreso = df.format(fecha_ingreso_paciente.getDate());
                     //SI VALE
-                    //paciente.setFecha_de_ingreso(FechaDeIngreso);
-                    //paciente.setSeguro(afiliacion);
-                    //paciente.setCedula(text_cedula_paciente.getText());
-//                    Date ingresoAux = fecha_ingreso_paciente.getDate();
-//                    System.out.println(ingresoAux);
-                    if (persona.InsertarPersona() && paciente.InsertarPaciente(c, afiliacion, FechaDeIngreso, fis)) {
+                    paciente.setFecha_de_ingreso(FechaDeIngreso);
+                    paciente.setSeguro(afiliacion);
+                    paciente.setCedula(text_cedula_paciente.getText());
+
+//                    if (persona.InsertarPersona() && paciente.InsertarPaciente(c, afiliacion, FechaDeIngreso, fis)) {
+                    if (persona.InsertarPersona() && paciente.InsertarPaciente(FechaDeIngreso,longitudBytes, fis)) {
                         System.out.println("Conexion Exitosa");
                         limpiar();
                         cargarcod();
@@ -857,6 +871,42 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     }
 
+    public void modificar_paciente() {
+        if (Masculino_paciente.isSelected()) {
+            genero = "hombre";
+        }
+        if (Femenino_paciente.isSelected()) {
+            genero = "mujer";
+        }
+        if (validaciones()) {
+            String tipoo_sangre = combo_sangre_paciente.getSelectedItem().toString();
+            if (check_iess.isSelected()) {
+                afiliacion = "si";
+            } else {
+                afiliacion = "no";
+            }
+            String dia = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mes = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.MONTH) + 1);
+            String año = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.YEAR));
+            String FechaNacimiento = (dia + "-" + mes + "-" + año);
+
+            String diaI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
+            String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
+            String añoI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.YEAR));
+            String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
+
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + text_PrimerNombre_paciente.getText() + "', per_segundo_nombre='" + text_SegundoNombre_paciente.getText() + "'"
+                    + ", per_primer_apellido='" + text_PrimerApellido_paciente.getText() + "', per_segundo_apellido='" + text_SegundoApellido_paciente.getText() + "'"
+                    + ", per_correo='" + text_email_paciente.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_paciente.getText() + "', per_telefono='" + text_celular_paciente.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_paciente.getText() + "'");
+//            System.out.println(fis.toString());
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE paciente SET paci_seguro='" + afiliacion + "',paci_fecha_de_ingreso='" + FechaDeIngreso + "' WHERE paci_cedula='" + text_cedula_paciente.getText() + "'");
+//            mi_cone.InsertUpdateDeleteAcciones("UPDATE paciente SET paci_seguro='" + afiliacion + "',paci_fecha_de_ingreso='" + FechaDeIngreso + "',paci_foto=" + fis + " WHERE paci_cedula='" + text_cedula_paciente.getText() + "'");
+
+            limpiar();
+        }
+
+    }
+
     public void limpiar() {
         text_codigo_paciente.setText("");
         text_cedula_paciente.setText("");
@@ -872,6 +922,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         check_iess.setSelected(false);
         fecha_Nacimiento_paciente.setCalendar(null);
         fecha_ingreso_paciente.setCalendar(null);
+        LabelFoto.setIcon(null);
     }
 
     public boolean validaciones() {
@@ -970,40 +1021,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
         }
 
         return validado;
-    }
-
-    public void modificar_paciente() {
-        if (Masculino_paciente.isSelected()) {
-            genero = "hombre";
-        }
-        if (Femenino_paciente.isSelected()) {
-            genero = "mujer";
-        }
-        if (validaciones()) {
-            String tipoo_sangre = combo_sangre_paciente.getSelectedItem().toString();
-            if (check_iess.isSelected()) {
-                afiliacion = "si";
-            } else {
-                afiliacion = "no";
-            }
-            String dia = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
-            String mes = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.MONTH) + 1);
-            String año = Integer.toString(fecha_Nacimiento_paciente.getCalendar().get(Calendar.YEAR));
-            String FechaNacimiento = (dia + "-" + mes + "-" + año);
-
-            String diaI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.DAY_OF_MONTH));
-            String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
-            String añoI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.YEAR));
-            String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
-
-            mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + text_PrimerNombre_paciente.getText() + "', per_segundo_nombre='" + text_SegundoNombre_paciente.getText() + "'"
-                    + ", per_primer_apellido='" + text_PrimerApellido_paciente.getText() + "', per_segundo_apellido='" + text_SegundoApellido_paciente.getText() + "'"
-                    + ", per_correo='" + text_email_paciente.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_paciente.getText() + "', per_telefono='" + text_celular_paciente.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_paciente.getText() + "'");
-
-            mi_cone.InsertUpdateDeleteAcciones("UPDATE paciente SET paci_seguro='" + afiliacion + "',paci_fecha_de_ingreso='" + FechaDeIngreso + "' WHERE paci_cedula='" + text_cedula_paciente.getText() + "'");
-            limpiar();
-        }
-
     }
 
     /**
