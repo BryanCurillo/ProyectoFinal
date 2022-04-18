@@ -621,7 +621,8 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarActionPerformed
-        paciente.ConsultarFoto(11, LabelFoto);
+        System.out.println(text_codigo_paciente.getText());
+        paciente.ConsultarFoto("1", LabelFoto);
     }//GEN-LAST:event_ConsultarActionPerformed
 
     private void SeleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarImagenActionPerformed
@@ -787,6 +788,8 @@ public class Agregar_paciente extends javax.swing.JFrame {
         try {
             if (validaciones()) {
                 if (inser.validarduplicado(text_cedula_paciente.getText())) {
+                    String c = text_cedula_paciente.getText();
+
                     persona.setCedula(text_cedula_paciente.getText());
                     persona.setPri_nomb(text_PrimerNombre_paciente.getText());
                     persona.setSeg_nombre(text_SegundoNombre_paciente.getText());
@@ -825,19 +828,16 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
                     //SI VALE
                     //String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
-                    FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
+                    FechaDeIngreso = (añoI + "-" + mesI + "-" + diaI);
 
                     //String FechaDeIngreso = df.format(fecha_ingreso_paciente.getDate());
                     //SI VALE
-                    paciente.setFecha_de_ingreso(FechaDeIngreso);
-                    paciente.setSeguro(afiliacion);
-                    paciente.setCedula(text_cedula_paciente.getText());
+                    //paciente.setFecha_de_ingreso(FechaDeIngreso);
+                    //paciente.setSeguro(afiliacion);
+                    //paciente.setCedula(text_cedula_paciente.getText());
 //                    Date ingresoAux = fecha_ingreso_paciente.getDate();
 //                    System.out.println(ingresoAux);
-                    //HASTA AQUI
-                    System.out.println("como entra al metodo="+fis.toString());
-                    //VALEEEEEEEEE
-                    if (persona.InsertarPersona() && paciente.InsertarPaciente(FechaDeIngreso, fis)) {
+                    if (persona.InsertarPersona() && paciente.InsertarPaciente(c, afiliacion, FechaDeIngreso, fis)) {
                         System.out.println("Conexion Exitosa");
                         limpiar();
                         cargarcod();
