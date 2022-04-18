@@ -53,32 +53,8 @@ public class Insert extends paciente {
 //                + "	VALUES ('" + getCedula() + "','" + getSeguro() + "','" + getFecha_de_ingreso() + "');";
 //        return cone.InsertUpdateDeleteAcciones(sql);
 //    }
-//    public boolean InsertarPacientefoto(String cedula, FileInputStream foto) {
-//        System.out.println(foto.toString());
-//        Boolean inserto = false;
-//        String sql = "UPDATE paciente SET paci_foto= " + foto + "WHERE paci_cedula='" + cedula + "'";
-//        try {
-////            String sql = "UPDATE paciente SET paci_foto= " + foto + "WHERE paci_cedula='" + cedula + "'";
-//
-//            PreparedStatement ps = cone.getCon().prepareStatement(sql);
-//            // ps.setInt(1,co);
-//
-//            ps.setBinaryStream(1, foto);
-//            ps.execute();
-//            ps.close();
-//
-//            System.out.println("Guardado Exitosamente");
-//            inserto = true;
-//            return inserto;
-//        } catch (SQLException | NumberFormatException | HeadlessException x) {
-//            System.out.println("No ha registrado nada" + x.getLocalizedMessage());
-//        }           // TODO add your handling code here:
-//        inserto = false;
-////        return inserto;
-//        return cone.InsertUpdateDeleteAcciones(sql);
-//
-//    }
-    public boolean InsertarPaciente(String fecha,int longitud, FileInputStream foto) {
+
+    public boolean InsertarPaciente(String fecha, FileInputStream foto) {//int longitud,
         Date date = new Date();
         Boolean inserto = false;
         SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
@@ -94,7 +70,7 @@ public class Insert extends paciente {
             ps.setString(1, getCedula());
             ps.setString(2, getSeguro());
             ps.setDate(3, fecha1);
-            ps.setBinaryStream(4, foto,longitud);
+            ps.setBinaryStream(4, foto);//,longitud
             ps.execute();
             ps.close();
 
@@ -108,6 +84,21 @@ public class Insert extends paciente {
         return cone.InsertUpdateDeleteAcciones(sql);
 
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 //    public boolean InsertarPaciente(String a, String b, String c, FileInputStream foto) {
 //
 //        Boolean inserto = false;
