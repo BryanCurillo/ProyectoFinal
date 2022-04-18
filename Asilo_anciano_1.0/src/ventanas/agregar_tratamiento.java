@@ -4,29 +4,50 @@
  * and open the template in the editor.
  */
 package ventanas;
+
+import clases.alergias;
 import clases.doctor;
+import clases.enfermedades;
+import clases.enfermera;
 import clases.medicamentos;
 import clases.paciente;
+import clases.validaciones;
 import conexion_bada.Insert;
 import conexion_bada.Insert_doctor;
 import conexion_bada.Insert_medicamento;
+import conexion_bada.Insert_tratamiento;
+import static java.awt.Frame.ICONIFIED;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Usuario
  */
 public class agregar_tratamiento extends javax.swing.JFrame {
-
+    
+    Insert_tratamiento mi_trata = new Insert_tratamiento();
     Insert inser = new Insert();
-    Insert_doctor inser_doctor=new Insert_doctor();
+    Insert_doctor inser_doctor = new Insert_doctor();
+    DefaultListModel modeloListMedicamento;
     public agregar_tratamiento() {
         initComponents();
         LLenarComboBoxMedicamentos();
-        
+        cargarcod();
+    }
+
+    public void cargarcod() {
+        text_codigo_tratamiento.setEnabled(false);
+        text_codigo_tratamiento.setText(String.valueOf(mi_trata.cargarcodigo()));
     }
 
     /**
@@ -38,10 +59,22 @@ public class agregar_tratamiento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cargarPaciente = new javax.swing.JDialog();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TablaPaciente = new javax.swing.JTable();
+        BtBuscarPaciente = new javax.swing.JButton();
+        text_buscar = new javax.swing.JTextField();
+        cargarP = new javax.swing.JButton();
+        cargarDoctor = new javax.swing.JDialog();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TablaDoctor = new javax.swing.JTable();
+        BtBuscarenfermera = new javax.swing.JButton();
+        text_buscare = new javax.swing.JTextField();
+        cargarP1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        text_codigo_paciente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -51,8 +84,8 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         txt_cedula_paciente = new javax.swing.JTextField();
         txt_nombre_paciente = new javax.swing.JTextField();
         txt_apellido_paciente = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        buscar = new javax.swing.JButton();
+        text_codigo_tratamiento = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -61,7 +94,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         fecha_inicio_medicamento = new com.toedter.calendar.JDateChooser();
         fecha_final_medicamento = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        text_diagnositico = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
         boton_regresar_acceso_doctor = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
@@ -71,7 +104,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        text_dosis = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
         nomb_doctor = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -80,7 +113,175 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         apellido_doct = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         especialidad_doctor = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        buscar_doctor = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+
+        cargarPaciente.setResizable(false);
+
+        TablaPaciente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+            }
+        ));
+        TablaPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaPacienteMousePressed(evt);
+            }
+        });
+        jScrollPane5.setViewportView(TablaPaciente);
+
+        BtBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BtBuscarPaciente.setToolTipText("BUSCAR PACIENTE");
+        BtBuscarPaciente.setBorder(null);
+        BtBuscarPaciente.setOpaque(false);
+        BtBuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtBuscarPacienteActionPerformed(evt);
+            }
+        });
+
+        text_buscar.setText("Buscar...");
+        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarMousePressed(evt);
+            }
+        });
+        text_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_buscarActionPerformed(evt);
+            }
+        });
+
+        cargarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
+        cargarP.setToolTipText("CARGAR CODIGO");
+        cargarP.setBorder(null);
+        cargarP.setOpaque(false);
+        cargarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarPActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout cargarPacienteLayout = new javax.swing.GroupLayout(cargarPaciente.getContentPane());
+        cargarPaciente.getContentPane().setLayout(cargarPacienteLayout);
+        cargarPacienteLayout.setHorizontalGroup(
+            cargarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cargarPacienteLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(text_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cargarP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+            .addGroup(cargarPacienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        cargarPacienteLayout.setVerticalGroup(
+            cargarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarPacienteLayout.createSequentialGroup()
+                .addGroup(cargarPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(cargarPacienteLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(text_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarPacienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtBuscarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarPacienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cargarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cargarDoctor.setResizable(false);
+
+        TablaDoctor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+            }
+        ));
+        TablaDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaDoctorMousePressed(evt);
+            }
+        });
+        jScrollPane6.setViewportView(TablaDoctor);
+
+        BtBuscarenfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BtBuscarenfermera.setToolTipText("BUSCAR PACIENTE");
+        BtBuscarenfermera.setBorder(null);
+        BtBuscarenfermera.setOpaque(false);
+        BtBuscarenfermera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtBuscarenfermeraActionPerformed(evt);
+            }
+        });
+
+        text_buscare.setText("Buscar...");
+        text_buscare.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscareMousePressed(evt);
+            }
+        });
+        text_buscare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_buscareActionPerformed(evt);
+            }
+        });
+
+        cargarP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
+        cargarP1.setToolTipText("CARGAR CODIGO");
+        cargarP1.setBorder(null);
+        cargarP1.setOpaque(false);
+        cargarP1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarP1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout cargarDoctorLayout = new javax.swing.GroupLayout(cargarDoctor.getContentPane());
+        cargarDoctor.getContentPane().setLayout(cargarDoctorLayout);
+        cargarDoctorLayout.setHorizontalGroup(
+            cargarDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cargarDoctorLayout.createSequentialGroup()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(cargarDoctorLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(text_buscare, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtBuscarenfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cargarP1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+        );
+        cargarDoctorLayout.setVerticalGroup(
+            cargarDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarDoctorLayout.createSequentialGroup()
+                .addGroup(cargarDoctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(cargarDoctorLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(text_buscare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarDoctorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtBuscarenfermera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarDoctorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cargarP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -112,13 +313,13 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Diagnostico:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
-        jButton1.setToolTipText("buscar paciente");
-        jButton1.setBorder(null);
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        buscar.setToolTipText("buscar paciente");
+        buscar.setBorder(null);
+        buscar.setOpaque(false);
+        buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buscarActionPerformed(evt);
             }
         });
 
@@ -138,9 +339,9 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setText("Fecha Finalizacion");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        text_diagnositico.setColumns(20);
+        text_diagnositico.setRows(5);
+        jScrollPane1.setViewportView(text_diagnositico);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
         jButton3.setToolTipText("guardar");
@@ -181,9 +382,9 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setText("Instrucciones de  Medicacion");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        text_dosis.setColumns(20);
+        text_dosis.setRows(5);
+        jScrollPane3.setViewportView(text_dosis);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setText("Nombre del Doctor:");
@@ -197,13 +398,20 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setText("Especialidad:");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
-        jButton4.setToolTipText("BUSCAR DOCTOR");
-        jButton4.setBorder(null);
-        jButton4.setOpaque(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        buscar_doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        buscar_doctor.setToolTipText("BUSCAR DOCTOR");
+        buscar_doctor.setBorder(null);
+        buscar_doctor.setOpaque(false);
+        buscar_doctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                buscar_doctorActionPerformed(evt);
+            }
+        });
+
+        Eliminar.setText("Eliminar Medicamento");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
             }
         });
 
@@ -223,7 +431,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(txt_cedula_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
-                .addComponent(jButton1)
+                .addComponent(buscar)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
@@ -235,7 +443,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                         .addGap(0, 597, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(text_codigo_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(201, 201, 201))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -309,17 +517,19 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                                         .addComponent(jLabel17))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton4)))
+                                        .addComponent(buscar_doctor)))
                                 .addGap(9, 9, 9)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(especialidad_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8))
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(text_codigo_tratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(105, 105, 105)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(413, 413, 413)
+                                .addGap(126, 126, 126)
+                                .addComponent(Eliminar)
+                                .addGap(230, 230, 230)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -336,11 +546,11 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(jButton1))
+                                .addComponent(buscar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(text_codigo_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -365,13 +575,13 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(text_codigo_tratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(text_budcar_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4))))
+                            .addComponent(buscar_doctor))))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -419,6 +629,8 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(Eliminar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton3)))))
                 .addGap(144, 144, 144))
@@ -436,45 +648,272 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_boton_regresar_acceso_doctorActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       String SQL_SELECT = "SELECT * FROM doctor WHERE cedula = " + text_budcar_doctor.getText() + ";";
-        buscardoctor();
-    }//GEN-LAST:event_jButton4ActionPerformed
-    
-    public void buscardoctor(){
-         List<doctor> com = inser_doctor.ListaDoctor();
-         com.stream().forEach(p -> {
-             nomb_doctor.setText(p.getPri_nomb().toString());
-             apellido_doct.setText(p.getPrim_apell().toString());
-             especialidad_doctor.setText(p.getEspecialidad().toString());
-         });
-    }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String SQL_SELECT = "SELECT * FROM pacientes WHERE cedula = " + txt_cedula_paciente.getText() + ";";
-        buscar_paciente();
-    }//GEN-LAST:event_jButton1ActionPerformed
-    public void buscar_paciente(){
-        List<paciente> com = inser.ListaPaciente();
-         com.stream().forEach(p -> {
-             txt_nombre_paciente.setText(p.getPri_nomb().toString());
-             txt_apellido_paciente.setText(p.getPrim_apell().toString());
-             jTextField1.setText(String.valueOf(p.getCodigo()));
-         });
+    private void buscar_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_doctorActionPerformed
+       
+         cargarDoctor.setSize(494, 258);
+        cargarTablaE();
+        cargarDoctor.setVisible(true);
+        cargarDoctor.setLocationRelativeTo(buscar_doctor);
         
+    }//GEN-LAST:event_buscar_doctorActionPerformed
+    public void cargarTablaE() {
+        DefaultTableModel tb = (DefaultTableModel) TablaDoctor.getModel();
+        tb.setNumRows(0);
+        List<doctor> com = inser_doctor.ListaDoctor();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPrim_apell() + "  " + p.getSeg_apelli(), p.getPri_nomb() + "  " + p.getSeg_nombre()};
+            tb.addRow(cami);
+        });
+    }
+    public void buscardoctor() {
+        List<doctor> com = inser_doctor.ListaDoctor();
+        com.stream().forEach(p -> {
+            nomb_doctor.setText(p.getPri_nomb().toString());
+            apellido_doct.setText(p.getPrim_apell().toString());
+            especialidad_doctor.setText(p.getEspecialidad().toString());
+        });
+    }
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+       cargarPaciente.setSize(494, 258);
+        cargarTablaP();
+        cargarPaciente.setVisible(true);
+        cargarPaciente.setLocationRelativeTo(buscar);
+    }//GEN-LAST:event_buscarActionPerformed
+    
+    public void buscar_paciente() {
+        String SQL_SELECT = "SELECT * FROM pacientes WHERE paci_cedula = " + txt_cedula_paciente.getText() + ";";
+        List<paciente> com = inser.ListaPaciente();
+        com.stream().forEach(p -> {
+            txt_nombre_paciente.setText(p.getPri_nomb().toString());
+            txt_apellido_paciente.setText(p.getPrim_apell().toString());
+            text_codigo_paciente.setText(String.valueOf(p.getCodigo()));
+        });
+
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        guardar_tratamiento();
-        
+        if (validaciones()) {
+            guardar_tratamiento();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CargarMedicamentosJlist();
     }//GEN-LAST:event_jButton2ActionPerformed
-    
-    public void guardar_tratamiento(){
+
+    private void TablaPacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPacienteMousePressed
+
+    }//GEN-LAST:event_TablaPacienteMousePressed
+     public boolean validaciones() {
+        boolean validado = true;
+        validaciones misvalidaciones = new validaciones();
+
+        if (txt_cedula_paciente.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Seleccione un paciente");
+        }
+
+        if (txt_nombre_paciente.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese los nombres del paciente");
+        }
+
+        if (txt_apellido_paciente.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese los apellidos del paciente");
+        }
+
         
+        if (text_budcar_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Seleccione un paciente");
+        }
+        if (text_diagnositico.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese un diagnostico");
+        }
+        if (nomb_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese los nombres del doctor");
+        }
+        if (apellido_doct.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese los apellidos del doctor");
+        }
+        if (especialidad_doctor.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la especialidad del doctor");
+        }
+       if (text_dosis.getText().isEmpty()) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese las instrucciones del medicamento");
+        }
+        if (fecha_inicio_medicamento.getDate() == null) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha de inicio del tratamiento");
+        }
+         if (fecha_final_medicamento.getDate() == null) {
+            validado = false;
+            JOptionPane.showMessageDialog(this, "Ingrese la fecha del fin del tratamiento");
+        }
+         
+        return validado;
     }
-    
+    private void BtBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarPacienteActionPerformed
+
+        if (!text_buscar.getText().isEmpty()) {
+            buscar_paciente();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del paciente");
+        }
+    }//GEN-LAST:event_BtBuscarPacienteActionPerformed
+    public void cargarTablaP() {
+        DefaultTableModel tb = (DefaultTableModel) TablaPaciente.getModel();
+        tb.setNumRows(0);
+        List<paciente> com = inser.ListaPaciente();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getCodigo()), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getCedula(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            tb.addRow(cami);
+        });
+    }
+    private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
+
+        
+    }//GEN-LAST:event_text_buscarMousePressed
+
+    private void text_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_buscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_buscarActionPerformed
+
+    private void cargarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarPActionPerformed
+        cargar_codigo_paci();
+    }//GEN-LAST:event_cargarPActionPerformed
+
+    private void TablaDoctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDoctorMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaDoctorMousePressed
+
+    private void BtBuscarenfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarenfermeraActionPerformed
+//        if (!text_buscare.getText().isEmpty()) {
+//            buscar_enfermera();
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Ingrese la cedula de la enfermera");
+//        }
+    }//GEN-LAST:event_BtBuscarenfermeraActionPerformed
+
+    private void text_buscareMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscareMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_buscareMousePressed
+
+    private void text_buscareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_buscareActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_buscareActionPerformed
+
+    private void cargarP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarP1ActionPerformed
+      cargar_codigo_doctor();
+    }//GEN-LAST:event_cargarP1ActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        if (JListMedicamentos.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una enfermedad");
+        } else {
+            ElimarmedicamentosJlist();
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+    public void ElimarmedicamentosJlist() {
+        if (Listamedicamentos.size() != 0) {
+            int indice = JListMedicamentos.getSelectedIndex();
+//            System.out.println(indice);
+            modeloListMedicamento.remove(indice);
+            Listamedicamentos.remove(indice);
+        }
+    }
+    public void cargar_codigo_doctor() {
+        int seleccion = TablaDoctor.getSelectedRow();
+
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            int codigo = Integer.parseInt(TablaDoctor.getValueAt(seleccion, 0).toString());
+            inser_doctor.ListaDoctor().forEach((e) -> {
+                if (e.getCodigo() == codigo) {
+//                    new Agregar_paciente(codigo).setVisible(true);
+                        
+                    text_budcar_doctor.setText(e.getCedula().toString());
+                    nomb_doctor.setText(e.getPri_nomb()+" "+e.getSeg_nombre().toString());
+                    apellido_doct.setText(e.getPrim_apell()+" "+e.getSeg_apelli().toString());
+                    especialidad_doctor.setText(e.getEspecialidad().toString());
+                   
+                    cargarDoctor.dispose();
+                }
+            });
+
+            String cod;
+            cod = TablaDoctor.getValueAt(seleccion, 0).toString();
+//            System.out.println(cod);
+            cargarDoctor.dispose();
+        }
+    }
+    public void cargar_codigo_paci() {
+        int seleccion = TablaPaciente.getSelectedRow();
+
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            int codigo = Integer.parseInt(TablaPaciente.getValueAt(seleccion, 0).toString());
+            inser.ListaPaciente().forEach((p) -> {
+                if (p.getCodigo() == codigo) {
+                  text_codigo_paciente.setText(Integer.toString(p.getCodigo()));
+                    txt_cedula_paciente.setText(p.getCedula().toString());
+                    txt_nombre_paciente.setText(p.getPri_nomb().toString()+" "+p.getSeg_nombre().toString());
+                    txt_apellido_paciente.setText(p.getPrim_apell()+" "+p.getSeg_apelli().toString());
+                    
+                    cargarPaciente.dispose();
+                }
+            });
+
+            String cod;
+            cod = TablaPaciente.getValueAt(seleccion, 0).toString();
+            text_codigo_paciente.setText(cod);
+//            System.out.println(cod);
+            cargarPaciente.dispose();
+        }
+    }
+    public void guardar_tratamiento() {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        ArrayList array_jlist=new ArrayList();
+        String dia = Integer.toString(fecha_inicio_medicamento.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(fecha_inicio_medicamento.getCalendar().get(Calendar.MONTH) + 1);
+        String año = Integer.toString(fecha_inicio_medicamento.getCalendar().get(Calendar.YEAR));
+        String fecha_inicio_trata = (dia + "-" + mes + "-" + año);
+
+        String dia1 = Integer.toString(fecha_final_medicamento.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes2 = Integer.toString(fecha_final_medicamento.getCalendar().get(Calendar.MONTH) + 1);
+        String año3 = Integer.toString(fecha_final_medicamento.getCalendar().get(Calendar.YEAR));
+        String fecha_fin_trata = (dia + "-" + mes + "-" + año);
+        
+        
+        String valor=JListMedicamentos.getSelectedValue().toString();
+        
+        mi_trata.setCodigo_tratamiento(text_codigo_tratamiento.getText());
+        mi_trata.setDiagnostico(text_diagnositico.getText());
+        mi_trata.setCodigo_medicamento(valor);
+        mi_trata.setDosis(text_dosis.getText());
+        mi_trata.setFecha_inicio_trata(fecha_inicio_trata);
+        mi_trata.setFecha_fin_trata(fecha_fin_trata);
+        
+        mi_trata.setCodigo_paciente(text_codigo_paciente.getText());
+        
+        Limpiar();
+        
+        if (mi_trata.Insertar_tratamiento()) {
+            System.out.println("Conexion Exitosa");
+
+        } else {
+            System.out.println("Conexion Erronea");
+        }
+
+    }
+
     public void LLenarComboBoxMedicamentos() {
         Insert_medicamento inserMedicament = new Insert_medicamento();
         List<medicamentos> com = inserMedicament.ListaMedicamentos();
@@ -483,26 +922,83 @@ public class agregar_tratamiento extends javax.swing.JFrame {
             ComboMedicamentos.addItem(com.get(i).getNombre_medicamento());
         }
     }
+    public void Limpiar() {
+        text_budcar_doctor.setText("");
+        text_codigo_paciente.setText("");
+        text_diagnositico.setText("");
+        text_dosis.setText("");
+        txt_apellido_paciente.setText("");
+        txt_cedula_paciente.setText("");
+        txt_nombre_paciente.setText("");
+        nomb_doctor.setText("");
+        apellido_doct.setText("");
+        especialidad_doctor.setText("");
+        
+        fecha_inicio_medicamento.setCalendar(null);
+        fecha_final_medicamento.setCalendar(null);
+    
 
+        text_dosis.setText("");
+    }
     //Cargar medicamentos en JLIST
     ArrayList<medicamentos> Listamedicamentos = new ArrayList<>();
 
     public void CargarMedicamentosJlist() {
-        medicamentos mi_medicamento = new medicamentos();
-
+//       
+//
+//        if (ComboMedicamentos.getSelectedIndex() == 0) {
+//            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado un medicamento");
+//        } else {
+//
+//            DefaultListModel modeloListMedicamento;
+//            modeloListMedicamento = new DefaultListModel();
+//            JListMedicamentos.setModel(modeloListMedicamento);
+//
+//            String medicaAux;
+//            medicaAux = ComboMedicamentos.getSelectedItem().toString();
+//            mi_medicamento.setNombre_medicamento(medicaAux);
+//
+//            Listamedicamentos.add(mi_medicamento);
+//
+//            for (int i = 0; i < Listamedicamentos.size(); i++) {
+//
+//                modeloListMedicamento.addElement(Listamedicamentos.get(i).getNombre_medicamento());
+//                ComboMedicamentos.setSelectedIndex(0);
+//            }
+//
+//        }
+         
+            medicamentos mi_medicamento = new medicamentos();
+        boolean rep = false;
         if (ComboMedicamentos.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado un medicamento");
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una enfermedad");
         } else {
 
-            DefaultListModel modeloListMedicamento;
+//            DefaultListModel modeloListEnfermedad;
             modeloListMedicamento = new DefaultListModel();
             JListMedicamentos.setModel(modeloListMedicamento);
 
-            String medicaAux;
-            medicaAux = ComboMedicamentos.getSelectedItem().toString();
-            mi_medicamento.setNombre_medicamento(medicaAux);
+            
+            String nomb_medi = ComboMedicamentos.getSelectedItem().toString();
 
-            Listamedicamentos.add(mi_medicamento);
+            mi_medicamento.setNombre_medicamento(nomb_medi);
+            mi_medicamento.setCodigo_medicamento(Integer.toString(mi_trata.cargarcodigoMedicina(nomb_medi)));
+            if (Listamedicamentos.size() != 0) {
+                for (int i = 0; i < Listamedicamentos.size(); i++) {
+                    rep = false;
+                    if (nomb_medi.equalsIgnoreCase(Listamedicamentos.get(i).getNombre_medicamento())) {
+                        
+                        rep = true;
+                        i = Listamedicamentos.size();
+                    }
+                }
+            } else {
+                rep = true;
+                Listamedicamentos.add(mi_medicamento);
+            }
+            if (rep == false) {
+                Listamedicamentos.add(mi_medicamento);
+            }
 
             for (int i = 0; i < Listamedicamentos.size(); i++) {
 
@@ -512,6 +1008,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
 
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -548,17 +1045,26 @@ public class agregar_tratamiento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtBuscarPaciente;
+    private javax.swing.JButton BtBuscarenfermera;
     private javax.swing.JComboBox<String> ComboMedicamentos;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JList<String> JListMedicamentos;
+    private javax.swing.JTable TablaDoctor;
+    private javax.swing.JTable TablaPaciente;
     private javax.swing.JTextField apellido_doct;
     private javax.swing.JButton boton_regresar_acceso_doctor;
+    private javax.swing.JButton buscar;
+    private javax.swing.JButton buscar_doctor;
+    private javax.swing.JDialog cargarDoctor;
+    private javax.swing.JButton cargarP;
+    private javax.swing.JButton cargarP1;
+    private javax.swing.JDialog cargarPaciente;
     private javax.swing.JTextField especialidad_doctor;
     private com.toedter.calendar.JDateChooser fecha_final_medicamento;
     private com.toedter.calendar.JDateChooser fecha_inicio_medicamento;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -580,14 +1086,18 @@ public class agregar_tratamiento extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField nomb_doctor;
     private javax.swing.JTextField text_budcar_doctor;
+    private javax.swing.JTextField text_buscar;
+    private javax.swing.JTextField text_buscare;
+    private javax.swing.JTextField text_codigo_paciente;
+    private javax.swing.JTextField text_codigo_tratamiento;
+    private javax.swing.JTextArea text_diagnositico;
+    private javax.swing.JTextArea text_dosis;
     private javax.swing.JTextField txt_apellido_paciente;
     private javax.swing.JTextField txt_cedula_paciente;
     private javax.swing.JTextField txt_nombre_paciente;
