@@ -1,4 +1,4 @@
-package clases;
+ package clases;
 
 import java.util.Date;
 
@@ -14,19 +14,17 @@ public class paciente extends persona{
         super();
     }
 
-    public paciente(String fecha_de_ingreso, String Seguro, String imagenes, Byte[] foto) {
+    public paciente(String fecha_de_ingreso, String Seguro, String imagenes) {
         this.fecha_de_ingreso = fecha_de_ingreso;
         this.Seguro = Seguro;
         this.imagenes = imagenes;
-        this.foto = foto;
     }
 
-    public paciente(String fecha_de_ingreso, String Seguro, String imagenes, Byte[] foto, int codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
+    public paciente(String fecha_de_ingreso, String Seguro, String imagenes, int codigo, String cedula, String pri_nomb, String seg_nombre, String prim_apell, String seg_apelli, String correo, String genero, String fecha_Nacimiento, String direccion, String telefono, String tipo_sangre) {
         super(codigo, cedula, pri_nomb, seg_nombre, prim_apell, seg_apelli, correo, genero, fecha_Nacimiento, direccion, telefono, tipo_sangre);
         this.fecha_de_ingreso = fecha_de_ingreso;
         this.Seguro = Seguro;
         this.imagenes = imagenes;
-        this.foto = foto;
     }
 
     public String getFecha_de_ingreso() {
@@ -60,8 +58,12 @@ public class paciente extends persona{
     public void setFoto(Byte[] foto) {
         this.foto = foto;
     }
-
-
-
     
+    
+
+    @Override
+    public String toString() {
+        return "paciente{" + "fecha_de_ingreso=" + fecha_de_ingreso + ", Seguro=" + Seguro + ", imagenes=" + imagenes + '}';
+    }
+
 }
