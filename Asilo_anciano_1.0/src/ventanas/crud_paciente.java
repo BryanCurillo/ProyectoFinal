@@ -247,7 +247,7 @@ public class crud_paciente extends javax.swing.JFrame {
         } else {
             
             String cedula = TablaPaciente.getValueAt(seleccion, 1).toString();
-            System.out.println(cedula);
+//            System.out.println(cedula);
             inser.ListaPaciente().forEach((e) -> {
                 if (e.getCedula().equals(cedula)) {
                     new Agregar_paciente(cedula).setVisible(true);
