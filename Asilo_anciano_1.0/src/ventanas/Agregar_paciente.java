@@ -771,6 +771,9 @@ public class Agregar_paciente extends javax.swing.JFrame {
         int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) {
             modificar_paciente();
+            crud_paciente mi_crudP = new crud_paciente();
+            mi_crudP.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_btModificarActionPerformed
 
@@ -851,7 +854,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     paciente.setCedula(text_cedula_paciente.getText());
 
 //                    if (persona.InsertarPersona() && paciente.InsertarPaciente(c, afiliacion, FechaDeIngreso, fis)) {
-                    if (persona.InsertarPersona() && paciente.InsertarPaciente(FechaDeIngreso,longitudBytes, fis)) {
+                    if (persona.InsertarPersona() && paciente.InsertarPaciente(FechaDeIngreso, longitudBytes, fis)) {
                         System.out.println("Conexion Exitosa");
                         limpiar();
                         cargarcod();
