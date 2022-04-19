@@ -196,9 +196,13 @@ public class crud_familiar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
             String cod;
+            String cedula;
+            cedula = TablaFamiliar.getValueAt(fila, 1).toString();
             cod = TablaFamiliar.getValueAt(fila, 0).toString();
             try {
                 mi_cone.InsertUpdateDeleteAcciones("DELETE FROM familiar where fam_codigo='" + cod + "'");
+                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
                 cargarTabla();
             } catch (Exception e) {
                 System.out.println(e.toString());
