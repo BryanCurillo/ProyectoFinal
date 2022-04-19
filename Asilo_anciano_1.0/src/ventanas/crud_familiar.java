@@ -51,7 +51,7 @@ public class crud_familiar extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BtRegresarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        BtRegresarFamiliar.setToolTipText("Regresar");
+        BtRegresarFamiliar.setToolTipText("REGRESAR");
         BtRegresarFamiliar.setBorder(null);
         BtRegresarFamiliar.setOpaque(false);
         BtRegresarFamiliar.addActionListener(new java.awt.event.ActionListener() {
@@ -59,7 +59,7 @@ public class crud_familiar extends javax.swing.JFrame {
                 BtRegresarFamiliarActionPerformed(evt);
             }
         });
-        getContentPane().add(BtRegresarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 110, 50, 40));
+        getContentPane().add(BtRegresarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 110, 50, 40));
 
         BtIngresarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
         BtIngresarFamiliar.setToolTipText("INGRESAR FAMILIAR");
@@ -83,7 +83,7 @@ public class crud_familiar extends javax.swing.JFrame {
                 text_buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 250, 40));
+        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 250, 40));
 
         BtBuscarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BtBuscarFamiliar.setToolTipText("BUSCAR FAMILIAR");
@@ -136,7 +136,7 @@ public class crud_familiar extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 1260, 290));
 
         btrefrescar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
-        btrefrescar.setToolTipText("ver todos");
+        btrefrescar.setToolTipText("VER TODOS");
         btrefrescar.setBorder(null);
         btrefrescar.setOpaque(false);
         btrefrescar.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +144,7 @@ public class crud_familiar extends javax.swing.JFrame {
                 btrefrescarActionPerformed(evt);
             }
         });
-        getContentPane().add(btrefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 120, -1, -1));
+        getContentPane().add(btrefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, -1, -1));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/—Pngtree—green simple solid color background_1323927.png"))); // NOI18N
         Fondo.setText("jLabel1");
