@@ -360,7 +360,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(240, 232, 158));
+        jPanel1.setBackground(new java.awt.Color(240, 239, 180));
 
         BotonBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BotonBuscarPaciente.setToolTipText("Buscar paciente");
@@ -456,7 +456,7 @@ public class agregar_citamedica extends javax.swing.JFrame {
             }
         });
 
-        BotonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
+        BotonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
         BotonModificar.setToolTipText("MODIFICAR");
         BotonModificar.setBorder(null);
         BotonModificar.setBorderPainted(false);
