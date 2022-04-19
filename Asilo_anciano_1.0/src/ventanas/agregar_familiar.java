@@ -312,7 +312,7 @@ public class agregar_familiar extends javax.swing.JFrame {
         jLabel5.setText("Primer Apellido:");
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel13.setText("Cedula:");
+        jLabel13.setText("Cédula:");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setText("Fecha de Nacimiento:");
