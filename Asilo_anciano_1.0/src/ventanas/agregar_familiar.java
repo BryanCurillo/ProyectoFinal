@@ -864,6 +864,25 @@ public class agregar_familiar extends javax.swing.JFrame {
 
         mi_cone.InsertUpdateDeleteAcciones("UPDATE familiar SET fam_parentesco='" + jcb_parentesco.getSelectedItem().toString() + "', fam_codigo_paciente='" + Integer.parseInt(txt_codPaci.getText()) + "' WHERE fam_cedula='" + text_cedula_familiar.getText() + "'");
 
+         int codigousuarioAux = 0;
+            
+            List<familiar> fami = insertFamiliar.ListaFamiliar();
+
+            for (int i = 0; i < fami.size(); i++) {
+
+                String cedulaAux = text_cedula_familiar.getText();
+                
+                
+                if (cedulaAux.equals(fami.get(i).getCedula())) {
+
+                    codigousuarioAux = fami.get(i).getCod_usuario();
+  
+                }
+            }
+
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtUsuario.getText() + "', us_contrasena='" + txtContrasenia.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
+            
+        
         limpiar();
     }
 
