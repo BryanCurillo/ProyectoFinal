@@ -824,6 +824,23 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 
         mi_cone.InsertUpdateDeleteAcciones("UPDATE recepcionista SET recep_hora_ingreso='" + hora_ingresoAux + "',recep_hora_salida='" + hora_salidaAux + "' WHERE recep_cedula='" + text_cedula_recepcionista.getText() + "'");
 
+        int codigousuarioAux = 0;
+
+        List<recepcionista> rec = recep.ListaRecepcionista();
+
+        for (int i = 0; i < rec.size(); i++) {
+
+            String cedulaAux = text_cedula_recepcionista.getText();
+
+            if (cedulaAux.equals(rec.get(i).getCedula())) {
+
+                codigousuarioAux = rec.get(i).getCod_usuario();
+
+            }
+        }
+
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txt_usuario.getText() + "', us_contrasena='" + txt_contrasena.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
+
         limpiar();
     }
 
@@ -894,11 +911,11 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         recep.setCod_usuario(usu.obtenerUsuario());
                         recep.InsertarPersona();
                         //////////////////////////////////////////
-                        
+
                         usu.setUsuario(txt_usuario.getText());
                         usu.setContraseña(txt_contrasena.getText());
                         usu.InsertarUsuario();
-                        
+
                         if (recep.InsertarRecepcionista()) {
                             System.out.println("Conexion Exitosa");
                             limpiar();
