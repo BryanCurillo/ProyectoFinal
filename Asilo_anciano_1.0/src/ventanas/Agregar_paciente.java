@@ -241,7 +241,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_celular_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_celular_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_celular_paciente.setText("Ingrese el celular");
+        text_celular_paciente.setText("Ingrese el Celular");
         text_celular_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_celular_pacienteMousePressed(evt);
@@ -267,7 +267,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_direccion_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_direccion_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_direccion_paciente.setText("Ingrese la dirección");
+        text_direccion_paciente.setText("Ingrese la Dirección");
         text_direccion_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_direccion_pacienteMousePressed(evt);
@@ -341,7 +341,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_SegundoApellido_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_SegundoApellido_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_SegundoApellido_paciente.setText("Ingrese el Segundo apellido");
+        text_SegundoApellido_paciente.setText("Ingrese el Segundo Apellido");
         text_SegundoApellido_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_SegundoApellido_pacienteMousePressed(evt);
@@ -355,7 +355,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_PrimerApellido_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_PrimerApellido_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_PrimerApellido_paciente.setText("Ingrese el Primer apellido");
+        text_PrimerApellido_paciente.setText("Ingrese el Primer Apellido");
         text_PrimerApellido_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_PrimerApellido_pacienteMousePressed(evt);
@@ -371,9 +371,9 @@ public class Agregar_paciente extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Primer Apellido:");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("REGISTRAR PACIENTES");
+        jLabel1.setText("REGISTRO DE PACIENTES");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -381,7 +381,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_PrimerNombre_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_PrimerNombre_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_PrimerNombre_paciente.setText("Ingrese el Primer nombre");
+        text_PrimerNombre_paciente.setText("Ingrese el Primer Nombre");
         text_PrimerNombre_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_PrimerNombre_pacienteMousePressed(evt);
@@ -395,7 +395,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_cedula_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_cedula_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_cedula_paciente.setText("Ingrese cedula");
+        text_cedula_paciente.setText("Ingrese Cedula");
         text_cedula_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_cedula_pacienteMousePressed(evt);
@@ -409,7 +409,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_SegundoNombre_paciente.setForeground(new java.awt.Color(102, 102, 102));
         text_SegundoNombre_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        text_SegundoNombre_paciente.setText("Ingrese el Segundo nombre");
+        text_SegundoNombre_paciente.setText("Ingrese el Segundo Nombre");
         text_SegundoNombre_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_SegundoNombre_pacienteMousePressed(evt);
@@ -428,7 +428,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setText("Segundo Apellido:");
 
-        btModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
+        btModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
         btModificar.setToolTipText("MODIFICAR");
         btModificar.setBorder(null);
         btModificar.setBorderPainted(false);
@@ -445,15 +445,9 @@ public class Agregar_paciente extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(344, 344, 344))))
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -530,12 +524,17 @@ public class Agregar_paciente extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addComponent(Regresar_acceso_recepcionista)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(320, 320, 320))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
