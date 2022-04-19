@@ -76,7 +76,7 @@ public class crud_paciente extends javax.swing.JFrame {
                 text_buscarMousePressed(evt);
             }
         });
-        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 210, 30));
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 210, 30));
 
         BtBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BtBuscarPaciente.setToolTipText("BUSCAR PACIENTE");
@@ -90,6 +90,7 @@ public class crud_paciente extends javax.swing.JFrame {
         jPanel1.add(BtBuscarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 50, 40));
 
         BtEditarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        BtEditarPaciente.setToolTipText("EDITAR PACIENTE");
         BtEditarPaciente.setBorder(null);
         BtEditarPaciente.setOpaque(false);
         BtEditarPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +113,7 @@ public class crud_paciente extends javax.swing.JFrame {
 
         BtRegresarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BtRegresarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        BtRegresarPaciente.setToolTipText("Regresar");
+        BtRegresarPaciente.setToolTipText("REGRESAR");
         BtRegresarPaciente.setBorder(null);
         BtRegresarPaciente.setOpaque(false);
         BtRegresarPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -132,10 +133,10 @@ public class crud_paciente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaPaciente);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1140, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1130, 280));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
-        jButton1.setToolTipText("Ver todos");
+        jButton1.setToolTipText("VER TODOS");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setOpaque(false);
@@ -150,7 +151,9 @@ public class crud_paciente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1145, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
