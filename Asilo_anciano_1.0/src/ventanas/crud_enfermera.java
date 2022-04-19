@@ -93,10 +93,10 @@ public class crud_enfermera extends javax.swing.JFrame {
                 text_buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 230, 30));
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 230, 30));
 
         BtModificarEnfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
-        BtModificarEnfermera.setToolTipText("MODIFICAR ENFERMERA");
+        BtModificarEnfermera.setToolTipText("EDITAR ENFERMERA");
         BtModificarEnfermera.setBorder(null);
         BtModificarEnfermera.setOpaque(false);
         BtModificarEnfermera.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class crud_enfermera extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 980, 300));
 
         Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
-        Actualizar.setToolTipText("Actualizar");
+        Actualizar.setToolTipText("VER TODOS");
         Actualizar.setBorder(null);
         Actualizar.setOpaque(false);
         Actualizar.addActionListener(new java.awt.event.ActionListener() {
