@@ -730,7 +730,27 @@ public class agregar_doctor extends javax.swing.JFrame {
                     + ", per_correo='" + text_email_doctor.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_doctor.getText() + "', per_telefono='" + text_celular_doctor.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_doctor.getText() + "'");
 
             mi_cone.InsertUpdateDeleteAcciones("UPDATE doctor SET doc_especialidad='" + especialidad + "' WHERE doc_cedula='" + text_cedula_doctor.getText() + "'");
+            
+           
+            int codigousuarioAux = 0;
+            
+            List<doctor> com = inserDoctor.ListaDoctor();
 
+            for (int i = 0; i < com.size(); i++) {
+
+                String cedulaAux = text_cedula_doctor.getText();
+                
+                
+                if (cedulaAux.equals(com.get(i).getCedula())) {
+
+                    codigousuarioAux = com.get(i).getCod_usuario();
+  
+                }
+            }
+
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtnuevo_usuario.getText() + "', us_contrasena='" + txtnueva_contrasena.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
+            
+            
             limpiar();
         }
     }
