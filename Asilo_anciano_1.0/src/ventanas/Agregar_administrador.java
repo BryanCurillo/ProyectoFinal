@@ -756,6 +756,24 @@ public class Agregar_administrador extends javax.swing.JFrame {
                     + ", per_correo='" + txt_email_administrador.getText() + "', per_genero='" + genero + "', per_direccion='" + txt_direccion_administrador.getText() + "', per_telefono='" + txt_celular_administrador.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + txt_cedula_administrador.getText() + "'");
 
             mi_cone.InsertUpdateDeleteAcciones("UPDATE administrador SET admin_nivel_educacion='" + jCB_nivelDeeducacion_administrador.getSelectedItem().toString() + "' WHERE admin_cedula='" + txt_cedula_administrador.getText() + "'");
+
+            int codigousuarioAux = 0;
+
+            List<administrador> admin = inserCargarCodigo.ListaAdministrador();
+
+            for (int i = 0; i < admin.size(); i++) {
+
+                String cedulaAux = txt_cedula_administrador.getText();
+
+                if (cedulaAux.equals(admin.get(i).getCedula())) {
+
+                    codigousuarioAux = admin.get(i).getCod_usuario();
+
+                }
+            }
+
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txt_usuario.getText() + "', us_contrasena='" + txt_contrasena.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
+
             limpiar();
         }
     }
