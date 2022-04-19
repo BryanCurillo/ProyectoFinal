@@ -150,7 +150,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(240, 220, 144));
+        jPanel1.setBackground(new java.awt.Color(240, 239, 180));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -345,10 +345,29 @@ public class agregar_enfermera extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setText("NUEVA CONTRASEÑA:");
 
+        txtusurio_enfermera.setForeground(new java.awt.Color(102, 102, 102));
+        txtusurio_enfermera.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtusurio_enfermera.setText("Ej: Usuario1");
+        txtusurio_enfermera.setToolTipText("El usuario debe contener minimo 3 letras y 1 numero");
+        txtusurio_enfermera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtusurio_enfermeraMousePressed(evt);
+            }
+        });
+
+        txtcontrasena_enfermera.setForeground(new java.awt.Color(102, 102, 102));
+        txtcontrasena_enfermera.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtcontrasena_enfermera.setText("Ej: Pass1@");
+        txtcontrasena_enfermera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtcontrasena_enfermeraMousePressed(evt);
+            }
+        });
+
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setText("Sexo:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
         jButton1.setToolTipText("MODIFICAR");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
@@ -443,9 +462,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel17))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel18)))
+                            .addComponent(jLabel18))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -660,6 +677,18 @@ public class agregar_enfermera extends javax.swing.JFrame {
             modificar_enfermera();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtusurio_enfermeraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtusurio_enfermeraMousePressed
+        // TODO add your handling code here:
+        txtusurio_enfermera.setText("");
+        txtusurio_enfermera.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtusurio_enfermeraMousePressed
+
+    private void txtcontrasena_enfermeraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtcontrasena_enfermeraMousePressed
+        // TODO add your handling code here:
+        txtcontrasena_enfermera.setText("");
+        txtcontrasena_enfermera.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtcontrasena_enfermeraMousePressed
     public void modificar_enfermera() {
         String genero = "";
         if (Masculino_enfermera.isSelected()) {
