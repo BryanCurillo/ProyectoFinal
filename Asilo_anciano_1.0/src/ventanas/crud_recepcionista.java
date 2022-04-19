@@ -169,7 +169,8 @@ public class crud_recepcionista extends javax.swing.JFrame {
                 cod = TablaRecepcionista.getValueAt(fila, 0).toString();
                 try {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM recepcionista where recep_codigo='" + cod + "'");
-                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
                     
                     cargarTabla();
                 } catch (Exception e) {
