@@ -156,7 +156,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/atras.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Regresar"/>
+            <Property name="toolTipText" type="java.lang.String" value="REGRESAR"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
@@ -283,7 +283,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/rotacion.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Ver todos"/>
+            <Property name="toolTipText" type="java.lang.String" value="VER TODOS"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>

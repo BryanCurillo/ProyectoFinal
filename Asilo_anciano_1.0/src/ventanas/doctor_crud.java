@@ -114,7 +114,7 @@ public class doctor_crud extends javax.swing.JFrame {
         jPanel1.add(BtEliminarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 50, 40));
 
         BtRegresarDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        BtRegresarDoctor.setToolTipText("Regresar");
+        BtRegresarDoctor.setToolTipText("REGRESAR");
         BtRegresarDoctor.setBorder(null);
         BtRegresarDoctor.setOpaque(false);
         BtRegresarDoctor.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +137,7 @@ public class doctor_crud extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 1100, 210));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
-        jButton1.setToolTipText("Ver todos");
+        jButton1.setToolTipText("VER TODOS");
         jButton1.setBorderPainted(false);
         jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
