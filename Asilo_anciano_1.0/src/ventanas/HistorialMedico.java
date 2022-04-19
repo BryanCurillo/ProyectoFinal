@@ -777,6 +777,8 @@ public class HistorialMedico extends javax.swing.JFrame {
     }
 
     public void BloquearCampos() {
+        
+        text_codigo_paciente.setEditable(false);
         txtceduhistoria.setEditable(false);
         txthdireccion.setEditable(false);
         txthtelefono.setEditable(false);
