@@ -456,6 +456,24 @@ public class agregar_familiar extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setText("NUEVA CONTRASEÑA:");
 
+        txtUsuario.setForeground(new java.awt.Color(102, 102, 102));
+        txtUsuario.setText("Ej: Usuario1");
+        txtUsuario.setToolTipText("El usuario debe contener minimo 3 letras y 1 numero");
+        txtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtUsuarioMousePressed(evt);
+            }
+        });
+
+        txtContrasenia.setForeground(new java.awt.Color(102, 102, 102));
+        txtContrasenia.setText("Ej: Pass1@");
+        txtContrasenia.setToolTipText("Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
+        txtContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtContraseniaMousePressed(evt);
+            }
+        });
+
         jcb_parentesco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el parentesco", "Padre/Madre", "Suegro/a", "Hijo/a", "Yerno/Nuera", "Nieto/a", "Hermano/a", "Cuñado/a", "Tio/a", "Sobrino/a" }));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -814,6 +832,16 @@ public class agregar_familiar extends javax.swing.JFrame {
     private void txt_codPaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codPaciActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_codPaciActionPerformed
+
+    private void txtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUsuarioMousePressed
+        txtUsuario.setText("");
+        txtUsuario.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtUsuarioMousePressed
+
+    private void txtContraseniaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContraseniaMousePressed
+        txtContrasenia.setText("");
+        txtUsuario.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtContraseniaMousePressed
 
     public void modificar_familiar() {
         String genero = "";
