@@ -1293,9 +1293,7 @@ public class FichaMedica extends javax.swing.JFrame {
                 modeloListEnfermedad.addElement(Listaenfermedades.get(i).getNombre_enfermedad());
                 comboenfermedadficha.setSelectedIndex(0);
             }
-
         }
-
     }
 
     public void ElimarEnfermedadesJlist() {
@@ -1542,7 +1540,6 @@ public class FichaMedica extends javax.swing.JFrame {
         femeninoficha.setEnabled(false);
         txtenfermeraacargo.setEditable(false);
         fecharegistro.setEnabled(false);
-
     }
 
     //Limpiar Campo de Texto
