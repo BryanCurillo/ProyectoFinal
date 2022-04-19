@@ -888,10 +888,13 @@ public class Agregar_paciente extends javax.swing.JFrame {
 //            System.out.println(fis.toString());
             //mi_cone.InsertUpdateDeleteAcciones("UPDATE paciente SET paci_seguro='" + afiliacion + "',paci_fecha_de_ingreso='" + FechaDeIngreso + "' WHERE paci_cedula='" + text_cedula_paciente.getText() + "'");
             //            mi_cone.InsertUpdateDeleteAcciones("UPDATE paciente SET paci_seguro='" + afiliacion + "',paci_fecha_de_ingreso='" + FechaDeIngreso + "',paci_foto=" + fis + " WHERE paci_cedula='" + text_cedula_paciente.getText() + "'");
-
+            Date date = new Date();
+            SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+            FechaDeIngreso = formatofecha.format(date);
+            java.sql.Date fechasql = java.sql.Date.valueOf(FechaDeIngreso);
             try {
 
-                String sql = "UPDATE paciente SET paci_seguro = ?, paci_foto = ?\n"
+                String sql = "UPDATE paciente SET paci_seguro = ?, paci_fecha_de_ingreso= ? ,paci_foto = ?\n"
                         + "WHERE paci_cedula = ?;";
                 try {
 
@@ -899,8 +902,9 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     // ps.setInt(1,co);
 
                     ps.setString(1, afiliacion);
-                    ps.setBinaryStream(2, fis);//,longitud
-                    ps.setString(3, text_cedula_paciente.getText());
+                    ps.setDate(2, fechasql);
+                    ps.setBinaryStream(3, fis);//,longitud
+                    ps.setString(4, text_cedula_paciente.getText());
                     ps.execute();
                     ps.close();
 
