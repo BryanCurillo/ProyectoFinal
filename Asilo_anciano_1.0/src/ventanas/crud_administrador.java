@@ -35,47 +35,23 @@ public class crud_administrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        BtRegresarAdministrador = new javax.swing.JButton();
-        BtEliminarAdministrador = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         BtEditarAdministrador = new javax.swing.JButton();
         Listar = new javax.swing.JButton();
         BtBuscarAdministrador = new javax.swing.JButton();
-        text_buscar = new javax.swing.JTextField();
+        BtEliminarAdministrador = new javax.swing.JButton();
+        BtRegresarAdministrador = new javax.swing.JButton();
         BtIngresarAdministrador = new javax.swing.JButton();
+        text_buscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaAdministrador = new javax.swing.JTable();
-        Fondo = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("LISTA DE ADMINISTRADORES");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
-
-        BtRegresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        BtRegresarAdministrador.setToolTipText("Regresar");
-        BtRegresarAdministrador.setBorder(null);
-        BtRegresarAdministrador.setOpaque(false);
-        BtRegresarAdministrador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtRegresarAdministradorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(BtRegresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 110, 50, 40));
-
-        BtEliminarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
-        BtEliminarAdministrador.setToolTipText("ELIMINAR ADMINISTRADOR");
-        BtEliminarAdministrador.setBorder(null);
-        BtEliminarAdministrador.setOpaque(false);
-        BtEliminarAdministrador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtEliminarAdministradorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 50, 50));
+        jPanel1.setBackground(new java.awt.Color(240, 239, 180));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BtEditarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         BtEditarAdministrador.setToolTipText("EDITAR ADMINISTRADOR");
@@ -86,7 +62,7 @@ public class crud_administrador extends javax.swing.JFrame {
                 BtEditarAdministradorActionPerformed(evt);
             }
         });
-        getContentPane().add(BtEditarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 50, 40));
+        jPanel1.add(BtEditarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 50, 40));
 
         Listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
         Listar.setToolTipText("Ver todos");
@@ -97,7 +73,7 @@ public class crud_administrador extends javax.swing.JFrame {
                 ListarActionPerformed(evt);
             }
         });
-        getContentPane().add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 60, 50));
+        jPanel1.add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 50, -1));
 
         BtBuscarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BtBuscarAdministrador.setToolTipText("BUSCAR ADMINISTRADOR");
@@ -108,15 +84,29 @@ public class crud_administrador extends javax.swing.JFrame {
                 BtBuscarAdministradorActionPerformed(evt);
             }
         });
-        getContentPane().add(BtBuscarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 50, 40));
+        jPanel1.add(BtBuscarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 50, 40));
 
-        text_buscar.setText("Buscar...");
-        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                text_buscarMousePressed(evt);
+        BtEliminarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
+        BtEliminarAdministrador.setToolTipText("ELIMINAR ADMINISTRADOR");
+        BtEliminarAdministrador.setBorder(null);
+        BtEliminarAdministrador.setOpaque(false);
+        BtEliminarAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtEliminarAdministradorActionPerformed(evt);
             }
         });
-        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 250, 40));
+        jPanel1.add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 50, 40));
+
+        BtRegresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        BtRegresarAdministrador.setToolTipText("Regresar");
+        BtRegresarAdministrador.setBorder(null);
+        BtRegresarAdministrador.setOpaque(false);
+        BtRegresarAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtRegresarAdministradorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtRegresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 100, 50, 40));
 
         BtIngresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
         BtIngresarAdministrador.setToolTipText("INGRESAR ADMINISTRADOR");
@@ -127,7 +117,15 @@ public class crud_administrador extends javax.swing.JFrame {
                 BtIngresarAdministradorActionPerformed(evt);
             }
         });
-        getContentPane().add(BtIngresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 50, 40));
+        jPanel1.add(BtIngresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 50, 40));
+
+        text_buscar.setText("Buscar...");
+        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarMousePressed(evt);
+            }
+        });
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 250, 40));
 
         TablaAdministrador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,10 +137,14 @@ public class crud_administrador extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaAdministrador);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 980, 250));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 980, 250));
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/peakpx.jpg"))); // NOI18N
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 460));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("LISTA DE ADMINISTRADORES");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1021, 461));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -319,10 +321,10 @@ public class crud_administrador extends javax.swing.JFrame {
     private javax.swing.JButton BtEliminarAdministrador;
     private javax.swing.JButton BtIngresarAdministrador;
     private javax.swing.JButton BtRegresarAdministrador;
-    private javax.swing.JLabel Fondo;
     private javax.swing.JButton Listar;
     private javax.swing.JTable TablaAdministrador;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField text_buscar;
     // End of variables declaration//GEN-END:variables
