@@ -259,7 +259,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel11.setText("Tipo de Sangre:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Cedula:");
+        jLabel2.setText("Cédula:");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setText("Sexo:");
