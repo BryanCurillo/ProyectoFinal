@@ -358,6 +358,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
         txtcontrasena_enfermera.setForeground(new java.awt.Color(102, 102, 102));
         txtcontrasena_enfermera.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtcontrasena_enfermera.setText("Ej: Pass1@");
+        txtcontrasena_enfermera.setToolTipText("Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
         txtcontrasena_enfermera.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtcontrasena_enfermeraMousePressed(evt);

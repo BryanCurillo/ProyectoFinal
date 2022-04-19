@@ -689,6 +689,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Ej: Pass1@"/>
+            <Property name="toolTipText" type="java.lang.String" value="Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20"/>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtcontrasena_enfermeraMousePressed"/>
