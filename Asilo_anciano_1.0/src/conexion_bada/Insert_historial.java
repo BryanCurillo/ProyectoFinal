@@ -21,7 +21,7 @@ public class Insert_historial extends historial_medico {
     public boolean Insertar_historial() {
         String sql = "INSERT INTO historial(\n"
                 + "	his_codigo, his_codigo_paciente, his_codigo_tratamiento, his_codigo_ficha, his_observaciones)\n"
-                + "	VALUES ('" + getCodigo_historial()+ "','" + getCodigo_paciente() + "','" + getCodigo_tratamiento() + "','" + getCodigo_ficha()+ "','" + getObservaciones_historial() + "');";
+                + "	VALUES ('" + getCodigo_historial() + "','" + getCodigo_paciente() + "','" + getCodigo_tratamiento() + "','" + getCodigo_ficha() + "','" + getObservaciones_historial() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
@@ -38,7 +38,7 @@ public class Insert_historial extends historial_medico {
                 mi_historial.setCodigo_tratamiento("his_codigo_tratamiento");
                 mi_historial.setCodigo_ficha("his_codigo_ficha");
                 mi_historial.setObservaciones_historial("his_observaciones");
-                
+
                 list_tratamiento.add(mi_historial);
 
             }
@@ -57,6 +57,20 @@ public class Insert_historial extends historial_medico {
         try {
             while (ru.next()) {
                 codigo = ru.getInt("max") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
+
+    public int obtenerCodFicha(int codpaci) {
+        int codigo = 0;
+        String sqls = "select ficha_codigo from ficha where ficha_paci_codigo=" + codpaci+ ";";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("ficha_codigo");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
