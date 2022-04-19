@@ -361,14 +361,28 @@ public class agregar_doctor extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("NUEVA CONTRASEÑA:");
 
+        txtnuevo_usuario.setForeground(new java.awt.Color(102, 102, 102));
+        txtnuevo_usuario.setText("Ej: Usuario1");
         txtnuevo_usuario.setToolTipText("El usuario debe contener minimo 3 letras y 1 numero");
+        txtnuevo_usuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtnuevo_usuarioMousePressed(evt);
+            }
+        });
         txtnuevo_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnuevo_usuarioActionPerformed(evt);
             }
         });
 
+        txtnueva_contrasena.setForeground(new java.awt.Color(102, 102, 102));
+        txtnueva_contrasena.setText("Ej: Pass1@");
         txtnueva_contrasena.setToolTipText("Debe contener minimo 1 letra minus, 1 mayus, 1 numero y un caracter especial, minimo 5caract. y max 20");
+        txtnueva_contrasena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtnueva_contrasenaMousePressed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
         jButton1.setToolTipText("MODIFICAR");
@@ -682,6 +696,16 @@ public class agregar_doctor extends javax.swing.JFrame {
             modificar_doctor();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtnuevo_usuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnuevo_usuarioMousePressed
+        txtnuevo_usuario.setText("");
+        txtnuevo_usuario.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtnuevo_usuarioMousePressed
+
+    private void txtnueva_contrasenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnueva_contrasenaMousePressed
+        txtnueva_contrasena.setText("");
+        txtnueva_contrasena.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtnueva_contrasenaMousePressed
     public void modificar_doctor() {
         if (validaciones()) {
             String genero = "";
