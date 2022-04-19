@@ -1405,7 +1405,7 @@ public class FichaMedica extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<paciente> com = inser.ListaPaciente();
         com.stream().forEach(p -> {
-            String[] cami = {String.valueOf(p.getCodigo()), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getCedula(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
             tb.addRow(cami);
         });
     }
