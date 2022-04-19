@@ -1527,6 +1527,8 @@ public class FichaMedica extends javax.swing.JFrame {
 
     //Bloaquear Campos de texto
     public void BloquearCampos() {
+        txtcedulafm.setEditable(false);
+        txtnombresapellidos.setEditable(false);
         txtcodigoficha.setEditable(false);
         txtcodigopaciente.setEditable(false);
         txt_apellidos.setEditable(false);
