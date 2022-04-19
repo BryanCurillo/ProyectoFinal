@@ -188,6 +188,7 @@ public class doctor_crud extends javax.swing.JFrame {
                 try {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM doctor where doc_codigo='" + cod + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
                     cargarTabla();
                 } catch (Exception e) {
                     System.out.println(e.toString());
