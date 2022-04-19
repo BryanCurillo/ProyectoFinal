@@ -60,7 +60,7 @@ public class agregar_doctor extends javax.swing.JFrame {
                 text_cedula_doctor.setText(p.getCedula().toString());
                 text_PrimerNombre_doctor.setText(p.getPri_nomb().toString());
                 text_SegundoNombre_doctor.setText(p.getSeg_nombre().toString());
-                text_PrimerApellido_doctor.setText(p.getPri_nomb().toString());
+                text_PrimerApellido_doctor.setText(p.getPrim_apell().toString());
                 text_SegundoApellido_doctor.setText(p.getSeg_apelli().toString());
                 text_email_doctor.setText(p.getCorreo().toString());
                 text_direccion_doctor.setText(p.getDireccion());
