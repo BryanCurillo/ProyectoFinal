@@ -366,7 +366,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
         jLabel3.setText("Primer Nombre:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Cedula:");
+        jLabel2.setText("Cédula:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Primer Apellido:");
