@@ -179,7 +179,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         txt_celular_administrador.setForeground(new java.awt.Color(102, 102, 102));
         txt_celular_administrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_celular_administrador.setText("Ingrese el celular");
+        txt_celular_administrador.setText("Ingrese el Celular");
         txt_celular_administrador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txt_celular_administradorMousePressed(evt);
@@ -188,7 +188,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         txt_SegundoNombre_administrador.setForeground(new java.awt.Color(102, 102, 102));
         txt_SegundoNombre_administrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_SegundoNombre_administrador.setText("Ingrese el Segundo nombre");
+        txt_SegundoNombre_administrador.setText("Ingrese el Segundo Nombre");
         txt_SegundoNombre_administrador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txt_SegundoNombre_administradorMousePressed(evt);
@@ -200,7 +200,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         txt_PrimerNombre_administrador.setForeground(new java.awt.Color(102, 102, 102));
         txt_PrimerNombre_administrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_PrimerNombre_administrador.setText("Ingrese el Primer nombre");
+        txt_PrimerNombre_administrador.setText("Ingrese el Primer Nombre");
         txt_PrimerNombre_administrador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txt_PrimerNombre_administradorMousePressed(evt);
@@ -212,7 +212,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REGISTRAR ADMINISTRADOR");
 
@@ -268,7 +268,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         txt_cedula_administrador.setForeground(new java.awt.Color(102, 102, 102));
         txt_cedula_administrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_cedula_administrador.setText("Ingrese la cedula");
+        txt_cedula_administrador.setText("Ingrese la Cedula");
         txt_cedula_administrador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txt_cedula_administradorMousePressed(evt);
@@ -282,7 +282,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         txt_PrimerApellido_administrador.setForeground(new java.awt.Color(102, 102, 102));
         txt_PrimerApellido_administrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_PrimerApellido_administrador.setText("Ingrese el Primer apellido");
+        txt_PrimerApellido_administrador.setText("Ingrese el Primer Apellido");
         txt_PrimerApellido_administrador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txt_PrimerApellido_administradorMousePressed(evt);
@@ -333,7 +333,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
         txt_SegundoApellido_administrador.setForeground(new java.awt.Color(102, 102, 102));
         txt_SegundoApellido_administrador.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_SegundoApellido_administrador.setText("Ingrese el Segundo apellido");
+        txt_SegundoApellido_administrador.setText("Ingrese el Segundo Apellido");
         txt_SegundoApellido_administrador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txt_SegundoApellido_administradorMousePressed(evt);
@@ -367,11 +367,15 @@ public class Agregar_administrador extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setText("Nivel de Educacion:");
 
+        jSeparator7.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setText("CREAR USUARIO");
         jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setText("NUEVO USUARIO:");
@@ -404,7 +408,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
         jButton1.setToolTipText("MODIFICAR");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
@@ -437,9 +441,9 @@ public class Agregar_administrador extends javax.swing.JFrame {
                             .addComponent(txt_celular_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_direccion_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
+                                .addGap(37, 37, 37)
                                 .addComponent(jButton1)
-                                .addGap(110, 110, 110)
+                                .addGap(98, 98, 98)
                                 .addComponent(Regresar_administrador)))
                         .addGap(75, 75, 75)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,8 +514,8 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(192, 192, 192)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -585,21 +589,21 @@ public class Agregar_administrador extends javax.swing.JFrame {
                                     .addComponent(txt_SegundoApellido_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6))
                                 .addGap(41, 41, 41)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(txt_email_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txt_email_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))
                                 .addGap(11, 11, 11)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(8, 8, 8)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(txt_celular_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txt_celular_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))))
                         .addGap(2, 2, 2)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
                             .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel12)
                             .addComponent(txt_direccion_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -611,7 +615,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         .addComponent(Guardar_administrador)
                         .addComponent(Regresar_administrador))
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 1010, 1460));
