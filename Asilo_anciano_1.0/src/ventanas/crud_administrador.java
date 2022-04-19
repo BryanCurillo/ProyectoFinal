@@ -65,7 +65,7 @@ public class crud_administrador extends javax.swing.JFrame {
         jPanel1.add(BtEditarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 50, 40));
 
         Listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
-        Listar.setToolTipText("Ver todos");
+        Listar.setToolTipText("VER TODOS");
         Listar.setBorderPainted(false);
         Listar.setOpaque(false);
         Listar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +98,7 @@ public class crud_administrador extends javax.swing.JFrame {
         jPanel1.add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 50, 40));
 
         BtRegresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        BtRegresarAdministrador.setToolTipText("Regresar");
+        BtRegresarAdministrador.setToolTipText("REGRESAR");
         BtRegresarAdministrador.setBorder(null);
         BtRegresarAdministrador.setOpaque(false);
         BtRegresarAdministrador.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +125,7 @@ public class crud_administrador extends javax.swing.JFrame {
                 text_buscarMousePressed(evt);
             }
         });
-        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 250, 40));
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 250, 40));
 
         TablaAdministrador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
