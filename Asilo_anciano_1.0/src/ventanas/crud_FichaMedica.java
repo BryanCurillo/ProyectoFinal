@@ -39,8 +39,6 @@ public class crud_FichaMedica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        BtRegresarAdministrador = new javax.swing.JButton();
         BtEliminarAdministrador = new javax.swing.JButton();
         BtEditarAdministrador = new javax.swing.JButton();
         Listar = new javax.swing.JButton();
@@ -50,26 +48,12 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tablafichas = new javax.swing.JTable();
         BtVer_Ficha = new javax.swing.JButton();
-        Fondo = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        BtRegresarAdministrador = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("LISTA DE FICHAS MEDICAS");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
-
-        BtRegresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        BtRegresarAdministrador.setToolTipText("Regresar");
-        BtRegresarAdministrador.setBorder(null);
-        BtRegresarAdministrador.setOpaque(false);
-        BtRegresarAdministrador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtRegresarAdministradorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(BtRegresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 110, 50, 40));
 
         BtEliminarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
         BtEliminarAdministrador.setToolTipText("ELIMINAR ADMINISTRADOR");
@@ -80,7 +64,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
                 BtEliminarAdministradorActionPerformed(evt);
             }
         });
-        getContentPane().add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 50, 50));
+        getContentPane().add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 50, 40));
 
         BtEditarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         BtEditarAdministrador.setToolTipText("EDITAR ADMINISTRADOR");
@@ -102,7 +86,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
                 ListarActionPerformed(evt);
             }
         });
-        getContentPane().add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 60, 50));
+        getContentPane().add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, 50, 40));
 
         BtBuscarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BtBuscarAdministrador.setToolTipText("BUSCAR ADMINISTRADOR");
@@ -157,8 +141,26 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         });
         getContentPane().add(BtVer_Ficha, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 50, 40));
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/peakpx.jpg"))); // NOI18N
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 460));
+        jPanel1.setBackground(new java.awt.Color(240, 239, 180));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("LISTA DE FICHAS MEDICAS");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+
+        BtRegresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        BtRegresarAdministrador.setToolTipText("Regresar");
+        BtRegresarAdministrador.setBorder(null);
+        BtRegresarAdministrador.setOpaque(false);
+        BtRegresarAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtRegresarAdministradorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtRegresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 100, 50, 40));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -367,10 +369,10 @@ public class crud_FichaMedica extends javax.swing.JFrame {
     private javax.swing.JButton BtIngresarAdministrador;
     private javax.swing.JButton BtRegresarAdministrador;
     private javax.swing.JButton BtVer_Ficha;
-    private javax.swing.JLabel Fondo;
     private javax.swing.JButton Listar;
     private javax.swing.JTable Tablafichas;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField text_buscar;
     // End of variables declaration//GEN-END:variables
