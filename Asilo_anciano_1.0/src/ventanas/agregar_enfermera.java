@@ -199,7 +199,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Cedula:");
+        jLabel2.setText("Cédula:");
 
         text_PrimerNombre_enfermera.setForeground(new java.awt.Color(102, 102, 102));
         text_PrimerNombre_enfermera.setHorizontalAlignment(javax.swing.JTextField.CENTER);
