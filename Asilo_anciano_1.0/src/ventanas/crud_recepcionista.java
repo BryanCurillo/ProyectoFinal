@@ -56,7 +56,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
         BtRegresarRecepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/anterior.png"))); // NOI18N
-        BtRegresarRecepcionista.setToolTipText("Regresar");
+        BtRegresarRecepcionista.setToolTipText("REGRESAR");
         BtRegresarRecepcionista.setBorder(null);
         BtRegresarRecepcionista.setOpaque(false);
         BtRegresarRecepcionista.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +100,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
         getContentPane().add(BtBuscarRecepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 50, 40));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
-        jButton1.setToolTipText("Ver todos");
+        jButton1.setToolTipText("VER TODOS");
         jButton1.setBorderPainted(false);
         jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +117,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
                 text_buscarMousePressed(evt);
             }
         });
-        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 250, 40));
+        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 250, 40));
 
         BtIngresarRecepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
         BtIngresarRecepcionista.setToolTipText("INGRESAR RECEPCIONISTA");
