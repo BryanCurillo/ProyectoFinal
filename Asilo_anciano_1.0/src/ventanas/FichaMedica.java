@@ -895,6 +895,7 @@ public class FichaMedica extends javax.swing.JFrame {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         cargarPaciente.setSize(494, 258);
+        Limpiar();
         cargarTablaP();
         cargarPaciente.setVisible(true);
         cargarPaciente.setLocationRelativeTo(Buscar);
