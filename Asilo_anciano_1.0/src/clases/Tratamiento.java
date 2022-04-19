@@ -14,22 +14,26 @@ import java.util.Date;
  */
 public class Tratamiento {
     private String codigo_tratamiento;
-    private String descripcion_tratamiento;
-    private Date fecha_inicio;
-    private Date fecha_fin;
-    private String codigo_receta;
+    private String diagnostico;
+    private String codigo_medicamento;
+    private String dosis;
+    private String fecha_inicio_trata;
+    private String fecha_fin_trata;
     private String codigo_paciente;
+    private String observaciones;
 
     public Tratamiento() {
     }
 
-    public Tratamiento(String codigo_tratamiento, String descripcion_tratamiento, Date fecha_inicio, Date fecha_fin, String codigo_receta, String codigo_paciente) {
+    public Tratamiento(String codigo_tratamiento, String diagnostico, String codigo_medicamento, String dosis, String fecha_inicio_trata, String fecha_fin_trata, String codigo_paciente, String observaciones) {
         this.codigo_tratamiento = codigo_tratamiento;
-        this.descripcion_tratamiento = descripcion_tratamiento;
-        this.fecha_inicio = fecha_inicio;
-        this.fecha_fin = fecha_fin;
-        this.codigo_receta = codigo_receta;
+        this.diagnostico = diagnostico;
+        this.codigo_medicamento = codigo_medicamento;
+        this.dosis = dosis;
+        this.fecha_inicio_trata = fecha_inicio_trata;
+        this.fecha_fin_trata = fecha_fin_trata;
         this.codigo_paciente = codigo_paciente;
+        this.observaciones = observaciones;
     }
 
     public String getCodigo_tratamiento() {
@@ -40,36 +44,44 @@ public class Tratamiento {
         this.codigo_tratamiento = codigo_tratamiento;
     }
 
-    public String getDescripcion_tratamiento() {
-        return descripcion_tratamiento;
+    public String getDiagnostico() {
+        return diagnostico;
     }
 
-    public void setDescripcion_tratamiento(String descripcion_tratamiento) {
-        this.descripcion_tratamiento = descripcion_tratamiento;
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
     }
 
-    public Date getFecha_inicio() {
-        return fecha_inicio;
+    public String getCodigo_medicamento() {
+        return codigo_medicamento;
     }
 
-    public void setFecha_inicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
+    public void setCodigo_medicamento(String codigo_medicamento) {
+        this.codigo_medicamento = codigo_medicamento;
     }
 
-    public Date getFecha_fin() {
-        return fecha_fin;
+    public String getDosis() {
+        return dosis;
     }
 
-    public void setFecha_fin(Date fecha_fin) {
-        this.fecha_fin = fecha_fin;
+    public void setDosis(String dosis) {
+        this.dosis = dosis;
     }
 
-    public String getCodigo_receta() {
-        return codigo_receta;
+    public String getFecha_inicio_trata() {
+        return fecha_inicio_trata;
     }
 
-    public void setCodigo_receta(String codigo_receta) {
-        this.codigo_receta = codigo_receta;
+    public void setFecha_inicio_trata(String fecha_inicio_trata) {
+        this.fecha_inicio_trata = fecha_inicio_trata;
+    }
+
+    public String getFecha_fin_trata() {
+        return fecha_fin_trata;
+    }
+
+    public void setFecha_fin_trata(String fecha_fin_trata) {
+        this.fecha_fin_trata = fecha_fin_trata;
     }
 
     public String getCodigo_paciente() {
@@ -79,10 +91,15 @@ public class Tratamiento {
     public void setCodigo_paciente(String codigo_paciente) {
         this.codigo_paciente = codigo_paciente;
     }
-   
-    
 
- 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+    
     
     
 }
