@@ -59,7 +59,7 @@ public class Insert extends paciente {
         Boolean inserto = false;
         SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         fecha = formatofecha.format(date);
-        java.sql.Date fecha1 = java.sql.Date.valueOf(fecha);
+        java.sql.Date fechasql = java.sql.Date.valueOf(fecha);
         String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
         try {
 //            String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
@@ -69,7 +69,7 @@ public class Insert extends paciente {
 
             ps.setString(1, getCedula());
             ps.setString(2, getSeguro());
-            ps.setDate(3, fecha1);
+            ps.setDate(3, fechasql);
             ps.setBinaryStream(4, foto);//,longitud
             ps.execute();
             ps.close();
