@@ -218,6 +218,7 @@ public class crud_administrador extends javax.swing.JFrame {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo=" + cod + "");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
+                    System.out.println("codigous="+cod);
                     
                     JOptionPane.showMessageDialog(null, "El registro se eliminó éxitosamente");
                     cargarTabla();
