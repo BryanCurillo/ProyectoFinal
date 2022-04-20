@@ -42,6 +42,7 @@ public class inicio_frame extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         boton_salir = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        Boton_AgregarAdmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -149,6 +150,14 @@ public class inicio_frame extends javax.swing.JFrame {
         jLabel9.setText("SALIR ");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 510, -1, -1));
 
+        Boton_AgregarAdmin.setText("Agregar Administrador ");
+        Boton_AgregarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_AgregarAdminActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Boton_AgregarAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,6 +213,13 @@ public class inicio_frame extends javax.swing.JFrame {
          System.exit(0);
     }//GEN-LAST:event_boton_salirActionPerformed
 
+    private void Boton_AgregarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_AgregarAdminActionPerformed
+        
+        Agregar_administrador mi_admin = new  Agregar_administrador();
+        mi_admin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Boton_AgregarAdminActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,6 +256,7 @@ public class inicio_frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Boton_AgregarAdmin;
     private javax.swing.JButton Boton_doctor;
     private javax.swing.JButton Boton_familiar;
     private javax.swing.JButton boton_administrador;
