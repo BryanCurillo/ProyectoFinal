@@ -44,7 +44,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
     DateFormat df = DateFormat.getDateInstance();
 //    ArrayList<administrador> lista_administrador = new ArrayList();
     validaciones misvalidaciones = new validaciones();
-    Insert_administrador inserCargarCodigo = new Insert_administrador();
+    Insert_administrador inserAdmin = new Insert_administrador();
     Insert_usuario usu = new Insert_usuario();
     Conexion cone = new Conexion();
 
@@ -66,7 +66,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
     public void llenar_administrador(String cedula) {
         txt_cedula_administrador.setEnabled(false);
         txt_codigo_administrador.setEnabled(false);
-        List<administrador> com = inserCargarCodigo.ListaAdministrador();
+        List<administrador> com = inserAdmin.ListaAdministrador();
         com.stream().forEach(p -> {
             if (cedula.equalsIgnoreCase(p.getCedula())) {
                 txt_codigo_administrador.setText(String.valueOf(p.getCodigo()));
@@ -757,22 +757,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
             mi_cone.InsertUpdateDeleteAcciones("UPDATE administrador SET admin_nivel_educacion='" + jCB_nivelDeeducacion_administrador.getSelectedItem().toString() + "' WHERE admin_cedula='" + txt_cedula_administrador.getText() + "'");
 
-            int codigousuarioAux = 0;
-
-            List<administrador> admin = inserCargarCodigo.ListaAdministrador();
-
-            for (int i = 0; i < admin.size(); i++) {
-
-                String cedulaAux = txt_cedula_administrador.getText();
-
-                if (cedulaAux.equals(admin.get(i).getCedula())) {
-
-                    codigousuarioAux = admin.get(i).getCod_usuario();
-
-                }
-            }
-
-            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txt_usuario.getText() + "', us_contrasena='" + txt_contrasena.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txt_usuario.getText() + "', us_contrasena='" + txt_contrasena.getText() + "' WHERE us_codigo='" + inserAdmin.cargarcodigoUSER(txt_cedula_administrador.getText()) + "'");
 
             JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
             limpiar();
@@ -781,7 +766,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
     public void cargarcod() {
         txt_codigo_administrador.setEnabled(false);
-        txt_codigo_administrador.setText(String.valueOf(inserCargarCodigo.cargarcodigo()));
+        txt_codigo_administrador.setText(String.valueOf(inserAdmin.cargarcodigo()));
     }
 
     public void RegistrarAdministrador() throws SQLException {
