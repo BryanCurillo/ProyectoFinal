@@ -774,6 +774,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
             mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txt_usuario.getText() + "', us_contrasena='" + txt_contrasena.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
 
+            JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
             limpiar();
         }
     }
@@ -830,7 +831,8 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         admin.setCedula(txt_cedula_administrador.getText());
                         admin.setCod_usuario(usu.obtenerUsuario());
                         if (admin.InsertarAdministrador()) {
-                            System.out.println("Conexion Exitosa");
+                            //System.out.println("Conexion Exitosa");
+                            JOptionPane.showMessageDialog(null, "Se guardo exitosamente");
                             limpiar();
                             cargarcod();
                         } else {
