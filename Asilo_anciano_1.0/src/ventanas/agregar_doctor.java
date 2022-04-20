@@ -749,9 +749,9 @@ public class agregar_doctor extends javax.swing.JFrame {
             }
 
             mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtnuevo_usuario.getText() + "', us_contrasena='" + txtnueva_contrasena.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
-            
-            
+
             limpiar();
+            JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
         }
     }
 
@@ -806,7 +806,8 @@ public class agregar_doctor extends javax.swing.JFrame {
                         docto.setCod_usuario(usu.obtenerUsuario());
 
                         if (docto.InsertarDoctor()) {
-                            System.out.println("Conexion Exitosa");
+                            //System.out.println("Conexion Exitosa");
+                            JOptionPane.showMessageDialog(null, "Se guardó éxitosamente");
                             limpiar();
                             cargarcod();
                         } else {
