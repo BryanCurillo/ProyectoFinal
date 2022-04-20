@@ -67,7 +67,7 @@ public class Insert_usuario extends usuario {
                 mi_usuario.setContraseña(rs.getString("us_contrasena"));
                 usu.add(mi_usuario);
             }
-//            rs.close();
+            rs.close();
             return usu;
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
