@@ -33,11 +33,11 @@ public class Insert_historial extends historial_medico {
         try {
             while (trata.next()) {
                 historial_medico mi_historial = new historial_medico();
-                mi_historial.setCodigo_historial("his_codigo");
-                mi_historial.setCodigo_paciente("his_codigo_paciente");
-                mi_historial.setCodigo_tratamiento("his_codigo_tratamiento");
-                mi_historial.setCodigo_ficha("his_codigo_ficha");
-                mi_historial.setObservaciones_historial("his_observaciones");
+                mi_historial.setCodigo_historial(trata.getInt("his_codigo"));
+                mi_historial.setCodigo_paciente(trata.getInt("his_codigo_paciente"));
+                mi_historial.setCodigo_tratamiento(trata.getInt("his_codigo_tratamiento"));
+                mi_historial.setCodigo_ficha(trata.getInt("his_codigo_ficha"));
+                mi_historial.setObservaciones_historial(trata.getString("his_observaciones"));
 
                 list_tratamiento.add(mi_historial);
 
