@@ -36,7 +36,7 @@ public class Insert_medicamento extends medicamentos {
         try {
             while (rs.next()) {
                 medicamentos mi_medica = new medicamentos();
-                mi_medica.setCodigo_medicamento(rs.getString("medi_codigo"));
+                mi_medica.setCodigo_medicamento(rs.getInt("medi_codigo"));
                 mi_medica.setNombre_medicamento(rs.getString("medi_nombre_"));
                 medicamento.add(mi_medica);
             }
