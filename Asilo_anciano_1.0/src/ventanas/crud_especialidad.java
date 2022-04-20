@@ -114,7 +114,7 @@ public class crud_especialidad extends javax.swing.JFrame {
 
         Consultar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Consultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
-        Consultar.setToolTipText("CONSULTAR");
+        Consultar.setToolTipText("VER TODOS");
         Consultar.setBorder(null);
         Consultar.setOpaque(false);
         Consultar.addActionListener(new java.awt.event.ActionListener() {
@@ -272,7 +272,8 @@ public class crud_especialidad extends javax.swing.JFrame {
                 alergia.setNombre_especialidad(txtespecialidad.getText());
 
                 if (alergia.InsertarEspecialidad()) {
-                    System.out.println("Conexion Exitosa");
+                    //System.out.println("Conexion Exitosa");
+                    JOptionPane.showMessageDialog(null, "Se guardó éxitosamente");
                     Limpiar();
                     cargarcod();
                 } else {
