@@ -278,6 +278,11 @@ public class HistorialMedico extends javax.swing.JFrame {
         jButton1.setToolTipText("REGRESAR");
         jButton1.setBorder(null);
         jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
@@ -578,16 +583,16 @@ public class HistorialMedico extends javax.swing.JFrame {
         List<Tratamiento> com = mi_trata.lista_tratamiento();
         List<claseFichaMedica> ficha = mi_fic.ListaFichaMedica();
 
-        mi_historial.setCodigo_historial(text_codigo_historial.getText());
-        mi_historial.setCodigo_paciente(text_codigo_paciente.getText());
+        mi_historial.setCodigo_historial(Integer.parseInt(text_codigo_historial.getText()));
+        mi_historial.setCodigo_paciente(Integer.parseInt(text_codigo_paciente.getText()));
         com.stream().forEach(p -> {
-            String codigo_tratameinto = p.getCodigo_tratamiento();
+            int codigo_tratameinto = p.getCodigo_tratamiento();
             mi_historial.setCodigo_tratamiento(codigo_tratameinto);
         });
 
         ficha.stream().forEach(g -> {
             int codigo_ficha = g.getCodigo_ficha_medica();
-            mi_historial.setCodigo_ficha(Integer.toString(codigo_ficha));
+            mi_historial.setCodigo_ficha(codigo_ficha);
         });
 
         mi_historial.setObservaciones_historial(text_observaciones.getText());
@@ -688,6 +693,12 @@ public class HistorialMedico extends javax.swing.JFrame {
     private void text_codigo_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_codigo_pacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_text_codigo_pacienteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        acceso_doctor acdoctor = new acceso_doctor();
+        acdoctor.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void cargarTablaP() {
         DefaultTableModel tb = (DefaultTableModel) TablaPaciente.getModel();
         tb.setNumRows(0);
@@ -770,7 +781,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<Tratamiento> com = mi_trata.lista_tratamiento();
         com.stream().forEach(p -> {
-            String[] trata = {p.getCodigo_tratamiento(), p.getDiagnostico(), p.getCodigo_medicamento(), p.getDosis(), p.getFecha_inicio_trata(), p.getFecha_fin_trata(), p.getCodigo_paciente(), p.getObservaciones()};
+            String[] trata = {String.valueOf(p.getCodigo_tratamiento()), p.getDiagnostico(), String.valueOf(p.getCodigo_medicamento()), p.getDosis(), p.getFecha_inicio_trata(), p.getFecha_fin_trata(), String.valueOf(p.getCodigo_paciente()), p.getObservaciones()};
             tb.addRow(trata);
         });
 
