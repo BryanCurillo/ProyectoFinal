@@ -161,7 +161,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="text_buscar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Buscar..."/>
+            <Property name="text" type="java.lang.String" value="Ingrese la c&#xe9;dula a consultar..."/>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="text_buscarMousePressed"/>

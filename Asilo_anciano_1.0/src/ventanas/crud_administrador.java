@@ -119,7 +119,7 @@ public class crud_administrador extends javax.swing.JFrame {
         });
         jPanel1.add(BtIngresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 50, 40));
 
-        text_buscar.setText("Buscar...");
+        text_buscar.setText("Ingrese la cédula a consultar...");
         text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_buscarMousePressed(evt);
@@ -218,6 +218,8 @@ public class crud_administrador extends javax.swing.JFrame {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo=" + cod + "");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
+                    
+                    JOptionPane.showMessageDialog(null, "El registro se eliminó éxitosamente");
                     cargarTabla();
                 } catch (Exception e) {
                     System.out.println(e.toString());
