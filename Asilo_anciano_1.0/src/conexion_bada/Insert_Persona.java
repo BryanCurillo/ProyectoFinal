@@ -37,7 +37,7 @@ public class Insert_Persona extends persona {
         if (codigo == 0) {
             validar = true;
         }
-        System.out.println("repetido=" + codigo);
+        //System.out.println("repetido=" + codigo);
         return validar;
     }
         
