@@ -171,7 +171,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM recepcionista where recep_codigo='" + cod + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
-                    
+                    JOptionPane.showMessageDialog(null,"El registro se elimino correctamente");
                     cargarTabla();
                 } catch (Exception e) {
                     System.out.println(e.toString());

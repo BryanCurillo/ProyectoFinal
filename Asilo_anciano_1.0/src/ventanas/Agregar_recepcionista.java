@@ -840,8 +840,9 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         }
 
         mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txt_usuario.getText() + "', us_contrasena='" + txt_contrasena.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
-
+        
         limpiar();
+        JOptionPane.showMessageDialog(null,"El registro se modifico correctamente");
     }
 
     public void cargarcod() {
@@ -917,11 +918,13 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         usu.InsertarUsuario();
 
                         if (recep.InsertarRecepcionista()) {
-                            System.out.println("Conexion Exitosa");
+                            //System.out.println("Conexion Exitosa");
+                            JOptionPane.showMessageDialog(null, "La recepcionista se guardo exitosamente");
                             limpiar();
                             cargarcod();
                         } else {
-                            System.out.println("Conexion Erronea");
+                            JOptionPane.showMessageDialog(null,"Larecepcionista no se guardo correctamente");
+                            //System.out.println("Conexion Erronea");
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");

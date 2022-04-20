@@ -817,7 +817,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
                         //String FechaNacimiento = df.format(Fecha_Nacimiento_administrador.getDate());
                         admin.setFecha_Nacimiento(fecha);
-
+                        System.out.println(fecha);
                         admin.setTelefono(txt_celular_administrador.getText());
                         admin.setTipo_sangre(combo_sangre_administrador.getSelectedItem().toString());
                         admin.InsertarPersona();

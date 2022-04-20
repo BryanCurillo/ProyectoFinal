@@ -7,25 +7,25 @@ package clases;
 
 import java.util.Date;
 
-
 /**
  *
  * @author Usuario
  */
 public class Tratamiento {
-    private String codigo_tratamiento;
+
+    private int codigo_tratamiento;
     private String diagnostico;
-    private String codigo_medicamento;
+    private int codigo_medicamento;
     private String dosis;
     private String fecha_inicio_trata;
     private String fecha_fin_trata;
-    private String codigo_paciente;
+    private int codigo_paciente;
     private String observaciones;
 
     public Tratamiento() {
     }
 
-    public Tratamiento(String codigo_tratamiento, String diagnostico, String codigo_medicamento, String dosis, String fecha_inicio_trata, String fecha_fin_trata, String codigo_paciente, String observaciones) {
+    public Tratamiento(int codigo_tratamiento, String diagnostico, int codigo_medicamento, String dosis, String fecha_inicio_trata, String fecha_fin_trata, int codigo_paciente, String observaciones) {
         this.codigo_tratamiento = codigo_tratamiento;
         this.diagnostico = diagnostico;
         this.codigo_medicamento = codigo_medicamento;
@@ -36,11 +36,11 @@ public class Tratamiento {
         this.observaciones = observaciones;
     }
 
-    public String getCodigo_tratamiento() {
+    public int getCodigo_tratamiento() {
         return codigo_tratamiento;
     }
 
-    public void setCodigo_tratamiento(String codigo_tratamiento) {
+    public void setCodigo_tratamiento(int codigo_tratamiento) {
         this.codigo_tratamiento = codigo_tratamiento;
     }
 
@@ -52,11 +52,11 @@ public class Tratamiento {
         this.diagnostico = diagnostico;
     }
 
-    public String getCodigo_medicamento() {
+    public int getCodigo_medicamento() {
         return codigo_medicamento;
     }
 
-    public void setCodigo_medicamento(String codigo_medicamento) {
+    public void setCodigo_medicamento(int codigo_medicamento) {
         this.codigo_medicamento = codigo_medicamento;
     }
 
@@ -84,11 +84,11 @@ public class Tratamiento {
         this.fecha_fin_trata = fecha_fin_trata;
     }
 
-    public String getCodigo_paciente() {
+    public int getCodigo_paciente() {
         return codigo_paciente;
     }
 
-    public void setCodigo_paciente(String codigo_paciente) {
+    public void setCodigo_paciente(int codigo_paciente) {
         this.codigo_paciente = codigo_paciente;
     }
 
@@ -99,7 +99,5 @@ public class Tratamiento {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    
-    
-    
+
 }

@@ -1262,8 +1262,6 @@ public class FichaMedica extends javax.swing.JFrame {
         if (comboenfermedadficha.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado un medicamento");
         } else {
-
-
             modeloListEnfermedad = new DefaultListModel();
             JListEnfermedades.setModel(modeloListEnfermedad);
 
