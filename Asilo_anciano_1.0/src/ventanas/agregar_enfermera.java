@@ -727,8 +727,8 @@ public class agregar_enfermera extends javax.swing.JFrame {
         }
 
        mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtusurio_enfermera.getText() + "', us_contrasena='" + txtcontrasena_enfermera.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
-
         limpiar();
+        JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
     }
 
     public void cargarcod() {
@@ -781,7 +781,8 @@ public class agregar_enfermera extends javax.swing.JFrame {
                         enfermera.setCedula(text_cedula_enfermera.getText());
                         enfermera.setCod_usuario(usu.obtenerUsuario());
                         if (enfermera.InsertarEnfermera()) {
-                            System.out.println("Conexion Exitosa");
+                            //System.out.println("Conexion Exitosa");
+                            JOptionPane.showMessageDialog(null, "Se guardó exitosamente");
                             limpiar();
                             cargarcod();
                         } else {
