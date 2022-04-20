@@ -731,24 +731,8 @@ public class agregar_doctor extends javax.swing.JFrame {
 
             mi_cone.InsertUpdateDeleteAcciones("UPDATE doctor SET doc_especialidad='" + especialidad + "' WHERE doc_cedula='" + text_cedula_doctor.getText() + "'");
             
-           
-            int codigousuarioAux = 0;
-            
-            List<doctor> com = inserDoctor.ListaDoctor();
-
-            for (int i = 0; i < com.size(); i++) {
-
-                String cedulaAux = text_cedula_doctor.getText();
-                
-                
-                if (cedulaAux.equals(com.get(i).getCedula())) {
-
-                    codigousuarioAux = com.get(i).getCod_usuario();
-  
-                }
-            }
-
-            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtnuevo_usuario.getText() + "', us_contrasena='" + txtnueva_contrasena.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
+          
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtnuevo_usuario.getText() + "', us_contrasena='" + txtnueva_contrasena.getText() + "' WHERE us_codigo='" + inserDoctor.cargarcodigoUSER(text_cedula_doctor.getText()) + "'");
 
             limpiar();
             JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
