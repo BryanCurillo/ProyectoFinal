@@ -882,7 +882,7 @@ public class agregar_familiar extends javax.swing.JFrame {
 
             mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtUsuario.getText() + "', us_contrasena='" + txtContrasenia.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
             
-        
+        JOptionPane.showMessageDialog(null,"El registro se modifico exitosamente");
         limpiar();
     }
 
@@ -938,11 +938,13 @@ public class agregar_familiar extends javax.swing.JFrame {
                         familiar.setCodigo_paciente(Integer.parseInt(txt_codPaci.getText()));
 
                         if (familiar.InsertarFamiliar()) {
-                            System.out.println("Conexion Exitosa");
+                            //System.out.println("Conexion Exitosa");
+                            JOptionPane.showMessageDialog(this, "El familiar se guardo exitosamente");
                             limpiar();
                             cargarcod();
                         } else {
-                            System.out.println("Conexion Erronea");
+                            //System.out.println("Conexion Erronea");
+                            JOptionPane.showMessageDialog(this,"El familiar no se guardo correctamente");
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe");
