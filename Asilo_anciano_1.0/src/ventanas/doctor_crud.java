@@ -72,7 +72,7 @@ public class doctor_crud extends javax.swing.JFrame {
         });
         jPanel1.add(BtIngresarDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 50, 40));
 
-        text_buscar.setText("Buscar...");
+        text_buscar.setText("Ingrese la cédula a consultar...");
         text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_buscarMousePressed(evt);
@@ -189,6 +189,8 @@ public class doctor_crud extends javax.swing.JFrame {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM doctor where doc_codigo='" + cod + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
+                    
+                    JOptionPane.showMessageDialog(null, "El registro se eliminó éxitosamente");
                     cargarTabla();
                 } catch (Exception e) {
                     System.out.println(e.toString());
@@ -200,7 +202,7 @@ public class doctor_crud extends javax.swing.JFrame {
         if (!text_buscar.getText().isEmpty()) {
             buscar_doctor();
         } else {
-            JOptionPane.showMessageDialog(this, "Ingrese la cedula del administrador");
+            JOptionPane.showMessageDialog(this, "Ingrese la cedula del doctor");
         }
     }//GEN-LAST:event_BtBuscarDoctorActionPerformed
 
