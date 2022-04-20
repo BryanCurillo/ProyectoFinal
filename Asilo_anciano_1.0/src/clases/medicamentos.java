@@ -10,22 +10,23 @@ package clases;
  * @author Usuario
  */
 public class medicamentos {
-    private String codigo_medicamento;
+
+    private int codigo_medicamento;
     private String nombre_medicamento;
 
     public medicamentos() {
     }
 
-    public medicamentos(String codigo_medicamento, String nombre_medicamento) {
+    public medicamentos(int codigo_medicamento, String nombre_medicamento) {
         this.codigo_medicamento = codigo_medicamento;
         this.nombre_medicamento = nombre_medicamento;
     }
 
-    public String getCodigo_medicamento() {
+    public int getCodigo_medicamento() {
         return codigo_medicamento;
     }
 
-    public void setCodigo_medicamento(String codigo_medicamento) {
+    public void setCodigo_medicamento(int codigo_medicamento) {
         this.codigo_medicamento = codigo_medicamento;
     }
 
@@ -36,6 +37,5 @@ public class medicamentos {
     public void setNombre_medicamento(String nombre_medicamento) {
         this.nombre_medicamento = nombre_medicamento;
     }
-    
-    
+
 }
