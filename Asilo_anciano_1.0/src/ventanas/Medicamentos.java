@@ -331,7 +331,7 @@ public class Medicamentos extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<medicamentos> com = inser.ListaMedicamentos();
         com.stream().forEach(p -> {
-            String[] cami = {p.getCodigo_medicamento(), p.getNombre_medicamento()};
+            String[] cami = {String.valueOf(p.getCodigo_medicamento()), p.getNombre_medicamento()};
             tb.addRow(cami);
         });
     }
@@ -342,17 +342,17 @@ public class Medicamentos extends javax.swing.JFrame {
     }
 
     public void buscar_medicamento() {
-        String codigo = txtBuscar.getText();
+        int codigo = Integer.parseInt(txtBuscar.getText());
         var medicafiltro = new ArrayList<medicamentos>();
 
         inser.ListaMedicamentos().forEach((e) -> {
-            if (e.getCodigo_medicamento().equals(codigo)) {
+            if (e.getCodigo_medicamento()==codigo) {
                 medicafiltro.add(e);
             }
         });
         String matriz[][] = new String[medicafiltro.size()][3];
         for (int j = 0; j < medicafiltro.size(); j++) {
-            matriz[j][0] = medicafiltro.get(j).getCodigo_medicamento();
+            matriz[j][0] = String.valueOf(medicafiltro.get(j).getCodigo_medicamento());
             matriz[j][1] = medicafiltro.get(j).getNombre_medicamento();
 
         }
