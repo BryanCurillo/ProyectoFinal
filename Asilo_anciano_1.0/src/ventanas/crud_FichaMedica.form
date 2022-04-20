@@ -30,7 +30,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/buscar (2).png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="BUSCAR ADMINISTRADOR"/>
+        <Property name="toolTipText" type="java.lang.String" value="BUSCAR REGISTRO"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -45,25 +45,12 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="text_buscar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar..."/>
-      </Properties>
-      <Events>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="text_buscarMousePressed"/>
-      </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="30" y="100" width="250" height="40"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="javax.swing.JButton" name="BtIngresarAdministrador">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/agregar-usuario.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="INGRESAR ADMINISTRADOR"/>
+        <Property name="toolTipText" type="java.lang.String" value="INGRESAR FECHA MEDICA"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -148,7 +135,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/Ver_ficha.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="INGRESAR ADMINISTRADOR"/>
+        <Property name="toolTipText" type="java.lang.String" value="MODIFICAR FICHAS MEDICAS "/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -218,7 +205,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/rotacion.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Ver todos"/>
+            <Property name="toolTipText" type="java.lang.String" value="VER TODOS"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
@@ -236,7 +223,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/borrar-usuario.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="ELIMINAR ADMINISTRADOR"/>
+            <Property name="toolTipText" type="java.lang.String" value="ELIMINAR FICHA MEDICA"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
@@ -248,6 +235,19 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="600" y="100" width="50" height="40"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JTextField" name="text_buscar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Buscar ..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="text_buscarMousePressed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="20" y="100" width="250" height="40"/>
             </Constraint>
           </Constraints>
         </Component>

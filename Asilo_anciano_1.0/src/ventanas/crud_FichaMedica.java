@@ -40,7 +40,6 @@ public class crud_FichaMedica extends javax.swing.JFrame {
     private void initComponents() {
 
         BtBuscarAdministrador = new javax.swing.JButton();
-        text_buscar = new javax.swing.JTextField();
         BtIngresarAdministrador = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tablafichas = new javax.swing.JTable();
@@ -50,12 +49,13 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         BtRegresarAdministrador = new javax.swing.JButton();
         Listar = new javax.swing.JButton();
         BtEliminarAdministrador = new javax.swing.JButton();
+        text_buscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         BtBuscarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
-        BtBuscarAdministrador.setToolTipText("BUSCAR ADMINISTRADOR");
+        BtBuscarAdministrador.setToolTipText("BUSCAR REGISTRO");
         BtBuscarAdministrador.setBorder(null);
         BtBuscarAdministrador.setOpaque(false);
         BtBuscarAdministrador.addActionListener(new java.awt.event.ActionListener() {
@@ -65,16 +65,8 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         });
         getContentPane().add(BtBuscarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 50, 40));
 
-        text_buscar.setText("Buscar...");
-        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                text_buscarMousePressed(evt);
-            }
-        });
-        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 250, 40));
-
         BtIngresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
-        BtIngresarAdministrador.setToolTipText("INGRESAR ADMINISTRADOR");
+        BtIngresarAdministrador.setToolTipText("INGRESAR FECHA MEDICA");
         BtIngresarAdministrador.setBorder(null);
         BtIngresarAdministrador.setOpaque(false);
         BtIngresarAdministrador.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +89,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 980, 250));
 
         BtVer_Ficha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Ver_ficha.png"))); // NOI18N
-        BtVer_Ficha.setToolTipText("INGRESAR ADMINISTRADOR");
+        BtVer_Ficha.setToolTipText("MODIFICAR FICHAS MEDICAS ");
         BtVer_Ficha.setBorder(null);
         BtVer_Ficha.setOpaque(false);
         BtVer_Ficha.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +119,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         jPanel1.add(BtRegresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 100, 50, 40));
 
         Listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
-        Listar.setToolTipText("Ver todos");
+        Listar.setToolTipText("VER TODOS");
         Listar.setBorderPainted(false);
         Listar.setOpaque(false);
         Listar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +130,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         jPanel1.add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, 50, 40));
 
         BtEliminarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
-        BtEliminarAdministrador.setToolTipText("ELIMINAR ADMINISTRADOR");
+        BtEliminarAdministrador.setToolTipText("ELIMINAR FICHA MEDICA");
         BtEliminarAdministrador.setBorder(null);
         BtEliminarAdministrador.setOpaque(false);
         BtEliminarAdministrador.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +139,14 @@ public class crud_FichaMedica extends javax.swing.JFrame {
             }
         });
         jPanel1.add(BtEliminarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 50, 40));
+
+        text_buscar.setText("Buscar ...");
+        text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                text_buscarMousePressed(evt);
+            }
+        });
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 250, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 460));
 
@@ -181,7 +181,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
 
     private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
         text_buscar.setText("");
-        text_buscar.setForeground(Color.BLACK);    }//GEN-LAST:event_text_buscarMousePressed
+    }//GEN-LAST:event_text_buscarMousePressed
 
     private void BtVer_FichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtVer_FichaActionPerformed
         ver_ficha();
