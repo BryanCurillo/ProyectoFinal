@@ -203,6 +203,7 @@ public class crud_familiar extends javax.swing.JFrame {
                 mi_cone.InsertUpdateDeleteAcciones("DELETE FROM familiar where fam_codigo='" + cod + "'");
                 mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
                 mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
+                JOptionPane.showMessageDialog(null,"El registro se elimino exitosamente");
                 cargarTabla();
             } catch (Exception e) {
                 System.out.println(e.toString());
