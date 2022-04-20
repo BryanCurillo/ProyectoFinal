@@ -59,14 +59,28 @@ public class Insert_recepcionista extends recepcionista {
             return null;
         }
     }
-    
-        public int cargarcodigo() {
+
+    public int cargarcodigo() {
         int codigo = 0;
         String sqls = "select max(recep_codigo) from recepcionista;";
         ResultSet ru = cone.selectConsulta(sqls);
         try {
             while (ru.next()) {
-                codigo = ru.getInt("max")+1;
+                codigo = ru.getInt("max") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
+
+    public int cargarcodigoUSER(String cedula) {
+        int codigo = 0;
+        String sqls = "select recep_codigo_usuario from recepcionista where recep_cedula ='" + cedula + "';";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("admin_codigo_usuario");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
