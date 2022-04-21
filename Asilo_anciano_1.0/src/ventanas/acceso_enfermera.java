@@ -127,8 +127,8 @@ public class acceso_enfermera extends javax.swing.JFrame {
 
     private void boton_acceso_fichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_acceso_fichaActionPerformed
         // TODO add your handling code here:
-        FichaMedica fm = new FichaMedica();
-        fm.setVisible(true);
+        crud_FichaMedica mi_ficha = new crud_FichaMedica();
+        mi_ficha.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_acceso_fichaActionPerformed
 
