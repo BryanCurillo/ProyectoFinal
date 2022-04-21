@@ -167,10 +167,11 @@ public class crud_recepcionista extends javax.swing.JFrame {
                 String cedula;
                 cedula = TablaRecepcionista.getValueAt(fila, 1).toString();
                 cod = TablaRecepcionista.getValueAt(fila, 0).toString();
+                int codUsu=inser.cargarcodigoUSER(cedula);
                 try {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM recepcionista where recep_codigo='" + cod + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
-                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + codUsu + "'");
                     JOptionPane.showMessageDialog(null,"El registro se elimino correctamente");
                     cargarTabla();
                 } catch (Exception e) {
