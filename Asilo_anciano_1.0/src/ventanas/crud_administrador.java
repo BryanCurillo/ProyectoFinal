@@ -214,11 +214,11 @@ public class crud_administrador extends javax.swing.JFrame {
                 String cedula;
                 cedula = TablaAdministrador.getValueAt(fila, 1).toString();
                 cod = TablaAdministrador.getValueAt(fila, 0).toString();
+                int codUsu=inser.cargarcodigoUSER(cedula);
                 try {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM administrador where admin_codigo=" + cod + "");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
-                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
-                    System.out.println("codigous="+cod);
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + codUsu + "'");
                     
                     JOptionPane.showMessageDialog(null, "El registro se eliminó éxitosamente");
                     cargarTabla();
