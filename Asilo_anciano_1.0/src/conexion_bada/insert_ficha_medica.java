@@ -78,6 +78,7 @@ public class insert_ficha_medica extends claseFichaMedica {
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(codigo);
         return codigo;
     }
 
