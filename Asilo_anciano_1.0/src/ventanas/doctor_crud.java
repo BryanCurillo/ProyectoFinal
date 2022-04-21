@@ -185,10 +185,12 @@ public class doctor_crud extends javax.swing.JFrame {
                 String cedula;
                 cedula = TablaDoctor.getValueAt(fila, 1).toString();
                 cod = TablaDoctor.getValueAt(fila, 0).toString();
+                int codUsu=inser.cargarcodigoUSER(cedula);
                 try {
-                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM doctor where doc_codigo='" + cod + "'");
+                    
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + inser.cargarcodigoUSER(cedula) + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
-                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM doctor where doc_codigo='" + codUsu + "'");
                     System.out.println("codigous="+cod);
                     JOptionPane.showMessageDialog(null, "El registro se eliminó éxitosamente");
                     cargarTabla();
