@@ -43,6 +43,7 @@ public class inicio_frame extends javax.swing.JFrame {
         boton_salir = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         Boton_AgregarAdmin = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -51,20 +52,20 @@ public class inicio_frame extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asilo-de-ancianos (1)_1.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 36)); // NOI18N
         jLabel2.setText("HOGAR DE LOS ANCIANOS");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Maiandra GD", 0, 48)); // NOI18N
         jLabel4.setText("\"Cristo Rey\"");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("DOCTOR");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
 
         boton_administrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/admin (1).png"))); // NOI18N
         boton_administrador.setToolTipText("ACCESO ADMINISTRADOR");
@@ -75,13 +76,14 @@ public class inicio_frame extends javax.swing.JFrame {
                 boton_administradorActionPerformed(evt);
             }
         });
-        jPanel1.add(boton_administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
+        jPanel1.add(boton_administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel5.setText("ADMINISTRADOR");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
 
         Boton_doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor (2).png"))); // NOI18N
+        Boton_doctor.setToolTipText("ACCESO DOCTOR");
         Boton_doctor.setBorder(null);
         Boton_doctor.setOpaque(false);
         Boton_doctor.addActionListener(new java.awt.event.ActionListener() {
@@ -89,10 +91,10 @@ public class inicio_frame extends javax.swing.JFrame {
                 Boton_doctorActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_doctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, -1, -1));
+        jPanel1.add(Boton_doctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
 
         boton_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recepcionista (1).png"))); // NOI18N
-        boton_recepcionista.setToolTipText("ACCESOP RECEPCIONISTA");
+        boton_recepcionista.setToolTipText("ACCESO RECEPCIONISTA");
         boton_recepcionista.setBorder(null);
         boton_recepcionista.setOpaque(false);
         boton_recepcionista.addActionListener(new java.awt.event.ActionListener() {
@@ -100,13 +102,14 @@ public class inicio_frame extends javax.swing.JFrame {
                 boton_recepcionistaActionPerformed(evt);
             }
         });
-        jPanel1.add(boton_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, -1, -1));
+        jPanel1.add(boton_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel6.setText("RECEPCIONISTA");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, -1, -1));
 
         Boton_familiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/familia (1).png"))); // NOI18N
+        Boton_familiar.setToolTipText("ACCESO FAMILIAR");
         Boton_familiar.setBorder(null);
         Boton_familiar.setOpaque(false);
         Boton_familiar.addActionListener(new java.awt.event.ActionListener() {
@@ -114,11 +117,11 @@ public class inicio_frame extends javax.swing.JFrame {
                 Boton_familiarActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, -1, -1));
+        jPanel1.add(Boton_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 160, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel7.setText("FAMILIAR");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 320, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 290, -1, -1));
 
         boton_enfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enfermera (1).png"))); // NOI18N
         boton_enfermera.setToolTipText("ACCESO ENFERMERA");
@@ -129,11 +132,11 @@ public class inicio_frame extends javax.swing.JFrame {
                 boton_enfermeraActionPerformed(evt);
             }
         });
-        jPanel1.add(boton_enfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
+        jPanel1.add(boton_enfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel8.setText("ENFERMERA");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 500, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, -1, -1));
 
         boton_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/apagar.png"))); // NOI18N
         boton_salir.setToolTipText("SALIR DEL SISTEMA");
@@ -144,19 +147,26 @@ public class inicio_frame extends javax.swing.JFrame {
                 boton_salirActionPerformed(evt);
             }
         });
-        jPanel1.add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 370, -1, -1));
+        jPanel1.add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 370, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel9.setText("SALIR ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 510, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, -1, -1));
 
-        Boton_AgregarAdmin.setText("Agregar Administrador ");
+        Boton_AgregarAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/administrador.png"))); // NOI18N
+        Boton_AgregarAdmin.setToolTipText("Agregar Administrador ");
+        Boton_AgregarAdmin.setBorder(null);
+        Boton_AgregarAdmin.setOpaque(false);
         Boton_AgregarAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_AgregarAdminActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_AgregarAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
+        jPanel1.add(Boton_AgregarAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        jLabel10.setText("AGREGAR ADMINISTRADOR");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,6 +276,7 @@ public class inicio_frame extends javax.swing.JFrame {
     private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JCalendar jCalendar2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
