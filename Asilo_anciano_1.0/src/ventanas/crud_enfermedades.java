@@ -33,7 +33,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
         cargarTabla();
         cargarcod();
     }
-    
+
     public void cargarcod() {
         txt_codigo.setEnabled(false);
         txt_codigo.setText(String.valueOf(inser.cargarcodigo()));
@@ -45,7 +45,6 @@ public class crud_enfermedades extends javax.swing.JFrame {
         try {
             if (validarInformacion() == true && ValidarDuplicados() == true) {
                 enfermedades.setNombre_enfermedad(txtEnfermedad.getText());
-                
 
                 if (enfermedades.insert_enfermedad()) {
                     System.out.println("Conexion Exitosa");
@@ -115,7 +114,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
         var enfermedadfiltro = new ArrayList<enfermedades>();
 
         inser.ListEnfermedad().forEach((e) -> {
-            if (e.getCodigo_enfermedad()==codigo) {
+            if (e.getCodigo_enfermedad() == codigo) {
                 enfermedadfiltro.add(e);
             }
         });
@@ -132,19 +131,19 @@ public class crud_enfermedades extends javax.swing.JFrame {
                 }
         ));
     }
-    
-    public boolean ValidarDuplicados() { 
+
+    public boolean ValidarDuplicados() {
         boolean validado = true;
         insert_enfermedad inser = new insert_enfermedad();
         List<enfermedades> com = inser.ListEnfermedad();
 
         for (int i = 0; i < com.size(); i++) {
-            if(com.get(i).getNombre_enfermedad().equalsIgnoreCase(txtEnfermedad.getText())){
+            if (com.get(i).getNombre_enfermedad().equalsIgnoreCase(txtEnfermedad.getText())) {
                 validado = false;
                 JOptionPane.showMessageDialog(null, "La enfermedad ya existe");
             }
         }
-        
+
         return validado;
     }
 
@@ -235,7 +234,7 @@ public class crud_enfermedades extends javax.swing.JFrame {
 
         Consultar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Consultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (1).png"))); // NOI18N
-        Consultar.setToolTipText("CONSULTAR");
+        Consultar.setToolTipText("VER TODOS");
         Consultar.setBorder(null);
         Consultar.setOpaque(false);
         Consultar.addActionListener(new java.awt.event.ActionListener() {
@@ -342,10 +341,16 @@ public class crud_enfermedades extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEnfermedadActionPerformed
 
     private void boton_regresar_accesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_accesoActionPerformed
-        // TODO add your handling code here:
-        acceso_enfermera enferm = new acceso_enfermera();
-        enferm.setVisible(true);
-        dispose();
+
+        if (FichaMedica.BotonEnfermedayAlergia == 1) {
+            FichaMedica mi_ficha = new FichaMedica();
+            mi_ficha.setVisible(true);
+            dispose();
+        } else {
+            acceso_enfermera enfer = new acceso_enfermera();
+            enfer.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_boton_regresar_accesoActionPerformed
 
     /**

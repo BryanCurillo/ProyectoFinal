@@ -229,7 +229,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/buscar (1).png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="CONSULTAR"/>
+            <Property name="toolTipText" type="java.lang.String" value="VER TODOS"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
