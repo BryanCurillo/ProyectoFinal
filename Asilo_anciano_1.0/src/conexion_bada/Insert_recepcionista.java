@@ -80,7 +80,7 @@ public class Insert_recepcionista extends recepcionista {
         ResultSet ru = cone.selectConsulta(sqls);
         try {
             while (ru.next()) {
-                codigo = ru.getInt("admin_codigo_usuario");
+                codigo = ru.getInt("recep_codigo_usuario");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
