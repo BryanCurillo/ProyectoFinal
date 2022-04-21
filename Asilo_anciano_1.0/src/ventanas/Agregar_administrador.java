@@ -612,10 +612,10 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         .addComponent(Guardar_administrador)
                         .addComponent(Regresar_administrador))
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(763, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 1010, 1460));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -761,6 +761,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
             limpiar();
+            this.dispose();
         }
     }
 
