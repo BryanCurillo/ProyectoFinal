@@ -863,27 +863,28 @@ public class agregar_familiar extends javax.swing.JFrame {
                 + ", per_correo='" + text_email_familiar.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_familiar.getText() + "', per_telefono='" + text_celular_familiar.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_familiar.getText() + "'");
 
         mi_cone.InsertUpdateDeleteAcciones("UPDATE familiar SET fam_parentesco='" + jcb_parentesco.getSelectedItem().toString() + "', fam_codigo_paciente='" + Integer.parseInt(txt_codPaci.getText()) + "' WHERE fam_cedula='" + text_cedula_familiar.getText() + "'");
+//
+//         int codigousuarioAux = 0;
+//            
+//            List<familiar> fami = insertFamiliar.ListaFamiliar();
+//
+//            for (int i = 0; i < fami.size(); i++) {
+//
+//                String cedulaAux = text_cedula_familiar.getText();
+//                
+//                
+//                if (cedulaAux.equals(fami.get(i).getCedula())) {
+//
+//                    codigousuarioAux = fami.get(i).getCod_usuario();
+//  
+//                }
+//            }
 
-         int codigousuarioAux = 0;
-            
-            List<familiar> fami = insertFamiliar.ListaFamiliar();
-
-            for (int i = 0; i < fami.size(); i++) {
-
-                String cedulaAux = text_cedula_familiar.getText();
-                
-                
-                if (cedulaAux.equals(fami.get(i).getCedula())) {
-
-                    codigousuarioAux = fami.get(i).getCod_usuario();
-  
-                }
-            }
-
-            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtUsuario.getText() + "', us_contrasena='" + txtContrasenia.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
+            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtUsuario.getText() + "', us_contrasena='" + txtContrasenia.getText() + "' WHERE us_codigo='" + insertFamiliar.cargarcodigoUSER(text_cedula_familiar.getText()) + "'");
             
         JOptionPane.showMessageDialog(null,"El registro se modifico exitosamente");
         limpiar();
+        this.dispose();
     }
 
     public void cargarcod() {
