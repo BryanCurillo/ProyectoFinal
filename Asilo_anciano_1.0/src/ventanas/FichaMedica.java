@@ -73,6 +73,9 @@ public class FichaMedica extends javax.swing.JFrame {
         LLenarComboBoxEnfermedades();
         BloquearCampos();
         cargarcod();
+        GuardarFicha.setVisible(false);
+        btGuardarCambios.setVisible(false);
+
     }
 
     public FichaMedica(int codigo_paciente) {
@@ -89,6 +92,8 @@ public class FichaMedica extends javax.swing.JFrame {
         GuardarFicha.setVisible(false);
         cargarlistaAlergiasmodificar();
         cargarlistaEnfermedadesmodificar();
+        GuardarFicha.setVisible(false);
+        btGuardarCambios.setVisible(false);
     }
 
 //    public FichaMedica(String cedula_paciente) {
@@ -938,7 +943,11 @@ public class FichaMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_text_buscarActionPerformed
 
     private void cargarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarPActionPerformed
-        cargar_codigo_paci();
+        try {
+            cargar_codigo_paci();
+        } catch (SQLException ex) {
+            Logger.getLogger(FichaMedica.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cargarPActionPerformed
 
     private void TablaEnfermeraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaEnfermeraMousePressed
@@ -1098,8 +1107,8 @@ public class FichaMedica extends javax.swing.JFrame {
             inserfichaalergia.InsertarFichaAlergia();
         }
     }
-    
-        public void GuardarMODIsinGuardar() {
+
+    public void GuardarMODIsinGuardar() {
         for (int i = 0; i < ListaenfermedadesRESP.size(); i++) {
 //                System.out.println("Enfermedar=" + Listaenfermedades.get(i).getNombre_enfermedad());
             inserfichaenfermedad.setCodigo_ficha(Integer.parseInt(txtcodigoficha.getText()));
@@ -1410,7 +1419,7 @@ public class FichaMedica extends javax.swing.JFrame {
         });
     }
 
-    public void cargar_codigo_paci() {
+    public void cargar_codigo_paci() throws SQLException {
         int seleccion = TablaPaciente.getSelectedRow();
 
         if (seleccion == -1) {
@@ -1456,8 +1465,17 @@ public class FichaMedica extends javax.swing.JFrame {
             String cod;
             cod = TablaPaciente.getValueAt(seleccion, 0).toString();
             txtcodigopaciente.setText(cod);
+            habilitarBotones(Integer.parseInt(cod));
 //            System.out.println(cod);
             cargarPaciente.dispose();
+        }
+    }
+
+    public void habilitarBotones(int codigo_paci) throws SQLException {
+        if (inserficha.validarduplicado(codigo_paci)) {
+            GuardarFicha.setVisible(true);
+        } else {
+            btGuardarCambios.setVisible(true);
         }
     }
 ////////////////////////////////////////////////////////////////////
@@ -1548,7 +1566,7 @@ public class FichaMedica extends javax.swing.JFrame {
     //Limpiar Campo de Texto
     public void Limpiar() {
         txtcedulafm.setText("");
-        txtcodigoficha.setText("");
+//        txtcodigoficha.setText("");
         txtcodigopaciente.setText("");
         txt_apellidos.setText("");
         txt_nombres.setText("");
