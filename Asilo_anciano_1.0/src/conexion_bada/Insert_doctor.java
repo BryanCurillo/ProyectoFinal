@@ -77,12 +77,11 @@ public class Insert_doctor extends doctor {
         if (codigo == 0) {
             validar = true;
         }
-        
+
         System.out.println("repetido=" + codigo);
         return validar;
     }
-    
-        
+
     public int cargarcodigo() {
         int codigo = 0;
         String sqls = "select max(doc_codigo) from doctor;";
@@ -96,6 +95,18 @@ public class Insert_doctor extends doctor {
         }
         return codigo;
     }
-        
 
+    public int cargarcodigoUSER(String cedula) {
+        int codigo = 0;
+        String sqls = "select doc_codigo_usuario from doctor where doc_cedula ='" + cedula + "';";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("admin_codigo_usuario");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
 }

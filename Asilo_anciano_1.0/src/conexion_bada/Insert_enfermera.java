@@ -110,4 +110,18 @@ public class Insert_enfermera extends enfermera {
             return null;
         }
     }
+    
+        public int cargarcodigoUSER(String cedula) {
+        int codigo = 0;
+        String sqls = "select enfer_codigo_usuario from enfermera where enfer_cedula ='" + cedula + "';";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("admin_codigo_usuario");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
 }

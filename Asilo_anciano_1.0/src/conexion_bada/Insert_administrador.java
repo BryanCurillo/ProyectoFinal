@@ -83,4 +83,18 @@ public class Insert_administrador extends administrador {
         return codigo;
     }
 
+    public int cargarcodigoUSER(String cedula) {
+        int codigo = 0;
+        String sqls = "select admin_codigo_usuario from administrador where admin_cedula ='" + cedula + "';";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("admin_codigo_usuario");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
+
 }

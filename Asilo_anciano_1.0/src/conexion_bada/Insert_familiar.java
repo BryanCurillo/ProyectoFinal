@@ -24,7 +24,7 @@ public class Insert_familiar extends familiar {
     public boolean InsertarFamiliar() {
         String sql = "INSERT INTO familiar(\n"
                 + "	fam_cedula,fam_parentesco,fam_codigo_usuario,fam_codigo_paciente)\n"
-                + "	VALUES ('" + getCedula() + "', '" + getParectesco() + "', '" + getCod_usuario() + "', '" + getCodigo_paciente() +"');";
+                + "	VALUES ('" + getCedula() + "', '" + getParectesco() + "', '" + getCod_usuario() + "', '" + getCodigo_paciente() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
@@ -52,7 +52,6 @@ public class Insert_familiar extends familiar {
                 mi_famili.setDireccion(rs.getString("per_direccion"));
                 mi_famili.setTelefono(rs.getString("per_telefono"));
                 mi_famili.setTipo_sangre(rs.getString("per_tipo_sangre"));
-                
 
                 famili.add(mi_famili);
             }
@@ -80,14 +79,28 @@ public class Insert_familiar extends familiar {
         System.out.println("repetido=" + codigo);
         return validar;
     }
-    
-     public int cargarcodigo() {
+
+    public int cargarcodigo() {
         int codigo = 0;
         String sqls = "select max(fam_codigo) from familiar;";
         ResultSet ru = cone.selectConsulta(sqls);
         try {
             while (ru.next()) {
-                codigo = ru.getInt("max")+1;
+                codigo = ru.getInt("max") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return codigo;
+    }
+
+    public int cargarcodigoUSER(String cedula) {
+        int codigo = 0;
+        String sqls = "select fam_codigo_usuario from familiar where fam_cedula ='" + cedula + "';";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                codigo = ru.getInt("admin_codigo_usuario");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
