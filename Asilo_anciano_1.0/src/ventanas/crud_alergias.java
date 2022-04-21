@@ -112,7 +112,7 @@ public class crud_alergias extends javax.swing.JFrame {
 
         Consultar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Consultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (1).png"))); // NOI18N
-        Consultar.setToolTipText("CONSULTAR");
+        Consultar.setToolTipText("VER TODOS");
         Consultar.setBorder(null);
         Consultar.setOpaque(false);
         Consultar.addActionListener(new java.awt.event.ActionListener() {
@@ -200,10 +200,11 @@ public class crud_alergias extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addComponent(txtalergia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Buscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -241,10 +242,15 @@ public class crud_alergias extends javax.swing.JFrame {
     }//GEN-LAST:event_txtalergiaActionPerformed
 
     private void bt_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_regresarActionPerformed
-        // TODO add your handling code here:
-        acceso_enfermera enfer = new acceso_enfermera();
-        enfer.setVisible(true);
-        dispose();
+        if (FichaMedica.BotonEnfermedayAlergia == 1) {
+            FichaMedica mi_ficha = new FichaMedica();
+            mi_ficha.setVisible(true);
+            dispose();
+        } else {
+            acceso_enfermera enfer = new acceso_enfermera();
+            enfer.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_bt_regresarActionPerformed
 
     public void cargarcod() {
@@ -267,7 +273,7 @@ public class crud_alergias extends javax.swing.JFrame {
         try {
             if (validarInformacion() == true && ValidarDuplicados() == true) {
                 alergia.setNombre_alergia(txtalergia.getText());
-                
+
                 if (alergia.InsertarAlergias()) {
                     System.out.println("Conexion Exitosa");
                     Limpiar();
@@ -315,7 +321,7 @@ public class crud_alergias extends javax.swing.JFrame {
         var alergiafiltro = new ArrayList<alergias>();
 
         inser.ListaAlergias().forEach((e) -> {
-            if (e.getCodigo_alergia()==codigo) {
+            if (e.getCodigo_alergia() == codigo) {
                 alergiafiltro.add(e);
             }
         });
