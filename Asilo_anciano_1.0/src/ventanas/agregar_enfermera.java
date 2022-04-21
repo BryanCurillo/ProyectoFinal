@@ -710,25 +710,11 @@ public class agregar_enfermera extends javax.swing.JFrame {
                 + ", per_correo='" + text_email_enfermera.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_enfermera.getText() + "', per_telefono='" + text_celular_enfermera.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_enfermera.getText() + "'");
 
         mi_cone.InsertUpdateDeleteAcciones("UPDATE enfermera SET enfer_anio_experiencia='" + anio + "' WHERE enfer_cedula='" + text_cedula_enfermera.getText() + "'");
-       
-        int codigousuarioAux = 0;
 
-        List<enfermera> com = inser.ListaEnfermera();
-
-        for (int i = 0; i < com.size(); i++) {
-
-            String cedulaAux = text_cedula_enfermera.getText();
-
-            if (cedulaAux.equals(com.get(i).getCedula())) {
-
-                codigousuarioAux = com.get(i).getCod_usuario();
-
-            }
-        }
-
-       mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtusurio_enfermera.getText() + "', us_contrasena='" + txtcontrasena_enfermera.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
+       mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtusurio_enfermera.getText() + "', us_contrasena='" + txtcontrasena_enfermera.getText() + "' WHERE us_codigo='" + inser.cargarcodigoUSER(text_cedula_enfermera.getText()) + "'");
         limpiar();
         JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
+        this.dispose();
     }
 
     public void cargarcod() {
