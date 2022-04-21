@@ -54,7 +54,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BtBuscarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        BtBuscarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (1).png"))); // NOI18N
         BtBuscarAdministrador.setToolTipText("BUSCAR REGISTRO");
         BtBuscarAdministrador.setBorder(null);
         BtBuscarAdministrador.setOpaque(false);
@@ -96,7 +96,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         });
         jPanel1.add(BtRegresarAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 100, 50, 40));
 
-        Listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/rotacion.png"))); // NOI18N
+        Listar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/documento (1).png"))); // NOI18N
         Listar.setToolTipText("VER TODOS");
         Listar.setBorderPainted(false);
         Listar.setOpaque(false);
@@ -105,9 +105,9 @@ public class crud_FichaMedica extends javax.swing.JFrame {
                 ListarActionPerformed(evt);
             }
         });
-        jPanel1.add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, 50, 40));
+        jPanel1.add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 50, 40));
 
-        BtEliminarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-usuario.png"))); // NOI18N
+        BtEliminarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/expediente (1).png"))); // NOI18N
         BtEliminarAdministrador.setToolTipText("ELIMINAR FICHA MEDICA");
         BtEliminarAdministrador.setBorder(null);
         BtEliminarAdministrador.setOpaque(false);
@@ -131,7 +131,7 @@ public class crud_FichaMedica extends javax.swing.JFrame {
         });
         jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 250, 40));
 
-        BtIngresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar-usuario.png"))); // NOI18N
+        BtIngresarAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/expediente.png"))); // NOI18N
         BtIngresarAdministrador.setToolTipText("INGRESAR FECHA MEDICA");
         BtIngresarAdministrador.setBorder(null);
         BtIngresarAdministrador.setOpaque(false);

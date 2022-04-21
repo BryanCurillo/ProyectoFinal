@@ -28,7 +28,7 @@
     <Component class="javax.swing.JButton" name="BtBuscarAdministrador">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagenes/buscar (2).png"/>
+          <Image iconType="3" name="/imagenes/buscar (1).png"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="BUSCAR REGISTRO"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -163,7 +163,7 @@
         <Component class="javax.swing.JButton" name="Listar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/rotacion.png"/>
+              <Image iconType="3" name="/imagenes/documento (1).png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="VER TODOS"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -174,14 +174,14 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="670" y="100" width="50" height="40"/>
+              <AbsoluteConstraints x="660" y="100" width="50" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="BtEliminarAdministrador">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/borrar-usuario.png"/>
+              <Image iconType="3" name="/imagenes/expediente (1).png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="ELIMINAR FICHA MEDICA"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -215,7 +215,7 @@
         <Component class="javax.swing.JButton" name="BtIngresarAdministrador">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/agregar-usuario.png"/>
+              <Image iconType="3" name="/imagenes/expediente.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="INGRESAR FECHA MEDICA"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
