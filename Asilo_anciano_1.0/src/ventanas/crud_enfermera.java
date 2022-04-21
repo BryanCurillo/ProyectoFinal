@@ -222,11 +222,12 @@ public class crud_enfermera extends javax.swing.JFrame {
                 String cedula;
                 cedula = TablaEnfermera.getValueAt(fila, 1).toString();
                 cod = TablaEnfermera.getValueAt(fila, 0).toString();
+                int codUsu=inser.cargarcodigoUSER(cedula);
                 try {
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM enfermera where enfer_codigo='" + cod + "'");
                     mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
-                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + cod + "'");
-                    System.out.println("codigous="+cod);
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + codUsu + "'");
+                    JOptionPane.showMessageDialog(null, "El registro se eliminó éxitosamente");
                     cargarTabla();
                 } catch (Exception e) {
                     System.out.println(e.toString());
