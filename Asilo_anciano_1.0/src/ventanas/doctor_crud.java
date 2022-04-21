@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ventanas;
 
 import clases.doctor;
@@ -167,6 +163,8 @@ public class doctor_crud extends javax.swing.JFrame {
     }//GEN-LAST:event_BtIngresarDoctorActionPerformed
 
     private void BtRegresarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarDoctorActionPerformed
+
+        agregar_doctor.botonMediDoc = 0;
         this.dispose();
         new acceso_administrador().setVisible(true);
     }//GEN-LAST:event_BtRegresarDoctorActionPerformed
