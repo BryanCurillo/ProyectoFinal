@@ -780,11 +780,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }
 
     public void RegistrarPacientes() throws SQLException {
-//        Insert persona = new Insert();
-//        Insert paciente = new Insert();
-//        System.out.println("holaaaaaaaaaaa" + text_cedula_paciente.getText());
-//        llenar_paciente();
-//        inser.ListaPaciente();
+
         try {
             if (validaciones()) {
                 if (inser.validarduplicado(text_cedula_paciente.getText())) {
@@ -826,19 +822,15 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     String mesI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.MONTH) + 1);
                     String añoI = Integer.toString(fecha_ingreso_paciente.getCalendar().get(Calendar.YEAR));
 
-                    //SI VALE
-                    //String FechaDeIngreso = (diaI + "-" + mesI + "-" + añoI);
                     FechaDeIngreso = (añoI + "-" + mesI + "-" + diaI);
 
-                    //String FechaDeIngreso = df.format(fecha_ingreso_paciente.getDate());
-                    //SI VALE
                     paciente.setFecha_de_ingreso(FechaDeIngreso);
                     paciente.setSeguro(afiliacion);
                     paciente.setCedula(text_cedula_paciente.getText());
 
-//                    if (persona.InsertarPersona() && paciente.InsertarPaciente(c, afiliacion, FechaDeIngreso, fis)) {
                     if (persona.InsertarPersona() && paciente.InsertarPaciente(FechaDeIngreso, fis)) {// longitudBytes,
-                        System.out.println("Conexion Exitosa");
+                        //System.out.println("Conexion Exitosa");
+                        JOptionPane.showMessageDialog(null, "Se guardó éxitosamente");
                         limpiar();
                         cargarcod();
                     } else {
