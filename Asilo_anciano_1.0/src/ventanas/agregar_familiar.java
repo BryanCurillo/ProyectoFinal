@@ -884,7 +884,7 @@ public class agregar_familiar extends javax.swing.JFrame {
             
         JOptionPane.showMessageDialog(null,"El registro se modifico exitosamente");
         limpiar();
-        this.dispose();
+        //this.dispose();
     }
 
     public void cargarcod() {
