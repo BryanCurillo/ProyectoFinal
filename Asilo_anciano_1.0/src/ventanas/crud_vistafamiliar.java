@@ -112,7 +112,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     }
 
     public void Buscar_PacienteDialog() {
-        String cedula = txt_buscar_paciente_dialog.getText();
+          String cedula = txt_buscar_paciente_dialog.getText();
         var pacienteDialogfiltro = new ArrayList<paciente>();
         inser.ListaPaciente().forEach((e) -> {
             if (e.getCedula().equals(cedula)) {
@@ -126,8 +126,9 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                 matriz[j][0] = String.valueOf(pacienteDialogfiltro.get(j).getCodigo());
                 matriz[j][1] = pacienteDialogfiltro.get(j).getCedula();
                 matriz[j][2] = pacienteDialogfiltro.get(j).getPri_nomb() + "  " + pacienteDialogfiltro.get(j).getSeg_nombre();
-                matriz[j][3] = pacienteDialogfiltro.get(j).getPrim_apell() + "  " + pacienteDialogfiltro.get(j).getSeg_apelli();;
-
+                matriz[j][3] = pacienteDialogfiltro.get(j).getPrim_apell() + "  " + pacienteDialogfiltro.get(j).getSeg_apelli();
+                
+                
             }
             tabla_paciente.setModel(new javax.swing.table.DefaultTableModel(
                     matriz,
@@ -393,12 +394,12 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_paciente = new javax.swing.JTable();
         visitafamiliar = new javax.swing.JDialog();
-        txt_buscar_paciente_dialog1 = new javax.swing.JTextField();
-        boton_buscar_paciente_visita_dialog1 = new javax.swing.JButton();
+        text_familiar = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         cargar_paciente1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_familiares = new javax.swing.JTable();
+        boton_buscar_paciente_visita_dialog1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -513,20 +514,10 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
         );
 
-        txt_buscar_paciente_dialog1.setText("Buscar...");
-        txt_buscar_paciente_dialog1.addMouseListener(new java.awt.event.MouseAdapter() {
+        text_familiar.setText("Buscar...");
+        text_familiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txt_buscar_paciente_dialog1MousePressed(evt);
-            }
-        });
-
-        boton_buscar_paciente_visita_dialog1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
-        boton_buscar_paciente_visita_dialog1.setToolTipText("Buscar Paciente");
-        boton_buscar_paciente_visita_dialog1.setBorder(null);
-        boton_buscar_paciente_visita_dialog1.setOpaque(false);
-        boton_buscar_paciente_visita_dialog1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_buscar_paciente_visita_dialog1ActionPerformed(evt);
+                text_familiarMousePressed(evt);
             }
         });
 
@@ -563,21 +554,31 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tabla_familiares);
 
+        boton_buscar_paciente_visita_dialog1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        boton_buscar_paciente_visita_dialog1.setToolTipText("Buscar Paciente");
+        boton_buscar_paciente_visita_dialog1.setBorder(null);
+        boton_buscar_paciente_visita_dialog1.setOpaque(false);
+        boton_buscar_paciente_visita_dialog1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_buscar_paciente_visita_dialog1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout visitafamiliarLayout = new javax.swing.GroupLayout(visitafamiliar.getContentPane());
         visitafamiliar.getContentPane().setLayout(visitafamiliarLayout);
         visitafamiliarLayout.setHorizontalGroup(
             visitafamiliarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(visitafamiliarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txt_buscar_paciente_dialog1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(text_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(boton_buscar_paciente_visita_dialog1)
-                .addGap(33, 33, 33)
+                .addGap(27, 27, 27)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addComponent(cargar_paciente1)
                 .addGap(26, 26, 26))
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
         );
         visitafamiliarLayout.setVerticalGroup(
             visitafamiliarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,11 +588,11 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                     .addComponent(cargar_paciente1)
                     .addGroup(visitafamiliarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jButton5)
-                        .addGroup(visitafamiliarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_buscar_paciente_dialog1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boton_buscar_paciente_visita_dialog1))))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                        .addComponent(text_familiar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boton_buscar_paciente_visita_dialog1))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -700,7 +701,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablavisitante);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 980, 280));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 1050, 220));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setText("Cedula:");
@@ -741,7 +742,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -790,7 +791,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_buscar_paciente_visita_dialogActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        CargarTodosLosPacientes();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cargar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_pacienteActionPerformed
@@ -815,20 +816,46 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         txt_buscar_paciente_dialog.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_buscar_paciente_dialogMousePressed
 
-    private void txt_buscar_paciente_dialog1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_buscar_paciente_dialog1MousePressed
+    private void text_familiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_familiarMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_buscar_paciente_dialog1MousePressed
-
-    private void boton_buscar_paciente_visita_dialog1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscar_paciente_visita_dialog1ActionPerformed
-    }//GEN-LAST:event_boton_buscar_paciente_visita_dialog1ActionPerformed
-
+    }//GEN-LAST:event_text_familiarMousePressed
+    public void buscar_fami_dialog(){
+        String cedula = text_familiar.getText();
+        var familiar_filtro = new ArrayList<familiar>();
+        insertfamiliar.ListaFamiliar().forEach((e) -> {
+            if (e.getCedula().equals(cedula)) {
+                familiar_filtro.add(e);
+            }
+        });
+        if (familiar_filtro.size() != 0) {
+            String matriz[][] = new String[familiar_filtro.size()][14];
+            for (int j = 0; j < familiar_filtro.size(); j++) {
+                matriz[j][0] = String.valueOf(familiar_filtro.get(j).getCodigo());
+                matriz[j][1] = familiar_filtro.get(j).getCedula();
+                matriz[j][2] = familiar_filtro.get(j).getPri_nomb() + "  " + familiar_filtro.get(j).getSeg_nombre();
+                matriz[j][3] = familiar_filtro.get(j).getPrim_apell() + "  " + familiar_filtro.get(j).getSeg_apelli();
+            }
+            tabla_familiares.setModel(new javax.swing.table.DefaultTableModel(
+                    matriz,
+                    new String[]{
+                        "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+                    }
+            ));
+        } else {
+            JOptionPane.showMessageDialog(this, "El familiar no se encuentra registrado");
+        }
+    }
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        CargarTodosLosFamiliares();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void cargar_paciente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_paciente1ActionPerformed
         CargarDatosFamiliarEnTXT();
     }//GEN-LAST:event_cargar_paciente1ActionPerformed
+
+    private void boton_buscar_paciente_visita_dialog1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscar_paciente_visita_dialog1ActionPerformed
+        buscar_fami_dialog();
+    }//GEN-LAST:event_boton_buscar_paciente_visita_dialog1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -901,9 +928,9 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JTable tabla_familiares;
     private javax.swing.JTable tabla_paciente;
     private javax.swing.JTable tablavisitante;
+    private javax.swing.JTextField text_familiar;
     private javax.swing.JTextField txt_apellido_paciente_visita;
     private javax.swing.JTextField txt_buscar_paciente_dialog;
-    private javax.swing.JTextField txt_buscar_paciente_dialog1;
     private javax.swing.JTextField txt_cedula_paciente_visita;
     private javax.swing.JTextField txt_codigo_familiar;
     private javax.swing.JTextField txt_codigo_paciente_visita;
