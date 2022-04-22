@@ -26,7 +26,7 @@ public class Insert_tratamiento extends Tratamiento {
     }
 
     public List<Tratamiento> lista_tratamiento() {
-        String sqls = "select * from tratamiento join paciente on tratamiento.trat_codigo = paciente.paci_codigo;";
+        String sqls = "select * from tratamiento join paciente on tratamiento.trat_codigo_paciente = paciente.paci_codigo;";
         ResultSet trata = cone.selectConsulta(sqls);
         List<Tratamiento> list_tratamiento = new ArrayList<>();
 
@@ -92,4 +92,31 @@ public class Insert_tratamiento extends Tratamiento {
         }
         return codigo;
     }
+
+    public List<Tratamiento> lista_tratamiento(int codpaci) {
+        String sqls = "select * from tratamiento where tratamiento.trat_codigo_paciente = "+codpaci+";";
+        ResultSet trata = cone.selectConsulta(sqls);
+        List<Tratamiento> list_tratamiento = new ArrayList<>();
+
+        try {
+            while (trata.next()) {
+                Tratamiento mi_trata = new Tratamiento();
+                mi_trata.setCodigo_tratamiento(trata.getInt("trat_codigo"));
+                mi_trata.setDiagnostico(trata.getString("trat_diagnostico"));
+                mi_trata.setDosis(trata.getString("trat_dosis"));
+                mi_trata.setFecha_inicio_trata(trata.getString("trat_fecha_inicio"));
+                mi_trata.setFecha_fin_trata(trata.getString("trat_fecha_fin"));
+                mi_trata.setCodigo_paciente(trata.getInt("trat_codigo_paciente"));
+
+                list_tratamiento.add(mi_trata);
+
+            }
+            return list_tratamiento;
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
 }
