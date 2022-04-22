@@ -47,12 +47,12 @@ public class Agregar_administrador extends javax.swing.JFrame {
     Insert_administrador inserAdmin = new Insert_administrador();
     Insert_usuario usu = new Insert_usuario();
     Conexion cone = new Conexion();
-    boolean loginRegresar;
+    //boolean loginRegresar;
 
-    public Agregar_administrador(boolean login) {
+    public Agregar_administrador() {
         initComponents();
         this.setLocationRelativeTo(null);
-        loginRegresar=login;
+        //loginRegresar = login;
         cargarcod();
     }
 
@@ -713,15 +713,29 @@ public class Agregar_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_Guardar_administradorActionPerformed
 
     private void Regresar_administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_administradorActionPerformed
-        this.dispose();
-        regresar(loginRegresar);
-//        new crud_administrador().setVisible(true);
+
+        regresarAdmin();
     }//GEN-LAST:event_Regresar_administradorActionPerformed
-    public void regresar(boolean login) {
-        if (login) {
-            new login_administrador().setVisible(true);
-        }else{
-            new crud_administrador().setVisible(true);
+    public void regresarAdmin() {
+        if (inicio_frame.BotonAdmin == 1) {
+            inicio_frame mi_inicio = new inicio_frame();
+            mi_inicio.setVisible(true);
+            dispose();
+
+            inicio_frame.BotonAdmin = 0;
+        } else {
+            if (login_administrador.BotonLoginAdmin == 1) {
+                login_administrador mi_loginAdmin = new login_administrador();
+                mi_loginAdmin.setVisible(true);
+                dispose();
+
+                login_administrador.BotonLoginAdmin = 0;
+            } else {
+                crud_administrador mi_crudAdmin = new crud_administrador();
+                mi_crudAdmin.setVisible(true);
+                dispose();
+            }
+
         }
     }
 
@@ -1020,7 +1034,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Agregar_administrador(false).setVisible(true);
+                new Agregar_administrador().setVisible(true);
             }
         });
     }
