@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ventanas;
 
 import clases.paciente;
@@ -110,7 +106,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 50, 40));
 
-        text_buscar.setText("Buscar...");
+        text_buscar.setText("Ingrese el número de cédula a consultar...");
         text_buscar.setToolTipText("");
         text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -265,7 +261,7 @@ public class crud_recepcionista extends javax.swing.JFrame {
                 if (e.getCedula().equals(cedula)) {
                     new Agregar_recepcionista(cedula).setVisible(true);
                     text_buscar.setText("");
-
+                    dispose();
                 }
             });
         }
