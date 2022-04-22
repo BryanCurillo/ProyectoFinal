@@ -168,7 +168,7 @@ public class crud_administrador extends javax.swing.JFrame {
 
     private void BtIngresarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresarAdministradorActionPerformed
         this.dispose();
-        new Agregar_administrador().setVisible(true);
+        new Agregar_administrador(false).setVisible(true);
     }//GEN-LAST:event_BtIngresarAdministradorActionPerformed
 
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
