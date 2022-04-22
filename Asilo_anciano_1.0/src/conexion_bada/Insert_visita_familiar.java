@@ -6,6 +6,7 @@
 package conexion_bada;
 
 import clases.familiar;
+import clases.paciente;
 import clases.validaciones;
 import clases.visita_familiar;
 import java.sql.ResultSet;
@@ -58,6 +59,8 @@ public class Insert_visita_familiar extends visita_familiar {
 
     public List<familiar> ListaFamiliares() {
         String sqls = "Select per.per_primer_nombre,per.per_segundo_nombre,per.per_primer_apellido,per.per_segundo_apellido from persona per, visita visi,familiar fam Where fam.fam_codigo = visi.vis_codigo_familiar and fam.fam_cedula = per.per_cedula;";
+//                String sqls = "Select * from persona per, visita visi,familiar fam Where fam.fam_codigo = visi.vis_codigo_familiar and fam.fam_cedula = per.per_cedula;";
+
         ResultSet rs = cone.selectConsulta(sqls);
         List<familiar> famvisitante = new ArrayList<>();
         try {
@@ -71,6 +74,30 @@ public class Insert_visita_familiar extends visita_familiar {
             }
             rs.close();
             return famvisitante;
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
+    public List<paciente> CargarPaciTabla(int cod_paci) {
+        String sqls = "Select per_primer_nombre,per_segundo_nombre,per_primer_apellido,per_segundo_apellido from persona per, paciente paci Where paci_cedula = per_cedula and paci_codigo="+cod_paci+";";
+//                String sqls = "Select * from persona per, visita visi,familiar fam Where fam.fam_codigo = visi.vis_codigo_familiar and fam.fam_cedula = per.per_cedula;";
+
+        ResultSet rs = cone.selectConsulta(sqls);
+        List<paciente> pacicisita = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                paciente mipaciente = new paciente();
+                mipaciente.setPri_nomb(rs.getString("per_primer_nombre"));
+                mipaciente.setSeg_nombre(rs.getString("per_segundo_nombre"));
+                mipaciente.setPrim_apell(rs.getString("per_primer_apellido"));
+                mipaciente.setSeg_apelli(rs.getString("per_segundo_apellido"));
+                pacicisita.add(mipaciente);
+            }
+            rs.close();
+            return pacicisita;
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
             return null;
