@@ -170,7 +170,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         txt_usuario = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txt_contrasena = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        BotonModificar = new javax.swing.JButton();
         jCB_nivelDeeducacion_administrador = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -410,14 +410,14 @@ public class Agregar_administrador extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
-        jButton1.setToolTipText("MODIFICAR");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
+        BotonModificar.setToolTipText("MODIFICAR");
+        BotonModificar.setBorder(null);
+        BotonModificar.setBorderPainted(false);
+        BotonModificar.setOpaque(false);
+        BotonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonModificarActionPerformed(evt);
             }
         });
 
@@ -444,7 +444,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                             .addComponent(txt_direccion_administrador, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
-                                .addComponent(jButton1)
+                                .addComponent(BotonModificar)
                                 .addGap(98, 98, 98)
                                 .addComponent(Regresar_administrador)))
                         .addGap(75, 75, 75)
@@ -613,7 +613,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(Guardar_administrador)
                         .addComponent(Regresar_administrador))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(BotonModificar, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -739,13 +739,13 @@ public class Agregar_administrador extends javax.swing.JFrame {
         }
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonModificarActionPerformed
         int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) {
             modificar_administrador();
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotonModificarActionPerformed
 
     private void txt_usuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_usuarioMousePressed
         txt_usuario.setText("");
@@ -1003,6 +1003,9 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
     }
 
+    public void DesaparecerBotonModificar(){
+        BotonModificar.setVisible(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -1040,6 +1043,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonModificar;
     private com.toedter.calendar.JDateChooser Fecha_Nacimiento_administrador;
     private javax.swing.JRadioButton Femenino_administrador;
     private javax.swing.ButtonGroup Genero_administrador;
@@ -1047,7 +1051,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
     private javax.swing.JRadioButton Masculino_administrador;
     private javax.swing.JButton Regresar_administrador;
     private javax.swing.JComboBox<String> combo_sangre_administrador;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCB_nivelDeeducacion_administrador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
