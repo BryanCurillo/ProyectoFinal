@@ -36,6 +36,7 @@ public class acceso_administrador extends javax.swing.JFrame {
         boton_regresar_administrador = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         BotonCrudAdmin = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,7 +152,7 @@ public class acceso_administrador extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 330, -1, -1));
 
         boton_regresar_administrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
         boton_regresar_administrador.setBorder(null);
@@ -165,15 +166,22 @@ public class acceso_administrador extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
         jLabel12.setText("MEDICAMENTOS");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, -1));
 
-        BotonCrudAdmin.setText("CRUD ADMINISTRADOR ");
+        BotonCrudAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/admin.png"))); // NOI18N
+        BotonCrudAdmin.setToolTipText("CRUD ADMINISTRADOR ");
+        BotonCrudAdmin.setBorder(null);
+        BotonCrudAdmin.setOpaque(false);
         BotonCrudAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonCrudAdminActionPerformed(evt);
             }
         });
-        getContentPane().add(BotonCrudAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, 90));
+        getContentPane().add(BotonCrudAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, 90));
+
+        jLabel10.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        jLabel10.setText("CRUD ADMINISTRADOR");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos-de-pantalla-lisos-color-pastel-mountainstyle.co_.-fondo-de-pantalla-hd-1080p-lisos (1).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -292,6 +300,7 @@ public class acceso_administrador extends javax.swing.JFrame {
     private javax.swing.JButton boton_regresar_administrador;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
