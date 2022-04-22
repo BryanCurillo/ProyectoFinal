@@ -644,9 +644,18 @@ public class HistorialMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_text_codigo_pacienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        acceso_doctor acdoctor = new acceso_doctor();
-        acdoctor.setVisible(true);
-        dispose();
+
+        if (acceso_doctor.botonatrasFicha == 1) {
+            acceso_doctor acdoctor = new acceso_doctor();
+
+            acceso_doctor.botonatrasFicha = 0;
+            acdoctor.setVisible(true);
+            dispose();
+        } else {
+            acceso_familiar mi_acfamili = new acceso_familiar();
+            mi_acfamili.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
     public void cargarTablaP() {
         DefaultTableModel tb = (DefaultTableModel) TablaPaciente.getModel();
@@ -716,7 +725,7 @@ public class HistorialMedico extends javax.swing.JFrame {
                     }
                     cargar_tabla_tratamiento(p.getCodigo());
 
-                    if (mi_historial.comprobarHistorial(codigo)&&mi_historial.comprobarTratamiento(codigo)) {
+                    if (mi_historial.comprobarHistorial(codigo) && mi_historial.comprobarTratamiento(codigo)) {
 
                         guardar_historial();
                     }
