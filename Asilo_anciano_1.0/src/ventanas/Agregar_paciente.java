@@ -938,7 +938,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la cedula del paciente");
         } else {
-            if (!misvalidaciones.validar_ced(text_cedula_paciente.getText())) {
+            if (misvalidaciones.validar_ced(text_cedula_paciente.getText() ) == false) {
                 JOptionPane.showMessageDialog(this, "Cedula incorrecta");
                 validado = false;
             }
