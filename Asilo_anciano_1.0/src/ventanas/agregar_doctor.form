@@ -161,7 +161,7 @@
                           <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
                           <Component id="Guardar_doctor" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="boton_modificar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                           <Component id="Regresar_doctor" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -299,7 +299,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="boton_modificar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtnueva_contrasena" min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="Guardar_doctor" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -705,7 +705,7 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtnueva_contrasenaMousePressed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="boton_modificar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/editar-documento.png"/>
@@ -717,7 +717,7 @@
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_modificarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

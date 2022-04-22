@@ -39,6 +39,7 @@ public class agregar_doctor extends javax.swing.JFrame {
     public agregar_doctor() {
         initComponents();
         this.setLocationRelativeTo(null);
+        boton_modificar.setVisible(false);
         LLenarComboBoxEspecialidad();
         cargarcod();
         
@@ -159,7 +160,7 @@ public class agregar_doctor extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         txtnuevo_usuario = new javax.swing.JTextField();
         txtnueva_contrasena = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        boton_modificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -388,13 +389,13 @@ public class agregar_doctor extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
-        jButton1.setToolTipText("MODIFICAR");
-        jButton1.setBorder(null);
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        boton_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar-documento.png"))); // NOI18N
+        boton_modificar.setToolTipText("MODIFICAR");
+        boton_modificar.setBorder(null);
+        boton_modificar.setOpaque(false);
+        boton_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                boton_modificarActionPerformed(evt);
             }
         });
 
@@ -490,7 +491,7 @@ public class agregar_doctor extends javax.swing.JFrame {
                         .addGap(174, 174, 174)
                         .addComponent(Guardar_doctor)
                         .addGap(71, 71, 71)
-                        .addComponent(jButton1)
+                        .addComponent(boton_modificar)
                         .addGap(82, 82, 82)
                         .addComponent(Regresar_doctor))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -592,7 +593,7 @@ public class agregar_doctor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel18)
-                        .addComponent(jButton1))
+                        .addComponent(boton_modificar))
                     .addComponent(txtnueva_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Guardar_doctor)
                     .addComponent(Regresar_doctor))
@@ -702,12 +703,12 @@ public class agregar_doctor extends javax.swing.JFrame {
         text_celular_doctor.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_celular_doctorMousePressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void boton_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_modificarActionPerformed
         int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) {
             modificar_doctor();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_boton_modificarActionPerformed
 
     private void txtnuevo_usuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtnuevo_usuarioMousePressed
         txtnuevo_usuario.setText("");
@@ -1009,10 +1010,10 @@ public class agregar_doctor extends javax.swing.JFrame {
     private javax.swing.JButton Guardar_doctor;
     private javax.swing.JRadioButton Masculino_doctor;
     private javax.swing.JButton Regresar_doctor;
+    private javax.swing.JButton boton_modificar;
     private javax.swing.JComboBox<String> combo_especialidad_doctor;
     private javax.swing.JComboBox<String> combo_sangre_doctor;
     private javax.swing.ButtonGroup grupo_sexo;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
