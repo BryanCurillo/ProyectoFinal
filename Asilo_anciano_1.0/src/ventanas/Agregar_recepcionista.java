@@ -929,7 +929,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la cedula");
         } else {
-            if (!misvalidaciones.validar_cedula(text_cedula_recepcionista.getText())) {
+            if (!misvalidaciones.validar_ced(text_cedula_recepcionista.getText())) {
                 JOptionPane.showMessageDialog(this, "Cedula incorrecta");
                 validado = false;
             }
