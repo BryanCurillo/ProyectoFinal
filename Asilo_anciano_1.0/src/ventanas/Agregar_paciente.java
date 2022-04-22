@@ -899,7 +899,9 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     ps.execute();
                     ps.close();
 
-                    System.out.println("Guardado Exitosamente");
+                    //System.out.println("Guardado Exitosamente");
+                    
+                    JOptionPane.showMessageDialog(null, "El registro se modificó exitosamente");
                     //inserto = true;
                 } catch (SQLException | NumberFormatException | HeadlessException x) {
                     System.out.println("No ha registrado nada" + x.getLocalizedMessage());
