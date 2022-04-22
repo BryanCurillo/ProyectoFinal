@@ -745,7 +745,7 @@ public class agregar_doctor extends javax.swing.JFrame {
 
             limpiar();
             JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
-            this.dispose();
+            //this.dispose();
         }
     }
 
