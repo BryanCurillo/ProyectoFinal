@@ -37,22 +37,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class HistorialMedico extends javax.swing.JFrame {
-    
+
     Insert inser = new Insert();
     Insert_alergias mi_alergia = new Insert_alergias();
     insert_ficha_enfermedad mi_enfermedad = new insert_ficha_enfermedad();
     Insert_tratamiento mi_trata = new Insert_tratamiento();
     Insert_historial mi_historial = new Insert_historial();
     insert_ficha_medica mi_fic = new insert_ficha_medica();
-    
+
     insert_ficha_alergia inserfichaalergia = new insert_ficha_alergia();
     insert_ficha_enfermedad inserfichaenfermedad = new insert_ficha_enfermedad();
     insert_tratamiento_medicamento insert_tratamedi = new insert_tratamiento_medicamento();
-    
+
     Conexion mi_cone = new Conexion();
     DefaultListModel modeloListAlergia;
     DefaultListModel modeloListEnfermedad;
-    
+
     public HistorialMedico() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -102,7 +102,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         text_observaciones = new javax.swing.JTextArea();
         txthtelefono = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_tratamiento = new javax.swing.JTable();
@@ -279,17 +278,6 @@ public class HistorialMedico extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salvar (1).png"))); // NOI18N
-        jButton2.setToolTipText("GUARDAR");
-        jButton2.setBorder(null);
-        jButton2.setOpaque(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         buscar.setToolTipText("buscar");
         buscar.setBorder(null);
@@ -396,16 +384,9 @@ public class HistorialMedico extends javax.swing.JFrame {
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 1283, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 982, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(446, 446, 446)
-                                .addComponent(jButton2)
-                                .addGap(118, 118, 118)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 982, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,7 +395,10 @@ public class HistorialMedico extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1076, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1076, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(487, 487, 487)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -482,13 +466,8 @@ public class HistorialMedico extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(287, 287, 287))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -499,7 +478,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -512,31 +491,25 @@ public class HistorialMedico extends javax.swing.JFrame {
     private void txtceduhistoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtceduhistoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtceduhistoriaActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (validaciones()) {
-            guardar_historial();
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
     public boolean validaciones() {
         boolean validado = true;
         validaciones misvalidaciones = new validaciones();
-        
+
         if (txtceduhistoria.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione un paciente");
         }
-        
+
         if (txtnombres.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese El primer nombre del paciente");
         }
-        
+
         if (txtapellidos.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el primer apellido del paciente");
         }
-        
+
         if (txthdireccion.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la direccion del paciente");
@@ -546,47 +519,47 @@ public class HistorialMedico extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese las observaciones");
         }
-        
+
         if (datenacimiento.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento");
         }
-        
+
         return validado;
     }
-    
+
     public void cargarcod() {
         text_codigo_historial.setEnabled(false);
         text_codigo_historial.setText(String.valueOf(mi_historial.cargarcodigo()));
     }
-    
+
     public void guardar_historial() {
         List<Tratamiento> com = mi_trata.lista_tratamiento();
         List<claseFichaMedica> ficha = mi_fic.ListaFichaMedica();
-        
+
         mi_historial.setCodigo_historial(Integer.parseInt(text_codigo_historial.getText()));
         mi_historial.setCodigo_paciente(Integer.parseInt(text_codigo_paciente.getText()));
         com.stream().forEach(p -> {
             int codigo_tratameinto = p.getCodigo_tratamiento();
             mi_historial.setCodigo_tratamiento(codigo_tratameinto);
         });
-        
+
         ficha.stream().forEach(g -> {
             int codigo_ficha = g.getCodigo_ficha_medica();
             mi_historial.setCodigo_ficha(codigo_ficha);
         });
-        
+
         mi_historial.setObservaciones_historial(text_observaciones.getText());
-        Limpiar();
+//        Limpiar();
         if (mi_historial.Insertar_historial()) {
             System.out.println("Conexion Exitosa");
-            
+
         } else {
             System.out.println("Conexion Erronea");
         }
-        
+
     }
-    
+
     public void Limpiar() {
         txtceduhistoria.setText("");
         text_codigo_paciente.setText("");
@@ -599,7 +572,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         DefaultListModel modelo = new DefaultListModel();
         JListAlergias.setModel(modelo);
         JListEnfermedades.setModel(modelo);
-        
+
         gruposexoh.clearSelection();
         datenacimiento.setCalendar(null);
         tabla_tratamiento.setModel(new DefaultTableModel());
@@ -618,7 +591,7 @@ public class HistorialMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_TablaPacienteMousePressed
 
     private void BtBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarPacienteActionPerformed
-        
+
         if (!text_buscar.getText().isEmpty()) {
             buscar_paciente();
         } else {
@@ -634,14 +607,14 @@ public class HistorialMedico extends javax.swing.JFrame {
             }
         });
         if (pacientefiltro.size() != 0) {
-            
+
             String matriz[][] = new String[pacientefiltro.size()][4];
             for (int j = 0; j < pacientefiltro.size(); j++) {
                 matriz[j][0] = String.valueOf(pacientefiltro.get(j).getCodigo());
                 matriz[j][1] = pacientefiltro.get(j).getCedula();
                 matriz[j][2] = pacientefiltro.get(j).getPri_nomb() + "  " + pacientefiltro.get(j).getSeg_nombre();
                 matriz[j][3] = pacientefiltro.get(j).getPrim_apell() + "  " + pacientefiltro.get(j).getSeg_apelli();;
-                
+
             }
             TablaPaciente.setModel(new javax.swing.table.DefaultTableModel(
                     matriz,
@@ -689,14 +662,14 @@ public class HistorialMedico extends javax.swing.JFrame {
             tb.addRow(cami);
         });
     }
-    
+
     public void cargar_codigo_paci() {
 
         DefaultListModel modelo = new DefaultListModel();
         JListAlergias.setModel(modelo);
         JListEnfermedades.setModel(modelo);
         int seleccion = TablaPaciente.getSelectedRow();
-        
+
         if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
@@ -707,10 +680,10 @@ public class HistorialMedico extends javax.swing.JFrame {
                     txtceduhistoria.setText(p.getCedula());
                     txtnombres.setText(p.getPri_nomb() + "  " + p.getSeg_nombre());
                     txtapellidos.setText(p.getPrim_apell() + "  " + p.getSeg_apelli());
-                    
+
                     txthdireccion.setText(p.getDireccion());
                     txthtelefono.setText(p.getTelefono());
-                    
+
                     if (p.getGenero().equalsIgnoreCase("hombre")) {
                         hmasculino.setSelected(true);
                     }
@@ -727,11 +700,11 @@ public class HistorialMedico extends javax.swing.JFrame {
                     datenacimiento.setDate(fecha);
                     modeloListEnfermedad = new DefaultListModel();
                     List<alergias> ale = mi_alergia.ListaAlergias();
-                    
+
                     modeloListEnfermedad = new DefaultListModel();
                     List<enfermedades> enfer = inserfichaenfermedad.ListaEnfermedades(mi_historial.obtenerCodFicha(p.getCodigo()));
                     enfer.stream().forEach(enfe -> {
-                        
+
                         JListEnfermedades.setModel(modeloListEnfermedad);
                         modeloListEnfermedad.addElement(enfe.getNombre_enfermedad());
                     });
@@ -747,11 +720,15 @@ public class HistorialMedico extends javax.swing.JFrame {
                         Logger.getLogger(HistorialMedico.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     cargar_tabla_tratamiento(p.getCodigo());
-                    
+
+                    if (mi_historial.comprobarHistorial(codigo)) {
+
+                        guardar_historial();
+                    }
                     cargarPaciente.dispose();
                 }
             });
-            
+
             String cod;
             cod = TablaPaciente.getValueAt(seleccion, 0).toString();
             text_codigo_paciente.setText(cod);
@@ -759,9 +736,9 @@ public class HistorialMedico extends javax.swing.JFrame {
             cargarPaciente.dispose();
         }
     }
-    
+
     public void cargar_tabla_tratamiento(int codpaci) {
-        
+
         DefaultTableModel tb = (DefaultTableModel) tabla_tratamiento.getModel();
         tb.setNumRows(0);
 
@@ -769,12 +746,14 @@ public class HistorialMedico extends javax.swing.JFrame {
         List<Tratamiento> com = mi_trata.lista_tratamiento(codpaci);
         com.stream().forEach(p -> {
             String[] trata = {String.valueOf(p.getCodigo_tratamiento()), p.getDiagnostico(), insert_tratamedi.medicacion(p.getCodigo_tratamiento()), p.getDosis(), p.getFecha_inicio_trata(), p.getFecha_fin_trata(), String.valueOf(p.getCodigo_paciente()), p.getObservaciones()};
+            System.out.println("tabla cargada");
+
             tb.addRow(trata);
         });
     }
-    
+
     public void BloquearCampos() {
-        
+
         text_codigo_paciente.setEditable(false);
         txtceduhistoria.setEditable(false);
         txthdireccion.setEditable(false);
@@ -782,9 +761,9 @@ public class HistorialMedico extends javax.swing.JFrame {
         txtapellidos.setEditable(false);
         txtnombres.setEditable(false);
         datenacimiento.setEnabled(false);
-        
+
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -831,7 +810,6 @@ public class HistorialMedico extends javax.swing.JFrame {
     private javax.swing.JRadioButton hfemenino;
     private javax.swing.JRadioButton hmasculino;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
