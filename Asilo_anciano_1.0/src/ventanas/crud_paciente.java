@@ -70,13 +70,13 @@ public class crud_paciente extends javax.swing.JFrame {
         });
         jPanel1.add(BtIngresarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 50, 40));
 
-        text_buscar.setText("Buscar...");
+        text_buscar.setText("Ingrese el número de cédula a consultar...");
         text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_buscarMousePressed(evt);
             }
         });
-        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 210, 30));
+        jPanel1.add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 260, 30));
 
         BtBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BtBuscarPaciente.setToolTipText("BUSCAR PACIENTE");
