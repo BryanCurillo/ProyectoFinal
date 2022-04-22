@@ -132,26 +132,22 @@ public class acceso_doctor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
 
         Medicamentos cm = new Medicamentos();
         cm.setVisible(true);
         botonAtrasDoctor = cm.botonAtras = 1;
-        //System.out.println(bA);
         dispose();
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
         login_doctor doc = new login_doctor();
         doc.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         HistorialMedico hm = new HistorialMedico();
         hm.setVisible(true);
         dispose();
@@ -165,7 +161,6 @@ public class acceso_doctor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         agregar_tratamiento tratam = new agregar_tratamiento();
         tratam.setVisible(true);
         dispose();
