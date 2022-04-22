@@ -822,27 +822,9 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         mi_cone.InsertUpdateDeleteAcciones("UPDATE recepcionista SET recep_hora_ingreso='" + hora_ingresoAux + "',recep_hora_salida='" + hora_salidaAux + "' WHERE recep_cedula='" + text_cedula_recepcionista.getText() + "'");
         
         mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txt_usuario.getText() + "', us_contrasena='" + txt_contrasena.getText() + "' WHERE us_codigo='" + recep.cargarcodigoUSER(text_cedula_recepcionista.getText()) + "'");
-        
-//        int codigousuarioAux = 0;
-
-//        List<recepcionista> rec = recep.ListaRecepcionista();
-//
-//        for (int i = 0; i < rec.size(); i++) {
-//
-//            String cedulaAux = text_cedula_recepcionista.getText();
-//
-//            if (cedulaAux.equals(rec.get(i).getCedula())) {
-//
-//                codigousuarioAux = rec.get(i).getCod_usuario();
-//
-//            }
-//        }
-//
-//        mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txt_usuario.getText() + "', us_contrasena='" + txt_contrasena.getText() + "' WHERE us_codigo='" + codigousuarioAux + "'");
-//        
+    
         limpiar();
         JOptionPane.showMessageDialog(null,"El registro se modifico correctamente");
-        //this.dispose();
     }
 
     public void cargarcod() {
@@ -878,7 +860,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         String mes = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.MONTH) + 1);
                         String año = Integer.toString(Fecha_Nacimiento_recepcionista.getCalendar().get(Calendar.YEAR));
                         String FechaNacimiento = (dia + "-" + mes + "-" + año);
-                        //String Fecha = df.format(Fecha_Nacimiento_recepcionista.getDate());
                         recep.setFecha_Nacimiento(FechaNacimiento);
 
                         recep.setCorreo(text_email_recepcionista.getText());
@@ -911,7 +892,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         recep.setHora_salida(hora_salidaAux);
                         recep.setCod_usuario(usu.obtenerUsuario());
                         recep.InsertarPersona();
-                        //////////////////////////////////////////
 
                         usu.setUsuario(txt_usuario.getText());
                         usu.setContraseña(txt_contrasena.getText());
@@ -919,7 +899,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                         recep.setCod_usuario(usu.obtenerUsuario());
 
                         if (recep.InsertarRecepcionista()) {
-                            //System.out.println("Conexion Exitosa");
                             JOptionPane.showMessageDialog(null, "La recepcionista se guardo exitosamente");
                             limpiar();
                             cargarcod();
@@ -955,7 +934,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
                 validado = false;
             }
         }
-//
+
         if (text_PrimerNombre_recepcionista.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el primer nombre");
@@ -1053,7 +1032,6 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
-//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
         if (Fecha_Nacimiento_recepcionista.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento del administrador");

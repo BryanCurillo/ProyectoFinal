@@ -12,8 +12,6 @@ import java.time.LocalDate;
 import java.awt.Color;
 import clases.administrador;
 import clases.usuario;
-//import conexion_bada.Insert_familiar;
-//import conexion_bada.Insert;
 import conexion_bada.Insert_administrador;
 import conexion_bada.Insert_usuario;
 import conexion_bada.Insert_Persona;
@@ -42,26 +40,21 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
     Conexion mi_cone = new Conexion();
     DateFormat df = DateFormat.getDateInstance();
-//    ArrayList<administrador> lista_administrador = new ArrayList();
     validaciones misvalidaciones = new validaciones();
     Insert_administrador inserAdmin = new Insert_administrador();
     Insert_usuario usu = new Insert_usuario();
     Conexion cone = new Conexion();
-    //boolean loginRegresar;
 
     public Agregar_administrador() {
         initComponents();
         this.setLocationRelativeTo(null);
         BotonModificar.setVisible(false);
-        //loginRegresar = login;
         cargarcod();
     }
 
     public Agregar_administrador(String cedula) {
         initComponents();
         this.setLocationRelativeTo(null);
-
-//        cargarcod();
         llenar_administrador(cedula);
         Guardar_administrador.setVisible(false);
     }
@@ -81,7 +74,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
                 txt_email_administrador.setText(p.getCorreo().toString());
                 txt_direccion_administrador.setText(p.getDireccion());
                 txt_celular_administrador.setText(p.getTelefono());
-//            System.out.println(p.getGenero());
                 if (p.getGenero().equalsIgnoreCase("hombre")) {
                     Masculino_administrador.setSelected(true);
                 }
@@ -112,7 +104,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
                 }
                 Fecha_Nacimiento_administrador.setDate(fecha);
 
-//            System.out.println(p.getFecha_Nacimiento());
                 List<usuario> usua = usu.ListaUsuariosModi(String.valueOf(p.getCod_usuario()), "administrador", "admin");
                 usua.stream().forEach(u -> {
                     txt_usuario.setText(u.getUsuario());
@@ -685,8 +676,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_Masculino_administradorActionPerformed
 
     private void txt_codigo_administradorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_codigo_administradorMousePressed
-//        txt_codigo_administrador.setText("");
-//        txt_codigo_administrador.setForeground(Color.BLACK);
+
     }//GEN-LAST:event_txt_codigo_administradorMousePressed
 
     private void txt_codigo_administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codigo_administradorActionPerformed
@@ -786,7 +776,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
             limpiar();
-            //this.dispose();
         }
     }
 
@@ -804,8 +793,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
                 if (per.validarduplicado(txt_cedula_administrador.getText())) {
                     if (usu.validarNomduplicado(txt_usuario.getText())) {
                         String genero = "";
-//                usuario usu = new usuario();
-//                    persona.setCodigo(txt_codigo_administrador.getText());
                         admin.setCedula(txt_cedula_administrador.getText());
                         admin.setPri_nomb(txt_PrimerNombre_administrador.getText());
                         admin.setSeg_nombre(txt_SegundoNombre_administrador.getText());
@@ -826,7 +813,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
                         String año = Integer.toString(Fecha_Nacimiento_administrador.getCalendar().get(Calendar.YEAR));
                         String fecha = (dia + "-" + mes + "-" + año);
 
-                        //String FechaNacimiento = df.format(Fecha_Nacimiento_administrador.getDate());
                         admin.setFecha_Nacimiento(fecha);
                         System.out.println(fecha);
                         admin.setTelefono(txt_celular_administrador.getText());
@@ -877,7 +863,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
                 validado = false;
             }
         }
-//
+
         if (txt_PrimerNombre_administrador.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el primer nombre");
@@ -971,7 +957,6 @@ public class Agregar_administrador extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
-//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
         if (Fecha_Nacimiento_administrador.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento del administrador");

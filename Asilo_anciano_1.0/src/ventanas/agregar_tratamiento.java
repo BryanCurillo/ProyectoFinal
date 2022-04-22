@@ -911,7 +911,6 @@ public class agregar_tratamiento extends javax.swing.JFrame {
     public void ElimarmedicamentosJlist() {
         if (Listamedicamentos.size() != 0) {
             int indice = JListMedicamentos.getSelectedIndex();
-//            System.out.println(indice);
             modeloListMedicamento.remove(indice);
             Listamedicamentos.remove(indice);
         }
@@ -926,8 +925,6 @@ public class agregar_tratamiento extends javax.swing.JFrame {
             int codigo = Integer.parseInt(TablaDoctor.getValueAt(seleccion, 0).toString());
             inser_doctor.ListaDoctor().forEach((e) -> {
                 if (e.getCodigo() == codigo) {
-//                    new Agregar_paciente(codigo).setVisible(true);
-
                     text_budcar_doctor.setText(e.getCedula().toString());
                     nomb_doctor.setText(e.getPri_nomb() + " " + e.getSeg_nombre().toString());
                     apellido_doct.setText(e.getPrim_apell() + " " + e.getSeg_apelli().toString());
@@ -939,7 +936,6 @@ public class agregar_tratamiento extends javax.swing.JFrame {
 
             String cod;
             cod = TablaDoctor.getValueAt(seleccion, 0).toString();
-//            System.out.println(cod);
             cargarDoctor.dispose();
         }
     }
@@ -965,7 +961,6 @@ public class agregar_tratamiento extends javax.swing.JFrame {
             String cod;
             cod = TablaPaciente.getValueAt(seleccion, 0).toString();
             text_codigo_paciente.setText(cod);
-//            System.out.println(cod);
             cargarPaciente.dispose();
         }
     }
@@ -982,7 +977,6 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         String mes2 = Integer.toString(fecha_final_medicamento.getCalendar().get(Calendar.MONTH) + 1);
         String año3 = Integer.toString(fecha_final_medicamento.getCalendar().get(Calendar.YEAR));
         String fecha_fin_trata = (dia + "-" + mes + "-" + año);
-//        mi_trata.setCodigo_medicamento(mi_trata.cargarcodigoMedicina());
         mi_trata.setCodigo_tratamiento(Integer.parseInt(text_codigo_tratamiento.getText()));
         mi_trata.setDiagnostico(text_diagnositico.getText());
         mi_trata.setDosis(text_dosis.getText());
@@ -1043,37 +1037,11 @@ public class agregar_tratamiento extends javax.swing.JFrame {
     //Cargar medicamentos en JLIST
 
     public void CargarMedicamentosJlist() {
-//       
-//
-//        if (ComboMedicamentos.getSelectedIndex() == 0) {
-//            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado un medicamento");
-//        } else {
-//
-//            DefaultListModel modeloListMedicamento;
-//            modeloListMedicamento = new DefaultListModel();
-//            JListMedicamentos.setModel(modeloListMedicamento);
-//
-//            String medicaAux;
-//            medicaAux = ComboMedicamentos.getSelectedItem().toString();
-//            mi_medicamento.setNombre_medicamento(medicaAux);
-//
-//            Listamedicamentos.add(mi_medicamento);
-//
-//            for (int i = 0; i < Listamedicamentos.size(); i++) {
-//
-//                modeloListMedicamento.addElement(Listamedicamentos.get(i).getNombre_medicamento());
-//                ComboMedicamentos.setSelectedIndex(0);
-//            }
-//
-//        }
-
         medicamentos mi_medicamento = new medicamentos();
         boolean rep = false;
         if (ComboMedicamentos.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una enfermedad");
         } else {
-
-//            DefaultListModel modeloListEnfermedad;
             modeloListMedicamento = new DefaultListModel();
             JListMedicamentos.setModel(modeloListMedicamento);
 

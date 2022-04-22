@@ -200,16 +200,7 @@ public class crud_paciente extends javax.swing.JFrame {
             }
         }
     }
-    //Desactiva los botones al ingresar como Recepcionista
-//    public void DesactivarBotonModificarYEliminar() {
-//        BtEditarPaciente.setEnabled(false);
-//        BtEliminarPaciente.setEnabled(false);
-//    }
 
-    //Desactiva los botones al ingresar como Recepcionista
-//    public void DesactivarBotonAgregar() {
-//        BtIngresarPaciente.setEnabled(false);
-//    }
     public void eliminar_paciente() {
         int fila = TablaPaciente.getSelectedRow();
         if (fila == -1) {
@@ -250,7 +241,6 @@ public class crud_paciente extends javax.swing.JFrame {
         } else {
             
             String cedula = TablaPaciente.getValueAt(seleccion, 1).toString();
-//            System.out.println(cedula);
             inser.ListaPaciente().forEach((e) -> {
                 if (e.getCedula().equals(cedula)) {
                     new Agregar_paciente(cedula).setVisible(true);

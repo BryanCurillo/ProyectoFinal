@@ -17,8 +17,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class doctor_crud extends javax.swing.JFrame {
 
-    //public static String cedulaDOS;
-    //public static int botonMediDoc;
     
     Conexion mi_cone = new Conexion();
     Insert_doctor inser = new Insert_doctor();

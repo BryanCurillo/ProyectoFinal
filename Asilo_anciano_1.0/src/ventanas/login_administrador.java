@@ -100,7 +100,6 @@ public class login_administrador extends javax.swing.JFrame {
         mi_agregarAdmin.setVisible(true);
         BotonLoginAdmin = 1;
         
-        //Visible Boton modificar
         mi_agregarAdmin.DesaparecerBotonModificar();
         dispose();
     }//GEN-LAST:event_BotonRegistrarAdminActionPerformed

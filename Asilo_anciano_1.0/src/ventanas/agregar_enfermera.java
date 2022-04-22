@@ -4,8 +4,6 @@ import clases.enfermera;
 import conexion_bada.Insert_enfermera;
 import java.awt.Color;
 import clases.usuario;
-//import conexion_bada.Insert_familiar;
-//import conexion_bada.Insert;
 import conexion_bada.Insert_usuario;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -732,7 +730,6 @@ public class agregar_enfermera extends javax.swing.JFrame {
                 if (enfermera.validarduplicado(text_cedula_enfermera.getText())) {
                     if (usu.validarNomduplicado(txtusurio_enfermera.getText())) {
                         String genero = "";
-                        //enfermera.setCodigo(text_codigo_enfermera.getText());
                         enfermera.setCedula(text_cedula_enfermera.getText());
                         enfermera.setPri_nomb(text_PrimerNombre_enfermera.getText());
                         enfermera.setSeg_nombre(text_SegundoNombre_enfermera.getText());
@@ -752,7 +749,6 @@ public class agregar_enfermera extends javax.swing.JFrame {
                         String mes = Integer.toString(Fecha_Nacimiento_enfermera.getCalendar().get(Calendar.MONTH) + 1);
                         String año = Integer.toString(Fecha_Nacimiento_enfermera.getCalendar().get(Calendar.YEAR));
                         String FechaNacimiento = (dia + "-" + mes + "-" + año);
-                        //String FechaNacimiento = df.format(Fecha_Nacimiento_enfermera.getDate());
                         enfermera.setFecha_Nacimiento(FechaNacimiento);
 
                         enfermera.setTelefono(text_celular_enfermera.getText());
@@ -802,7 +798,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
                 validado = false;
             }
         }
-//
+
         if (text_PrimerNombre_enfermera.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el primer nombre");
@@ -891,7 +887,6 @@ public class agregar_enfermera extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
-//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
         if (Fecha_Nacimiento_enfermera.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento");

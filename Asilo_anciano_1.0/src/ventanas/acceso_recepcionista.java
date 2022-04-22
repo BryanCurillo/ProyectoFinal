@@ -138,7 +138,6 @@ public class acceso_recepcionista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boton_regresar_login_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_login_recepcionistaActionPerformed
-        // TODO add your handling code here:
         login_recepcionista re = new login_recepcionista();
         re.setVisible(true);
         Botones = 0;
@@ -147,14 +146,12 @@ public class acceso_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_regresar_login_recepcionistaActionPerformed
 
     private void boton_registrar_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_visitanteActionPerformed
-        // TODO add your handling code here:
         crud_vistafamiliar visita = new crud_vistafamiliar();
         visita.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_registrar_visitanteActionPerformed
 
     private void boton_registrar_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_pacienteActionPerformed
-        // TODO add your handling code here:
         crud_paciente mi_crudP = new crud_paciente();
         mi_crudP.setVisible(true);
         dispose();
@@ -162,14 +159,12 @@ public class acceso_recepcionista extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_registrar_pacienteActionPerformed
 
     private void boton_registrar_familiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_registrar_familiarActionPerformed
-        // TODO add your handling code here:
        crud_familiar agrefamiliar = new crud_familiar();
         agrefamiliar.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_registrar_familiarActionPerformed
 
     private void boton_agendar_chequeosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_agendar_chequeosActionPerformed
-        // TODO add your handling code here:
         agregar_citamedica ct = new agregar_citamedica();
         ct.setVisible(true);
         dispose();

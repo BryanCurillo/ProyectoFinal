@@ -231,15 +231,10 @@ public class crud_especialidad extends javax.swing.JFrame {
 
     private void btregresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btregresarActionPerformed
 
-//        if (doctor_crud.botonMediDoc == 1) {
-//            agregar_doctor mi_AgregarDoc = new agregar_doctor(doctor_crud.cedulaDOS);
-//            mi_AgregarDoc.setVisible(true);
-//            dispose();
-        //} else {
         acceso_administrador adminis = new acceso_administrador();
         adminis.setVisible(true);
         dispose();
-        //}
+        
 
     }//GEN-LAST:event_btregresarActionPerformed
 

@@ -79,8 +79,6 @@ public class agregar_citamedica extends javax.swing.JFrame {
                 //Datos del paciente
                 List<paciente> paci = inserChequeo.ListaChequeoPaciente(p.getCodigo_citas());
                 paci.stream().forEach(pac -> {
-
-                    //System.out.println("Cod Paci: " + pac.getCodigo());
                     txtcedulapaciente_citas.setText(pac.getCedula());
                     txtNombre.setText(pac.getPri_nomb() + " " + pac.getSeg_nombre());
                     txtApellidos.setText(pac.getPrim_apell() + " " + pac.getSeg_apelli());
@@ -90,8 +88,6 @@ public class agregar_citamedica extends javax.swing.JFrame {
                 //Datos del doctor
                 List<doctor> doc = inserChequeo.ListaChequeoDoctor(p.getCodigo_citas());
                 doc.stream().forEach(d -> {
-
-                    // System.out.println("Cod doc: " + d.getCodigo());
                     txtCedulaDoctor.setText(d.getCedula());
                     txtNombreDoctor.setText(d.getPri_nomb() + " " + d.getSeg_nombre());
                     txtApellidoDoctor.setText(d.getPrim_apell() + " " + d.getSeg_apelli());
@@ -701,7 +697,6 @@ public class agregar_citamedica extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
     private void text_buscarDoctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarDoctorMousePressed
-        // TODO add your handling code here:
         text_buscarDoctorDialog.setText("");
         text_buscarDoctorDialog.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_buscarDoctorMousePressed
@@ -1046,7 +1041,6 @@ public class agregar_citamedica extends javax.swing.JFrame {
                 mes = "0" + mes;
             }
             String fechaAux = (anio + "-" + dia + "-" + mes);
-//        System.out.println("Mi Fec: " + fechaAux);
             List<cita_medica> com = inserChequeo.ListaChequeo();
 
             for (int i = 0; i < com.size(); i++) {
@@ -1124,29 +1118,6 @@ public class agregar_citamedica extends javax.swing.JFrame {
         }
     }
 
-//    //Cargar Datos del Doctor
-//    public void Buscar_Doctor() {
-//        String cedula = txtCedulaDoctor.getText();
-//        var doctorfiltro = new ArrayList<doctor>();
-//        insertDoc.ListaDoctor().forEach((e) -> {
-//            if (e.getCedula().equals(cedula)) {
-//                doctorfiltro.add(e);
-//            }
-//        });
-//        if (!doctorfiltro.isEmpty()) {
-//
-//            for (int i = 0; i < doctorfiltro.size(); i++) {
-//                txtcodigoDoctor.setText(doctorfiltro.get(i).getCodigo());
-//                txtNombreDoctor.setText(doctorfiltro.get(i).getPri_nomb() + " " + doctorfiltro.get(i).getSeg_nombre());
-//                txtApellidoDoctor.setText(doctorfiltro.get(i).getPrim_apell() + " " + doctorfiltro.get(i).getSeg_apelli());
-//                txtEspecialidad.setText(doctorfiltro.get(i).getEspecialidad());
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "El doctor no se encuentra registrado");
-//            LimpiarCamposPaciente();
-//        }
-//    }
     public void BloquearCamposPaciente() {
 
         txtcedulapaciente_citas.setEditable(false);

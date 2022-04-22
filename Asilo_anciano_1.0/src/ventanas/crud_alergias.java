@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class crud_alergias extends javax.swing.JFrame {
 
-    //Objeto de la clase validaciones 
     validaciones misvalidaciones = new validaciones();
 
     ArrayList<alergias> lista_Alergias = new ArrayList();
@@ -225,8 +224,7 @@ public class crud_alergias extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void txtalergiaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtalergiaMousePressed
-//        txtalergia.setText("");
-//        txtalergia.setForeground(Color.BLACK);
+
     }//GEN-LAST:event_txtalergiaMousePressed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed

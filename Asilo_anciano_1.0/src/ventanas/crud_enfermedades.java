@@ -29,7 +29,6 @@ public class crud_enfermedades extends javax.swing.JFrame {
         this.setTitle("Enfermedades");
         initComponents();
         this.setLocationRelativeTo(null);
-//        limpiarDatos();
         cargarTabla();
         cargarcod();
     }

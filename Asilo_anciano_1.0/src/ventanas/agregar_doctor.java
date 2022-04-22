@@ -612,7 +612,6 @@ public class agregar_doctor extends javax.swing.JFrame {
     private void text_SegundoNombre_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_SegundoNombre_doctorMousePressed
         text_SegundoNombre_doctor.setText("");
         text_SegundoNombre_doctor.setForeground(Color.BLACK);
-        // TODO add your handling code here:
     }//GEN-LAST:event_text_SegundoNombre_doctorMousePressed
 
     private void text_cedula_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_cedula_doctorActionPerformed
@@ -623,10 +622,7 @@ public class agregar_doctor extends javax.swing.JFrame {
         if (text_cedula_doctor.getText().equalsIgnoreCase("Ingrese la cedula")) {
             text_cedula_doctor.setText("");
         }
-
         text_cedula_doctor.setForeground(Color.BLACK);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_text_cedula_doctorMousePressed
 
     private void text_direccion_doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_direccion_doctorActionPerformed
@@ -652,7 +648,7 @@ public class agregar_doctor extends javax.swing.JFrame {
             Logger.getLogger(Agregar_administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //limpiar();
+     
 
     }//GEN-LAST:event_Guardar_doctorActionPerformed
 
@@ -668,7 +664,6 @@ public class agregar_doctor extends javax.swing.JFrame {
         text_SegundoApellido_doctor.setText("");
         text_SegundoApellido_doctor.setForeground(Color.BLACK);
 
-        // TODO add your handling code here:
     }//GEN-LAST:event_text_SegundoApellido_doctorMousePressed
 
     private void text_PrimerApellido_doctorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerApellido_doctorMousePressed
@@ -746,7 +741,6 @@ public class agregar_doctor extends javax.swing.JFrame {
 
             limpiar();
             JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
-            //this.dispose();
         }
     }
 
@@ -835,7 +829,6 @@ public class agregar_doctor extends javax.swing.JFrame {
                 validado = false;
             }
         }
-//
         if (text_PrimerNombre_doctor.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el nombre del doctor");
@@ -929,7 +922,6 @@ public class agregar_doctor extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
-//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
         if (Fecha_Nacimiento_doctor.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento");

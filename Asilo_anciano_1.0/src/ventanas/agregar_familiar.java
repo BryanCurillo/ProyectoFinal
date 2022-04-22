@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 import clases.familiar;
 import clases.paciente;
 import conexion_bada.Insert_familiar;
-//import conexion_bada.Insert;
 import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -934,28 +933,10 @@ public class agregar_familiar extends javax.swing.JFrame {
                 + ", per_correo='" + text_email_familiar.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_familiar.getText() + "', per_telefono='" + text_celular_familiar.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_familiar.getText() + "'");
 
         mi_cone.InsertUpdateDeleteAcciones("UPDATE familiar SET fam_parentesco='" + jcb_parentesco.getSelectedItem().toString() + "', fam_codigo_paciente='" + Integer.parseInt(txt_codPaci.getText()) + "' WHERE fam_cedula='" + text_cedula_familiar.getText() + "'");
-//
-//         int codigousuarioAux = 0;
-//            
-//            List<familiar> fami = insertFamiliar.ListaFamiliar();
-//
-//            for (int i = 0; i < fami.size(); i++) {
-//
-//                String cedulaAux = text_cedula_familiar.getText();
-//                
-//                
-//                if (cedulaAux.equals(fami.get(i).getCedula())) {
-//
-//                    codigousuarioAux = fami.get(i).getCod_usuario();
-//  
-//                }
-//            }
-
-            mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtUsuario.getText() + "', us_contrasena='" + txtContrasenia.getText() + "' WHERE us_codigo='" + insertFamiliar.cargarcodigoUSER(text_cedula_familiar.getText()) + "'");
+        mi_cone.InsertUpdateDeleteAcciones("UPDATE usuario SET us_usuario='" + txtUsuario.getText() + "', us_contrasena='" + txtContrasenia.getText() + "' WHERE us_codigo='" + insertFamiliar.cargarcodigoUSER(text_cedula_familiar.getText()) + "'");
             
         JOptionPane.showMessageDialog(null,"El registro se modifico exitosamente");
         limpiar();
-        //this.dispose();
     }
 
     public void cargarcod() {
@@ -972,7 +953,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                 if (familiar.validarduplicado(text_cedula_familiar.getText())) {
                     if (usu.validarNomduplicado(txtUsuario.getText())) {
                         String genero = "";
-                        //familiar.setCodigo(text_codigo_familiar.getText());
                         familiar.setCedula(text_cedula_familiar.getText());
                         familiar.setPri_nomb(text_PrimerNombre_familiar.getText());
                         familiar.setSeg_nombre(text_SegundoNombre_familiar.getText());
@@ -992,7 +972,6 @@ public class agregar_familiar extends javax.swing.JFrame {
                         String mes = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.MONTH) + 1);
                         String año = Integer.toString(fecha_nacimiento_familiar.getCalendar().get(Calendar.YEAR));
                         String FechaNacimiento = (dia + "-" + mes + "-" + año);
-                        //String FechaNacimiento = df.format(fecha_nacimiento_familiar.getDate());
                         familiar.setFecha_Nacimiento(FechaNacimiento);
 
                         familiar.setTelefono(text_celular_familiar.getText());
@@ -1010,12 +989,10 @@ public class agregar_familiar extends javax.swing.JFrame {
                         familiar.setCodigo_paciente(Integer.parseInt(txt_codPaci.getText()));
 
                         if (familiar.InsertarFamiliar()) {
-                            //System.out.println("Conexion Exitosa");
                             JOptionPane.showMessageDialog(this, "El familiar se guardo exitosamente");
                             limpiar();
                             cargarcod();
                         } else {
-                            //System.out.println("Conexion Erronea");
                             JOptionPane.showMessageDialog(this,"El familiar no se guardo correctamente");
                         }
                     } else {
@@ -1045,7 +1022,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                 validado = false;
             }
         }
-//
+
         if (text_PrimerNombre_familiar.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el nombre");
@@ -1219,7 +1196,6 @@ public class agregar_familiar extends javax.swing.JFrame {
             String cod;
             cod = TablaPaciente.getValueAt(fila, 0).toString();
             txt_codPaci.setText(cod);
-//            System.out.println(cod);
             cargarPaciente.dispose();
         }
 

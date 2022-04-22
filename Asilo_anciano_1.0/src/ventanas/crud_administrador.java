@@ -150,12 +150,6 @@ public class crud_administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtRegresarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarAdministradorActionPerformed
-//        this.dispose();
-//        new inicio_frame().setVisible(true);
-
-//          login_administrador mi_loginAdmin = new login_administrador();
-//          mi_loginAdmin.setVisible(true);
-//          dispose();
 
             acceso_administrador mi_accesoAdmin = new acceso_administrador();
             mi_accesoAdmin.setVisible(true);

@@ -293,7 +293,6 @@ public class Medicamentos extends javax.swing.JFrame {
 
     //Guardar las alergias en la BD
     public void Registrarmedicamento() {
-//        Insert_alergias inser = new Insert_alergias();
         try {
             if (validarInformacion() == true && ValidarDuplicados() == true) {
                 inser.setNombre_medicamento(txt_nombre_medicamento.getText());
@@ -366,7 +365,6 @@ public class Medicamentos extends javax.swing.JFrame {
 
     public boolean ValidarDuplicados() {
         boolean validado = true;
-//        Insert_alergias inser = new Insert_alergias();
         List<medicamentos> com = inser.ListaMedicamentos();
 
         for (int i = 0; i < com.size(); i++) {

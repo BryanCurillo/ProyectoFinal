@@ -234,7 +234,6 @@ public class crud_familiar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
             String cedula = TablaFamiliar.getValueAt(seleccion, 1).toString();
-//            System.out.println(cedula);
             inser.ListaFamiliar().forEach((e) -> {
                 if (e.getCedula().equals(cedula)) {
                     new agregar_familiar(cedula).setVisible(true);

@@ -16,7 +16,6 @@ import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.sql.ResultSet;
-//import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,9 +24,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import java.util.List;
-//import java.util.Locale;
-//import javax.swing.table.DefaultTableModel;
 
 //Import para imagen
 import javax.swing.JFileChooser;
@@ -53,7 +49,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
     DateFormat df = DateFormat.getDateInstance();
     Insert persona = new Insert();
     Insert paciente = new Insert();
-//    ArrayList<paciente> lista_Paciente = new ArrayList();
     Insert inser = new Insert();
 
     public JLabel getLabelFoto() {
@@ -80,7 +75,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         Guardar_paciente.setVisible(false);
         Guardar_paciente.setVisible(false);
-
         String SQL_SELECT = "SELECT * FROM pacientes WHERE cedula = " + cedula + ";";
         llenar_paciente(cedula);
 
@@ -641,7 +635,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
                 try {
                     Image icono = ImageIO.read(j.getSelectedFile()).getScaledInstance(LabelFoto.getWidth(), LabelFoto.getHeight(), Image.SCALE_DEFAULT);
-
                     LabelFoto.setIcon(new ImageIcon(icono));
                     LabelFoto.updateUI();
                     System.out.println("si seleccione");
@@ -685,16 +678,12 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_PrimerNombre_paciente.setText("");
         text_PrimerNombre_paciente.setForeground(Color.BLACK);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_text_PrimerNombre_pacienteMousePressed
 
     private void text_PrimerApellido_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrimerApellido_pacienteMousePressed
 
         text_PrimerApellido_paciente.setText("");
         text_PrimerApellido_paciente.setForeground(Color.BLACK);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_text_PrimerApellido_pacienteMousePressed
 
     private void text_SegundoApellido_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_SegundoApellido_pacienteActionPerformed
@@ -705,8 +694,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
         text_SegundoApellido_paciente.setText("");
         text_SegundoApellido_paciente.setForeground(Color.BLACK);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_text_SegundoApellido_pacienteMousePressed
 
     private void Regresar_acceso_recepcionistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_acceso_recepcionistaActionPerformed
@@ -794,8 +781,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(clases.paciente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-//        System.out.println(ahora);
         fecha_ingreso_paciente.setDate(fecha);
     }
 
@@ -849,7 +834,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
                     paciente.setCedula(text_cedula_paciente.getText());
 
                     if (persona.InsertarPersona() && paciente.InsertarPaciente(FechaDeIngreso, fis)) {// longitudBytes,
-                        //System.out.println("Conexion Exitosa");
                         JOptionPane.showMessageDialog(null, "Se guardó éxitosamente");
                         limpiar();
                         cargarcod();
@@ -896,9 +880,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
             mi_cone.InsertUpdateDeleteAcciones("UPDATE persona per SET  per_primer_nombre='" + text_PrimerNombre_paciente.getText() + "', per_segundo_nombre='" + text_SegundoNombre_paciente.getText() + "'"
                     + ", per_primer_apellido='" + text_PrimerApellido_paciente.getText() + "', per_segundo_apellido='" + text_SegundoApellido_paciente.getText() + "'"
                     + ", per_correo='" + text_email_paciente.getText() + "', per_genero='" + genero + "', per_direccion='" + text_direccion_paciente.getText() + "', per_telefono='" + text_celular_paciente.getText() + "', per_tipo_sangre='" + tipoo_sangre + "',per_fecha_nacimiento='" + FechaNacimiento + "' WHERE per_cedula='" + text_cedula_paciente.getText() + "'");
-//            System.out.println(fis.toString());
-            //mi_cone.InsertUpdateDeleteAcciones("UPDATE paciente SET paci_seguro='" + afiliacion + "',paci_fecha_de_ingreso='" + FechaDeIngreso + "' WHERE paci_cedula='" + text_cedula_paciente.getText() + "'");
-            //            mi_cone.InsertUpdateDeleteAcciones("UPDATE paciente SET paci_seguro='" + afiliacion + "',paci_fecha_de_ingreso='" + FechaDeIngreso + "',paci_foto=" + fis + " WHERE paci_cedula='" + text_cedula_paciente.getText() + "'");
             Date date = new Date();
             SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
             FechaDeIngreso = formatofecha.format(date);
@@ -910,19 +891,14 @@ public class Agregar_paciente extends javax.swing.JFrame {
                 try {
 
                     PreparedStatement ps = mi_cone.getCon().prepareStatement(sql);
-                    // ps.setInt(1,co);
-
                     ps.setString(1, afiliacion);
                     ps.setDate(2, fechasql);
                     ps.setBinaryStream(3, fis);//,longitud
                     ps.setString(4, text_cedula_paciente.getText());
                     ps.execute();
                     ps.close();
-
-                    //System.out.println("Guardado Exitosamente");
                     
                     JOptionPane.showMessageDialog(null, "El registro se modificó exitosamente");
-                    //inserto = true;
                 } catch (SQLException | NumberFormatException | HeadlessException x) {
                     System.out.println("No ha registrado nada" + x.getLocalizedMessage());
 
@@ -967,7 +943,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
                 validado = false;
             }
         }
-//
+
         if (text_PrimerNombre_paciente.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el nombre del paciente");
@@ -1036,7 +1012,6 @@ public class Agregar_paciente extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione el tipo de sangre");
         }
-//        System.out.println(String.valueOf(fecha_Nacimiento_paciente.getCalendar()));
         if (fecha_Nacimiento_paciente.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento del paciente");

@@ -126,28 +126,24 @@ public class acceso_enfermera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boton_acceso_fichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_acceso_fichaActionPerformed
-        // TODO add your handling code here:
         crud_FichaMedica mi_ficha = new crud_FichaMedica();
         mi_ficha.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_acceso_fichaActionPerformed
 
     private void boton_acceso_alergiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_acceso_alergiasActionPerformed
-        // TODO add your handling code here:
         crud_alergias al = new crud_alergias();
         al.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_acceso_alergiasActionPerformed
 
     private void boton_acceso_enfermedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_acceso_enfermedadActionPerformed
-        // TODO add your handling code here:
         crud_enfermedades en = new crud_enfermedades();
         en.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_acceso_enfermedadActionPerformed
 
     private void boton_regresar_login_enfermeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_login_enfermeraActionPerformed
-        // TODO add your handling code here:
         login_enfermera lf = new login_enfermera();
         lf.setVisible(true);
         dispose();

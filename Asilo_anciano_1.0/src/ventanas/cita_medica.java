@@ -567,7 +567,6 @@ public class cita_medica extends javax.swing.JFrame {
             IngresarChequeo();
         } catch (NullPointerException x) {
 
-            //System.out.println("Error: " + x);
         }
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
@@ -916,29 +915,6 @@ public class cita_medica extends javax.swing.JFrame {
         }
     }
 
-//    //Cargar Datos del Doctor
-//    public void Buscar_Doctor() {
-//        String cedula = txtCedulaDoctor.getText();
-//        var doctorfiltro = new ArrayList<doctor>();
-//        insertDoc.ListaDoctor().forEach((e) -> {
-//            if (e.getCedula().equals(cedula)) {
-//                doctorfiltro.add(e);
-//            }
-//        });
-//        if (!doctorfiltro.isEmpty()) {
-//
-//            for (int i = 0; i < doctorfiltro.size(); i++) {
-//                txtcodigoDoctor.setText(doctorfiltro.get(i).getCodigo());
-//                txtNombreDoctor.setText(doctorfiltro.get(i).getPri_nomb() + " " + doctorfiltro.get(i).getSeg_nombre());
-//                txtApellidoDoctor.setText(doctorfiltro.get(i).getPrim_apell() + " " + doctorfiltro.get(i).getSeg_apelli());
-//                txtEspecialidad.setText(doctorfiltro.get(i).getEspecialidad());
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "El doctor no se encuentra registrado");
-//            LimpiarCamposPaciente();
-//        }
-//    }
     public void BloquearCamposPaciente() {
         txtcodigoPaciente.setEditable(false);
         txtNombre.setEditable(false);

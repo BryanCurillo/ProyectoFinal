@@ -92,7 +92,6 @@ public class login_enfermera extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonIniciarSesionEActionPerformed
 
     private void boton_menu_principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_menu_principalActionPerformed
-        // TODO add your handling code here:
         inicio_frame menup = new inicio_frame();
         menup.setVisible(true);
         dispose();

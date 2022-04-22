@@ -26,64 +26,6 @@ public class listarCitasMedicas extends javax.swing.JFrame {
         CargarDatosChequeoTabla();
     }
 
-//    public void CargarDatosChequeoTabla() {
-//
-//        var citfiltro = new ArrayList<clases.cita_medica>();
-//        inserchequeo.ListaChequeo().forEach((e) -> {
-//            citfiltro.add(e);
-//        });
-//        String matriz[][] = new String[citfiltro.size()][13];
-//
-//        if (!citfiltro.isEmpty()) {
-//
-//            var pacifiltro = new ArrayList<paciente>();
-//            inserchequeo.ListaChequeoPaciente().forEach((e) -> {
-//                pacifiltro.add(e);
-//            });
-//
-//            for (int i = 0; i < pacifiltro.size(); i++) {
-//
-//                matriz[i][1] = pacifiltro.get(i).getCedula();
-//                matriz[i][2] = pacifiltro.get(i).getPri_nomb() + " " + pacifiltro.get(i).getSeg_nombre();
-//                matriz[i][3] = pacifiltro.get(i).getPrim_apell() + " " + pacifiltro.get(i).getSeg_apelli();
-//
-//            }
-//
-//            var docfiltro = new ArrayList<doctor>();
-//            inserchequeo.ListaChequeoDoctor().forEach((e) -> {
-//                docfiltro.add(e);
-//            });
-//
-//            for (int j = 0; j < docfiltro.size(); j++) {
-//
-//                matriz[j][4] = docfiltro.get(j).getCedula();
-//                matriz[j][5] = docfiltro.get(j).getPri_nomb() + " " + docfiltro.get(j).getSeg_nombre();
-//                matriz[j][6] = docfiltro.get(j).getPrim_apell() + " " + docfiltro.get(j).getSeg_apelli();
-//                matriz[j][7] = docfiltro.get(j).getEspecialidad();
-//
-//            }
-//
-//            for (int j = 0; j < citfiltro.size(); j++) {
-//
-//                matriz[j][8] = citfiltro.get(j).getFecha_chequeoActual();
-//                matriz[j][9] = citfiltro.get(j).getHoraChequeo();
-//                matriz[j][0] = String.valueOf(citfiltro.get(j).getCodigo_citas());
-//
-//            }
-//
-//            TablaChequeos.setModel(new javax.swing.table.DefaultTableModel(
-//                    matriz,
-//                    new String[]{
-//                        "Codigo de chequeo","Cédula del paciente", "Nombres del paciente", "Apellidos del paciente", "Cédula del doctor", "Nombres del doctor", "Apellidos del doctor", "Especialidad del doctor", "Fecha del chequeo médico", "Hora del chequeo médico"
-//                    }
-//            ));
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, "No existe chequeos medicos registrados");
-//        }
-//
-//    }
-//
     public void CargarDatosChequeoTabla() {
         int codCita = 0;
 
@@ -95,7 +37,6 @@ public class listarCitasMedicas extends javax.swing.JFrame {
         for (int i = 0; i < com.size(); i++) {
             codCita = com.get(i).getCodigo_citas();
 
-            //System.out.println("CodCita: " + codCita);
             matriz[i][0] = String.valueOf(com.get(i).getCodigo_citas());
             matriz[i][8] = com.get(i).getFecha_chequeoActual();
             matriz[i][9] = com.get(i).getHoraChequeo();
