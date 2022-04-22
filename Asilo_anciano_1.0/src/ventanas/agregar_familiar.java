@@ -120,6 +120,7 @@ public class agregar_familiar extends javax.swing.JFrame {
         BtBuscarFamiliar = new javax.swing.JButton();
         text_buscar = new javax.swing.JTextField();
         cargarP = new javax.swing.JButton();
+        boton_actualizar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -213,6 +214,13 @@ public class agregar_familiar extends javax.swing.JFrame {
             }
         });
 
+        boton_actualizar.setText("Actualizar");
+        boton_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_actualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout cargarPacienteLayout = new javax.swing.GroupLayout(cargarPaciente.getContentPane());
         cargarPaciente.getContentPane().setLayout(cargarPacienteLayout);
         cargarPacienteLayout.setHorizontalGroup(
@@ -225,6 +233,8 @@ public class agregar_familiar extends javax.swing.JFrame {
                 .addComponent(text_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtBuscarFamiliar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(boton_actualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cargarP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
@@ -238,10 +248,13 @@ public class agregar_familiar extends javax.swing.JFrame {
                         .addComponent(text_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarPacienteLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(BtBuscarFamiliar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                        .addComponent(BtBuscarFamiliar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarPacienteLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(cargarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cargarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarPacienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(boton_actualizar)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -464,6 +477,22 @@ public class agregar_familiar extends javax.swing.JFrame {
                 txtUsuarioMousePressed(evt);
             }
         });
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         txtContrasenia.setForeground(new java.awt.Color(102, 102, 102));
         txtContrasenia.setText("Ej: Pass1@");
@@ -471,6 +500,16 @@ public class agregar_familiar extends javax.swing.JFrame {
         txtContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtContraseniaMousePressed(evt);
+            }
+        });
+        txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseniaActionPerformed(evt);
+            }
+        });
+        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContraseniaKeyTyped(evt);
             }
         });
 
@@ -843,6 +882,34 @@ public class agregar_familiar extends javax.swing.JFrame {
         txtUsuario.setForeground(Color.BLACK);
     }//GEN-LAST:event_txtContraseniaMousePressed
 
+    private void boton_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_actualizarActionPerformed
+        cargarTablaF();
+    }//GEN-LAST:event_boton_actualizarActionPerformed
+
+    private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseniaActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void txtUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioKeyReleased
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void txtContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyTyped
+        txtContrasenia.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtContraseniaKeyTyped
+
     public void modificar_familiar() {
         String genero = "";
         if (Masculino_familiar.isSelected()) {
@@ -1204,6 +1271,7 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JRadioButton Masculino_familiar;
     private javax.swing.JButton RegresarFamiliar;
     private javax.swing.JTable TablaPaciente;
+    private javax.swing.JButton boton_actualizar;
     private javax.swing.JButton buscarp;
     private javax.swing.JButton cargarP;
     private javax.swing.JDialog cargarPaciente;
