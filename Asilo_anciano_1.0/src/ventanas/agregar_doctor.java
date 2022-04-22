@@ -824,7 +824,7 @@ public class agregar_doctor extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la cedula del doctor");
         } else {
-            if (!misvalidaciones.validar_cedula(text_cedula_doctor.getText())) {
+            if (!misvalidaciones.validar_ced(text_cedula_doctor.getText())) {
                 JOptionPane.showMessageDialog(this, "Cedula incorrecta");
                 validado = false;
             }
