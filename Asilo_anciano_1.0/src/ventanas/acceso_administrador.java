@@ -35,6 +35,7 @@ public class acceso_administrador extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         boton_regresar_administrador = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        BotonCrudAdmin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -166,6 +167,14 @@ public class acceso_administrador extends javax.swing.JFrame {
         jLabel12.setText("MEDICAMENTOS");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, -1));
 
+        BotonCrudAdmin.setText("CRUD ADMINISTRADOR ");
+        BotonCrudAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCrudAdminActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonCrudAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, -1, 90));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondos-de-pantalla-lisos-color-pastel-mountainstyle.co_.-fondo-de-pantalla-hd-1080p-lisos (1).jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -231,6 +240,12 @@ public class acceso_administrador extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_botol_crud_especialidadesActionPerformed
 
+    private void BotonCrudAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCrudAdminActionPerformed
+        crud_administrador mi_crudAdmin = new crud_administrador();
+        mi_crudAdmin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BotonCrudAdminActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,6 +282,7 @@ public class acceso_administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonCrudAdmin;
     private javax.swing.JButton botol_crud_especialidades;
     private javax.swing.JButton boton_crud_doctor;
     private javax.swing.JButton boton_crud_enfermera;
