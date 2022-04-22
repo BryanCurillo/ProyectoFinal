@@ -785,7 +785,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "El registro se modificó éxitosamente");
             limpiar();
-            this.dispose();
+            //this.dispose();
         }
     }
 
