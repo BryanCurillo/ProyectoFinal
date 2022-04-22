@@ -73,10 +73,8 @@ public class insert_tratamiento_medicamento extends Tratamiento_MedicamentoClase
         String sqls = "SELECT medi_codigo,medi_nombre_ FROM medicamentos medi,tratamiento_medicamento tm \n"
                 + "where tm.tm_codigo_medicamento=medi.medi_codigo and tm_codigo_tratamiento=" + cod_trata + ";";
         ResultSet rs = cone.selectConsulta(sqls);
-//        List<medicamentos> medicamentos = new ArrayList<>();
         try {
             while (rs.next()) {
-//                enfermedades mimedicamento = new enfermedades();
                 medicamentos mimedicamento = new medicamentos();
                 mimedicamento.setCodigo_medicamento(rs.getInt("medi_codigo"));
                 mimedicamento.setNombre_medicamento(rs.getString("medi_nombre_"));

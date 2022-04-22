@@ -30,14 +30,13 @@ public class Insert_Persona extends persona {
         int codigo = 0;
         String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
         ResultSet dup = cone.selectConsulta(sqls);
-//        try {catch
+
         while (dup.next()) {
             codigo = dup.getInt("count");
         }
         if (codigo == 0) {
             validar = true;
         }
-        //System.out.println("repetido=" + codigo);
         return validar;
     }
         

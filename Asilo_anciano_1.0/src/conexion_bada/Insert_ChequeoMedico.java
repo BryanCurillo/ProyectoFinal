@@ -57,8 +57,6 @@ public class Insert_ChequeoMedico extends cita_medica {
             while (rescheckdoctor.next()) {
 
                 doctor mi_checkdoc = new doctor();
-
-                //mi_checkdoc.setCodigo(rescheckdoctor.getInt("doc_codigo"));
                 mi_checkdoc.setCedula(rescheckdoctor.getString("per_cedula"));
                 mi_checkdoc.setPri_nomb(rescheckdoctor.getString("per_primer_nombre"));
                 mi_checkdoc.setSeg_nombre(rescheckdoctor.getString("per_segundo_nombre"));

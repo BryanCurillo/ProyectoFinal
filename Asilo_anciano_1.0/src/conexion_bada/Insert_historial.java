@@ -123,7 +123,6 @@ public class Insert_historial extends historial_medico {
         String observacion = "";
         String sqls = "select ficha_observaciones from ficha where ficha_paci_codigo=" + codigo + ";";
         ResultSet obs = cone.selectConsulta(sqls);
-//        try {catch
         while (obs.next()) {
             observacion = obs.getString("ficha_observaciones");
         }
@@ -141,7 +140,6 @@ public class Insert_historial extends historial_medico {
                 paciente mi_paciente = new paciente();
                 persona mi_persona = new persona();
 
-//                        System.out.println("coninciden");
                 mi_paciente.setCodigo(respaci.getInt("paci_codigo"));
                 mi_paciente.setCedula(respaci.getString("paci_cedula"));
                 mi_paciente.setSeguro(respaci.getString("paci_seguro"));
@@ -160,10 +158,8 @@ public class Insert_historial extends historial_medico {
                 mi_paciente.setFecha_Nacimiento(respaci.getString("per_fecha_nacimiento"));
 
                 paci.add(mi_paciente);
-//                        resper.close();
 
             }
-//            respaci.close();
             return paci;
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
@@ -181,13 +177,10 @@ public class Insert_historial extends historial_medico {
 
                 paciente mi_paciente = new paciente();
                 persona mi_persona = new persona();
-
-//                        System.out.println("coninciden");
                 mi_paciente.setCodigo(respaci.getInt("paci_codigo"));
                 mi_paciente.setCedula(respaci.getString("paci_cedula"));
                 mi_paciente.setSeguro(respaci.getString("paci_seguro"));
                 mi_paciente.setFecha_de_ingreso(respaci.getString("paci_fecha_de_ingreso"));
-
                 mi_paciente.setCedula(respaci.getString("per_cedula"));
                 mi_paciente.setPri_nomb(respaci.getString("per_primer_nombre"));
                 mi_paciente.setSeg_nombre(respaci.getString("per_segundo_nombre"));
@@ -201,10 +194,8 @@ public class Insert_historial extends historial_medico {
                 mi_paciente.setFecha_Nacimiento(respaci.getString("per_fecha_nacimiento"));
 
                 paci.add(mi_paciente);
-//                        resper.close();
 
             }
-//            respaci.close();
             return paci;
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);

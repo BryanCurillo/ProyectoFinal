@@ -35,13 +35,11 @@ public class Insert_familiar extends familiar {
         try {
             while (rs.next()) {
                 familiar mi_famili = new familiar();
-                //mi_famili.setCodigo(rs.getString("fam_codigo_visit"));
                 mi_famili.setCodigo(rs.getInt("fam_codigo"));
                 mi_famili.setCedula(rs.getString("fam_cedula"));
                 mi_famili.setParectesco(rs.getString("fam_parentesco"));
                 mi_famili.setCod_usuario(rs.getInt("fam_codigo_usuario"));
                 mi_famili.setCodigo_paciente(rs.getInt("fam_codigo_paciente"));
-
                 mi_famili.setPri_nomb(rs.getString("per_primer_nombre"));
                 mi_famili.setSeg_nombre(rs.getString("per_segundo_nombre"));
                 mi_famili.setPrim_apell(rs.getString("per_primer_apellido"));
@@ -68,7 +66,6 @@ public class Insert_familiar extends familiar {
         int codigo = 0;
         String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
         ResultSet dup = cone.selectConsulta(sqls);
-//        try {catch
         while (dup.next()) {
             codigo = dup.getInt("count");
         }

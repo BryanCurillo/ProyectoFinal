@@ -77,7 +77,6 @@ public class insert_ficha_alergia extends FichaAlergia {
 
                 aler.add(mialergia);
             }
-//            rs.close();
             return aler;
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);

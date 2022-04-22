@@ -38,7 +38,6 @@ public class Insert_enfermera extends enfermera {
                 mi_enfer.setCedula(rs.getString("enfer_cedula"));
                 mi_enfer.setAnio_experiencia(rs.getString("enfer_anio_experiencia"));
                 mi_enfer.setCod_usuario(rs.getInt("enfer_codigo_usuario"));
-
                 mi_enfer.setPri_nomb(rs.getString("per_primer_nombre"));
                 mi_enfer.setSeg_nombre(rs.getString("per_segundo_nombre"));
                 mi_enfer.setPrim_apell(rs.getString("per_primer_apellido"));
@@ -65,7 +64,6 @@ public class Insert_enfermera extends enfermera {
         int codigo = 0;
         String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
         ResultSet dup = cone.selectConsulta(sqls);
-//        try {catch
         while (dup.next()) {
             codigo = dup.getInt("count");
         }
@@ -110,8 +108,8 @@ public class Insert_enfermera extends enfermera {
             return null;
         }
     }
-    
-        public int cargarcodigoUSER(String cedula) {
+
+    public int cargarcodigoUSER(String cedula) {
         int codigo = 0;
         String sqls = "select enfer_codigo_usuario from enfermera where enfer_cedula ='" + cedula + "';";
         ResultSet ru = cone.selectConsulta(sqls);

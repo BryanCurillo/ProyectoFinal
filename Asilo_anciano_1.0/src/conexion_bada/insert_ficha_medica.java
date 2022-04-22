@@ -31,8 +31,6 @@ public class insert_ficha_medica extends claseFichaMedica {
 
     public List<claseFichaMedica> ListaFichaMedica() {
         String sqls = "select * from ficha,paciente,persona,enfermera where ficha_paci_codigo=paci_codigo and ficha_enfermera_acargo=enfer_codigo and paci_cedula=per_cedula;";
-
-//        String sqls = "select ficha_enfermera_acargo,ficha_paci_codigo,ficha_observaciones,ficha_codigo from ficha,paciente,persona,enfermera where ficha_paci_codigo=paci_codigo and ficha_enfermera_acargo=enfer_codigo and paci_cedula=per_cedula;";
         ResultSet resficha = cone.selectConsulta(sqls);
         List<claseFichaMedica> ficha = new ArrayList<>();
 
@@ -40,7 +38,6 @@ public class insert_ficha_medica extends claseFichaMedica {
             while (resficha.next()) {
 
                 claseFichaMedica mificha = new claseFichaMedica();
-
                 mificha.setCodigo_ficha_medica(resficha.getInt("ficha_codigo"));
                 mificha.setObservaciones(resficha.getString("ficha_observaciones"));
                 mificha.setCodigo_paciente(resficha.getInt("ficha_paci_codigo"));
@@ -101,7 +98,6 @@ public class insert_ficha_medica extends claseFichaMedica {
         int count = 0;
         String sqls = "select count(*) from ficha where ficha_paci_codigo=" + codigo + ";";
         ResultSet dup = cone.selectConsulta(sqls);
-//        try {catch
         while (dup.next()) {
             count = dup.getInt("count");
         }
@@ -111,7 +107,4 @@ public class insert_ficha_medica extends claseFichaMedica {
         System.out.println("repetido=" + codigo);
         return validar;
     }
-    
-
-
 }

@@ -70,7 +70,6 @@ public class Insert_doctor extends doctor {
         int codigo = 0;
         String sqls = "select count(*) from persona where per_cedula='" + cedula + "';";
         ResultSet dup = cone.selectConsulta(sqls);
-//        try {catch
         while (dup.next()) {
             codigo = dup.getInt("count");
         }

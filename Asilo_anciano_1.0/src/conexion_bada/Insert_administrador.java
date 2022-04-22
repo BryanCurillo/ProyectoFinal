@@ -22,13 +22,6 @@ public class Insert_administrador extends administrador {
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
-//    usuario miusuario = new usuario();
-//    public boolean InsertarUsuario() {
-//        String sql = "INSERT INTO usuario(\n"
-//                + "	us_usuario,us_contraseña)\n"
-//                + "	VALUES ('" + miusuario.getUsuario() + "', '" + miusuario.getContraseña() + "');";
-//        return cone.InsertUpdateDeleteAcciones(sql);
-//    }
     public boolean InsertarAdministrador() {
         String sql = "INSERT INTO administrador(\n"
                 + "     admin_cedula, admin_nivel_educacion,admin_codigo_usuario)\n"

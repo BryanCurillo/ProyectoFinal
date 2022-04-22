@@ -78,7 +78,6 @@ public class insert_ficha_enfermedad extends FichaEnfermedad {
 
                 enfermedad.add(mienfermedad);
             }
-//            rs.close();
             return enfermedad;
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);

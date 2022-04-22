@@ -41,19 +41,6 @@ public class Insert extends paciente {
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
-//    public boolean InsertarPaciente() {
-//        String sql = "INSERT INTO paciente(\n"
-//                + "	paci_cedula,paci_seguro,paci_fecha_de_ingreso)\n"
-//                + "	VALUES ('" + getCedula() + "','" + getSeguro() + "','" + getFecha_de_ingreso() + "');";
-//        return cone.InsertUpdateDeleteAcciones(sql);
-//    }
-//    public boolean InsertarPaciente() {
-//        String sql = "INSERT INTO paciente(\n"
-//                + "	paci_cedula,paci_seguro,paci_fecha_de_ingreso)\n"
-//                + "	VALUES ('" + getCedula() + "','" + getSeguro() + "','" + getFecha_de_ingreso() + "');";
-//        return cone.InsertUpdateDeleteAcciones(sql);
-//    }
-
     public boolean InsertarPaciente(String fecha, FileInputStream foto) {//int longitud,
         Date date = new Date();
         Boolean inserto = false;
@@ -62,11 +49,8 @@ public class Insert extends paciente {
         java.sql.Date fechasql = java.sql.Date.valueOf(fecha);
         String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
         try {
-//            String sql = "INSERT INTO \"paciente\"(paci_cedula, paci_seguro, paci_fecha_de_ingreso, paci_foto) VALUES (?, ?, ?,?)";
-
+            
             PreparedStatement ps = cone.getCon().prepareStatement(sql);
-            // ps.setInt(1,co);
-
             ps.setString(1, getCedula());
             ps.setString(2, getSeguro());
             ps.setDate(3, fechasql);
