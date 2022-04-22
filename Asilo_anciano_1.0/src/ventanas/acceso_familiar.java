@@ -32,7 +32,7 @@ public class acceso_familiar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         boton_ver_historial_paciente = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BotonatrasLogin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -63,11 +63,16 @@ public class acceso_familiar extends javax.swing.JFrame {
         });
         getContentPane().add(boton_ver_historial_paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
-        jButton3.setToolTipText("REGRESAR AL LOGIN ");
-        jButton3.setBorder(null);
-        jButton3.setOpaque(false);
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, -1));
+        BotonatrasLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.png"))); // NOI18N
+        BotonatrasLogin.setToolTipText("REGRESAR AL LOGIN ");
+        BotonatrasLogin.setBorder(null);
+        BotonatrasLogin.setOpaque(false);
+        BotonatrasLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonatrasLoginActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotonatrasLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Microsoft JhengHei UI Light", 1, 14)); // NOI18N
@@ -88,6 +93,12 @@ public class acceso_familiar extends javax.swing.JFrame {
         hpaciente.setVisible(true);
         dispose();
     }//GEN-LAST:event_boton_ver_historial_pacienteActionPerformed
+
+    private void BotonatrasLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonatrasLoginActionPerformed
+        login_familiar mi_loginFami = new login_familiar();
+        mi_loginFami.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BotonatrasLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,9 +136,9 @@ public class acceso_familiar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonatrasLogin;
     private javax.swing.JButton boton_ver_historial_paciente;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
