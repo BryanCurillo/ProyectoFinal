@@ -858,7 +858,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la cedula");
         } else {
-            if (!misvalidaciones.validar_ced(txt_cedula_administrador.getText())) {
+            if (misvalidaciones.validar_ced(txt_cedula_administrador.getText())  == false ) {
                 JOptionPane.showMessageDialog(this, "Cedula incorrecta");
                 validado = false;
             }
