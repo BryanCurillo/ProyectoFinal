@@ -439,6 +439,11 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                 txt_buscar_paciente_dialogMousePressed(evt);
             }
         });
+        txt_buscar_paciente_dialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_buscar_paciente_dialogActionPerformed(evt);
+            }
+        });
 
         boton_buscar_paciente_visita_dialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         boton_buscar_paciente_visita_dialog.setToolTipText("Buscar Paciente");
@@ -854,8 +859,17 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     }//GEN-LAST:event_cargar_paciente1ActionPerformed
 
     private void boton_buscar_paciente_visita_dialog1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscar_paciente_visita_dialog1ActionPerformed
-        buscar_fami_dialog();
+        if (text_familiar.getText().isEmpty()) {
+             JOptionPane.showMessageDialog(this, "Ingrese la cedula del familiar");
+        } else {
+            buscar_fami_dialog();
+        }
+        
     }//GEN-LAST:event_boton_buscar_paciente_visita_dialog1ActionPerformed
+
+    private void txt_buscar_paciente_dialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscar_paciente_dialogActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscar_paciente_dialogActionPerformed
 
     /**
      * @param args the command line arguments
