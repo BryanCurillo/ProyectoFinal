@@ -71,12 +71,14 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         BtBuscarPaciente = new javax.swing.JButton();
         text_buscarPacienteDialog = new javax.swing.JTextField();
         cargarP = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         cargarDoctor = new javax.swing.JDialog();
         jScrollPane6 = new javax.swing.JScrollPane();
         TablaDoctor = new javax.swing.JTable();
         BtBuscarDialogDoctor = new javax.swing.JButton();
         text_buscarDialogDoctor = new javax.swing.JTextField();
         cargarP1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -173,6 +175,13 @@ public class agregar_tratamiento extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout cargarPacienteLayout = new javax.swing.GroupLayout(cargarPaciente.getContentPane());
         cargarPaciente.getContentPane().setLayout(cargarPacienteLayout);
         cargarPacienteLayout.setHorizontalGroup(
@@ -182,6 +191,8 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                 .addComponent(text_buscarPacienteDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cargarP, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
@@ -202,7 +213,10 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                         .addComponent(BtBuscarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarPacienteLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(cargarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cargarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarPacienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -257,6 +271,13 @@ public class agregar_tratamiento extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Actualizar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout cargarDoctorLayout = new javax.swing.GroupLayout(cargarDoctor.getContentPane());
         cargarDoctor.getContentPane().setLayout(cargarDoctorLayout);
         cargarDoctorLayout.setHorizontalGroup(
@@ -269,6 +290,8 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                 .addComponent(text_buscarDialogDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtBuscarDialogDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cargarP1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
@@ -285,7 +308,10 @@ public class agregar_tratamiento extends javax.swing.JFrame {
                         .addComponent(BtBuscarDialogDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarDoctorLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(cargarP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cargarP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cargarDoctorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton4)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -874,6 +900,14 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         cargarPaciente.setVisible(true);
         cargarPaciente.setLocationRelativeTo(buscar);
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       cargarTablaP();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        cargarTablaE();
+    }//GEN-LAST:event_jButton4ActionPerformed
     public void ElimarmedicamentosJlist() {
         if (Listamedicamentos.size() != 0) {
             int indice = JListMedicamentos.getSelectedIndex();
@@ -988,6 +1022,8 @@ public class agregar_tratamiento extends javax.swing.JFrame {
     }
 
     public void Limpiar() {
+        DefaultListModel modelo = new DefaultListModel();
+        JListMedicamentos.setModel(modelo);
         text_budcar_doctor.setText("");
         text_codigo_paciente.setText("");
         text_diagnositico.setText("");
@@ -1125,8 +1161,10 @@ public class agregar_tratamiento extends javax.swing.JFrame {
     private javax.swing.JTextField especialidad_doctor;
     private com.toedter.calendar.JDateChooser fecha_final_medicamento;
     private com.toedter.calendar.JDateChooser fecha_inicio_medicamento;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
