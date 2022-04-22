@@ -150,8 +150,11 @@ public class crud_administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtRegresarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarAdministradorActionPerformed
-        this.dispose();
-        new inicio_frame().setVisible(true);
+//        this.dispose();
+//        new inicio_frame().setVisible(true);
+          login_administrador mi_loginAdmin = new login_administrador();
+          mi_loginAdmin.setVisible(true);
+          dispose();
     }//GEN-LAST:event_BtRegresarAdministradorActionPerformed
 
     private void BtEliminarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarAdministradorActionPerformed
@@ -167,8 +170,10 @@ public class crud_administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_BtBuscarAdministradorActionPerformed
 
     private void BtIngresarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIngresarAdministradorActionPerformed
-        this.dispose();
-        new Agregar_administrador(false).setVisible(true);
+        
+        Agregar_administrador mi_agregarAdmin = new Agregar_administrador();
+        mi_agregarAdmin.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BtIngresarAdministradorActionPerformed
 
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
