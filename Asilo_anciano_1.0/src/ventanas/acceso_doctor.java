@@ -12,7 +12,8 @@ package ventanas;
 public class acceso_doctor extends javax.swing.JFrame {
 
     public static int botonAtrasDoctor;
-
+    public static int botonatrasFicha;
+    
     public acceso_doctor() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -150,6 +151,7 @@ public class acceso_doctor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         HistorialMedico hm = new HistorialMedico();
         hm.setVisible(true);
+        botonatrasFicha = 1;
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
