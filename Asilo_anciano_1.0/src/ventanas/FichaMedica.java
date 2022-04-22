@@ -61,13 +61,12 @@ public class FichaMedica extends javax.swing.JFrame {
     ArrayList<alergias> ListaalergiasRESP = new ArrayList<>();
     boolean modificar = false, guardar = false;
 
-    
     public static int BotonEnfermedayAlergia;
-    
+
     public FichaMedica() {
         initComponents();
-        BotonEnfermedayAlergia =1;
-        
+        BotonEnfermedayAlergia = 1;
+
         this.setLocationRelativeTo(null);
         guardar = true;
         btGuardarCambios.setVisible(false);
@@ -85,8 +84,8 @@ public class FichaMedica extends javax.swing.JFrame {
 
     public FichaMedica(int codigo_paciente) {
         initComponents();
-        BotonEnfermedayAlergia=1;
-        
+        BotonEnfermedayAlergia = 1;
+
         this.setLocationRelativeTo(null);
         guardar = false;
         LLenarComboBoxAlergias();
@@ -929,6 +928,7 @@ public class FichaMedica extends javax.swing.JFrame {
 
     private void CargarEnfermedadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarEnfermedadesActionPerformed
         CargarEnfermedadesJlist();
+//        comprobarlista();
 //        verlistaemfer();
     }//GEN-LAST:event_CargarEnfermedadesActionPerformed
 
@@ -1023,8 +1023,8 @@ public class FichaMedica extends javax.swing.JFrame {
 
         new crud_FichaMedica().setVisible(true);
         this.dispose();
-        System.out.println(guardar);
-        comprobarlista();
+//        System.out.println(guardar);
+//        comprobarlista();
         if (guardar == false) {
             GuardarMODIsinGuardar();
         }
@@ -1037,6 +1037,7 @@ public class FichaMedica extends javax.swing.JFrame {
         int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) {
             modificar_ficha();
+//            comprobarlista();
             guardar = true;
             off.setSelected(true);
             JOptionPane.showMessageDialog(null, "El registro de la ficha se modificó éxitosamente");
@@ -1061,7 +1062,10 @@ public class FichaMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarAlergiasActionPerformed
 
     private void onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onActionPerformed
+//        cargarlistaAlergiasmodificar();
+//        cargarlistaEnfermedadesmodificar();
         habilitarModificar();
+        comprobarlista();
     }//GEN-LAST:event_onActionPerformed
 
     private void offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offActionPerformed
@@ -1099,18 +1103,32 @@ public class FichaMedica extends javax.swing.JFrame {
         desabilitarParaVer();
 
     }
+    int contlist = 1;
 
     public void comprobarlista() {
+//        System.out.println("ENFERMEDADES");
+//        for (int i = 0; i < Listaenfermedades.size(); i++) {
+//
+//            System.out.println(Listaenfermedades.get(i).getNombre_enfermedad());
+//        }
+//
+//        System.out.println("/n ALERGIAS");
+//        for (int i = 0; i < Listaalergias.size(); i++) {
+//
+//            System.out.println(Listaalergias.get(i).getNombre_alergia());
+//        }
+        int resp = contlist++;
+        System.out.println("==============" + resp + "===================");
         System.out.println("ENFERMEDADES");
-        for (int i = 0; i < Listaenfermedades.size(); i++) {
+        for (int i = 0; i < ListaenfermedadesRESP.size(); i++) {
 
-            System.out.println(Listaenfermedades.get(i).getCodigo_enfermedad());
+            System.out.println(ListaenfermedadesRESP.get(i).getNombre_enfermedad());
         }
 
         System.out.println("/n ALERGIAS");
-        for (int i = 0; i < Listaalergias.size(); i++) {
+        for (int i = 0; i < ListaalergiasRESP.size(); i++) {
 
-            System.out.println(Listaalergias.get(i).getNombre_alergia());
+            System.out.println(ListaalergiasRESP.get(i).getNombre_alergia());
         }
     }
 
@@ -1144,10 +1162,11 @@ public class FichaMedica extends javax.swing.JFrame {
 
     public void GuardarEnferAlergMODI() {
         for (int i = 0; i < Listaenfermedades.size(); i++) {
-//                System.out.println("Enfermedar=" + Listaenfermedades.get(i).getNombre_enfermedad());
+                System.out.println("Enfermedar=" + Listaenfermedades.get(i).getNombre_enfermedad());
             inserfichaenfermedad.setCodigo_ficha(Integer.parseInt(txtcodigoficha.getText()));
             inserfichaenfermedad.setCodigo_enfermedad(Listaenfermedades.get(i).getCodigo_enfermedad());
             inserfichaenfermedad.InsertarFichaEnfermedad();
+
         }
         for (int i = 0; i < Listaalergias.size(); i++) {
             inserfichaalergia.setCodigo_ficha(Integer.parseInt(txtcodigoficha.getText()));
@@ -1338,6 +1357,13 @@ public class FichaMedica extends javax.swing.JFrame {
                         i = Listaenfermedades.size();
                     }
                 }
+                for (int i = 0; i < ListaenfermedadesRESP.size(); i++) {
+                    if (enferAux.equalsIgnoreCase(ListaenfermedadesRESP.get(i).getNombre_enfermedad())) {
+//                        System.out.println(enferAux + " = " + Listaenfermedades.get(i).getNombre_enfermedad());
+                        rep = true;
+                        i = ListaenfermedadesRESP.size();
+                    }
+                }
             } else {
                 rep = true;
                 Listaenfermedades.add(mi_enfermedad);
@@ -1347,7 +1373,6 @@ public class FichaMedica extends javax.swing.JFrame {
             }
 
             for (int i = 0; i < Listaenfermedades.size(); i++) {
-
                 modeloListEnfermedad.addElement(Listaenfermedades.get(i).getNombre_enfermedad());
                 comboenfermedadficha.setSelectedIndex(0);
             }
@@ -1397,6 +1422,13 @@ public class FichaMedica extends javax.swing.JFrame {
                     if (alerAux.equalsIgnoreCase(Listaalergias.get(i).getNombre_alergia())) {
                         rep = true;
                         i = Listaalergias.size();
+                    }
+                }
+                for (int i = 0; i < ListaalergiasRESP.size(); i++) {
+                    rep = false;
+                    if (alerAux.equalsIgnoreCase(ListaalergiasRESP.get(i).getNombre_alergia())) {
+                        rep = true;
+                        i = ListaalergiasRESP.size();
                     }
                 }
             } else {
@@ -1527,7 +1559,6 @@ public class FichaMedica extends javax.swing.JFrame {
 //        }
 //    }
 ////////////////////////////////////////////////////////////////////
-
     public void buscar_enfermera() {
         String cedula = text_buscare.getText();
         var enfermerafiltro = new ArrayList<enfermera>();
@@ -1710,7 +1741,6 @@ public class FichaMedica extends javax.swing.JFrame {
         return validado;
     }
 
-    
     /**
      * @param args the command line arguments
      */
