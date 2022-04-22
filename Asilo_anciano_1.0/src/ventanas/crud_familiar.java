@@ -72,7 +72,7 @@ public class crud_familiar extends javax.swing.JFrame {
         });
         getContentPane().add(BtIngresarFamiliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 40, 40));
 
-        text_buscar.setText("Buscar...");
+        text_buscar.setText("Ingrese el número de cédula a consultar...");
         text_buscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_buscarMousePressed(evt);
@@ -83,7 +83,7 @@ public class crud_familiar extends javax.swing.JFrame {
                 text_buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 250, 40));
+        getContentPane().add(text_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 310, 40));
 
         BtBuscarFamiliar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
         BtBuscarFamiliar.setToolTipText("BUSCAR FAMILIAR");
