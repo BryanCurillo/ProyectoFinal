@@ -117,7 +117,7 @@ public class Insert_enfermera extends enfermera {
         ResultSet ru = cone.selectConsulta(sqls);
         try {
             while (ru.next()) {
-                codigo = ru.getInt("admin_codigo_usuario");
+                codigo = ru.getInt("enfer_codigo_usuario");//admin_codigo_usuario
             }
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
