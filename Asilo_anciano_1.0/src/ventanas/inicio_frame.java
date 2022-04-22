@@ -224,6 +224,9 @@ public class inicio_frame extends javax.swing.JFrame {
         BotonAdmin = 1;
         Agregar_administrador mi_admin = new  Agregar_administrador();
         mi_admin.setVisible(true);
+        
+        //BOTON MODIFICAR VISIBLE
+        mi_admin.DesaparecerBotonModificar();
         dispose();
     }//GEN-LAST:event_Boton_AgregarAdminActionPerformed
 
