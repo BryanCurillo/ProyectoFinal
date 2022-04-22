@@ -652,7 +652,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<doctor> com = inser_doctor.ListaDoctor();
         com.stream().forEach(p -> {
-            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli(),p.getEspecialidad()};
             tb.addRow(cami);
         });
     }
