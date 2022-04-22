@@ -550,7 +550,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         });
 
         mi_historial.setObservaciones_historial(text_observaciones.getText());
-//        Limpiar();
         if (mi_historial.Insertar_historial()) {
             System.out.println("Conexion Exitosa");
 
@@ -567,8 +566,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         txthtelefono.setText("");
         txtapellidos.setText("");
         txthdireccion.setText("");
-//        text_area_alergias.setText("");
-//        text_area_enfermedad.setText("");
         DefaultListModel modelo = new DefaultListModel();
         JListAlergias.setModel(modelo);
         JListEnfermedades.setModel(modelo);
@@ -628,8 +625,6 @@ public class HistorialMedico extends javax.swing.JFrame {
     }
     private void text_buscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_buscarMousePressed
 
-//        text_buscar.setText("");
-//        text_buscar.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_buscarMousePressed
 
     private void text_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_buscarActionPerformed
@@ -732,7 +727,6 @@ public class HistorialMedico extends javax.swing.JFrame {
             String cod;
             cod = TablaPaciente.getValueAt(seleccion, 0).toString();
             text_codigo_paciente.setText(cod);
-//            System.out.println(cod);
             cargarPaciente.dispose();
         }
     }
