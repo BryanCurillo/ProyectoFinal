@@ -111,5 +111,7 @@ public class insert_ficha_medica extends claseFichaMedica {
         System.out.println("repetido=" + codigo);
         return validar;
     }
+    
+
 
 }
