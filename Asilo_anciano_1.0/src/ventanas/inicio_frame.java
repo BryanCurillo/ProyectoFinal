@@ -1,13 +1,10 @@
 
 package ventanas;
 
-/**
- *
- * @author Carlos
- */
+
 public class inicio_frame extends javax.swing.JFrame {
 
-   
+   public static int BotonAdmin;
     
     public inicio_frame() {
         initComponents();
@@ -65,7 +62,7 @@ public class inicio_frame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("DOCTOR");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 510, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 510, -1, -1));
 
         boton_administrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/admin (1).png"))); // NOI18N
         boton_administrador.setToolTipText("ACCESO ADMINISTRADOR");
@@ -76,11 +73,11 @@ public class inicio_frame extends javax.swing.JFrame {
                 boton_administradorActionPerformed(evt);
             }
         });
-        jPanel1.add(boton_administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        jPanel1.add(boton_administrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel5.setText("ADMINISTRADOR");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 290, -1, -1));
 
         Boton_doctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor (2).png"))); // NOI18N
         Boton_doctor.setToolTipText("ACCESO DOCTOR");
@@ -91,7 +88,7 @@ public class inicio_frame extends javax.swing.JFrame {
                 Boton_doctorActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_doctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
+        jPanel1.add(Boton_doctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, -1, -1));
 
         boton_recepcionista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recepcionista (1).png"))); // NOI18N
         boton_recepcionista.setToolTipText("ACCESO RECEPCIONISTA");
@@ -102,11 +99,11 @@ public class inicio_frame extends javax.swing.JFrame {
                 boton_recepcionistaActionPerformed(evt);
             }
         });
-        jPanel1.add(boton_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, -1, -1));
+        jPanel1.add(boton_recepcionista, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 150, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel6.setText("RECEPCIONISTA");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 280, -1, -1));
 
         Boton_familiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/familia (1).png"))); // NOI18N
         Boton_familiar.setToolTipText("ACCESO FAMILIAR");
@@ -117,11 +114,11 @@ public class inicio_frame extends javax.swing.JFrame {
                 Boton_familiarActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 160, -1, -1));
+        jPanel1.add(Boton_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel7.setText("FAMILIAR");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 290, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, -1, -1));
 
         boton_enfermera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enfermera (1).png"))); // NOI18N
         boton_enfermera.setToolTipText("ACCESO ENFERMERA");
@@ -132,11 +129,11 @@ public class inicio_frame extends javax.swing.JFrame {
                 boton_enfermeraActionPerformed(evt);
             }
         });
-        jPanel1.add(boton_enfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
+        jPanel1.add(boton_enfermera, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel8.setText("ENFERMERA");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 500, -1, -1));
 
         boton_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/apagar.png"))); // NOI18N
         boton_salir.setToolTipText("SALIR DEL SISTEMA");
@@ -147,14 +144,14 @@ public class inicio_frame extends javax.swing.JFrame {
                 boton_salirActionPerformed(evt);
             }
         });
-        jPanel1.add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 370, -1, -1));
+        jPanel1.add(boton_salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 360, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel9.setText("SALIR ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 500, -1, -1));
 
         Boton_AgregarAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/administrador.png"))); // NOI18N
-        Boton_AgregarAdmin.setToolTipText("Agregar Administrador ");
+        Boton_AgregarAdmin.setToolTipText("AGREGAR ADMINISTRADOR");
         Boton_AgregarAdmin.setBorder(null);
         Boton_AgregarAdmin.setOpaque(false);
         Boton_AgregarAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -162,21 +159,24 @@ public class inicio_frame extends javax.swing.JFrame {
                 Boton_AgregarAdminActionPerformed(evt);
             }
         });
-        jPanel1.add(Boton_AgregarAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, -1, -1));
+        jPanel1.add(Boton_AgregarAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Leelawadee UI", 1, 24)); // NOI18N
         jLabel10.setText("AGREGAR ADMINISTRADOR");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1093, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1065, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -224,8 +224,8 @@ public class inicio_frame extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_salirActionPerformed
 
     private void Boton_AgregarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_AgregarAdminActionPerformed
-        
-        Agregar_administrador mi_admin = new  Agregar_administrador(false);
+        BotonAdmin = 1;
+        Agregar_administrador mi_admin = new  Agregar_administrador();
         mi_admin.setVisible(true);
         dispose();
     }//GEN-LAST:event_Boton_AgregarAdminActionPerformed
