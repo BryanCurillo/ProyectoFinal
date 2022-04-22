@@ -20,8 +20,8 @@ public class Insert_tratamiento extends Tratamiento {
 
     public boolean Insertar_tratamiento() {
         String sql = "INSERT INTO tratamiento(\n"
-                + "	trat_codigo, trat_diagnostico, trat_codigo_medicamento, trat_dosis ,trat_fecha_inicio, trat_fecha_fin, trat_codigo_paciente )\n"
-                + "	VALUES ('" + getCodigo_tratamiento() + "', '" + getDiagnostico() + "','" + getCodigo_medicamento() + "','" + getDosis() + "', '" + getFecha_inicio_trata() + "', '" + getFecha_fin_trata() + "', '" + getCodigo_paciente() + "');";
+                + "	trat_diagnostico, trat_dosis ,trat_fecha_inicio, trat_fecha_fin, trat_codigo_paciente)\n"
+                + "	VALUES ('" + getDiagnostico() + "','" + getDosis() + "', '" + getFecha_inicio_trata() + "', '" + getFecha_fin_trata() + "', '" + getCodigo_paciente() + "');";
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
@@ -35,7 +35,6 @@ public class Insert_tratamiento extends Tratamiento {
                 Tratamiento mi_trata = new Tratamiento();
                 mi_trata.setCodigo_tratamiento(trata.getInt("trat_codigo"));
                 mi_trata.setDiagnostico(trata.getString("trat_diagnostico"));
-                mi_trata.setCodigo_medicamento(trata.getInt("trat_codigo_medicamento"));
                 mi_trata.setDosis(trata.getString("trat_dosis"));
                 mi_trata.setFecha_inicio_trata(trata.getString("trat_fecha_inicio"));
                 mi_trata.setFecha_fin_trata(trata.getString("trat_fecha_fin"));
