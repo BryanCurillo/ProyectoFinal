@@ -1,4 +1,3 @@
-
 package ventanas;
 //
 
@@ -8,6 +7,7 @@ import clases.claseFichaMedica;
 import clases.enfermedades;
 import clases.paciente;
 import clases.persona;
+import clases.medicamentos;
 import clases.validaciones;
 import conexion_bada.Conexion;
 import conexion_bada.Insert;
@@ -17,6 +17,7 @@ import conexion_bada.Insert_tratamiento;
 import conexion_bada.insert_ficha_alergia;
 import conexion_bada.insert_ficha_enfermedad;
 import conexion_bada.insert_ficha_medica;
+import conexion_bada.insert_tratamiento_medicamento;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,21 +37,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class HistorialMedico extends javax.swing.JFrame {
-
+    
     Insert inser = new Insert();
     Insert_alergias mi_alergia = new Insert_alergias();
     insert_ficha_enfermedad mi_enfermedad = new insert_ficha_enfermedad();
     Insert_tratamiento mi_trata = new Insert_tratamiento();
     Insert_historial mi_historial = new Insert_historial();
     insert_ficha_medica mi_fic = new insert_ficha_medica();
-
+    
     insert_ficha_alergia inserfichaalergia = new insert_ficha_alergia();
     insert_ficha_enfermedad inserfichaenfermedad = new insert_ficha_enfermedad();
-
+    insert_tratamiento_medicamento insert_tratamedi = new insert_tratamiento_medicamento();
+    
     Conexion mi_cone = new Conexion();
     DefaultListModel modeloListAlergia;
     DefaultListModel modeloListEnfermedad;
-
+    
     public HistorialMedico() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -299,13 +301,10 @@ public class HistorialMedico extends javax.swing.JFrame {
 
         tabla_tratamiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Codigo Tratamiento", "Diagnostico", "Medicamento", "Dosis", "Fecha de Inicio", "Fecha de Finalizacion", "Codigo paciente"
+                "Codigo Tratamiento", "Diagnostico", "Medicamento", "Instrucciones", "Fecha de Inicio", "Fecha de Finalizacion", "Codigo paciente"
             }
         ));
         jScrollPane1.setViewportView(tabla_tratamiento);
@@ -495,11 +494,11 @@ public class HistorialMedico extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
         );
 
         pack();
@@ -521,79 +520,72 @@ public class HistorialMedico extends javax.swing.JFrame {
     public boolean validaciones() {
         boolean validado = true;
         validaciones misvalidaciones = new validaciones();
-
+        
         if (txtceduhistoria.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Seleccione un paciente");
         }
-
+        
         if (txtnombres.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese El primer nombre del paciente");
         }
-
+        
         if (txtapellidos.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese el primer apellido del paciente");
         }
-
+        
         if (txthdireccion.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la direccion del paciente");
         }
-//        if (text_area_alergias.getText().isEmpty()) {
-//            validado = false;
-//            JOptionPane.showMessageDialog(this, "Ingrese las alergias");
-//        }
-//        if (text_area_enfermedad.getText().isEmpty()) {
-//            validado = false;
-//            JOptionPane.showMessageDialog(this, "Ingrese las enfermedades");
-//        }
+
         if (text_observaciones.getText().isEmpty()) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese las observaciones");
         }
-
+        
         if (datenacimiento.getDate() == null) {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento");
         }
-
+        
         return validado;
     }
-
+    
     public void cargarcod() {
         text_codigo_historial.setEnabled(false);
         text_codigo_historial.setText(String.valueOf(mi_historial.cargarcodigo()));
     }
-
+    
     public void guardar_historial() {
         List<Tratamiento> com = mi_trata.lista_tratamiento();
         List<claseFichaMedica> ficha = mi_fic.ListaFichaMedica();
-
+        
         mi_historial.setCodigo_historial(Integer.parseInt(text_codigo_historial.getText()));
         mi_historial.setCodigo_paciente(Integer.parseInt(text_codigo_paciente.getText()));
         com.stream().forEach(p -> {
             int codigo_tratameinto = p.getCodigo_tratamiento();
             mi_historial.setCodigo_tratamiento(codigo_tratameinto);
         });
-
+        
         ficha.stream().forEach(g -> {
             int codigo_ficha = g.getCodigo_ficha_medica();
             mi_historial.setCodigo_ficha(codigo_ficha);
         });
-
+        
         mi_historial.setObservaciones_historial(text_observaciones.getText());
         Limpiar();
         if (mi_historial.Insertar_historial()) {
             System.out.println("Conexion Exitosa");
-
+            
         } else {
             System.out.println("Conexion Erronea");
         }
-
+        
     }
-
+    
     public void Limpiar() {
         txtceduhistoria.setText("");
         text_codigo_paciente.setText("");
@@ -606,7 +598,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         DefaultListModel modelo = new DefaultListModel();
         JListAlergias.setModel(modelo);
         JListEnfermedades.setModel(modelo);
-
+        
         gruposexoh.clearSelection();
         datenacimiento.setCalendar(null);
         tabla_tratamiento.setModel(new DefaultTableModel());
@@ -625,7 +617,7 @@ public class HistorialMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_TablaPacienteMousePressed
 
     private void BtBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtBuscarPacienteActionPerformed
-
+        
         if (!text_buscar.getText().isEmpty()) {
             buscar_paciente();
         } else {
@@ -641,14 +633,14 @@ public class HistorialMedico extends javax.swing.JFrame {
             }
         });
         if (pacientefiltro.size() != 0) {
-
+            
             String matriz[][] = new String[pacientefiltro.size()][4];
             for (int j = 0; j < pacientefiltro.size(); j++) {
                 matriz[j][0] = String.valueOf(pacientefiltro.get(j).getCodigo());
                 matriz[j][1] = pacientefiltro.get(j).getCedula();
                 matriz[j][2] = pacientefiltro.get(j).getPri_nomb() + "  " + pacientefiltro.get(j).getSeg_nombre();
                 matriz[j][3] = pacientefiltro.get(j).getPrim_apell() + "  " + pacientefiltro.get(j).getSeg_apelli();;
-
+                
             }
             TablaPaciente.setModel(new javax.swing.table.DefaultTableModel(
                     matriz,
@@ -692,14 +684,18 @@ public class HistorialMedico extends javax.swing.JFrame {
         tb.setNumRows(0);
         List<paciente> com = mi_historial.ListaPacienteFicha();
         com.stream().forEach(p -> {
-            String[] cami = {String.valueOf(p.getCodigo()),p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
             tb.addRow(cami);
         });
     }
-
+    
     public void cargar_codigo_paci() {
-        int seleccion = TablaPaciente.getSelectedRow();
 
+        DefaultListModel modelo = new DefaultListModel();
+        JListAlergias.setModel(modelo);
+        JListEnfermedades.setModel(modelo);
+        int seleccion = TablaPaciente.getSelectedRow();
+        
         if (seleccion == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
@@ -708,9 +704,9 @@ public class HistorialMedico extends javax.swing.JFrame {
                 if (p.getCodigo() == codigo) {
                     text_codigo_paciente.setText(String.valueOf(p.getCodigo()));
                     txtceduhistoria.setText(p.getCedula());
-                    txtnombres.setText(p.getPri_nomb()+"  "+p.getSeg_nombre());
-                    txtapellidos.setText(p.getPrim_apell()+"  "+p.getSeg_apelli());
-
+                    txtnombres.setText(p.getPri_nomb() + "  " + p.getSeg_nombre());
+                    txtapellidos.setText(p.getPrim_apell() + "  " + p.getSeg_apelli());
+                    
                     txthdireccion.setText(p.getDireccion());
                     txthtelefono.setText(p.getTelefono());
                     
@@ -730,11 +726,11 @@ public class HistorialMedico extends javax.swing.JFrame {
                     datenacimiento.setDate(fecha);
                     modeloListEnfermedad = new DefaultListModel();
                     List<alergias> ale = mi_alergia.ListaAlergias();
-
+                    
                     modeloListEnfermedad = new DefaultListModel();
                     List<enfermedades> enfer = inserfichaenfermedad.ListaEnfermedades(mi_historial.obtenerCodFicha(p.getCodigo()));
                     enfer.stream().forEach(enfe -> {
-
+                        
                         JListEnfermedades.setModel(modeloListEnfermedad);
                         modeloListEnfermedad.addElement(enfe.getNombre_enfermedad());
                     });
@@ -749,12 +745,12 @@ public class HistorialMedico extends javax.swing.JFrame {
                     } catch (SQLException ex) {
                         Logger.getLogger(HistorialMedico.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    cargar_tabla_tratamiento();
+                    cargar_tabla_tratamiento(p.getCodigo());
                     
                     cargarPaciente.dispose();
                 }
             });
-
+            
             String cod;
             cod = TablaPaciente.getValueAt(seleccion, 0).toString();
             text_codigo_paciente.setText(cod);
@@ -762,18 +758,20 @@ public class HistorialMedico extends javax.swing.JFrame {
             cargarPaciente.dispose();
         }
     }
-
-    public void cargar_tabla_tratamiento() {
-
+    
+    public void cargar_tabla_tratamiento(int codpaci) {
+        
         DefaultTableModel tb = (DefaultTableModel) tabla_tratamiento.getModel();
         tb.setNumRows(0);
-        List<Tratamiento> com = mi_trata.lista_tratamiento();
+
+        String medicamentos = "";
+        List<Tratamiento> com = mi_trata.lista_tratamiento(codpaci);
         com.stream().forEach(p -> {
-            String[] trata = {String.valueOf(p.getCodigo_tratamiento()), p.getDiagnostico(), String.valueOf(p.getCodigo_medicamento()), p.getDosis(), p.getFecha_inicio_trata(), p.getFecha_fin_trata(), String.valueOf(p.getCodigo_paciente()), p.getObservaciones()};
+            String[] trata = {String.valueOf(p.getCodigo_tratamiento()), p.getDiagnostico(), insert_tratamedi.medicacion(p.getCodigo_tratamiento()), p.getDosis(), p.getFecha_inicio_trata(), p.getFecha_fin_trata(), String.valueOf(p.getCodigo_paciente()), p.getObservaciones()};
             tb.addRow(trata);
         });
     }
-
+    
     public void BloquearCampos() {
         
         text_codigo_paciente.setEditable(false);
@@ -783,9 +781,9 @@ public class HistorialMedico extends javax.swing.JFrame {
         txtapellidos.setEditable(false);
         txtnombres.setEditable(false);
         datenacimiento.setEnabled(false);
-
+        
     }
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -808,6 +806,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HistorialMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
