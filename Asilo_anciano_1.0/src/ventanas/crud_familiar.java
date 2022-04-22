@@ -195,19 +195,22 @@ public class crud_familiar extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
         } else {
-            String cod;
-            String cedula;
-            cedula = TablaFamiliar.getValueAt(fila, 1).toString();
-            cod = TablaFamiliar.getValueAt(fila, 0).toString();
-            int codUsu=inser.cargarcodigoUSER(cedula);
-            try {
-                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM familiar where fam_codigo='" + cod + "'");
-                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
-                mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + codUsu + "'");
-                JOptionPane.showMessageDialog(null,"El registro se elimino exitosamente");
-                cargarTabla();
-            } catch (Exception e) {
-                System.out.println(e.toString());
+            int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                String cod;
+                String cedula;
+                cedula = TablaFamiliar.getValueAt(fila, 1).toString();
+                cod = TablaFamiliar.getValueAt(fila, 0).toString();
+                int codUsu = inser.cargarcodigoUSER(cedula);
+                try {
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM familiar where fam_codigo='" + cod + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM persona where per_cedula='" + cedula + "'");
+                    mi_cone.InsertUpdateDeleteAcciones("DELETE FROM usuario where us_codigo='" + codUsu + "'");
+                    JOptionPane.showMessageDialog(null, "El registro se elimino exitosamente");
+                    cargarTabla();
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                }
             }
         }
     }
