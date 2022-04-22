@@ -69,7 +69,7 @@ public class insert_tratamiento_medicamento extends Tratamiento_MedicamentoClase
     }
 
     public String medicacion(int cod_trata) {
-        String medicacion="";
+        String medicacion = "";
         String sqls = "SELECT medi_codigo,medi_nombre_ FROM medicamentos medi,tratamiento_medicamento tm \n"
                 + "where tm.tm_codigo_medicamento=medi.medi_codigo and tm_codigo_tratamiento=" + cod_trata + ";";
         ResultSet rs = cone.selectConsulta(sqls);
@@ -80,7 +80,12 @@ public class insert_tratamiento_medicamento extends Tratamiento_MedicamentoClase
                 medicamentos mimedicamento = new medicamentos();
                 mimedicamento.setCodigo_medicamento(rs.getInt("medi_codigo"));
                 mimedicamento.setNombre_medicamento(rs.getString("medi_nombre_"));
-                medicacion=medicacion+", "+mimedicamento.getNombre_medicamento();
+                if (medicacion.isEmpty()) {
+                    medicacion = mimedicamento.getNombre_medicamento();
+                } else {
+                    medicacion = medicacion + ", " + mimedicamento.getNombre_medicamento();
+                }
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
