@@ -244,8 +244,12 @@ public class listadoDeCitasDoctor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        FiltrarDatosChequeoTabla();
+        if(txtCedula.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese una cedula");
+        }else{
+            FiltrarDatosChequeoTabla();
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ChequeoRealizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChequeoRealizadoActionPerformed
