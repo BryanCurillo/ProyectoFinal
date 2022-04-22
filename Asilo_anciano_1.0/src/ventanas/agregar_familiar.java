@@ -57,7 +57,7 @@ public class agregar_familiar extends javax.swing.JFrame {
     }
 
     public void llenar_familiar(String cedula) {
-
+        text_cedula_familiar.setEnabled(false);
         List<familiar> com = insertFamiliar.ListaFamiliar();
         com.stream().forEach(p -> {
             if (cedula.equalsIgnoreCase(p.getCedula())) {
@@ -847,7 +847,10 @@ public class agregar_familiar extends javax.swing.JFrame {
     }//GEN-LAST:event_text_cedula_familiarActionPerformed
 
     private void text_cedula_familiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_cedula_familiarMousePressed
-        text_cedula_familiar.setText("");
+        if (text_cedula_familiar.getText().equalsIgnoreCase("Ingrese la cedula")) {
+            text_cedula_familiar.setText("");
+        }
+        
         text_cedula_familiar.setForeground(Color.BLACK);
     }//GEN-LAST:event_text_cedula_familiarMousePressed
 
