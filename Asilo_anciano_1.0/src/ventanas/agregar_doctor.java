@@ -26,7 +26,7 @@ import java.util.Date;
 
 public class agregar_doctor extends javax.swing.JFrame {
 
-    public static int botonMediDoc;
+    
 
     DateFormat df = DateFormat.getDateInstance();
     ArrayList<doctor> lista_doctor = new ArrayList();
@@ -41,7 +41,7 @@ public class agregar_doctor extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         LLenarComboBoxEspecialidad();
         cargarcod();
-        botonMediDoc = 1;
+        
     }
 
     public agregar_doctor(String cedula) {
@@ -51,7 +51,7 @@ public class agregar_doctor extends javax.swing.JFrame {
         LLenarComboBoxEspecialidad();
         String SQL_SELECT = "SELECT * FROM doctor WHERE cedula = " + cedula + ";";
         llenar_doctor(cedula);
-        botonMediDoc = 1;
+        //botonMediDoc = 1;
     }
 
     public void llenar_doctor(String cedula) {
@@ -160,7 +160,6 @@ public class agregar_doctor extends javax.swing.JFrame {
         txtnuevo_usuario = new javax.swing.JTextField();
         txtnueva_contrasena = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        BtAgregarEspecialidad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -399,16 +398,6 @@ public class agregar_doctor extends javax.swing.JFrame {
             }
         });
 
-        BtAgregarEspecialidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/doctor (3).png"))); // NOI18N
-        BtAgregarEspecialidad.setToolTipText("AGREGAR ESPECIALIDADES");
-        BtAgregarEspecialidad.setBorder(null);
-        BtAgregarEspecialidad.setOpaque(false);
-        BtAgregarEspecialidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtAgregarEspecialidadActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -457,10 +446,7 @@ public class agregar_doctor extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(Femenino_doctor))
                                         .addComponent(combo_sangre_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(combo_especialidad_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(BtAgregarEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(combo_especialidad_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,9 +554,9 @@ public class agregar_doctor extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(Masculino_doctor))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Masculino_doctor, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
@@ -579,8 +565,7 @@ public class agregar_doctor extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(text_celular_doctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(BtAgregarEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(56, 56, 56)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -733,13 +718,6 @@ public class agregar_doctor extends javax.swing.JFrame {
         txtnueva_contrasena.setText("");
         txtnueva_contrasena.setForeground(Color.BLACK);
     }//GEN-LAST:event_txtnueva_contrasenaMousePressed
-
-    private void BtAgregarEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtAgregarEspecialidadActionPerformed
-        // TODO add your handling code here:
-        crud_especialidad espec = new crud_especialidad();
-        espec.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_BtAgregarEspecialidadActionPerformed
     public void modificar_doctor() {
         if (validaciones()) {
             String genero = "";
@@ -1026,7 +1004,6 @@ public class agregar_doctor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtAgregarEspecialidad;
     private com.toedter.calendar.JDateChooser Fecha_Nacimiento_doctor;
     private javax.swing.JRadioButton Femenino_doctor;
     private javax.swing.JButton Guardar_doctor;
