@@ -19,6 +19,7 @@ import conexion_bada.insert_ficha_enfermedad;
 import conexion_bada.insert_ficha_medica;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -689,7 +690,7 @@ public class HistorialMedico extends javax.swing.JFrame {
     public void cargarTablaP() {
         DefaultTableModel tb = (DefaultTableModel) TablaPaciente.getModel();
         tb.setNumRows(0);
-        List<paciente> com = inser.ListaPaciente();
+        List<paciente> com = mi_historial.ListaPacienteFicha();
         com.stream().forEach(p -> {
             String[] cami = {String.valueOf(p.getCodigo()),p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
             tb.addRow(cami);
@@ -712,6 +713,7 @@ public class HistorialMedico extends javax.swing.JFrame {
 
                     txthdireccion.setText(p.getDireccion());
                     txthtelefono.setText(p.getTelefono());
+                    
                     if (p.getGenero().equalsIgnoreCase("hombre")) {
                         hmasculino.setSelected(true);
                     }
@@ -728,13 +730,7 @@ public class HistorialMedico extends javax.swing.JFrame {
                     datenacimiento.setDate(fecha);
                     modeloListEnfermedad = new DefaultListModel();
                     List<alergias> ale = mi_alergia.ListaAlergias();
-//                    ale.stream().forEach(alergia -> {
-//                        text_area_alergias.setText(alergia.getNombre_alergia());
-//                    });
-//                    List<enfermedades> enfer = mi_enfermedad.ListaEnfermedades(ICONIFIED);
-//                    enfer.stream().forEach(enfermedad -> {
-//                        text_area_enfermedad.setText(enfermedad.getNombre_enfermedad());
-//                    });
+
                     modeloListEnfermedad = new DefaultListModel();
                     List<enfermedades> enfer = inserfichaenfermedad.ListaEnfermedades(mi_historial.obtenerCodFicha(p.getCodigo()));
                     enfer.stream().forEach(enfe -> {
@@ -748,8 +744,13 @@ public class HistorialMedico extends javax.swing.JFrame {
                         JListAlergias.setModel(modeloListAlergia);
                         modeloListAlergia.addElement(alergia.getNombre_alergia());
                     });
+                    try {
+                        text_observaciones.setText(mi_historial.obtenerObservaciones(mi_historial.obtenerCodFicha(p.getCodigo())));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(HistorialMedico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     cargar_tabla_tratamiento();
-
+                    
                     cargarPaciente.dispose();
                 }
             });
