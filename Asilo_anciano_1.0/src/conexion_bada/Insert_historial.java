@@ -80,6 +80,25 @@ public class Insert_historial extends historial_medico {
         return codigo;
     }
 
+    public boolean comprobarHistorial(int codpaci) {
+        int cant = 0;
+        boolean guardar=false;
+        String sqls = "select count(*) from historial where his_codigo_paciente=" + codpaci + ";";
+        ResultSet ru = cone.selectConsulta(sqls);
+        try {
+            while (ru.next()) {
+                cant = ru.getInt("count");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (cant==0) {
+            guardar=true;
+        }
+        return guardar;
+    }
+
     public String obtenerObservaciones(int codigo) throws SQLException {
 
         String observacion = "";
