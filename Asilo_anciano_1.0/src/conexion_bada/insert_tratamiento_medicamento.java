@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import clases.FichaAlergia;
 import clases.Tratamiento_MedicamentoClase;
 import clases.alergias;
+import clases.enfermedades;
+import clases.medicamentos;
 //import clases.enfermera;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,24 +67,25 @@ public class insert_tratamiento_medicamento extends Tratamiento_MedicamentoClase
         }
         return codigo;
     }
-//
-//    public List<alergias> Listaalergias(int cod_ficha) {
-//        String sqls = "SELECT aler_nombre_,aler_codigo FROM alergias,ficha_alergia where fa_codigo_alergia=aler_codigo and fa_codigo_ficha=" + cod_ficha + ";";
-//        ResultSet rs = cone.selectConsulta(sqls);
-//        List<alergias> aler = new ArrayList<>();
-//        try {
-//            while (rs.next()) {
-//                alergias mialergia = new alergias();
-//                mialergia.setCodigo_alergia(rs.getInt("aler_codigo"));
-//                mialergia.setNombre_alergia(rs.getString("aler_nombre_"));
-//
-//                aler.add(mialergia);
-//            }
-////            rs.close();
-//            return aler;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
-//            return null;
-//        }
-//    }
+
+    public String medicacion(int cod_trata) {
+        String medicacion="";
+        String sqls = "SELECT medi_codigo,medi_nombre_ FROM medicamentos medi,tratamiento_medicamento tm \n"
+                + "where tm.tm_codigo_medicamento=medi.medi_codigo and tm_codigo_tratamiento=" + cod_trata + ";";
+        ResultSet rs = cone.selectConsulta(sqls);
+//        List<medicamentos> medicamentos = new ArrayList<>();
+        try {
+            while (rs.next()) {
+//                enfermedades mimedicamento = new enfermedades();
+                medicamentos mimedicamento = new medicamentos();
+                mimedicamento.setCodigo_medicamento(rs.getInt("medi_codigo"));
+                mimedicamento.setNombre_medicamento(rs.getString("medi_nombre_"));
+                medicacion=medicacion+", "+mimedicamento.getNombre_medicamento();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Insert.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return medicacion;
+    }
+
 }
