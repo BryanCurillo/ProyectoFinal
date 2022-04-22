@@ -248,6 +248,7 @@ public class crud_enfermera extends javax.swing.JFrame {
             inser.ListaEnfermera().forEach((e) -> {
                 if (e.getCedula().equals(cedula)) {
                     new agregar_enfermera(cedula).setVisible(true);
+                    dispose();
                     text_buscar.setText("");
 
                 }
