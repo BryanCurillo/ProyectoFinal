@@ -840,7 +840,7 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
 //        
         limpiar();
         JOptionPane.showMessageDialog(null,"El registro se modifico correctamente");
-        this.dispose();
+        //this.dispose();
     }
 
     public void cargarcod() {
