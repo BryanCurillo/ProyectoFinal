@@ -24,8 +24,8 @@ public class insert_ficha_enfermedad extends FichaEnfermedad {
 
     public boolean InsertarFichaEnfermedad() {
         String sql = "INSERT INTO ficha_enfermedad(fe_codigo_enfermedad,fe_codigo_ficha)\n"
-                + "VALUES (" + getCodigo_enfermedad() + "," + getCodigo_ficha()+ ");";
-        System.out.println("INSERT="+getCodigo_enfermedad());
+                + "VALUES (" + getCodigo_enfermedad() + "," + getCodigo_ficha() + ");";
+        System.out.println("INSERT=" + getCodigo_enfermedad());
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
@@ -65,8 +65,8 @@ public class insert_ficha_enfermedad extends FichaEnfermedad {
         }
         return codigo;
     }
-    
-        public List<enfermedades> ListaEnfermedades(int cod_ficha) {
+
+    public List<enfermedades> ListaEnfermedades(int cod_ficha) {
         String sqls = "SELECT enfermedad_nombre_,enfermedad_codigo FROM enfermedad,ficha_enfermedad where fe_codigo_enfermedad=enfermedad_codigo and fe_codigo_ficha=" + cod_ficha + ";";
         ResultSet rs = cone.selectConsulta(sqls);
         List<enfermedades> enfermedad = new ArrayList<>();
