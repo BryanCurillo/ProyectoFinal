@@ -45,6 +45,7 @@ public class agregar_familiar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cargarcod();
         txt_codPaci.setEnabled(false);
+        boton_modificar.setVisible(false);
     }
 
     public agregar_familiar(String cedula) {
@@ -149,7 +150,7 @@ public class agregar_familiar extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         combo_sangre_familiar = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        boton_modificar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
@@ -438,14 +439,14 @@ public class agregar_familiar extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Parentesco Familiar:");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
-        jButton1.setToolTipText("MODIFICAR");
-        jButton1.setBorder(null);
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        boton_modificar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        boton_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
+        boton_modificar.setToolTipText("MODIFICAR");
+        boton_modificar.setBorder(null);
+        boton_modificar.setOpaque(false);
+        boton_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                boton_modificarActionPerformed(evt);
             }
         });
 
@@ -568,7 +569,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                         .addGap(243, 243, 243)
                         .addComponent(GuardarFamiliar)
                         .addGap(56, 56, 56)
-                        .addComponent(jButton1)
+                        .addComponent(boton_modificar)
                         .addGap(61, 61, 61)
                         .addComponent(RegresarFamiliar)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -714,7 +715,7 @@ public class agregar_familiar extends javax.swing.JFrame {
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(boton_modificar, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(RegresarFamiliar, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -779,13 +780,13 @@ public class agregar_familiar extends javax.swing.JFrame {
         cargarPaciente.setLocationRelativeTo(buscarp);
     }//GEN-LAST:event_buscarpActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void boton_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_modificarActionPerformed
 
         int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) {
             modificar_familiar();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_boton_modificarActionPerformed
 
     private void text_celular_familiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_celular_familiarMousePressed
         text_celular_familiar.setText("");
@@ -1272,12 +1273,12 @@ public class agregar_familiar extends javax.swing.JFrame {
     private javax.swing.JButton RegresarFamiliar;
     private javax.swing.JTable TablaPaciente;
     private javax.swing.JButton boton_actualizar;
+    private javax.swing.JButton boton_modificar;
     private javax.swing.JButton buscarp;
     private javax.swing.JButton cargarP;
     private javax.swing.JDialog cargarPaciente;
     private javax.swing.JComboBox<String> combo_sangre_familiar;
     private com.toedter.calendar.JDateChooser fecha_nacimiento_familiar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
