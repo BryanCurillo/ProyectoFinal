@@ -862,7 +862,9 @@ public class agregar_tratamiento extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (validaciones()) {
+            
             guardar_tratamiento();
+            
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -960,6 +962,7 @@ public class agregar_tratamiento extends javax.swing.JFrame {
         if (mi_trata.Insertar_tratamiento()) {
             System.out.println("Conexion Exitosa");
             GuardarTrataMedicamento();
+            JOptionPane.showMessageDialog(null, "Se guardó éxitosamente");
         } else {
             System.out.println("Conexion Erronea");
         }
