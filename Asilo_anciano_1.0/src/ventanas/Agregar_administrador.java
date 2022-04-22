@@ -47,10 +47,12 @@ public class Agregar_administrador extends javax.swing.JFrame {
     Insert_administrador inserAdmin = new Insert_administrador();
     Insert_usuario usu = new Insert_usuario();
     Conexion cone = new Conexion();
+    boolean loginRegresar;
 
-    public Agregar_administrador() {
+    public Agregar_administrador(boolean login) {
         initComponents();
         this.setLocationRelativeTo(null);
+        loginRegresar=login;
         cargarcod();
     }
 
@@ -712,8 +714,16 @@ public class Agregar_administrador extends javax.swing.JFrame {
 
     private void Regresar_administradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Regresar_administradorActionPerformed
         this.dispose();
-        new crud_administrador().setVisible(true);
+        regresar(loginRegresar);
+//        new crud_administrador().setVisible(true);
     }//GEN-LAST:event_Regresar_administradorActionPerformed
+    public void regresar(boolean login) {
+        if (login) {
+            new login_administrador().setVisible(true);
+        }else{
+            new crud_administrador().setVisible(true);
+        }
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -1010,7 +1020,7 @@ public class Agregar_administrador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Agregar_administrador().setVisible(true);
+                new Agregar_administrador(false).setVisible(true);
             }
         });
     }
