@@ -89,7 +89,7 @@
                       <Component id="text_PrimerNombre_enfermera" min="-2" pref="210" max="-2" attributes="0"/>
                       <Component id="text_cedula_enfermera" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="boton_modificar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           <Component id="Regresar_enfermera" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -300,7 +300,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="boton_modificar" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="Regresar_enfermera" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="Guardar_enfermera" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -703,7 +703,7 @@
             <Property name="text" type="java.lang.String" value="Sexo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="boton_modificar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagenes/editar (1).png"/>
@@ -716,7 +716,7 @@
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_modificarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

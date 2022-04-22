@@ -35,6 +35,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
     public agregar_enfermera() {
         initComponents();
         this.setLocationRelativeTo(null);
+        boton_modificar.setVisible(false);
         cargarcod();
     }
 
@@ -145,7 +146,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
         txtusurio_enfermera = new javax.swing.JTextField();
         txtcontrasena_enfermera = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        boton_modificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -368,14 +369,14 @@ public class agregar_enfermera extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setText("Sexo:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
-        jButton1.setToolTipText("MODIFICAR");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        boton_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
+        boton_modificar.setToolTipText("MODIFICAR");
+        boton_modificar.setBorder(null);
+        boton_modificar.setBorderPainted(false);
+        boton_modificar.setOpaque(false);
+        boton_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                boton_modificarActionPerformed(evt);
             }
         });
 
@@ -420,7 +421,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
                     .addComponent(text_PrimerNombre_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(text_cedula_enfermera, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(boton_modificar)
                         .addGap(66, 66, 66)
                         .addComponent(Regresar_enfermera)))
                 .addGap(44, 44, 44)
@@ -575,7 +576,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(boton_modificar, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Regresar_enfermera, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Guardar_enfermera, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(39, 39, 39))))
@@ -672,12 +673,12 @@ public class agregar_enfermera extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_text_direccion_enfermeraActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void boton_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_modificarActionPerformed
         int response = JOptionPane.showConfirmDialog(this, "¿Seguro que desea modificarlo?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) {
             modificar_enfermera();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_boton_modificarActionPerformed
 
     private void txtusurio_enfermeraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtusurio_enfermeraMousePressed
         // TODO add your handling code here:
@@ -966,9 +967,9 @@ public class agregar_enfermera extends javax.swing.JFrame {
     private javax.swing.JButton Guardar_enfermera;
     private javax.swing.JRadioButton Masculino_enfermera;
     private javax.swing.JButton Regresar_enfermera;
+    private javax.swing.JButton boton_modificar;
     private javax.swing.JComboBox<String> combo_sangre_enfermera;
     private javax.swing.ButtonGroup grupo_sexo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
