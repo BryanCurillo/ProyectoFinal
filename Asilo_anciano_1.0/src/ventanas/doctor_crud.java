@@ -17,6 +17,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class doctor_crud extends javax.swing.JFrame {
 
+    //public static String cedulaDOS;
+    //public static int botonMediDoc;
+    
     Conexion mi_cone = new Conexion();
     Insert_doctor inser = new Insert_doctor();
 
@@ -164,7 +167,7 @@ public class doctor_crud extends javax.swing.JFrame {
 
     private void BtRegresarDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtRegresarDoctorActionPerformed
 
-        agregar_doctor.botonMediDoc = 0;
+        //agregar_doctor.botonMediDoc = 0;
         this.dispose();
         new acceso_administrador().setVisible(true);
     }//GEN-LAST:event_BtRegresarDoctorActionPerformed
@@ -227,7 +230,10 @@ public class doctor_crud extends javax.swing.JFrame {
             String cedula = TablaDoctor.getValueAt(seleccion, 1).toString();
             inser.ListaDoctor().forEach((e) -> {
                 if (e.getCedula().equals(cedula)) {
+                    //cedulaDOS = cedula;
+                    //botonMediDoc = 1;
                     new agregar_doctor(cedula).setVisible(true);
+                    dispose();
                     text_buscar.setText("");
 
                 }
