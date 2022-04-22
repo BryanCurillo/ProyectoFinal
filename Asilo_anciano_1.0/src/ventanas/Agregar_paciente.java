@@ -87,6 +87,7 @@ public class Agregar_paciente extends javax.swing.JFrame {
     }
 
     public void llenar_paciente(String cedula) {
+        
         fecha_ingreso_paciente.setEnabled(false);
         text_cedula_paciente.setEnabled(false);
         text_codigo_paciente.setEnabled(false);
