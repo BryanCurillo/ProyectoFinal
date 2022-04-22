@@ -474,7 +474,7 @@ public class HistorialMedico extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -721,7 +721,7 @@ public class HistorialMedico extends javax.swing.JFrame {
                     }
                     cargar_tabla_tratamiento(p.getCodigo());
 
-                    if (mi_historial.comprobarHistorial(codigo)) {
+                    if (mi_historial.comprobarHistorial(codigo)&&mi_historial.comprobarTratamiento(codigo)) {
 
                         guardar_historial();
                     }
@@ -746,8 +746,6 @@ public class HistorialMedico extends javax.swing.JFrame {
         List<Tratamiento> com = mi_trata.lista_tratamiento(codpaci);
         com.stream().forEach(p -> {
             String[] trata = {String.valueOf(p.getCodigo_tratamiento()), p.getDiagnostico(), insert_tratamedi.medicacion(p.getCodigo_tratamiento()), p.getDosis(), p.getFecha_inicio_trata(), p.getFecha_fin_trata(), String.valueOf(p.getCodigo_paciente()), p.getObservaciones()};
-            System.out.println("tabla cargada");
-
             tb.addRow(trata);
         });
     }
@@ -786,6 +784,8 @@ public class HistorialMedico extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HistorialMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
