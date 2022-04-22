@@ -202,7 +202,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     }
 
     public void cargarTabla() {
-         
+
         int cod = 0;
         Insert_visita_familiar insertvisita = new Insert_visita_familiar();
         var visitafiltro = new ArrayList<familiar>();
@@ -213,12 +213,8 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         String matriz[][] = new String[visitafiltro.size()][9];
 
         for (int i = 0; i < visitafiltro.size(); i++) {
-
-            
-            matriz[i][3] = visitafiltro.get(i).getPri_nomb();
-            matriz[i][4] = visitafiltro.get(i).getSeg_nombre();
-            matriz[i][5] = visitafiltro.get(i).getPrim_apell();
-            matriz[i][6] = visitafiltro.get(i).getSeg_apelli();
+            matriz[i][2] = visitafiltro.get(i).getPri_nomb() + "  " + visitafiltro.get(i).getSeg_nombre();
+            matriz[i][3] = visitafiltro.get(i).getPrim_apell() + "  " + visitafiltro.get(i).getSeg_apelli();
 
         }
 
@@ -231,15 +227,20 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
             matriz[j][0] = String.valueOf(registrofiltro.get(j).getCod_visita());
             matriz[j][1] = String.valueOf(registrofiltro.get(j).getCod_familiar_visita());
-            matriz[j][2] = String.valueOf(registrofiltro.get(j).getCod_paciente_visita());
+            matriz[j][4] = String.valueOf(registrofiltro.get(j).getCod_paciente_visita());
             matriz[j][7] = registrofiltro.get(j).getFecha_visita();
             matriz[j][8] = registrofiltro.get(j).getHorario_visita();
+            cod = registrofiltro.get(j).getCod_paciente_visita();
+        }
+        for (int i = 0; i < insertvisita.CargarPaciTabla(cod).size(); i++) {
+            matriz[i][5] = insertvisita.CargarPaciTabla(cod).get(i).getPri_nomb() + "  " + insertvisita.CargarPaciTabla(cod).get(i).getSeg_nombre();
+            matriz[i][6] = insertvisita.CargarPaciTabla(cod).get(i).getPrim_apell() + "  " + insertvisita.CargarPaciTabla(cod).get(i).getSeg_apelli();
         }
 
         tablavisitante.setModel(new javax.swing.table.DefaultTableModel(
                 matriz,
                 new String[]{
-                    "Codigo Visitante","Codigo Familiar","Codigo Paciente", "Primer Nombre ", "Segundo Nombre","Primer Apellido","Segundo Apellido","Fecha de Visita", "Horario Visita"
+                    "Codigo Visita", "Codigo Familiar", "Nombres", "Apellidos", "Codigo Paciente", "Nombres paciente", "Apellidos paciente", "Fecha Visita", "Horario de Visita"
                 }
         ));
     }
@@ -568,7 +569,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo Visita", "Codigo Familiar", "Codigo Paciente", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido", "Fecha Visita", "Horario de Visita"
+                "Codigo Visita", "Codigo Familiar", "Nombres", "Apellidos", "Codigo Paciente", "Nombres paciente", "Apellidos paciente", "Fecha Visita", "Horario de Visita"
             }
         ));
         jScrollPane2.setViewportView(tablavisitante);
