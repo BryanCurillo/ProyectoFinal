@@ -129,7 +129,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                 matriz[j][3] = pacienteDialogfiltro.get(j).getPrim_apell() + "  " + pacienteDialogfiltro.get(j).getSeg_apelli();;
 
             }
-            tabla_paciente_dialog.setModel(new javax.swing.table.DefaultTableModel(
+            tabla_paciente.setModel(new javax.swing.table.DefaultTableModel(
                     matriz,
                     new String[]{
                         "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
@@ -141,7 +141,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     }
 
     public void CargarTodosLosPacientes() {
-        DefaultTableModel tb = (DefaultTableModel) tabla_paciente_dialog.getModel();
+        DefaultTableModel tb = (DefaultTableModel) tabla_paciente.getModel();
         tb.setNumRows(0);
         List<paciente> com = inser.ListaPaciente();
         com.stream().forEach(p -> {
@@ -150,8 +150,18 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         });
     }
 
+    public void CargarTodosLosFamiliares() {
+        DefaultTableModel tb = (DefaultTableModel) tabla_familiares.getModel();
+        tb.setNumRows(0);
+        List<familiar> com = insertfamiliar.ListaFamiliar();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getCodigo()), p.getCedula(), p.getPri_nomb() + "  " + p.getSeg_nombre(), p.getPrim_apell() + "  " + p.getSeg_apelli()};
+            tb.addRow(cami);
+        });
+    }
+
     public void CargarDatosPacienteEnTXT() {
-        int fila = tabla_paciente_dialog.getSelectedRow();
+        int fila = tabla_paciente.getSelectedRow();
 
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
@@ -162,10 +172,10 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             String nombresAux;
             String apellidosAux;
 
-            codigoAux = tabla_paciente_dialog.getValueAt(fila, 0).toString();
-            cedulaAux = tabla_paciente_dialog.getValueAt(fila, 1).toString();
-            nombresAux = tabla_paciente_dialog.getValueAt(fila, 2).toString();
-            apellidosAux = tabla_paciente_dialog.getValueAt(fila, 3).toString();
+            codigoAux = tabla_paciente.getValueAt(fila, 0).toString();
+            cedulaAux = tabla_paciente.getValueAt(fila, 1).toString();
+            nombresAux = tabla_paciente.getValueAt(fila, 2).toString();
+            apellidosAux = tabla_paciente.getValueAt(fila, 3).toString();
 
             txt_codigo_paciente_visita.setText(codigoAux);
             txt_cedula_paciente_visita.setText(cedulaAux);
@@ -173,6 +183,33 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             txt_apellido_paciente_visita.setText(apellidosAux);
 
             registro_paciente.dispose();
+        }
+
+    }
+
+    public void CargarDatosFamiliarEnTXT() {
+        int fila = tabla_familiares.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+
+            String codigoAux;
+            String cedulaAux;
+            String nombresAux;
+            String apellidosAux;
+
+            codigoAux = tabla_familiares.getValueAt(fila, 0).toString();
+            cedulaAux = tabla_familiares.getValueAt(fila, 1).toString();
+            nombresAux = tabla_familiares.getValueAt(fila, 2).toString();
+            apellidosAux = tabla_familiares.getValueAt(fila, 3).toString();
+
+            txt_codigo_familiar.setText(codigoAux);
+            txtvisitcedula.setText(cedulaAux);
+            txtvisitnombre.setText(nombresAux);
+            txtvisitapellido.setText(apellidosAux);
+
+            visitafamiliar.dispose();
         }
 
     }
@@ -228,13 +265,14 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             matriz[j][0] = String.valueOf(registrofiltro.get(j).getCod_visita());
             matriz[j][1] = String.valueOf(registrofiltro.get(j).getCod_familiar_visita());
             matriz[j][4] = String.valueOf(registrofiltro.get(j).getCod_paciente_visita());
+            cod = registrofiltro.get(j).getCod_paciente_visita();
+            for (int i = 0; i < insertvisita.CargarPaciTabla(cod).size(); i++) {
+                matriz[j][5] = insertvisita.CargarPaciTabla(cod).get(i).getPri_nomb() + "  " + insertvisita.CargarPaciTabla(cod).get(i).getSeg_nombre();
+                matriz[j][6] = insertvisita.CargarPaciTabla(cod).get(i).getPrim_apell() + "  " + insertvisita.CargarPaciTabla(cod).get(i).getSeg_apelli();
+            }
             matriz[j][7] = registrofiltro.get(j).getFecha_visita();
             matriz[j][8] = registrofiltro.get(j).getHorario_visita();
-            cod = registrofiltro.get(j).getCod_paciente_visita();
-        }
-        for (int i = 0; i < insertvisita.CargarPaciTabla(cod).size(); i++) {
-            matriz[i][5] = insertvisita.CargarPaciTabla(cod).get(i).getPri_nomb() + "  " + insertvisita.CargarPaciTabla(cod).get(i).getSeg_nombre();
-            matriz[i][6] = insertvisita.CargarPaciTabla(cod).get(i).getPrim_apell() + "  " + insertvisita.CargarPaciTabla(cod).get(i).getSeg_apelli();
+            
         }
 
         tablavisitante.setModel(new javax.swing.table.DefaultTableModel(
@@ -353,7 +391,14 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         cargar_paciente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_paciente_dialog = new javax.swing.JTable();
+        tabla_paciente = new javax.swing.JTable();
+        visitafamiliar = new javax.swing.JDialog();
+        txt_buscar_paciente_dialog1 = new javax.swing.JTextField();
+        boton_buscar_paciente_visita_dialog1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        cargar_paciente1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla_familiares = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -424,7 +469,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             }
         });
 
-        tabla_paciente_dialog.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_paciente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -435,7 +480,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                 "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
             }
         ));
-        jScrollPane1.setViewportView(tabla_paciente_dialog);
+        jScrollPane1.setViewportView(tabla_paciente);
 
         javax.swing.GroupLayout registro_pacienteLayout = new javax.swing.GroupLayout(registro_paciente.getContentPane());
         registro_paciente.getContentPane().setLayout(registro_pacienteLayout);
@@ -466,6 +511,87 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
                             .addComponent(boton_buscar_paciente_visita_dialog))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+        );
+
+        txt_buscar_paciente_dialog1.setText("Buscar...");
+        txt_buscar_paciente_dialog1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txt_buscar_paciente_dialog1MousePressed(evt);
+            }
+        });
+
+        boton_buscar_paciente_visita_dialog1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (2).png"))); // NOI18N
+        boton_buscar_paciente_visita_dialog1.setToolTipText("Buscar Paciente");
+        boton_buscar_paciente_visita_dialog1.setBorder(null);
+        boton_buscar_paciente_visita_dialog1.setOpaque(false);
+        boton_buscar_paciente_visita_dialog1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_buscar_paciente_visita_dialog1ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ACTUALIZARTAB.jpeg"))); // NOI18N
+        jButton5.setToolTipText("ACTUALIZAR");
+        jButton5.setBorder(null);
+        jButton5.setOpaque(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        cargar_paciente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/carga-de-archivos.png"))); // NOI18N
+        cargar_paciente1.setToolTipText("CARGAR PACIENTE");
+        cargar_paciente1.setBorder(null);
+        cargar_paciente1.setOpaque(false);
+        cargar_paciente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargar_paciente1ActionPerformed(evt);
+            }
+        });
+
+        tabla_familiares.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "CODIGO", "CEDULA", "NOMBRES", "APELLIDOS"
+            }
+        ));
+        jScrollPane3.setViewportView(tabla_familiares);
+
+        javax.swing.GroupLayout visitafamiliarLayout = new javax.swing.GroupLayout(visitafamiliar.getContentPane());
+        visitafamiliar.getContentPane().setLayout(visitafamiliarLayout);
+        visitafamiliarLayout.setHorizontalGroup(
+            visitafamiliarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visitafamiliarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_buscar_paciente_dialog1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boton_buscar_paciente_visita_dialog1)
+                .addGap(33, 33, 33)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cargar_paciente1)
+                .addGap(26, 26, 26))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+        );
+        visitafamiliarLayout.setVerticalGroup(
+            visitafamiliarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visitafamiliarLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(visitafamiliarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cargar_paciente1)
+                    .addGroup(visitafamiliarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton5)
+                        .addGroup(visitafamiliarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_buscar_paciente_dialog1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton_buscar_paciente_visita_dialog1))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -643,8 +769,11 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     }//GEN-LAST:event_combohorariovisitaActionPerformed
 
     private void boton_buscar_familiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscar_familiarActionPerformed
-        // TODO add your handling code here:
-        Buscar_Familiar();
+        visitafamiliar.setSize(529, 309);
+        CargarTodosLosFamiliares();
+        visitafamiliar.setVisible(true);
+        visitafamiliar.setLocationRelativeTo(boton_buscar_familiar);
+//        Buscar_Familiar();
 
 
     }//GEN-LAST:event_boton_buscar_familiarActionPerformed
@@ -686,6 +815,21 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
         txt_buscar_paciente_dialog.setForeground(Color.BLACK);
     }//GEN-LAST:event_txt_buscar_paciente_dialogMousePressed
 
+    private void txt_buscar_paciente_dialog1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_buscar_paciente_dialog1MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscar_paciente_dialog1MousePressed
+
+    private void boton_buscar_paciente_visita_dialog1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscar_paciente_visita_dialog1ActionPerformed
+    }//GEN-LAST:event_boton_buscar_paciente_visita_dialog1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void cargar_paciente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_paciente1ActionPerformed
+        CargarDatosFamiliarEnTXT();
+    }//GEN-LAST:event_cargar_paciente1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -712,6 +856,7 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(crud_vistafamiliar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -725,12 +870,15 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JButton boton_buscar_familiar;
     private javax.swing.JButton boton_buscar_paciente;
     private javax.swing.JButton boton_buscar_paciente_visita_dialog;
+    private javax.swing.JButton boton_buscar_paciente_visita_dialog1;
     private javax.swing.JButton boton_guardar_registro;
     private javax.swing.JButton boton_regresar_acceso_recepcionista;
     private javax.swing.JButton cargar_paciente;
+    private javax.swing.JButton cargar_paciente1;
     private javax.swing.JComboBox<String> combohorariovisita;
     private com.toedter.calendar.JDateChooser fecha_visita;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -747,12 +895,15 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JDialog registro_paciente;
-    private javax.swing.JTable tabla_paciente_dialog;
+    private javax.swing.JTable tabla_familiares;
+    private javax.swing.JTable tabla_paciente;
     private javax.swing.JTable tablavisitante;
     private javax.swing.JTextField txt_apellido_paciente_visita;
     private javax.swing.JTextField txt_buscar_paciente_dialog;
+    private javax.swing.JTextField txt_buscar_paciente_dialog1;
     private javax.swing.JTextField txt_cedula_paciente_visita;
     private javax.swing.JTextField txt_codigo_familiar;
     private javax.swing.JTextField txt_codigo_paciente_visita;
@@ -761,5 +912,6 @@ public class crud_vistafamiliar extends javax.swing.JFrame {
     private javax.swing.JTextField txtvisitapellido;
     private javax.swing.JTextField txtvisitcedula;
     private javax.swing.JTextField txtvisitnombre;
+    private javax.swing.JDialog visitafamiliar;
     // End of variables declaration//GEN-END:variables
 }
