@@ -397,6 +397,9 @@ public class Agregar_paciente extends javax.swing.JFrame {
         text_cedula_paciente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         text_cedula_paciente.setText("Ingrese Cedula");
         text_cedula_paciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                text_cedula_pacienteMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 text_cedula_pacienteMousePressed(evt);
             }
@@ -404,6 +407,11 @@ public class Agregar_paciente extends javax.swing.JFrame {
         text_cedula_paciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text_cedula_pacienteActionPerformed(evt);
+            }
+        });
+        text_cedula_paciente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                text_cedula_pacienteKeyPressed(evt);
             }
         });
 
@@ -659,8 +667,11 @@ public class Agregar_paciente extends javax.swing.JFrame {
 
     private void text_cedula_pacienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_cedula_pacienteMousePressed
 
-        text_cedula_paciente.setText("");
+        if(text_cedula_paciente.getText().equals("Ingrese Cedula")){
+            text_cedula_paciente.setText("");
         text_cedula_paciente.setForeground(Color.BLACK);
+        }
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_text_cedula_pacienteMousePressed
@@ -759,6 +770,14 @@ public class Agregar_paciente extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_btModificarActionPerformed
+
+    private void text_cedula_pacienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_text_cedula_pacienteKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_cedula_pacienteKeyPressed
+
+    private void text_cedula_pacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_cedula_pacienteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_cedula_pacienteMouseClicked
 
     public void cargarcod() {
         text_codigo_paciente.setEnabled(false);
