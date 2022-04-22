@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 
 public class login_administrador extends javax.swing.JFrame {
 
+    public static int BotonLoginAdmin;
+    
     Insert_administrador inserAdmin = new Insert_administrador();
 
     public login_administrador() {
@@ -93,7 +95,11 @@ public class login_administrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonRegistrarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarAdminActionPerformed
-        new Agregar_administrador(true).setVisible(true);
+        //new Agregar_administrador().setVisible(true);
+        Agregar_administrador mi_agregarAdmin = new Agregar_administrador();
+        mi_agregarAdmin.setVisible(true);
+        BotonLoginAdmin = 1;
+        dispose();
     }//GEN-LAST:event_BotonRegistrarAdminActionPerformed
 
     private void boton_regresar_menu_principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresar_menu_principalActionPerformed
@@ -101,6 +107,7 @@ public class login_administrador extends javax.swing.JFrame {
         inicio_frame menup = new inicio_frame();
         menup.setVisible(true);
         dispose();
+
     }//GEN-LAST:event_boton_regresar_menu_principalActionPerformed
 
     private void BotonIniciarSesionA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIniciarSesionA1ActionPerformed
