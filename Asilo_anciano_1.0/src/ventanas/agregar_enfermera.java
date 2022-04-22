@@ -793,7 +793,7 @@ public class agregar_enfermera extends javax.swing.JFrame {
             validado = false;
             JOptionPane.showMessageDialog(this, "Ingrese la cedula");
         } else {
-            if (!misvalidaciones.validar_ced(text_cedula_enfermera.getText())) {
+            if (misvalidaciones.validar_ced(text_cedula_enfermera.getText()) == false) {
                 JOptionPane.showMessageDialog(this, "Cedula incorrecta");
                 validado = false;
             }
