@@ -47,9 +47,11 @@ public class Agregar_recepcionista extends javax.swing.JFrame {
         Guardar_recepcionista.setVisible(false);
         String SQL_SELECT = "SELECT * FROM recepcionista WHERE cedula = " + cedula + ";";
         llenar_recepcionista(cedula);
+        
     }
 
     public void llenar_recepcionista(String cedula) {
+        text_cedula_recepcionista.setEnabled(false);
         text_codigo_recepcionista.setEnabled(false);
         List<recepcionista> com = recep.ListaRecepcionista();
         com.stream().forEach(p -> {
