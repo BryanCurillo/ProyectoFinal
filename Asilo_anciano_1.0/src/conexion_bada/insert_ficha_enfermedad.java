@@ -25,6 +25,7 @@ public class insert_ficha_enfermedad extends FichaEnfermedad {
     public boolean InsertarFichaEnfermedad() {
         String sql = "INSERT INTO ficha_enfermedad(fe_codigo_enfermedad,fe_codigo_ficha)\n"
                 + "VALUES (" + getCodigo_enfermedad() + "," + getCodigo_ficha()+ ");";
+        System.out.println("INSERT="+getCodigo_enfermedad());
         return cone.InsertUpdateDeleteAcciones(sql);
     }
 
